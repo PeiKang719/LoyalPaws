@@ -234,6 +234,7 @@ for ($i = 1; $i <= 6; $i++) {
 		<br>
 		<p style="font-size: 35px;margin-left: 6%;"><span class="material-symbols-outlined" style="font-size:50px;vertical-align:-10px">distance</span> <?php echo $row3['address'] ?>, <?php echo $row3['area'] ?>, <?php echo $row3['state'] ?>. </p>
 		<br><br>
+	<?php if (!isset($_SESSION['key'])){ ?>
 		<p class="pet-info" style="font-weight: 600;">Feel free to inquire: </p>
 		<br><br>
 		<a href="Seller-Profile.php?s=pet&<?php echo$url_parameter?>=<?php echo$row3['id']?>" class="inquire-seller-container">
@@ -246,6 +247,7 @@ for ($i = 1; $i <= 6; $i++) {
 			</div>
 			
 		</a>
+<?php } ?>
 		<br>
 	</div>
 </section>

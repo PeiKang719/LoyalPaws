@@ -23,7 +23,7 @@
 	<div class="form-container">
 <?php 
 $i=1;
-$sql = "SELECT p.petID, s.sellerID,p.gender, p.pet_image, p.breedID,b.name,m.status,m.visit_date,m.visit_time,p.price,m.adopterID FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON  p.sellerID=s.sellerID JOIN pet_payment m ON p.petID=m.petID WHERE s.sellerID=1 AND p.purpose='Sell' GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,m.status,m.visit_date,m.visit_time,p.price,m.adopterID FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Sell' GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Appointment' THEN 1
@@ -196,7 +196,7 @@ $sql = "SELECT p.petID, s.sellerID,p.gender, p.pet_image, p.breedID,b.name,m.sta
 		
 				if($z==1 ){?>
 		<div class="column">
-			<a href="User-Profile.php?id=<?php echo $row['adopterID'] ?>&sid=<?php echo $row['sellerID']?>">
+			<a href="User-Profile.php?id=<?php echo $row['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -214,7 +214,7 @@ $sql = "SELECT p.petID, s.sellerID,p.gender, p.pet_image, p.breedID,b.name,m.sta
 <?php } 
 elseif($z==2 ){?>
 		<div class="column">
-			<a href="User-Profile.php?id=<?php echo $row['adopterID'] ?>&sid=<?php echo $row['sellerID']?>">
+			<a href="User-Profile.php?id=<?php echo $row['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -232,7 +232,7 @@ elseif($z==2 ){?>
  
 elseif($z==3 ){?>
 		<div class="column">
-			<a href="User-Profile.php?id=<?php echo $row['adopterID'] ?>&sid=<?php echo $row['sellerID']?>">
+			<a href="User-Profile.php?id=<?php echo $row['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #cc0000 ">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">

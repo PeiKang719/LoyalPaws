@@ -6,8 +6,13 @@ $sellerID = $_GET['sellerID'];
 if(isset($_GET['column'])){
   $column='vetID';
 }
-else{
+elseif(isset($_GET['key'])){
+  if($_GET['key']=='sellerID'){
   $column='sellerID';
+  }
+  elseif($_GET['key']=='shopID'){
+    $column='shopID';
+  }
 }
 // Prepare the SQL statement to retrieve the messages
 $sql = "SELECT * FROM message WHERE adopterID=$adopterID AND $column=$sellerID";

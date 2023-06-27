@@ -397,18 +397,19 @@ function closeChatModal() {
     // Retrieve initial chat messages
     var sellerID = <?php echo $sid; ?>;
     var adopterID = <?php echo $adopterID; ?>;
-    retrieveMessages(sellerID, adopterID);
+    var key = '<?php echo $key; ?>';
+    retrieveMessages(sellerID, adopterID,key);
 
     // Send new message
     $('#send').click(function() {
       var message = $('#message').val();
-      sendMessage(message, sellerID, adopterID);
+      sendMessage(message, sellerID, adopterID,key);
       $('#message').val('');
 
     });
     // Poll server for new messages every 2 seconds
     setInterval(function() {
-      retrieveMessages(sellerID, adopterID);
+      retrieveMessages(sellerID, adopterID,key);
     }, 1500);
     setTimeout(scrollToBottom, 1500);
   });
@@ -419,18 +420,19 @@ function closeChatModal() {
       var message = $('#message').val();
       var sellerID = <?php echo $sid; ?>;
       var adopterID = <?php echo $adopterID; ?>;
-      sendMessage(message, sellerID, adopterID);
+      var key = '<?php echo $key; ?>';
+      sendMessage(message, sellerID, adopterID,key);
       $('#message').val('');
     }
 
     setTimeout(scrollToBottom, 1500);
   }
 
-  function retrieveMessages(sellerID, adopterID) {
+  function retrieveMessages(sellerID, adopterID,key) {
     $.ajax({
       url: 'chat-non-user-get-message.php',
       method: 'GET',
-      data: { sellerID: sellerID, adopterID: adopterID },
+      data: { sellerID: sellerID, adopterID: adopterID,key:key },
       success: function(response) {
         $('#chatbox').html(response);
       }
@@ -438,11 +440,11 @@ function closeChatModal() {
     setTimeout(scrollToBottom, 1500);
   }
 
-  function sendMessage(message, sellerID, adopterID) {
+  function sendMessage(message, sellerID, adopterID,key) {
     $.ajax({
       url: 'chat-non-user-send-message.php',
       method: 'POST',
-      data: { message: message, sellerID: sellerID, adopterID: adopterID },
+      data: { message: message, sellerID: sellerID, adopterID: adopterID, key:key },
       success: function(response) {
         console.log('Message sent');
       }

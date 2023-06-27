@@ -40,7 +40,7 @@
     $paymentID=$_GET['paymentID'];
     $adopterID=$_GET['adopterID'];
 
-    $sql= "SELECT cp.date,cp.recordID,c.address,c.area,c.state,c.phone,c.name,c.email,c.discount_percent,ca.petID FROM clinic_payment cp,record r,clinic_appointment ca,clinic c WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.clinicID=c.clinicID AND cp.paymentID='$paymentID'";
+    $sql= "SELECT cp.transactionID,cp.date,cp.recordID,c.address,c.area,c.state,c.phone,c.name,c.email,c.discount_percent,ca.petID FROM clinic_payment cp,record r,clinic_appointment ca,clinic c WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.clinicID=c.clinicID AND cp.paymentID='$paymentID'";
     $sql2 = "SELECT * FROM adopter WHERE adopterID='$adopterID'";
 
     $result = $conn->query($sql);
@@ -69,13 +69,21 @@
   <main  id="receipt">
      <h1 style="margin-left:6px">Receipt</h1>
      <hr>
-  <div>
-    <?php
+
+  <div class="receipt-container-row">
+    <div class="receipt-container-row-content"> 
+      <div ><strong>Transaction ID:</strong> <?php echo $row['transactionID']; ?> </div>
+    </div>
+
+    <div class="receipt-container-row-content" style="padding-left:13%;width: 37%;">
+     <?php
     date_default_timezone_set('Asia/Kuala_Lumpur');
     ?>
     <div ><strong>Date:</strong> <?php echo $row['date']; ?> </div>
-    
   </div>
+</div>
+
+
   <hr>
   <div class="receipt-container-row">
     <div class="receipt-container-row-content"> <strong>CLINIC ADDRESS</strong>

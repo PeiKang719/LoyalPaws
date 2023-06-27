@@ -225,7 +225,6 @@
             }
         $clinicID=$row['clinicID'];
         $name=$row['name'];
-        $adopterID=$row['adopterID'];
         $petID=$row['petID'];
         $discount_percent = $row['discount_percent'];
         $recordID = $row['recordID'];
@@ -255,40 +254,11 @@
   </div>
   <br>
       <div style="width:100%;text-align:center;display: flex;flex-direction: row;align-items: center;justify-content: center;">
-      <button class="reschedule-button" style="background-color:#006bb3;color:white" onclick="detail(event,<?php echo $paymentID?>);">Payment Detail</button>
+      <button class="reschedule-button" style="background-color:#006bb3;color:white" onclick="detail(event,<?php echo $paymentID?>,<?php echo $adopterID ?>);">Receipt</button>
       <button class="reschedule-button" onclick="recordModal2(<?php echo $recordID ?>,event)">View Record</button>
     </div>
   </a>
 
-
-<div id="DetailModal<?php echo$paymentID ?>" class="modal">
-  <div class="modal-content" style="height: auto;padding-bottom: 40px;margin-bottom: 70px;margin-top: 120px;">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Payment Detail</h2>
-    </div>
-    <div style="width: 100%;display: flex;flex-direction: column; align-items: center;">
-      <br><br>
-    <table width="70%" border="0" style="margin:25px 0">
-      <tr>
-        <td style="font-size: 30px;">Transaction ID</td>
-        <td style="font-size: 30px;">:</td>
-        <td><p style="font-size: 30px;"><?php echo $transactionID ?></p></td>
-      </tr>
-      <tr>
-        <td style="font-size: 30px;">Amount</td>
-        <td style="font-size: 30px;">:</td>
-        <td><p style="font-size: 30px;">RM <?php echo $amount ?></p></td>
-      </tr>
-      <tr>
-        <td style="font-size: 30px;">Transfer to</td>
-        <td style="font-size: 30px;">:</td>
-        <td><p style="font-size: 30px;"><?php echo $name ?></p></td>
-      </tr>
-  </table>
-  </div>
-  </div>
-</div>
 <?php }}else{?>
   <img src="media/no-document.jpg" width="300px" height="300px">
 <?php }} ?>
@@ -396,22 +366,11 @@ function payment(event,i,price) {
   }).render('#paypal-payment-button'+i);
 }
 
-function detail(event, paymentID) {
+function detail(event, paymentID,adopterID) {
   event.preventDefault(); // Prevents anchor tag from triggering its default behavior
-    var modal = document.getElementById("DetailModal"+paymentID);
-    // Get the <span> element that closes the modal
-    var span = modal.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-
-      modal.style.display = "block"; 
-    
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
+   window.open("Clinic-Receipt.php?paymentID=" + paymentID +"&adopterID="+ adopterID, "_blank");
 }
+
 
 function recordModal2(recordID, event) {
   event.preventDefault(); // Prevents anchor tag from triggering its default behavior

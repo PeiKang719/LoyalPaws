@@ -8,8 +8,13 @@ $adopterID = $_POST['adopterID'];
 if(isset($_POST['column'])){
   $column='vetID';
 }
-else{
+elseif(isset($_POST['key'])){
+  if($_POST['key']=='sellerID'){
   $column='sellerID';
+  }
+  elseif($_POST['key']=='shopID'){
+    $column='shopID';
+  }
 }
 date_default_timezone_set('Asia/Singapore');
 $time = date('Y-m-d H:i:s');

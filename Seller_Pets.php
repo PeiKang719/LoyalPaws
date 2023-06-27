@@ -16,22 +16,7 @@
 
 <?php 
 session_start();
-
-
-if(isset($_SESSION['sellerID'])){
-	include 'SellerHeader.php'; 
-	$sid=$_SESSION['sellerID'];
-	$pk='sellerID';
-}
-elseif(isset($_SESSION['shopID'])){
-	include 'SellerHeader.php'; 
-	$sid=$_SESSION['shopID'];
-	$pk='shopID';
-}
-else{
-	$sid='';
-	$pk='';
-}
+include 'SellerHeader.php'; 
 ?>
 
 
@@ -62,7 +47,7 @@ else{
 
 
 </div>
-<?php showPet($pk, $sid ); ?>
+<?php showPet($key, $sellerID ); ?>
 </section>
 	
 <?php
@@ -181,7 +166,8 @@ function showPet($pk, $sid) {
       </div>
       <iframe name="hiddenFrame" class="hide"></iframe>
     <form id="petForm" action="Seller_Pets-Add-Pets.php" method="post" target="hiddenFrame" enctype="multipart/form-data">
-
+      <input type="hidden" name="pk" value="<?php echo $key ?>" >
+      <input type="hidden" name="sellerID" value="<?php echo $sellerID ?>" >
       <div class="tab" style="margin-bottom:-3px">
         <h1 class="tab2head" style="margin-left:283px;">Pet Data</h1>
         <label>Cat or Dog:</label><br>

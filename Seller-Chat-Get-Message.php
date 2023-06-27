@@ -1,19 +1,14 @@
 
 <?php
 session_start();
-$role=$_SESSION['role'];
+$key=$_SESSION['key'];
+$sellerID=$_SESSION['sellerID'];
+
 include('Connection.php');
 $selectedUser = $_GET['selectedUser'];
 
-if($role=='seller'){
-$sellerID=$_SESSION['sellerID'];
-$sql = "SELECT * FROM message m,adopter a where m.adopterID=a.adopterID AND m.adopterID=$selectedUser AND sellerID=$sellerID ORDER BY messageID ";
-}else{
-$shopID=$_SESSION['shopID'];
-$sql = "SELECT * FROM message m,adopter a where m.adopterID=a.adopterID AND m.adopterID=$selectedUser AND shopID=$shopID ORDER BY messageID ";
-}
 
-$selectedUser = $_GET['selectedUser'];
+$sql = "SELECT * FROM message m,adopter a where m.adopterID=a.adopterID AND m.adopterID=$selectedUser AND $key=$sellerID ORDER BY messageID ";
 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();

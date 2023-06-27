@@ -35,7 +35,8 @@ $password = $_POST["password1"];
 elseif($result2->num_rows == 1) {
   session_start();
   $_SESSION['sellerID'] = $row2['sellerID'];
-  $_SESSION['role'] = 'sellerID';
+  $_SESSION['key'] = 'sellerID';
+  $_SESSION['role'] = 'seller';
   echo '<script type="text/javascript">';
   echo 'alert("Login successful!");';
   echo 'window.location.href = "Seller_HomePage.php";';
@@ -43,8 +44,9 @@ elseif($result2->num_rows == 1) {
 }
 elseif($result3->num_rows == 1) {
   session_start();
-  $_SESSION['shopID'] = $row3['shopID'];
-  $_SESSION['role'] = 'shopID';
+  $_SESSION['sellerID'] = $row3['shopID'];
+  $_SESSION['key'] = 'shopID';
+  $_SESSION['role'] = 'pet_shop';
   echo '<script type="text/javascript">';
   echo 'alert("Login successful!");';
   echo 'window.location.href = "Seller_HomePage.php";';

@@ -13,16 +13,12 @@
 </head>
 <body>
   <?php include 'SellerHeader.php';
-        include 'Connection.php';
-  session_start();
-    $sellerID = $_SESSION['sellerID'];
-    $role = $_SESSION['role']; ?>
+        include 'Connection.php'; ?>
 
   <div class="vet-message-container">
     <div class="vet-message-menu">
       <?php
-      if($role=='seller'){
-      $sql = "SELECT DISTINCT a.firstName,a.lastName,a.adopterID,a.image FROM message m,adopter a WHERE m.adopterID=a.adopterID AND sellerID= $sellerID ORDER BY (SELECT MAX(messageID) FROM message WHERE adopterID = a.adopterID) DESC, a.adopterID ASC;";
+      $sql = "SELECT DISTINCT a.firstName,a.lastName,a.adopterID,a.image FROM message m,adopter a WHERE m.adopterID=a.adopterID AND $key= $sellerID ORDER BY (SELECT MAX(messageID) FROM message WHERE adopterID = a.adopterID) DESC, a.adopterID ASC;";
       $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -65,7 +61,7 @@
       </div>
     </div>
   </div>
-<?php } ?>
+
 <script type="text/javascript">
    function changeColor2(radio) {
   var radios = document.getElementsByName(radio.name);
@@ -109,25 +105,26 @@ $(document).ready(function() {
 $(document).ready(function() {
       // Retrieve initial chat messages
       var sellerID = <?php echo $sellerID; ?>;
+      var key = '<?php echo $key; ?>';
      var adopterID;
 $('input[name="selectedUser"]').change(function() {
   adopterID = $(this).val();
 });
 
-      retrieveMessages(sellerID, adopterID);
+      retrieveMessages(sellerID, adopterID,key);
 
       // Send new message
       $('#send').click(function() {
         var message = $('#message').val();
-        sendMessage(message, sellerID, adopterID);
+        sendMessage(message, sellerID, adopterID,key);
         $('#message').val('');
-        console.log(column);
+        console.log(key);
         console.log(sellerID);
         console.log(adopterID);
       });
       // Poll server for new messages every 2 seconds
        setInterval(function() {
-        retrieveMessages(sellerID, adopterID);
+        retrieveMessages(sellerID, adopterID, key);
       }, 1500);
        setTimeout(scrollToBottom, 1500);
     });
@@ -138,19 +135,19 @@ $('input[name="selectedUser"]').change(function() {
             var message = $('#message').val();
             var sellerID = <?php echo $sellerID; ?>;
           var adopterID = $('input[name="selectedUser"]:checked').val();
-          var column = 3; 
-            sendMessage(message, sellerID, adopterID);
+          var key = '<?php echo $key; ?>';
+            sendMessage(message, sellerID, adopterID, key);
             $('#message').val('');       
         }
 
         setTimeout(scrollToBottom, 1500);
     }
 
-    function retrieveMessages(sellerID, adopterID) {
+    function retrieveMessages(sellerID, adopterID, key) {
       $.ajax({
         url: 'chat-non-user-get-message.php',
         method: 'GET',
-        data: { sellerID: sellerID, adopterID: adopterID },
+        data: { sellerID: sellerID, adopterID: adopterID, key:key },
       success: function(response) {
       $('#chatbox').html(response);
         }
@@ -158,14 +155,14 @@ $('input[name="selectedUser"]').change(function() {
       setTimeout(scrollToBottom, 1500);
     }
 
-    function sendMessage(message, sellerID, adopterID) {
+    function sendMessage(message, sellerID, adopterID, key) {
       $.ajax({
         url: 'chat-non-user-send-message.php',
         method: 'POST',
-         data: { message: message, sellerID: sellerID, adopterID: adopterID },
+         data: { message: message, sellerID: sellerID, adopterID: adopterID,key:key },
       success: function(response) {
         console.log('Message sent');
-        console.log(column);
+        console.log(key);
         console.log(sellerID);
         console.log(adopterID);
         }

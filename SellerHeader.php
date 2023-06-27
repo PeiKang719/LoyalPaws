@@ -13,15 +13,17 @@
 
      <?php
      $currentURL = $_SERVER['PHP_SELF'];
-    if (strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'Seller_Pets.php') === false && isset($_SESSION['sellerID'])) {
+    if (strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'Seller_Pets.php') === false) {
     session_start();
     $sellerID = $_SESSION['sellerID'];
     $role = $_SESSION['role'];
+    $key = $_SESSION['key'];
 }
-   elseif(strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'Seller_Pets.php') === false && isset($_SESSION['shopID'])){
-    session_start();
-    $shopID = $_SESSION['shopID'];
+
+   else{
+    $sellerID = $_SESSION['sellerID'];
     $role=$_SESSION['role'];
+    $key = $_SESSION['key'];
    }
     ?>
     <nav>
@@ -30,6 +32,9 @@
       </label>
       <label class="logo"><a href="UserHomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
       <ul>
+        <li><a href="Login.php"><?php echo $sellerID ?></a></li>
+        <li><a href="Login.php"><?php echo $role ?></a></li>
+        <li><a href="Login.php"><?php echo $key ?></a></li>
         <li><a href="Login.php">Log Out</a></li>
       </ul>
     </nav>

@@ -395,7 +395,7 @@ if (file_exists('pet_shop_images/' . $row['shop_image'])) {
 			</div>
 		</div>
 		<div class="seller-chat-button-container">
-			<button class="seller-chat-button" onclick="openChatModal()"><span class="material-symbols-outlined" style="vertical-align:-3px" >chat</span>Chat</button>
+			<button class="seller-chat-button" onclick="openChatModal()"><span class="material-symbols-outlined" style="vertical-align:-3px;color:white" >chat</span>Chat</button>
 			
 		</div>
 	</div>

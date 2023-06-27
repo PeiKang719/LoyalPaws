@@ -2,6 +2,8 @@
 
 include('Connection.php');
 
+$pk = $_POST['pk'];
+$sellerID = $_POST['sellerID'];
 $type=$_POST['type'];
 $breedID=$_POST['breed'];
 $gender=$_POST['gender'];
@@ -65,7 +67,7 @@ else{
     echo "video not found!";
 }
 
-$sql2 = "INSERT INTO pet(type,breedID,gender, birthday, color,spayed, vaccinated,purpose, price, description,video,pet_image,img1,img2,img3,img4,img5,img6,sellerID) 
+$sql2 = "INSERT INTO pet(type,breedID,gender, birthday, color,spayed, vaccinated,purpose, price, description,video,pet_image,img1,img2,img3,img4,img5,img6,$pk) 
 VALUES ('$type','$breedID','$gender','$birthday','$color','$spayed','$vaccinated','$purpose','$price','$description','$video_name',";
 
 $sql2 .= isset($imgName[0]) ? "'$imgName[0]'" : "null";
@@ -81,7 +83,7 @@ $sql2 .= ",";
 $sql2 .= isset($imgName[5]) ? "'$imgName[5]'" : "null";
 $sql2 .= ",";
 $sql2 .= isset($imgName[6]) ? "'$imgName[6]'" : "null";
-$sql2 .= ",1)";
+$sql2 .= ",$sellerID)";
 
 
 
