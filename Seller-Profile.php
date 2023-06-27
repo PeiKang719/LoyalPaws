@@ -50,11 +50,23 @@ if($row['image']==NULL){
 elseif (file_exists('seller_images/' . $row['image'])) {
     $imageSrc = 'seller_images/' . $row['image'];
 }
+
+if($row['cover']!=''){
+    $imageData2 = base64_encode($row['cover']);
+    $imageSrc3 = "data:image/jpg;base64," . $imageData2;
+    // Check if the image file exists before displaying it
+    if (file_exists('s_covers/seller/' . $row['cover'])) {
+        $imageSrc3 = 's_covers/seller/' .$row['cover'];
+    }
+    }
+    else{
+        $imageSrc3='media/clinic_cover.jpg';
+    }
 ?>
 
 <div class="profile-container">
 	<div class="cover-picture">
-		<img src="media/ps.jpg"  style="width: 100%;height: 100%;">
+		<img src="<?php echo $imageSrc3 ?>"  style="width: 100%;height: 430px;">
 	</div>
 	<div class="seller-image-container">
 		<img class="seller-image" src="<?php echo $imageSrc ?>" alt="Avatar">
@@ -378,11 +390,23 @@ if($row['shop_image']==NULL){
 if (file_exists('pet_shop_images/' . $row['shop_image'])) {
     $imageSrc = 'pet_shop_images/' . $row['shop_image'];
 }
+
+if($row['cover']!=''){
+    $imageData2 = base64_encode($row['cover']);
+    $imageSrc3 = "data:image/jpg;base64," . $imageData2;
+    // Check if the image file exists before displaying it
+    if (file_exists('s_covers/pet_shop/' . $row['cover'])) {
+        $imageSrc3 = 's_covers/pet_shop/' . $row['cover'];
+    }
+    }
+    else{
+        $imageSrc3='media/clinic_cover.jpg';
+    }
 ?>
 
 <div class="profile-container">
 	<div class="cover-picture">
-		<img src="media/ps.jpg"  style="width: 100%;height: 100%;">
+		<img src="<?php echo $imageSrc3 ?>"  style="width: 100%;height: 430px;">
 	</div>
 	<div class="seller-image-container">
 		<img class="seller-image" src="<?php echo $imageSrc ?>" alt="Avatar">

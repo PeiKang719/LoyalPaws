@@ -982,11 +982,9 @@ footer{
 /*----------------------------------------Adoption Form-------------------------------------------------------------*/
 #check:checked ~ .form-container {
   width: 72.8%;
-  animation-name: slideLeft;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+  transition: 0.5s ;
   left: 290px;
-  padding-top: 7.6%;
+  padding-top: 7%;
 }
 
 .form-container{
@@ -996,11 +994,26 @@ footer{
   flex-direction: column;
   padding: 7% 4% 2% 4%;
   font-size: 27px;
-  animation-name: slideRight;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+  transition: 0.3s ;
   left: 0px;
   position: relative;
+}
+
+.manage-appointment-section{
+  width: 96%;
+  padding: 0% 2%;
+  box-shadow: 0 10px 10px 0px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+.manage-appointment-section a {
+    width: 20%;
+    margin-left: 4%;
+    padding: 0.5% 2%;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
 }
 
 .each-pet-container{

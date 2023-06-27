@@ -18,18 +18,28 @@
   }
     ?>
     <nav>
-      <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-      </label>
-      <label class="logo"><a href="UserHomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
-      <ul>
-        <li><a href="User-Pet-Appointment-List.php">Clinic</a></li>
-        <li><a href="User-Order-List.php"> Order</a></li>
-        <li><a href="User-Adoption-List.php"> Adoption</a></li>
-        <li><a href="User-Profile.php"> Profile</a></li>
-        <li><a href="Login.php"> Log Out</a></li>
-      </ul>
-    </nav>
+  <input type="checkbox" id="check">
+  <label for="check" class="checkbtn">
+    <i class="fas fa-bars"></i>
+  </label>
+  <label class="logo">
+    <a href="UserHomePage.php">
+      <img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;">
+    </a>
+  </label>
+  <ul>
+    <li class="dropdown">
+      <button class="dropbtn">Pet <i class="fas fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="User-Order-List.php">Order</a>
+        <a href="User-Adoption-List.php">Adoption</a>
+      </div>
+    </li>
+    <li><a href="User-Pet-Appointment-List.php">Clinic</a></li>
+    <li><a href="User-Profile.php">Profile</a></li>
+    <li><a href="Login.php">Log Out</a></li>
+  </ul>
+</nav>
+
   </body>
 </html>

@@ -1299,7 +1299,8 @@ input:checked + .slider:before {
 
 .profile-container > .cover-picture{
   width: 100%;
-  height: 500px;
+  height: 430px;
+  padding-top: 70px;
 }
 
 .profile-container > .seller-image-container{

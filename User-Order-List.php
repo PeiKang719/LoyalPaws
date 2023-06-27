@@ -184,7 +184,7 @@
     <?php } ?>
       <div style="width:40%;text-align:center">
      
-    <button class="form-list-button up" id="detials<?php echo $k?>" onclick="details(event,<?php echo $k?>);">Payment Detail</button>
+    <button class="form-list-button up" id="detials<?php echo $k?>" onclick="details(event,<?php echo $paymentID?>,<?php echo $adopterID ?>);">Payment Detail</button>
     <input type="hidden" id="iid<?php echo $k ?>" value="<?php echo $paymentID ?>">
     </div>
   </a>
@@ -391,22 +391,9 @@ function cancel2(event, i) {
     window.location.href = "User-Adoption-Book-Process.php?id="+i+"&r=cancel";
   }
 
-function details(event,n){
+function details(event, i,adopterID) {
   event.preventDefault();
-    var modal = document.getElementById("DetailsModal"+n);
-    var btn = document.getElementById("details"+n);
-    // Get the <span> element that closes the modal
-    var span = modal.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-
-      modal.style.display = "block"; 
-    
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
+  window.open("User-Order-Receipt.php?adopterID="+adopterID+"&paymentID=" + i, "_blank");
 }
 </script>
 </body>

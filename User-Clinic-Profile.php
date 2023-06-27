@@ -57,7 +57,7 @@ elseif (file_exists('clinic_covers/' . $row['cover'])) {
 
 <div class="profile-container">
 	<div class="cover-picture">
-		<img src="<?php echo $imageSrc2 ?>"  style="width: 100%;height: 500px;">
+		<img src="<?php echo $imageSrc2 ?>"  style="width: 100%;height: 430px;">
 	</div>
 	<div class="seller-image-container">
 		<img class="seller-image" src="<?php echo $imageSrc ?>" alt="Avatar">

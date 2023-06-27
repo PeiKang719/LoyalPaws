@@ -49,7 +49,7 @@
   <a href="Seller_Orders.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">list_alt</span>&nbsp;Orders</a>
   <a href="Seller_Report.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">bar_chart</span>&nbsp;Report</a>
   <a href="Seller-Chat.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">message</span>&nbsp;Message</a>
-  <a href="Seller_Profile.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">account_circle</span>&nbsp;Profile</a>
+  <a href="Seller-Seller-Profile.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">account_circle</span>&nbsp;Profile</a>
 </aside>
 
 <script>

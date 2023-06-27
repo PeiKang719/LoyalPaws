@@ -19,6 +19,7 @@
   }
   body{
     height: 100%;
+    background-color: #bfbfbf;
   }
   header{
     width: 85%;
@@ -52,6 +53,7 @@
 
 ?>
 <!-- Container -->
+<div style="width: 80%;padding: 1% 3%;border: 3px solid black;position: relative;margin-right: auto;margin-left: auto;background-color: white;">
 <div class="receipt-container" id="invoice">
 
   <!-- Header -->
@@ -163,6 +165,7 @@
   </div>
 
   </main>
+</div>
   <!-- Footer -->
   <footer >
   
