@@ -1,0 +1,1583 @@
+body{
+	  background-color:white;
+	  font-family: sans-serif;
+	  height: 100%;
+
+}
+
+
+.hide { position:absolute; top:-1px; left:-1px; width:0.1px; height:0.1px; }
+
+
+#check:checked ~ .container{
+	left: 290px;
+    width: 74.35%;
+    transition: 0.5s ;
+  }
+.container{
+	width: 93.4%;
+	height: 100%;
+	padding: 50px;
+	left: 0px;
+    top: 73px;
+    position: relative;
+    background-color: white;
+    transition: 0.3s ;
+}
+
+
+/*--------------------------------------------Vet Profile-----------------------------------------------------------*/
+.profile-table{
+	width: 100%;
+	height: 100%;
+}
+
+.profile-table #td2{
+	padding: 0;
+	width: 3%;
+}
+
+.profile-table #td2 span{
+	font-size: 35px;
+}
+
+.profile-header{
+	font-size: 27px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.profile-table #td1{
+	font-size: 25px;
+	padding: 10px 15px;
+	width: 15%;
+}
+
+.profile-table td{
+	font-size: 25px;
+	padding: 10px 10px;
+}
+
+.profile-table #td3{
+	font-size: 28px;
+	padding: 10px;
+	width: 85%;
+}
+
+.profile-table .edu{
+	font-weight: bold;
+	font-size: 23px;
+	color: black;
+	transition: background-color 0.3s;
+
+}
+.profile-table .year{
+	text-align: center;
+	width: 12%;
+	font-size: 18px;
+	transition: background-color 0.3s;
+
+}
+
+.profile-table .location{
+	padding-top: 0px;
+	font-style: italic;
+	font-size: 18px;
+	transition: background-color 0.3s;
+
+}
+
+.profile-table .edu2{
+	font-weight: bold;
+	font-size: 23px;
+	color: black;
+	transition: background-color 0.3s;
+
+}
+.profile-table .year2{
+	text-align: center;
+	width: 12%;
+	font-size: 18px;
+	transition: background-color 0.3s;
+
+}
+
+.profile-table .location2{
+	padding-top: 0px;
+	font-style: italic;
+	font-size: 18px;
+	transition: background-color 0.3s;
+
+}
+
+.change-password{
+	width: 200px;
+	height: 40px;
+	background-color: #007acc;
+	font-size: 20px;
+	border-radius: 10px;
+	color: white;
+	border: 0;
+	cursor: pointer;
+	box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+}
+
+.change-password:hover{
+	background-color: #005c99;
+}
+
+.profile-pic-container{
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.profile-pic{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+.profile-preview{
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+.profile-preview2{
+	width: 85%;
+	height: 325px;
+	border: 1px solid black;
+}
+
+#edit-button1{
+	cursor: pointer;
+}
+#edit-button1:hover{
+	color: #999999;
+}
+#edit-button2{
+	cursor: pointer;
+
+}
+.hover-edit
+{
+	color: #999999;
+}
+
+.highlighted {
+    background-color: #f2f2f2; 
+  }
+
+#edit-button3{
+	cursor: pointer;
+
+}
+
+#edit-button4{
+	cursor: pointer;
+}
+
+#edit-button5{
+	cursor: pointer;
+}
+
+#edit-button6{
+	cursor: pointer;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+.modal-content {
+  z-index: 19;
+  position: relative;
+  background-color: #eff3f5;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 60%;
+  height: 85%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  right: 30px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 20px 16px;
+  background-color: #7a9ab8;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+input,select{
+  width: 100%;
+  height: 35px;
+  padding: 5px;
+  border-color: transparent;
+  border:0;
+  outline: none;
+  transition: background-color 0.5s ease;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+}
+
+input:focus,
+      input:active,select:focus,select:active{
+        border-color: transparent;
+        border-bottom: 2px solid #1c87c9;
+        background-color: #e7f3fd;
+      }
+
+.passwordForm{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.passwordForm table{
+	font-size: 27px;
+}
+.passwordForm td{
+	padding: 20px ;
+}
+
+.workingForm{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.workingForm table{
+	font-size: 27px;
+}
+.workingForm td{
+	padding: 10px ;
+}
+
+.educationForm{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	padding-top: 4%;
+}
+
+.educationForm table{
+	font-size: 27px;
+}
+.educationForm td{
+	padding: 20px ;
+}
+.educationForm th{
+	padding: 20px ;
+}
+
+.add-button-container{
+	display: flex;
+	flex-direction: column;
+	
+	justify-content: center;
+	align-items: center;
+}
+#add-button{
+	font-size: 70px;
+	color: #808080;
+	cursor: pointer;
+}
+.add-button-container p{
+	color: #808080;
+	cursor: pointer;
+}
+#add-button:hover,
+#add-button:hover ~ p,
+.add-button-container p:hover,
+.add-button-container:hover #add-button {
+    color: black;
+}
+
+.check-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 60px;
+  text-align: left;
+  margin-bottom:5px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  background-color:white;
+  width: 60%;
+  height: 40px;
+  border: 1px solid  #b3b3b3;
+  border-radius: 20px;
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+   margin-top: 35px;
+  margin-left: 10px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+   transition: background-color 0.3s ease;
+}
+ 
+.check-container:hover input ~ .checkmark3 {
+  background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark3,.check-container input:checked {
+  background-color: #2196F3;
+}
+
+.checkmark3:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.check-container input:checked ~ .checkmark3:after {
+  display: block;
+}
+
+.check-container .checkmark3:after {
+  top:5px;
+ left: 12px;
+  width: 4px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.submit-button-container{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 7%;
+}
+
+.submit-button{
+	background-color: #29a329;
+	width: 30%;
+	height: 50px;
+	font-size: 25px;
+	border-radius: 15px;
+	border: 0;
+	color: white;
+	box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+	margin-left: 1%;
+	margin-right: 1%;
+	cursor: pointer;
+}
+
+.submit-button:hover{
+	transform: scale(1.01);
+  transition: transform 0.25s;
+}
+
+.file-upload {
+    display: none;
+}
+
+.file-upload2 {
+    display: none;
+}
+/*--------------------------------------------------Clinic Profile----------------------------------------------------------------*/
+.profile-table .date{
+	width: 28%;
+}
+
+.profile-table .time{
+	width: 25%;
+}
+
+.switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.profile-pic2{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 1px solid black;
+	margin-top: -7%;
+}
+
+.edit-image-choose-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	width: 100%;
+	height: 80%;
+	flex-wrap: wrap;
+	text-align: center;
+	font-size: 35px;
+	color: #333;
+}
+
+.edit-image-choose{
+	width: 80%;
+	height: 55px;
+	cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    background-color: white;
+    border: 1px solid #b3b3b3;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+    margin-top: 5%;
+}
+
+.edit-image-choose:hover{
+    background-color: #e7f3fd;
+    box-shadow: 0 0px 16px 0 rgba(0,0,0,0.2);
+  }
+.edit-image-choose:active {
+	transform: scale(0.97);;
+    box-shadow: 0 0px 2px 0 rgba(0,0,0,0.2);
+  }
+
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/*---------------------------------------------Veterinarians-------------------------------------------------------------*/
+#check:checked ~ .clinic-container{
+    width: 80.9%;
+    transition: 0.5s ;
+  }
+.clinic-container{
+  width:100%;
+  height: 100%;
+  background-color: white;
+  right: 0;
+  position: absolute;
+  top:9.8%;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ;
+}
+
+.clinic-header{
+  width: 100%;
+  height: 21.5%;
+  background-image: url("media/cbg2.jpg");
+  background-repeat: no-repeat;
+  background-size: 1530px 450px;
+  background-position: 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.clinic-vet-font{
+  font-size: 45px;
+  font-weight: bold;
+  text-shadow: 0 0px 3px rgba(0,0,0,0.25);
+  color: black;
+}
+
+.clinic-section{
+  width: 100%;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+}
+
+.clinic-section a{
+  width: 50%;
+}
+.clinic-approved-pending-button{
+  width: 100%;
+  background-color: white;
+  height: 100%;
+  font-size: 25px;
+  color: #4d4d4d;
+  cursor: pointer;
+  border: 0;
+  border-top: 1px solid #4d4d4d;
+  border-bottom: 1px solid #4d4d4d;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clinic-approved-pending-button:hover{
+  background-color: #e6f2ff;
+  font-size: 27px;
+}
+
+.clinic-card-container{
+  width: 91.6%;
+  padding: 30px 50px;
+  color: lightcyan;
+  height: 70.5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.clinic-card-container > .search-part{
+  width: 100%;
+  height: 20%;
+}
+
+.clinic-card-container > .card-part{
+  width: 100%;
+  height: 100%;
+  margin-top:2%;
+}
+
+.vet-bar{
+  width: 97.2%;
+  height: 90px;
+  font-size: 25px;
+  position: relative;
+  background-color: lightsteelblue;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px 15px;
+}
+
+.vet-bar-delete{
+  background-color: red;
+  color: white;
+  width: 25%;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.vet-bar-approve{
+  background-color: green;
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.vet-bar-expand{
+  display: none;
+  background-color: lightgray;
+  margin-bottom: 10px;
+  width: 95.5%;
+  padding: 25px 25px;
+  font-size: 25px;
+}
+
+.vet-bar-expand-header{
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.expand-icon {
+  font-size: 30px;
+  position: absolute;
+  right: 0;
+  margin-right: 1%;
+  transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.open .expand-icon {
+  transform: rotate(90deg);
+}
+
+.open {
+  border-bottom: none;
+}
+
+.vet-img{
+  width: 9%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.vet-name{
+  margin-left: 2%;
+  width: 40%;
+  font-size: 22px;
+  font-weight: 600;
+  color: #4d4d4d;
+
+}
+
+.vet-ic{
+  margin-left: 1%;
+  width: 20%;
+  font-size: 20px;
+  color: #4d4d4d;
+}
+
+.vet-apc{
+  font-size: 25px;
+  color: #0099e6;
+  text-decoration: underline;
+  word-wrap: break-word;
+    cursor: pointer;
+}
+
+.search{
+    background-image: url('media/search.png');
+    background-size: 30px 30px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 35%;
+    font-size: 20px;
+    padding: 13px 20px 13px 50px;
+    border: 1px solid #b3b3b3;
+    float: right;
+    border-radius: 30px;
+    background-color: white;
+    height: 24px;
+}
+
+.eduTable{
+	width: 90%;
+}
+
+.eduTable .year{
+	font-size: 18px;
+}
+
+.eduTable .edu{
+	font-size: 23px;
+	font-weight: bold;
+	color: black;
+}
+
+.eduTable .location{
+	font-size: 18px;
+	font-style: italic;
+	padding-bottom: 20px;
+}
+
+
+/*-----------------------------------------Veterians---------------------------------------------------------*/
+.card {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  text-align: center;
+  background-color: #e6f2ff;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.03);
+   transition: transform 0.25s;
+}
+
+.card a{
+	color:black;
+}
+
+.card span{
+	cursor: pointer;
+}
+
+.card a:hover{
+	color:#8c8c8c;
+}
+
+.breedName {
+  padding: 2px 16px;
+  font-size: 20px;
+  text-align: center;
+  height: 87px;
+  position: relative;
+
+}
+
+.breedName p{
+	width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.breedIcon {
+  padding: 0px 16px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#card-button{
+	font-size: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#card-button-delete{
+  font-size: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#card-button-edit{
+	font-size: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#card-button:hover,#card-button-edit:hover,#card-button-delete:hover {
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+#card-button:hover,#card-button-edit:hover,#card-button-delete:hover  {
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+.column {
+  float: left;
+  width: 23%;
+  padding: 0 10px;
+}
+.column.collapsed {
+    width: 18%;
+  }
+.row {margin: 20px -5px;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/*--------------------------------------------Treatment----------------------------------------------------------*/
+.treatment-table{
+	width: 100%;
+	margin-top: 80px;
+}
+
+.add-treatment-button{
+	background: #00a8de;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 10px 27px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 25%;
+    cursor: pointer;
+}
+
+#add-treatment-button-icon{
+	color: white;
+	font-size: 27px;
+	vertical-align: -6px;
+}
+
+.treatment-table td{
+	padding: 10px 10px;
+	font-size: 27px;
+	word-wrap: break-word;
+	border: 1px solid #004d80;
+}
+
+.treatment-table th{
+	padding: 15px 10px;
+	font-size: 27px;
+	font-weight: bold;
+	background-color: #004d80;
+	color: white;
+	border: 1px solid #004d80;
+}
+
+.treatment-table .manage-button{
+	width: 50px;
+	height: 50px;
+	border:0;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color:#008ae6;
+	box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+}
+
+.treatment-table span{
+	font-size: 25px;
+	color: white;
+}
+
+#treatmentForm textarea{
+	width: 100%;
+    padding: 5px;
+    border-color: transparent;
+    border: 0;
+    outline: none;
+    transition: background-color 0.5s ease;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+}
+
+#treatmentForm textarea:focus{
+
+    border: 2px solid #1c87c9;
+    background-color: #e7f3fd;
+}
+
+.add-new-treatment-container .search{
+    background-image: url('media/search.png');
+    background-size: 30px 30px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 35%;
+    font-size: 20px;
+    padding: 13px 20px 13px 50px;
+    border: 1px solid #b3b3b3;
+    float: right;
+    border-radius: 30px;
+}
+
+.addIcon{
+	border: 2px solid white;
+	color: white;
+	margin-right: 10px;
+}
+
+.add-new-treatment-container input:focus,input:active{
+	border: 2px solid black;
+    border-bottom:2px solid black;
+    background-color: white;
+}
+
+.treatment-assign-vet-container{
+	width: 700px;
+	height: 350px;
+	background-color: #e6e6e6;
+    border-radius: 10px;
+    padding: 10px 10px;
+    overflow-y: auto;
+    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+}
+
+.assign-vet-container{
+	width: 90%;
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #4d4d4d;
+	display: flex;
+	align-items: center;
+	padding: 3px 10px;
+	flex-direction: row;
+	cursor: pointer;
+	transition: background-color 0.5s ease;
+	box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+	margin: 10px 18px;
+}
+.assign-vet-container input{
+	width: 0% !important;
+	opacity: 1;
+	position: absolute;
+}
+.assign-vet-container p{
+	font-size: 20px;
+}
+
+.assign-vet-container img{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 1px solid #4d4d4d;
+	margin-right: 10px;
+}
+
+#edit-treatment-table td{
+	padding: 20px;
+	border: 0;
+}
+#edit-treatment-table textarea{
+	width: 100%;
+    padding: 5px;
+    border-color: transparent;
+    border: 0;
+    outline: none;
+    transition: background-color 0.5s ease;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+}
+
+#edit-treatment-table textarea:focus{
+
+    border: 2px solid #1c87c9;
+    background-color: #e7f3fd;
+}
+
+.seller-chat-button{
+  background-color: #007acc;
+  color: white;
+  width: 60%;
+  height: 25%;
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 0.5% 2%;
+  cursor: pointer;
+}
+
+.seller-chat-button:hover{
+  background-color: #006bb3;
+}
+
+
+/*-------------------------------------------------Chat with vet----------------------------------------------------------*/
+.chat-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+
+
+}
+
+
+/* Modal Content */
+.chat-modal-content {
+  z-index: 19;
+  position: absolute;
+  background-color: #e9f4fc;
+  right: 0;
+  padding: 0;
+  border: 1px solid #888;
+  width: 750px;
+  height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+ -webkit-animation: scale-in-hor-right 0.3s ease-out both;
+          animation: scale-in-hor-right 0.3s ease-out both;
+}
+
+/* Add Animation */
+@-webkit-keyframes scale-in-hor-right {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+}
+@keyframes scale-in-hor-right {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+}
+
+.exit-animation {
+  -webkit-animation: scale-out-hor-right 0.3s ease-out both;
+          animation: scale-out-hor-right 0.3s ease-out both;
+}
+
+@-webkit-keyframes scale-out-hor-right {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+}
+@keyframes scale-out-hor-right {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+}
+
+
+.chat-modal-header {
+  padding: 10px 16px;
+  background-color: #1c81ca;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 3px solid black;
+}
+
+.chat-modal-header img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #4d4d4d;
+  margin-right: 20px;
+}
+
+.message-container{
+  width: 82%;
+  height: 66%;
+  margin: 2% 5%;
+  border:1px solid black;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 0 rgba(0,0,0,0.2);
+  padding: 2% 4%;
+  background-color: white;
+}
+
+.chat-button-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.chat-modal input{
+  width: 60%;
+  background-color: #f2f2f2;
+  border: 2px solid black;
+  border-radius: 5px 0 0 5px;
+  margin: 0;
+}
+
+#send{
+  width: 20%;
+  font-size: 25px;
+  background-color: #1c81ca;
+  color: white;
+  height: 49px;
+  border: 0;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  box-shadow: 0px 0px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+#send:hover{
+  background-color: #15659d;
+}
+
+#send-icon{
+  font-size: 30px;
+  color: white;
+  vertical-align: -4px;
+}
+
+.user-message-container{
+  width: 100%;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 5px 0;
+}
+
+.non-user-message-container{
+  width: 100%;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 5px 0;
+}
+
+.user-message{
+  max-width: 80%;
+  border: 1px solid #b3e0ff;
+  border-radius: 10px;
+  padding: 10px 10px;
+  background-color: #ccebff;
+  word-wrap: break-word;
+}
+
+.non-user-message{
+  max-width: 80%;
+  border: 1px solid  #007acc;
+  border-radius: 10px;
+  padding: 10px 10px;
+  background-color: white;
+  word-wrap: break-word;
+}
+
+.message-time{
+  font-size: 15px !important;
+  padding: 0;
+  margin-top: 5px;
+}
+
+/*---------------------------------Message Page--------------------------------------------------------------*/
+.vet-message-container{
+	width: 100%;
+	height: 100%;
+	font-size: 27px;
+	display: flex;
+	flex-direction: row;
+	padding-top: 70px;
+	overflow-y: hidden;
+	animation-name: slideRight;
+  	animation-duration: 0.5s;
+  	animation-fill-mode: forwards;
+  	position: relative;
+}
+#check:checked ~ .vet-message-container {
+  width: 72.8%;
+  animation-name: slideLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  left: 290px;
+}
+
+@keyframes slideLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: 290px;
+  }
+
+}
+
+@keyframes slideRight {
+  from {
+    left: 290px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+.vet-message-menu{
+	width: 30%;
+	height: 650px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid black;
+	box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+	background-color:  #999999;
+	overflow-y: auto;
+}
+
+.message-menu-container{
+	width: 90%;
+	padding: 2% 5%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+	box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+	background-color: white;
+
+}
+.message-menu-container input[type=radio]{
+	display: none;
+}
+.message-menu-container img{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border:1px solid black;
+	margin-right: 10px;
+}
+.message-menu-container p{
+	font-size: 25px;
+}
+
+.vet-message-content-container{
+	width: 100%;
+	height: 575px;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+}
+
+.vet-message-content-container-header{
+	width: 94.3%;
+	display: flex;
+	flex-direction: row;
+	padding: 5px 30px;
+	align-items: center;
+}
+.vet-message-content-container-header img{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border:1px solid black;
+	margin-right: 10px;
+}
+.vet-message-content-container-header p{
+	font-size: 30px;
+}
+
+.vet-message-content{
+	width: 91%;
+	height: 450px;
+	margin: 1% 2.5%;
+	border: 1px solid black;
+	padding: 1% 2%;
+	border-radius: 15px;
+	box-shadow: 0 0px 15px 0 rgba(0,0,0,0.2);
+	background-color: white;
+	overflow-y: auto;
+}
+
+.vet-typing-container{
+	width: 85%;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	margin: 1% 7%;
+
+}
+
+.vet-typing{
+	width: 100%;
+	height: 37px;
+	border: 2px solid black;
+	border-radius: 5px 0 0 5px;
+}
+
+.vet-typing:focus{
+	background-color: #f2f2f2;
+	border: 2px solid black;
+}
+
+
+.vet-typing-send{
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid black;
+}
+
+/*----------------------------------------------------Manage Appointment------------------------------------------------*/
+.manage-appointment-container{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	
+
+}
+
+.manage-appointment-section{
+	width: 96%;
+	padding: 0% 2%;
+	box-shadow: 0 10px 10px 0px rgba(0,0,0,0.2);
+	display: flex;
+	flex-direction: row;
+	margin-top: 5%;
+}
+
+.manage-appointment-section a{
+	width: 20%;
+    margin-left: 4%;
+    padding: 0.5% 2%;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+/*--------------------------------------------Patient Record-------------------------------------------------------*/
+
+.patient-recod-container{
+	width: 80%;
+	margin: 2% 6%;
+	padding: 2% 4%;
+	border: 3px solid #4d4d4d;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.recordTable-header{
+	font-size: 35px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.patient-recod-container #recordTable{
+	width: 100%;
+}
+#recordTable th{
+	font-size: 27px;
+	padding: 10px 15px;
+	background-color: #003d66;
+	color: white;
+	border: 1px solid #003d66;
+}
+#recordTable td{
+	font-size: 23px;
+	padding: 10px 15px;
+	-webkit-animation: scale-in-ver-top 0.3s ease-in-out ;
+	        animation: scale-in-ver-top 0.3s ease-in-out ;
+}
+#recordTable .td1{
+	font-size: 23px;
+	border-bottom: 0;
+	padding: 10px 15px 0px 10px;
+	-webkit-animation: scale-in-ver-top 0.3s ease-in-out ;
+	        animation: scale-in-ver-top 0.3s ease-in-out ;
+}
+#recordTable .td2{
+	font-size: 16px;
+	padding: 0px 15px 20px 10px;
+	border-top: 0;
+	-webkit-animation: scale-in-ver-top 0.3s ease-in-out ;
+	        animation: scale-in-ver-top 0.3s ease-in-out ;
+}
+
+@-webkit-keyframes scale-in-ver-top {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+@keyframes scale-in-ver-top {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    -webkit-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+
+.total_row{
+	font-size: 23px;
+	border-top: 0;
+	padding: 20px;
+}
+
+.record-description{
+	width: 80%;
+	padding: 1%;
+	border: 2px solid black;
+	border-radius: 5px;
+	font-size: 20px;
+	background-color: #f7f7f7;
+	box-shadow: 0 0px 4px 0px rgba(0,0,0,0.2);
+}
+
+.submit-record-button{
+	width: 30%;
+	font-size: 27px;
+	padding: 10px 20px;
+	height: 50px;
+	background-color: #00a8de;
+	border: 0;
+	border-radius: 5px;
+	color: white;
+	box-shadow: 0 0px 8px 0px rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+.submit-record-button:hover{
+	box-shadow: 0 0px 16px 0px rgba(0,0,0,0.2);
+}
+
+/*------------------------------------Record History---------------------------------------------------*/
+.reschedule-button{
+	width: 50px;
+  height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  background-color: #008ae6;
+  color: white;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);;
+}

@@ -1,0 +1,1213 @@
+body{
+	  background-color:whitesmoke;
+}
+
+hr{
+	width: 80%;
+  margin: 20px 30px;
+}
+
+.s1{
+	background-image: radial-gradient(#364d63 60%,#007399);
+	padding: 10px 0px 40px;
+	box-shadow: 0 0px 8px 5px rgba(0,0,0,0.2);
+	border-radius: 0px 0px 400px 400px;
+	-webkit-animation: scale-in-hor-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) ;
+          animation: scale-in-hor-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) ;
+  
+}
+
+@-webkit-keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.s2{
+	text-align: left;
+	font-size:25px;
+	padding: 40px 40px;
+	-webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.s3{
+	background-color:#e6e6e6;
+	text-align: left;
+	font-size:25px;
+	padding: 40px 80px;
+	width: 83%;
+	border-radius: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0 0px 5px 2px rgba(0,0,0,0.2);
+}
+
+
+.p1{
+	display: inline-block;
+}
+
+.p2{
+	position: absolute;
+	margin-top: -70px;
+	margin-left: 200px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.sidebar{
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 290px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  overflow-y: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+#sidebar-icon{
+  color:#999999;
+  font-size: 27px;
+  vertical-align: -3px;
+}
+
+.sidebar a,.dropdown-btn {
+  padding: 15px 40px 15px 35px;
+  text-decoration: none;
+  font-size: 25px;
+  color:#999999;
+  display: block;
+  border: none;
+  width: 100%;
+  background: black;
+  background-size: 300% 100%;
+
+}
+
+#dropdown-btn-id{
+	text-align: left;
+}
+
+#dropdown-btn-id:hover #sidebar-icon,a:hover #sidebar-icon {
+  color: white;
+
+}
+
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover,.dropdown-btn:hover{
+  color:white;
+  background: linear-gradient(to right,black 20%,#0099ff 60%);
+  background-size: 300% 100%;
+  background-position: -100% 0;
+}
+
+
+.dropdown-container {
+  display: none;
+  background-color: #004080;
+  padding-left: 50px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.active {
+ background: linear-gradient(to right,black 20%,#0099ff 60%);
+ background-size: 300% 100%;
+ background-position: -100% 0;
+  color: white;
+  width: 100%;
+}
+
+.sidebar a.active {
+  background: linear-gradient(to right,black 20%,#0099ff 60%);
+  background-size: 300% 100%;
+  background-position: -100% 0;
+  color: white;
+  width: 100%;
+}
+
+.sidebar a.active #sidebar-icon,.dropdown-btn.active #sidebar-icon {
+/*icon active color*/
+  color: white;	
+}
+
+
+
+#profile {
+	display: block;
+	margin-top: 80px;
+	margin-left: auto;
+	margin-right: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+
+}
+
+#name{
+	text-align: center;
+	color: white;
+}
+
+#check:checked ~ .content {
+  width: 74.35%;
+  animation-name: slideLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  left: 290px;
+}
+
+@keyframes slideLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: 290px;
+  }
+}
+
+.content{
+  padding: 50px;
+  width: 93.4%;
+  top:73px;
+  height: 100%;
+  position: absolute;
+  display: block;
+  transition: 0.5s;
+  animation-name: slideRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  left: 0px;
+}
+
+@keyframes slideRight {
+  from {
+    left: 290px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+.content.show{
+  display: block;
+}
+
+.container{
+	width: 100%;
+	height: 100px;
+	top:100px;
+}
+
+/*================================Breed========================================*/
+.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px;border:1px solid white; }
+
+.nextprevButton{
+	text-align: center; 
+	margin-top:20px;
+}
+
+.button1{
+  background:  #00a8de;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 10px 27px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+  float: left;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 25%;
+}
+
+.button1:hover {
+  background-color: #2eb82e;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.addIcon{
+	border: 2px solid white;
+	color: white;
+	margin-right: 10px;
+
+}
+
+.search{
+    background-image: url('media/search.png');
+    background-size: 30px 30px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 35%;
+    font-size: 20px;
+    padding: 13px 20px 13px 50px;
+    border: 1px solid #b3b3b3;
+    float: right;
+    border-radius: 30px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  padding-top: 30px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+.modal2 {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  padding-top: 30px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+/* Modal Content */
+.modal-content {
+  z-index: 19;
+  position: relative;
+  background-color: #eff3f5;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 1350px;
+  height: 650px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  right: 30px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 20px 16px;
+  background-color: #7a9ab8;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+#breedForm {
+	background-color:#eff3f5;
+	margin: 40px auto;
+	padding: 10px;
+	width: 52%;
+	min-width: 250px;
+	height: 78%;
+	min-height: 10px;
+}
+
+#breedForm2 {
+	background-color:#eff3f5;
+	margin: 40px auto;
+	padding: 10px;
+	width: 52%;
+	min-width: 250px;
+	height: 78%;
+	min-height: 10px;
+}
+
+input {
+	background-color: white;
+	padding: 10px;
+	width: 100%;
+	font-size: 17px;
+	border: 1px solid #aaaaaa;
+	margin-bottom: 15px;
+	border-radius: 5px;
+}
+
+#datalist{
+	width: 78%;
+}
+
+input[type=number]{
+	display: inline-block;
+	width: 35%;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+	background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+	display: none;
+}
+
+.tab2 {
+	display: none;
+}
+
+#secondTab{
+	margin-left: 110px;
+}
+
+#thirdTab{
+	margin-left:-105px ;
+	margin-right: -230px;
+	margin-bottom: -53.5px;
+}
+
+.nextbutton{
+	margin-top: 20px;
+	background-color:#00b300;
+	color: #ffffff;
+	border: none;
+	padding: 10px 20px;
+	width: 200px;
+	font-size: 20px;
+	cursor: pointer;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.nextbutton:hover {
+	opacity: 0.8;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+.step {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+}
+
+.step.activated {
+	opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+	background-color: #04AA6D;
+}
+
+.step2 {
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
+}
+
+.step2.activated {
+	opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step2.finish {
+	background-color: #04AA6D;
+}
+
+textarea {
+  width: 103%;
+  height: 150px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #aaaaaa;
+  background-color: white;
+  font-size: 16px;
+  resize: none;
+  border-radius: 5px;
+  margin-bottom: 21px;
+}
+
+.tab2head{
+	margin: -20px 0 20px 0px;
+	margin-left: 100px;
+}
+
+.tab3head{
+	margin: -20px 0 20px 257px;
+}
+
+select{
+	width: 100px;
+	height: 40px;
+	position: relative;
+	font-size: 20px;
+	margin-right: 50px;
+	border-radius: 5px;
+}
+
+.characteristics{
+	font-size: 30px;
+}
+
+.column {
+  float: left;
+  width: 23%;
+  padding: 0 10px;
+}
+.column.collapsed {
+    width: 18%;
+  }
+.row {margin: 20px -5px;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+.card {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  text-align: center;
+  background-color: #e6f2ff;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.03);
+   transition: transform 0.25s;
+}
+
+.card a{
+	color:black;
+}
+
+.card span{
+	cursor: pointer;
+}
+
+.card a:hover{
+	color:#8c8c8c;
+}
+
+.breedName {
+  padding: 2px 16px;
+  font-size: 20px;
+  text-align: center;
+  height: 87px;
+  position: relative;
+
+}
+
+.breedName p{
+	width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.breedIcon {
+  padding: 0px 16px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#card-button{
+	font-size: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#card-button-delete{
+  font-size: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#card-button-edit{
+	font-size: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#card-button:hover,#card-button-edit:hover,#card-button-delete:hover {
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+#card-button:hover,#card-button-edit:hover,#card-button-delete:hover  {
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+.breed-header{
+	display: block;
+	font-size: 50px;
+	margin-top: 100px;
+	text-align: center;
+	position: relative;
+	color: white;
+	font-weight:bold;
+	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) ;
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) ;
+}
+
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pagination {
+  display: inline-block;
+  font-size: 25px;
+  height: 10%;
+  text-align: center;
+  width: 100%;
+  padding-top: 70px;
+  float: center;
+  text-align: center;
+}
+
+.pagination a {
+  color: black;
+  float: center;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+
+.page-active {
+  background-color: #00aaff;
+  color: white;
+  border-radius:50%;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;border-radius:50%;}
+
+
+.breed-image{
+	width: 500px;
+	height: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -30px;
+	border-radius: 40px;
+	box-shadow: 0 0px 6px 2px rgba(0,0,0,0.2)
+}
+
+.breed-stat-icon-in-table{
+	text-align: center;
+}
+
+.breed-stat-icon{
+	width: 200px;
+	height: 200px;
+}
+
+.breed-characteristic-table{
+	margin-left: auto;
+    margin-right: auto;
+	font-size: 35px;
+  width: 90%;
+  height: 340px;
+
+}
+
+#breed-characteristic-star{
+	font-size: 28px;
+	color:#ff9933;
+}
+
+small{
+	margin-left: 45px;
+	font-size: 11px;
+	color:red;
+}
+
+.button-adoptable-pet{
+  text-shadow: 0 2px 5px rgba(0,0,0,.45);
+	font-size: 20px;
+	color: white;
+	 z-index: 1;
+	 width: 270px;
+	 height: 60px;
+	 padding: 10px 20px 15px;
+	 position: absolute;
+	 top: 69%; 
+	 left: 41.05%;
+	 background-color: #00a8de;
+	 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	 border-radius: 30px;
+	 border: 0;
+}
+
+/*--------------------------------------------DONATION-------------------------------------------*/
+#organizationForm {
+  background-color:#eff3f5;
+  margin: 40px auto;
+  padding: 10px;
+  width: 52%;
+  min-width: 250px;
+  height: 78%;
+  min-height: 10px;
+}
+
+#organizationForm2 {
+  background-color:#eff3f5;
+  margin: 40px auto;
+  padding: 10px;
+  width: 52%;
+  min-width: 250px;
+  height: 78%;
+  min-height: 10px;
+}
+
+.check-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 60px;
+  text-align: left;
+  margin-bottom:5px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  background-color:white;
+  width: 55%;
+  height: 40px;
+  border: 1px solid  #b3b3b3;
+  border-radius: 20px;
+  vertical-align: middle;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+   margin-top: 10px;
+  margin-left: 10px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+   transition: background-color 0.3s ease;
+}
+ 
+.check-container:hover input ~ .checkmark2 {
+  background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark2,.check-container input:checked {
+  background-color: #2196F3;
+}
+
+.checkmark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.check-container input:checked ~ .checkmark2:after {
+  display: block;
+}
+
+.check-container .checkmark2:after {
+  top:5px;
+ left: 12px;
+  width: 4px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.organization-image{
+  width: 300px;
+  height: 230px;
+  margin-top: -120px;
+  border-radius: 40px;
+  box-shadow: 0 0px 6px 2px rgba(0,0,0,0.2);
+}
+
+.organization-name{
+  margin-left: 350px;
+  color: white;
+  font-size: 60px;
+  text-shadow: 0 0px 6px rgba(0,0,0,0.45);
+  margin-top: -200px;
+}
+
+.organization-category{
+  margin-left: 350px;
+  color: #4d4d4d;
+  font-size: 35px;
+  margin-top: 30px;
+}
+
+.organization-payment{
+  margin-left: 20px;
+  color: #4d4d4d;
+  font-size: 35px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.methods{
+  box-shadow: 0 0px 6px 1px rgba(0,0,0,0.2);
+  background-color: white;
+  text-align: center;
+  display: inline-block;
+  width: 100px;
+  height: 105px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.donate-button{
+  cursor: pointer;
+  width: 40%;
+  height: 60px;
+  text-shadow: 0 2px 5px rgba(0,0,0,.45);
+font-size: 30px;
+color: white;
+padding: 10px 20px 15px;
+background-color: #00a8de;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+border-radius: 30px;
+border: 0;
+margin-left: 30%;
+}
+
+word-wrap: break-word !important;
+@media (max-width: 700px){
+  .organization-name{
+    margin-top: 10px;
+  }
+}
+
+.profile-pic {
+    width: 200px;
+    max-height: 200px;
+    display: inline-block;
+}
+
+.file-upload {
+    display: none;
+}
+
+.p-image {
+  cursor: pointer;
+  position: absolute;
+  top: 595px;
+  left: 117px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #333333;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #737373;
+}
+
+.save-change{
+  cursor: pointer;
+  width: 20%;
+  height: 40px;
+  text-shadow: 0 2px 5px rgba(0,0,0,.45);
+font-size: 20px;
+color: white;
+padding: 10px 20px 15px;
+background-color: #2eb82e;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+border-radius: 30px;
+border: 0;
+}
+
+footer{
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  left: 0;
+   bottom: 0;
+  text-align: center;
+}
+
+.head{
+  font-weight: 600;
+  color: #4d4d4d;
+  font-size: 35px;
+}
+
+/*-----------------------------------------------------Vet Clinic---------------------------------------------------*/
+#check:checked ~ .clinic-container{
+    width: 80.9%;
+    transition: 0.5s ;
+  }
+
+.clinic-container{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  right: 0;
+  position: absolute;
+  top:9.8%;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ;
+}
+
+.clinic-header{
+  width: 100%;
+  height: 21.5%;
+  background-image: url("media/cbg2.jpg");
+  background-repeat: no-repeat;
+  background-size: 1530px 450px;
+  background-position: 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.clinic-vet-font{
+  font-size: 45px;
+  font-weight: bold;
+  text-shadow: 0 0px 3px rgba(0,0,0,0.25);
+  color: black;
+}
+
+.clinic-vet-button{
+  cursor: pointer;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: black;
+    box-shadow: 0 0px 5px rgba(0,0,0,0.2);
+    top:4%;
+    border: 0;
+    position: absolute;
+}
+
+.clinic-vet-button:hover{
+  background-color: black;
+  color: #00a8de;
+  font-size: 25px;
+}
+
+.clinic-section{
+  width: 100%;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+}
+
+.clinic-section a{
+  width: 50%;
+}
+.clinic-approved-pending-button{
+  width: 100%;
+  background-color: white;
+  height: 100%;
+  font-size: 25px;
+  color: #4d4d4d;
+  cursor: pointer;
+  border: 0;
+  border-top: 1px solid #4d4d4d;
+  border-bottom: 1px solid #4d4d4d;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clinic-approved-pending-button:hover{
+  background-color: #e6f2ff;
+  font-size: 27px;
+}
+
+.clinic-card-container{
+  width: 91.6%;
+  padding: 30px 50px;
+  color: lightcyan;
+  height: 70.5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.clinic-card-container > .search-part{
+  width: 100%;
+  height: 20%;
+}
+
+.clinic-card-container > .card-part{
+  width: 100%;
+  height: 100%;
+  margin-top:2%;
+}
+
+.vet-bar{
+  width: 97.2%;
+  height: 90px;
+  font-size: 25px;
+  position: relative;
+  background-color: lightsteelblue;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px 15px;
+}
+
+.vet-bar-delete{
+  background-color: red;
+  color: white;
+  width: 25%;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.vet-bar-approve{
+  background-color: green;
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.vet-bar-expand{
+  display: none;
+  background-color: lightgray;
+  margin-bottom: 10px;
+  width: 95.5%;
+  padding: 25px 25px;
+  font-size: 25px;
+}
+
+.vet-bar-expand-header{
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.expand-icon {
+  font-size: 30px;
+  position: absolute;
+  right: 0;
+  margin-right: 1%;
+  transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.open .expand-icon {
+  transform: rotate(90deg);
+}
+
+.open {
+  border-bottom: none;
+}
+
+.vet-img{
+  width: 9%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.vet-name{
+  margin-left: 2%;
+  width: 40%;
+  font-size: 22px;
+  font-weight: 600;
+  color: #4d4d4d;
+
+}
+
+.vet-ic{
+  margin-left: 1%;
+  width: 20%;
+  font-size: 20px;
+  color: #4d4d4d;
+}
+
+.vet-apc{
+  font-size: 25px;
+  color: #0099e6;
+  text-decoration: underline;
+  word-wrap: break-word;
+    cursor: pointer;
+}
+
+.eduTable{
+  width: 90%;
+}
+
+.eduTable .year{
+  font-size: 18px;
+}
+
+.eduTable .edu{
+  font-size: 23px;
+  font-weight: bold;
+  color: black;
+}
+
+.eduTable .location{
+  font-size: 18px;
+  font-style: italic;
+  padding-bottom: 20px;
+}
