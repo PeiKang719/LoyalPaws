@@ -84,7 +84,7 @@
   <body>
     <?php
     $currentURL = $_SERVER['PHP_SELF'];
-    if (strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'SideBar_Breed-Breed-Profile.php') === false) {
+    if (strpos($currentURL, 'Clinic-Vet-Profile.php') === false && strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'SideBar_Breed-Breed-Profile.php') === false) {
     session_start();
     $adminID = $_SESSION['adminID'];
   }
@@ -115,7 +115,7 @@
     </div>
       <a href="SideBar_Donation.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">volunteer_activism</span>&nbsp;Donation</a>
       <a href="SideBar-View-User.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">group</span>&nbsp;View Users</a>
-      <a href="Pets.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">pets</span>&nbsp;View Sellers</a>
+      <a href="SideBar-View-Seller.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">pets</span>&nbsp;View Sellers</a>
       <a href="Report.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">bar_chart</span>&nbsp;Report</a>
       <a href="SideBar-Password.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">key</span>&nbsp;Password</a>
       

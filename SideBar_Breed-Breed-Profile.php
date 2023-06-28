@@ -53,6 +53,7 @@ if (file_exists('breed_images/' . $row['breed_image'])) {
 	<button class="button-adoptable-pet" style="margin-left:-230px;margin-top: 20px;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -8px;color:white;">filter_list</span>View Adoptable Pets</button>
 </div>
 
+<input type="hidden" name="breedID" id="breedID" value="<?php echo $row['name'] ?>">
 </section>
 <br><br><br><br><br><br><br>
 
@@ -230,6 +231,15 @@ if (file_exists('breed_images/' . $row['breed_image'])) {
 </section>
 
 <script>
+
+  // Add event listener to the button
+  document.querySelector('.button-adoptable-pet').addEventListener('click', function() {
+    // Get the breedID from the breed-search input
+    var breedID = document.getElementById('breedID').value;
+    
+    // Redirect to User_Adoption.php with the breedID as a query parameter
+    window.location.href = 'User-Adoption.php?breedID=' + breedID;
+  });
 
 </script>
 </body>

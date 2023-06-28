@@ -22,14 +22,18 @@ include 'UserHeader.php';
 $recordID = $_GET['recordID'];
 $sql = "SELECT tr.recordID,tr.treatmentID,t.name,t.description,t.unit_price,tr.quantity,(tr.quantity*t.unit_price) AS total,r.comment,r.date,r.pet_name FROM treatment_record tr,treatment t,record r WHERE tr.treatmentID=t.treatmentID AND tr.recordID=r.recordID AND r.recordID=$recordID";
 
-$sql2 = "SELECT r.pet_name,r.date,r.comment,c.discount_percent,ca.petID FROM record r,clinic_appointment ca,clinic c WHERE ca.clinicID=c.clinicID AND r.appointmentID=ca.appointmentID AND r.recordID=$recordID";
+$sql2 = "SELECT r.pet_name,r.date,r.comment,r.extra,c.discount_percent,ca.petID FROM record r,clinic_appointment ca,clinic c WHERE ca.clinicID=c.clinicID AND r.appointmentID=ca.appointmentID AND r.recordID=$recordID";
 $result2 = $conn->query($sql2);
 $row2 = $result2->fetch_assoc();
 $pet_name = $row2['pet_name'];
 $date = $row2['date'];
 $comment = $row2['comment'];
 $petID = $row2['petID'];
+$extra = $row2['extra'];
+if($extra!=NULL){
+  $each_treatments=explode("$",$extra);
 
+  }
 ?>
 
   <div class="treatment-record-container">
@@ -69,20 +73,40 @@ $petID = $row2['petID'];
             <td class="td2"><?php echo $description ?></td>
           </tr>
         <?php } ?>
-        <?php
-          if($petID != NULL){?>
+
+        <?php 
+        if(isset($each_treatments)){
+        foreach ($each_treatments as $each_treatment) {
+          $components = explode("^", $each_treatment);
+            $sub_total+=($components[1] * $components[2]);
+           ?>
+       
+          <tr>
+            <td class="td1"><b><?php echo $components[0] ?></b></td>
+            <td rowspan="2" style="text-align: center;">RM <?php echo $components[1] ?></td>
+            <td rowspan="2" style="text-align: center;"><?php echo $components[2] ?></td>
+            <td rowspan="2" style="text-align: center;">RM <?php echo $components[1] * $components[2] ?></td>
+          </tr>
+          <tr>
+            <td class="td2"><?php echo $components[3] ?></td>
+          </tr>
+          
+       <?php }}?>
+
+          <?php if($petID != NULL){?>
             <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $row2['discount_percent'] ?>%):</td>
-            <td colspan="3" class="total_row" width="145px" style="text-align: center;">-RM <?php echo $row2['discount_percent']/100*$sub_total?></td>
+            <td colspan="3" class="total_row" width="145px" style="text-align: center;">-RM <?php echo number_format($row2['discount_percent']/100*$sub_total,2); ?></td>
           </tr>
           <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;"><b>Sub-Total:</b></td>
-            <td colspan="3" class="total_row" width="145px" style="text-align: center;"><b>RM <?php echo $sub_total*(1-$row2['discount_percent']/100) ?></b></td>
+            <td colspan="3" class="total_row" width="145px" style="text-align: center;"><b>RM <?php echo number_format($sub_total*(1-$row2['discount_percent']/100),2); ?></b></td>
+
           </tr>
           <?php }else{ ?>
           <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;"><b>Sub-Total:</b></td>
-            <td colspan="3" class="total_row" width="145px" style="text-align: center;"><b>RM <?php echo $sub_total ?></b></td>
+            <td colspan="3" class="total_row" width="145px" style="text-align: center;"><b>RM <?php echo number_format($sub_total,2); ?></b></td>
           </tr>
         <?php } ?>
         </table> 

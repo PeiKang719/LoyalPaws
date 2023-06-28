@@ -18,7 +18,13 @@
 	}
 </style>
 <body>
-<?php include 'UserHeader.php'; ?>
+<?php 
+if(isset($_GET['admin'])){
+include 'AdminHeader.php';
+}else{
+include 'UserHeader.php';
+} ?>
+
 <?php 
         if (isset($_GET['sid'])) {
             $id=$_GET['sid'];
@@ -78,14 +84,23 @@ if($row['cover']!=''){
 				<span class="material-symbols-outlined" style="font-size:40px;margin-right: 3%;">distance</span><p class="seller-location"> <?php echo $row["state"] ?><span style="font-size: 20px;color:#4d4d4d;vertical-align: 5px;margin-left: 3%;margin-right: 3%">&#9679;</span><?php echo $row["area"] ?> </p>
 			</div>
 		</div>
+		<?php if(isset($adopterID)){ ?>
 		<div class="seller-chat-button-container">
 			<button class="seller-chat-button" onclick="openChatModal()"><span class="material-symbols-outlined" style="vertical-align:-3px;color: white;" >chat</span>Chat</button>
 		</div>
+	<?php } ?>
 	</div>
+	<?php if(isset($_GET['admin'])){ ?>
+	<div class="seller-section">
+		<a href="Seller-Profile.php?s=pet&iid=<?php echo $id; ?>&admin=yes" style="border-bottom: 5px solid #00a8de;"><button class="seller-section-button" >Pets</button></a>
+		<a href="Seller-Profile.php?s=about&iid=<?php echo $id; ?>&admin=yes"><button class="seller-section-button">About Me</button></a>
+	</div>
+<?php }else{ ?>
 	<div class="seller-section">
 		<a href="Seller-Profile.php?s=pet&iid=<?php echo $id; ?>" style="border-bottom: 5px solid #00a8de;"><button class="seller-section-button" >Pets</button></a>
 		<a href="Seller-Profile.php?s=about&iid=<?php echo $id; ?>"><button class="seller-section-button">About Me</button></a>
 	</div>
+<?php } ?>
 
         <?php 
         if (isset($_GET['s'])) {
@@ -104,6 +119,7 @@ if($row['cover']!=''){
 <?php } ?>
         <?php function seller_pet(){
         $id=$_GET['iid'];  ?>
+        <input type="hidden" name="iid" id="iid" value="<?php echo$id ?>" >
 			<div class="breed-container" style="padding-top:2%;height:auto">
 			<div class="filter">
 				<div class="search-breed">
@@ -387,7 +403,7 @@ $imageSrc = "data:image/jpg;base64," . $imageData;
 if($row['shop_image']==NULL){
 	$imageSrc = 'media/shop-image.jpg';
 }
-if (file_exists('pet_shop_images/' . $row['shop_image'])) {
+elseif (file_exists('pet_shop_images/' . $row['shop_image'])) {
     $imageSrc = 'pet_shop_images/' . $row['shop_image'];
 }
 
@@ -418,15 +434,23 @@ if($row['cover']!=''){
 				<span class="material-symbols-outlined" style="font-size:40px;margin-right: 3%;">distance</span><p class="seller-location"> <?php echo $row["state"] ?><span style="font-size: 20px;color:#4d4d4d;vertical-align: 5px;margin-left: 3%;margin-right: 3%">&#9679;</span><?php echo $row["area"] ?> </p>
 			</div>
 		</div>
+		<?php if(isset($adopterID)){ ?>
 		<div class="seller-chat-button-container">
 			<button class="seller-chat-button" onclick="openChatModal()"><span class="material-symbols-outlined" style="vertical-align:-3px;color:white" >chat</span>Chat</button>
-			
 		</div>
+	<?php } ?>
 	</div>
+	<?php if(isset($_GET['admin'])){ ?>
+	<div class="seller-section">
+		<a href="Seller-Profile.php?s=pet&sid=<?php echo $id; ?>&admin=yes" style="border-bottom: 5px solid #00a8de;"><button class="seller-section-button" >Pets</button></a>
+		<a href="Seller-Profile.php?s=about&sid=<?php echo $id; ?>&admin=yes"><button class="seller-section-button">About Me</button></a>
+	</div>
+<?php }else{ ?>
 	<div class="seller-section">
 		<a href="Seller-Profile.php?s=pet&sid=<?php echo $id; ?>" style="border-bottom: 5px solid #00a8de;"><button class="seller-section-button" >Pets</button></a>
 		<a href="Seller-Profile.php?s=about&sid=<?php echo $id; ?>"><button class="seller-section-button">About Me</button></a>
 	</div>
+<?php } ?>
 
         <?php 
         if (isset($_GET['s'])) {
@@ -445,6 +469,7 @@ if($row['cover']!=''){
         <?php } ?>
         <?php function pet(){ 
         	$id=$_GET['sid'];?>
+        	<input type="hidden" name="sid" id="sid" value="<?php echo$id ?>" >
 			<div class="breed-container" style="padding-top:2%;height:auto">
 			<div class="filter">
 				<div class="search-breed">
@@ -792,11 +817,15 @@ $(document).ready(function() {
         }).get().join(',');
         var searchQuery = $('#breed-search').val();
          var url = window.location.href;
-	    if (url.includes('sid')) {
-	        var sid = new URLSearchParams(url).get('sid');
-	    } else if (url.includes('iid')) {
-	        var iid = new URLSearchParams(url).get('iid');
-	    }
+	    var sid = null;
+		var iid = null;
+
+		if (url.includes('sid') ) {
+		    sid = new URLSearchParams(url).get('sid');
+		} else if (url.includes('iid')) {
+		    iid = new URLSearchParams(url).get('iid');
+		}
+
         // Make an AJAX request to the server to get the updated breed cards
         $.ajax({
             url: 'Seller-Get-Pet.php',
@@ -826,10 +855,13 @@ $(document).ready(function() {
         var searchQuery = $('#breed-search').val();
 
          var url = window.location.href;
-	    if (url.includes('sid')) {
-	        var sid = new URLSearchParams(url).get('sid');
-	    } else if (url.includes('iid')) {
-	        var iid = new URLSearchParams(url).get('iid');
+	    var sid = null;
+	    var iid = null;
+
+	    if (document.getElementById('sid')) {
+	        sid = document.getElementById('sid').value;
+	    } else if (document.getElementById('iid')) {
+	        iid = document.getElementById('iid').value;
 	    }
         // Make an AJAX request to the server to get the updated breed cards
         $.ajax({
@@ -864,8 +896,10 @@ $(document).ready(function() {
   	$('a[href*="Seller-Profile.php?s=pet"]').css('border-bottom', '5px solid #00a8de');
   }
 });
+</script>
 
-
+<?php if(isset($adopterID)){ ?>
+<script>
 function openChatModal() {
     var modal = document.getElementById("chatModal");
     modal.style.display = "block";
@@ -958,6 +992,7 @@ function closeChatModal() {
         scrollToBottom();
     };
 </script>
+<?php } ?>
 </body>
 
 </html>

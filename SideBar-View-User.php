@@ -59,7 +59,7 @@ $sql = "SELECT * FROM adopter  ORDER BY adopterID ";
           if($image==NULL){
             $imageSrc = 'media/profile.png';
           }
-          if (file_exists('adopter_images/' . $image)) {
+          elseif (file_exists('adopter_images/' . $image)) {
               $imageSrc = 'adopter_images/' . $image;
           }
           ?>
@@ -71,7 +71,7 @@ $sql = "SELECT * FROM adopter  ORDER BY adopterID ";
     <td><?php echo $area ?>,<?php echo $state ?></td>
     <td><?php echo $phone?></td>
     <td><?php echo $email?></td>
-    <td><a href="SideBar_View-User-Process.php?adopterID=<?php echo $adopterID ?>" onclick="return confirmDelete(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
+    <td><a href="SideBar_View-User-Process.php?adopterID=<?php echo $adopterID ?>" onclick="confirmDelete(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
   </tr>      
 <?php $i++;}
 

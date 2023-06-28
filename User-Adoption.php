@@ -31,7 +31,11 @@
 <div class="breed-container" style="height:auto">
 			<div class="filter">
 				<div class="search-breed">
-					<input type="text" name="search-breed" placeholder="Search by name" id="breed-search" list="breed-list" style="width:100%;margin: 0;border-radius: 5px 0 0 5px;">
+                    <?php if(isset($_GET['breedID'])){ ?>
+					<input type="text" name="search-breed" placeholder="Search by name" id="breed-search" list="breed-list" style="width:100%;margin: 0;border-radius: 5px 0 0 5px;" value="<?php echo $_GET['breedID'] ?>">
+                <?php }else{ ?>
+                    <input type="text" name="search-breed" placeholder="Search by name" id="breed-search" list="breed-list" style="width:100%;margin: 0;border-radius: 5px 0 0 5px;">
+                <?php } ?> 
 					<button class="search-pet-button"><span class="material-symbols-outlined" id="search-button" style="font-size:35px;vertical-align:0px">search</span></button>
 		
 				</div>
@@ -305,6 +309,12 @@ $(document).ready(function() {
     });
 });
 
+window.onload = function() {
+    var breedID = '<?php echo $_GET["breedID"]; ?>';
+    if (breedID) {
+      document.getElementById('search-button').click();
+    }
+  };
 </script>
 </body>
 </html>

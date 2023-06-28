@@ -32,20 +32,19 @@
   <th style="width:100px">Receipt</th>
 <?php 
 $i=1;
-$sql = "SELECT * FROM (SELECT cp.paymentID,cp.date,CONCAT(firstName,' ',lastName) AS adopterName,a.adopterID,r.pet_name,v.name AS vet_name,cp.recordID,cp.amount,cp.transactionID FROM clinic_payment cp,record r,adopter a,vet v,clinic_appointment ca WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.adopterID=a.adopterID AND ca.clinicID=$clinicID UNION ALL SELECT cp.paymentID,cp.date,CONCAT(a.firstName,' ',a.lastName) AS adopterName,a.adopterID,r.pet_name,v.name AS vet_name,cp.recordID,cp.amount,cp.transactionID FROM clinic_payment cp,record r,adopter a,vet v,clinic_appointment ca,pet p,clinic c WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.clinicID=c.clinicID AND ca.petID=p.petID AND p.adopterID=a.adopterID AND c.clinicID=$clinicID) AS combined_table ORDER BY paymentID DESC ";
+$sql = "SELECT * FROM (SELECT r.date,CONCAT(firstName,' ',lastName) AS adopterName,a.adopterID,r.pet_name,v.name AS vet_name,r.recordID FROM record r,adopter a,vet v,clinic_appointment ca WHERE r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.adopterID=a.adopterID AND ca.clinicID=$clinicID UNION ALL SELECT r.date,CONCAT(a.firstName,' ',a.lastName) AS adopterName,a.adopterID,r.pet_name,v.name AS vet_name,r.recordID FROM record r,adopter a,vet v,clinic_appointment ca,pet p,clinic c WHERE r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.clinicID=c.clinicID AND ca.petID=p.petID AND p.adopterID=a.adopterID AND c.clinicID=$clinicID) AS combined_table ORDER BY recordID DESC ";
       $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-          $paymentID=$row["paymentID"];
           $date=$row["date"];
           $adopterName=$row["adopterName"];
           $adopterID=$row["adopterID"];
           $pet_name=$row["pet_name"];
           $recordID=$row["recordID"];
-          $amount=$row["amount"];
           $vet_name=$row["vet_name"];
-          $transactionID=$row["transactionID"];
+
+          
           ?>
     <tr>
     <td style="text-align:center"><?php echo $date?></td>
@@ -55,9 +54,18 @@ $sql = "SELECT * FROM (SELECT cp.paymentID,cp.date,CONCAT(firstName,' ',lastName
     <td style="text-align:center">
       <button class="reschedule-button" onclick="recordModal2(<?php echo $recordID ?>)"><span class="material-symbols-outlined" style="vertical-align:-3px">history_edu</span></button>
     </td>
+    <?php $sql2 = "SELECT paymentID FROM clinic_payment WHERE recordID = $recordID";
+          $result2 = $conn->query($sql2);
+          if ($result2->num_rows > 0) { 
+          $row2 = $result2->fetch_assoc();?>
     <td style="text-align:center">
-      <button class="reschedule-button" style="color:white" onclick="receipt(<?php echo $paymentID?>,<?php echo $adopterID ?>);"><span class="material-symbols-outlined" style="vertical-align:-3px">receipt_long</span></button>
+      <button class="reschedule-button" style="color:white" onclick="receipt(<?php echo $row2['paymentID']?>,<?php echo $adopterID ?>);"><span class="material-symbols-outlined" style="vertical-align:-3px">receipt_long</span></button>
     </td>
+  <?php }else{ ?>
+    <td style="text-align:center">
+      <button class="reschedule-button" style="color:white;cursor:not-allowed;background-color: #cc9900;" disabled ><span class="material-symbols-outlined" style="vertical-align:-3px">hourglass_bottom</span></button>
+    </td>
+  <?php } ?>
   </tr>      
 <?php $i++; }
 

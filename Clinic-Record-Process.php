@@ -9,12 +9,37 @@ if($_GET['action']=='insert'){
     $comment = $_POST['comment'];
     $quantity = $_POST['quantity'];
     $treatmentID = $_POST['treatmentID'];
+    $extra = NULL;
+    if(isset($_POST['name2'])){
+        $name2 = $_POST['name2'];
+        $price2 = $_POST['price2'];
+        $quantity2 = $_POST['quantity2'];
+        $description2 = $_POST['description2'];
+
+        $name3 = implode(',', array_filter($name2, 'strlen'));
+        $price3 = implode(',', array_filter($price2, 'strlen'));
+        $quantity3 = implode(',', array_filter($quantity2, 'strlen'));
+        $description3 = implode(',', array_filter($description2, 'strlen'));
+
+        $name3Array = explode(',', $name3);
+        $price3Array = explode(',', $price3);
+        $quantity3Array = explode(',', $quantity3);
+        $description3Array = explode(',', $description3);
+
+        $extra_descriptions = array();
+        for($j = 0; $j < count($name3Array); $j++) {
+            $extra_description=$name3Array[$j].'^'.$price3Array[$j].'^'.$quantity3Array[$j].'^'.$description3Array[$j];
+            $extra_descriptions[] = $extra_description;
+        }
+        $extra = implode('$', $extra_descriptions);
+    }
+
     date_default_timezone_set('Asia/Singapore');
     $record_date = date('Y-m-d H:i:s');
 
 
-   $stmt = $conn->prepare("INSERT INTO record (appointmentID, pet_name, comment, date) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $appointmentID, $name, $comment, $record_date);
+   $stmt = $conn->prepare("INSERT INTO record (appointmentID, pet_name, comment, date, extra) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $appointmentID, $name, $comment, $record_date, $extra);
     if ($stmt->execute()) {
         $sql5 = "UPDATE clinic_appointment SET status='Completed' WHERE appointmentID=$appointmentID ";
         if ( $conn->query($sql5) === TRUE) {

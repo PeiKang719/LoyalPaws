@@ -142,13 +142,7 @@
 	color: white;
 }
 
-#check:checked ~ .content {
-  width: 74.35%;
-  animation-name: slideLeft;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  left: 290px;
-}
+
 
 @keyframes slideLeft {
   from {
@@ -168,9 +162,6 @@
   position: absolute;
   display: block;
   transition: 0.5s;
-  animation-name: slideRight;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
   left: 0px;
 }
 
@@ -980,12 +971,7 @@ footer{
 
 
 /*----------------------------------------Adoption Form-------------------------------------------------------------*/
-#check:checked ~ .form-container {
-  width: 72.8%;
-  transition: 0.5s ;
-  left: 290px;
-  padding-top: 7%;
-}
+
 
 .form-container{
   width: 92%;

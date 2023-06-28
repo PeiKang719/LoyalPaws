@@ -21,6 +21,15 @@
     border-bottom: 2px solid black;
     background-color: white;
   }
+  input[type=text]{
+    width: 90%;
+    font-size: 25px;
+  }
+  input[type=text]:focus{
+    border: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: white;
+  }
 
   hr{
     width: 95% !important;
@@ -75,14 +84,41 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
     <td style="width:0%;border:0;padding:0"><input type="hidden" name="treatmentID" value="<?php echo $treatmentID ?>"></td>
   </tr>      
-<?php  }
-
+<?php  }?>
+<tr  style="display:none">
+    <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
+    <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" disabled></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required disabled></td>
+    <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
+  </tr> 
+  <tr style="display:none">
+    <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
+    <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" disabled></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required disabled></td>
+    <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
+  </tr>
+  <tr style="display:none">
+    <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
+    <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" disabled></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required disabled></td>
+    <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
+  </tr>
+  <?php
 }else{?>
   <tr>
     <td colspan="6">No treatment provided yet...</td>
   </tr>
 <?php } ?>
- </table><br><br>
+
+ </table>
+ <div class="add-button-container" id="add-more-button" >
+      <span class="material-symbols-outlined" id="add-button">add_circle</span>
+      <p>Custom Treatment</p>
+    </div>
+ <br><br>
 <hr>
 <form id="recordForm" action="Clinic-Record-Process.php?action=insert" method="post" target="hiddenFrame" enctype="multipart/form-data">
   <input type="hidden" name="appointmentID" value="<?php echo $appointmentID ?>">
@@ -134,15 +170,25 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
 $(document).ready(function() {
   $('.manage-button').click(function() {
     // Get the current row
-    var row = $(this).closest('tr');
+   var row = $(this).closest('tr');
+var treatmentID = row.find('input[name="treatmentID"]').val();
 
-    // Get the values of the cells in the current row
-    var treatment = row.find('td:first-child').text();
-    var description = row.find('td:nth-child(2)').text();
-    var unitPrice = parseFloat(row.find('td:nth-child(3)').text().replace('RM', ''));
-    var quantity = row.find('input[name="quantity"]').val();
-    var total = unitPrice * quantity;
-    var treatmentID = row.find('input[name="treatmentID"]').val();
+if (treatmentID) {
+  // Row other than the custom row is being added or deleted
+  var treatment = row.find('td:first-child').text();
+  var description = row.find('td:nth-child(2)').text();
+  var unitPrice = parseFloat(row.find('td:nth-child(3)').text().replace('RM', ''));
+  var quantity = row.find('input[name="quantity"]').val();
+  var total = unitPrice * quantity;
+} else {
+  // Custom row is being added or deleted
+  var treatment = row.find('input[name="name2[]"]').val();
+  var description = row.find('input[name="description2[]"]').val();
+  var unitPrice = parseFloat(row.find('input[name="price2[]"]').val());
+  var quantity = parseInt(row.find('input[name="quantity2[]"]').val());
+  var total = unitPrice * quantity;
+}
+
     console.log(treatmentID);
     // Check if the row exists in the record table
     var isRowExist = $('#recordTable').find('td:contains(' + treatment + ')').length > 0;
@@ -156,9 +202,14 @@ $(document).ready(function() {
       // Change the button back to "Add"
       $(this).html('<span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span>');
       $(this).css('background-color', '#29a329');
-    } else {
+    } else if (treatmentID) {
       // Row does not exist in record table, append it
       $('#recordTable').append('<tr><td class="td1"><b>' + treatment + '</b></td><td style="text-align: center;" rowspan="2">RM ' + unitPrice + '</td><td style="text-align: center;" rowspan="2"><input type="hidden" name="quantity[]" value="'+quantity+'">' + quantity + '</td><td style="text-align: center;" rowspan="2">RM ' + total + '</td><td class="hide_td"><input type="hidden" name="treatmentID[]" value="'+treatmentID+'"</td></tr><tr><td style="font-style:italic"  class="td2">' + description + '</td>');
+      // Change the button to "Remove"
+      updateSubtotal();
+      toggleAddRemoveButton(row);
+    }else{
+       $('#recordTable').append('<tr><td class="td1"><input type="hidden" name="name2[]" value="'+treatment+'"><b>' + treatment + '</b></td><td style="text-align: center;" rowspan="2"><input type="hidden" name="price2[]" value="'+unitPrice+'">RM ' + unitPrice + '</td><td style="text-align: center;" rowspan="2"><input type="hidden" name="quantity2[]" value="'+quantity+'">' + quantity + '</td><td style="text-align: center;" rowspan="2">RM ' + total + '</td></tr><tr><td style="font-style:italic"  class="td2"><input type="hidden" name="description2[]" value="'+description+'">' + description + '</td>');
       // Change the button to "Remove"
       updateSubtotal();
       toggleAddRemoveButton(row);
@@ -196,6 +247,25 @@ $(document).ready(function() {
 
   });
 });
+
+$(document).ready(function() {
+  $("#add-more-button").click(function() {
+    // Show the first hidden template row
+    var newRow = $("#treatment-table tr:hidden:first");
+    newRow.show();
+    
+    // Enable inputs in the new row
+    newRow.find('input').prop('disabled', false);
+    
+    // Check if there are any more hidden rows
+    if ($("#treatment-table tr:hidden").length === 0) {
+      // No more hidden rows, hide the "Add more" button
+      $("#add-more-button").hide();
+    }
+  });
+});
+
+
 
 
 function toggleAddRemoveButton(row) {

@@ -200,11 +200,6 @@ hr{
 	color: white;
 }
 
-#check:checked ~ .content {
-  left: 290px;
-    width: 74.35%;
-    transition: 0.5s ;
-}
 
 
 
@@ -760,6 +755,7 @@ small{
 	 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	 border-radius: 30px;
 	 border: 0;
+   cursor: pointer;
 }
 
 /*--------------------------------------------DONATION-------------------------------------------*/
@@ -980,10 +976,7 @@ footer{
 }
 
 /*-----------------------------------------------------Vet Clinic---------------------------------------------------*/
-#check:checked ~ .clinic-container{
-    width: 80.9%;
-    transition: 0.5s ;
-  }
+
 
 .clinic-container{
   width: 100%;
@@ -1199,4 +1192,77 @@ footer{
   font-size: 18px;
   font-style: italic;
   padding-bottom: 20px;
+}
+
+/*---------------------------------------------Dashboard---------------------------------------------------------*/
+.dashboard-container{
+  width: 25%;
+  height: 270px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+  align-items: center;
+  margin: 0 1%;
+  justify-content: center;
+}
+
+.dashboard-container p{
+  font-size: 27px;
+  color: white;
+}
+
+.dashboard-container img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.dashboard-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 50%;
+  height: 100%;
+}
+
+.dashboard-overlay{
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#dashboard-clinic{
+  background-image: url('media/dashboard-clinic.jpg');
+  background-size: 100% 100%;
+}
+
+#dashboard-pet{
+  background-image: url('media/fyp1.jpg');
+  background-size: 100% 120%;
+  background-position: 10% 50%;
+}
+
+#dashboard-owner{
+  background-image: url('media/dashboard-owner.jpg');
+  background-size: 100% 100%;
+}
+#dashboard-adopter{
+  background-image: url('media/dashboard-adopter.jpg');
+  background-size: 120% 100%;
+  background-position: 50% 0%;
+}
+
+#dashboard-organization{
+  background-image: url('media/dashboard-organization.jpg');
+  background-size: 160% 100%;
+  background-position: 50% 0%;
+}
+
+#dashboard-breed{
+  background-image: url('media/dashboard-breed.jpg');
+  background-size: 230% 130%;
+  background-position: 50% 30%;
 }

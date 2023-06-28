@@ -629,7 +629,7 @@ function updateBreedOptions(type) {
     for (var i = 0; i < columns.length; i++) {
       var column = columns[i];
       if (checkbox.checked) {
-        column.classList.remove('collapsed');
+        column.classList.add('collapsed');
       } else {
         column.classList.add('collapsed');
       }

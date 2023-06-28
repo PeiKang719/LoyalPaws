@@ -13,6 +13,8 @@ if (isset($_GET['p'])) {
         approve_vet_clinic($ic, $id,$email,$name);
     } else if ($p == 'reject') {
         reject_vet($ic, $id,$email,$name);
+    }else if ($p == 'deleteVet') {
+        delete_vet($id);
     }
 }
 
@@ -82,4 +84,24 @@ function reject_vet($ic, $id,$email,$name){
 $conn->close();
 }
 
+function delete_vet($id){
+
+     include('Connection.php');
+$sql = "UPDATE clinic_appointment SET vetID = NULL WHERE vetID=$id";
+$result = mysqli_query($conn, $sql);
+
+  if ($conn->query($sql) === TRUE) {
+    $sql2 = "DELETE FROM vet WHERE vetID = $id"; 
+
+    if (mysqli_query($conn, $sql2)) {
+     mysqli_close($conn);
+    } else {
+        echo "Error Deleting Vet Information: " . mysqli_error($conn);
+}
+}
+
+
+
+}
+?>
 

@@ -15,6 +15,8 @@
     if (strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'SideBar_Breed-Breed-Profile.php') === false) {
     session_start();
     $adopterID = $_SESSION['adopterID'];
+  }else{
+     $adopterID = $_SESSION['adopterID'];
   }
   include 'Connection.php';
   $sql ="SELECT image FROM adopter WHERE adopterID=$adopterID";

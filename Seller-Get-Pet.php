@@ -1,12 +1,12 @@
 <?php
 include('Connection.php');
 
- if (isset($_GET['sid'])) {
+ if ($_GET['sid']!=NULL) {
             $id=$_GET['sid'];
             $table='pet_shop';
             $pk='shopID';
         }
-        elseif(isset($_GET['iid'])){
+        elseif($_GET['iid']!=NULL){
             $id=$_GET['iid'];
             $table='seller';
             $pk='sellerID';
@@ -387,6 +387,7 @@ if ($result->num_rows > 0) {
     }
     }
  else {
+
     echo "No results found.";
 }
 }

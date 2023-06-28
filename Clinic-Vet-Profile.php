@@ -976,7 +976,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
-<?php if($id==$_SESSION['vetID']){?>
+<?php 
+if(isset($_SESSION['vetID'])){
+if($id==$_SESSION['vetID']){?>
   <script type="text/javascript">
     var modal2 = document.getElementById("phoneModal");
 var btn2 = document.getElementById("edit-button1");
@@ -1152,7 +1154,7 @@ submit.onclick = function() {
   }, 500);
 };
   </script>
-<?php } ?>
+<?php }} ?>
 
 
 <?php if(isset($_GET['vid'])){?>

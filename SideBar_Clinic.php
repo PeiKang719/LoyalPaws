@@ -6,6 +6,7 @@
 	<title>Main page</title>
 <script src="http://www.w3schools.com/lib/w3data.js"></script>
 <link rel="stylesheet" type="text/css" href="AdminStyle.css">
+<link rel="stylesheet" type="text/css" href="ClinicStyle.css">
 <link rel="icon" type="image/png" href="media/tabIcon.png">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -100,28 +101,7 @@
       <a href="SideBar_Clinic.php?c=vet&t=pending"><button class="clinic-approved-pending-button" style="border-left: 1px solid #4d4d4d;">Pending</button></a>
   </div>
   <div class="clinic-card-container">
-    <div class="search-part">
-  <input type="text" class="search" placeholder="Search For Vet" id="organization-search" list="clinic-list">
-<datalist id="clinic-list">
-  <?php
-  // Connect to the database
-  include('Connection.php');
 
-  $sql = "SELECT vetID,name FROM vet ORDER BY name";
-  $result = mysqli_query($conn, $sql);
-
-  // Loop through the results and populate the datalist options
-  while ($row = mysqli_fetch_assoc($result)) {
-    // Check if breedID exists before adding it as a data attribute
-    $clinicID = isset($row['clinicID']) ? 'data-clinicid="' . $row['clinicID'] . '"' : '';
-    echo '<option value="' . $row['name'] . '" ' . $clinicID . '>' . $row['name'] . '</option>';
-  }
-
-  // Close the database connection
-  mysqli_close($conn);
-  ?>
-</datalist>
-</div>
 <div class="card-part">
   <?php 
         if (isset($_GET['t'])) {
@@ -290,27 +270,40 @@ function showClinic_Pending() {
 <?php
 function showVet_Approved() {
   include('Connection.php');
-  $sql = "SELECT v.name,v.ic,c.name AS cname,v.email,v.phone,v.area,v.education,v.experience,v.image FROM vet v,clinic c WHERE v.clinicID=c.clinicID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%' ORDER BY v.name ";
+?>
 
-    $result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // Fetch all the rows into an array
-    $rows = $result->fetch_all(MYSQLI_ASSOC);
-    foreach ($rows as $row) {
-      $education=$row['education'];
-      $experience=$row['experience'];
-      $image=$row['image'];
-      $ic=$row['ic'];
+   <div style="width:92%;padding:1% 4%" >
+    <br>
+  <div class="add-new-treatment-container">
+  <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search By Name" >
+</div>
+  <br>
+  <table class="treatment-table" border="0" id="treatment-table">
+  <th style="width:40px">ID</th>
+  <th style="width:105px">Image</th>
+  <th style="width:230px">Name</th>
+  <th style="width:130px">Clinic</th>
+  <th style="width:40px">Phone</th>
+  <th style="width:40px">APC</th>
+  <th colspan="1" style="width: 150px;" > </th>
+<?php 
+include 'Connection.php';
+$i=1;
+$sql = "SELECT v.vetID,v.name,v.image,v.phone,v.email,c.name AS cname,v.ic,v.apc FROM vet v,clinic c WHERE v.clinicID=c.clinicID  AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%' ORDER BY vetID ";
+      $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          $sellerID=$row["vetID"];
+          $image=$row["image"];
+          $firstName=$row["name"];
+          $phone=$row["phone"];
+          $email=$row["email"];
+          $cname=$row["cname"];
+          $ic=$row["ic"];
+          $apc = $row['apc'];
 
-
-      if ($education=='') {
-        $education='-';
-        }
-        if ($experience=='') {
-          $experience='-';
-        }
-
-        if($image!=''){
+         if($image!=''){
         $imageData = base64_encode($image);
         $imageSrc2 = "data:image/jpg;base64," . $imageData;
         // Check if the image file exists before displaying it
@@ -327,86 +320,27 @@ if ($result->num_rows > 0) {
             $imageSrc2='media/email_male.png';
           }
         }
+          ?>
+    <tr>
+    <td><?php echo $sellerID?></td>
+    <td><img src="<?php echo $imageSrc2 ?>" style="width: 100px;height: 100px;"> </td>
+    <td><?php echo $firstName ?></td>
+    <td><?php echo $cname ?></td>
+    <td><?php echo $phone?></td>
+    <td style="word-wrap: break-word;"><a style="color:#008ae6;text-decoration: underline;" href="SideBar_Clinic-Downloadpdf.php?file=<?php echo $apc ?>"><?php echo $apc ?></a> </td>
+    <td><button class="manage-button" onclick="view_vet(<?php echo$sellerID ?>)"><span class="material-symbols-outlined">person</span></button>  <a href="SideBar_Clinic-Process.php?p=deleteVet&i=<?php echo $sellerID ?>" onclick="confirmDeleteVet(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
+  </tr>      
+<?php $i++;}
 
-   echo" <div class='vet-bar'><div class='expand-icon'>❯</div>
-   <img class='vet-img' src='$imageSrc2' alt='Vet'>
-   <p class='vet-name'>" . $row['name'] . "</p>
-   <p class='vet-ic'>" . $row['ic'] . "</p>
-   <button class='vet-bar-delete'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-6px;color:white'>delete</span>Delete</button>
-   </div>";
-   echo "<div class='vet-bar-expand'>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>local_hospital</span>Veterinary Clinic</p><br>
-   <p style='margin-left:2.5%'>- " . $row['cname'] . "</p>
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>mail</span>&nbsp;" . $row['email'] . "</p>
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>call</span>&nbsp;" . $row['phone'] . "</p>
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>school</span>&nbsp;Education:</p><br>";
-   if($education=='-'){
-      echo "<p style='margin-left:2.5%;'>$education</p>";
-   }
-   else{
-    $educations = explode("$", $education);
-    echo "<table class='eduTable' border=0>";
-    foreach ($educations as $edu) {
-        $details = explode("^", $edu);
-        echo "<tr>";
-        echo "<td width=15%><p class='year'>$details[0]</p></td>";
-        echo "<td width=85%><p class='edu'>$details[1]</p></td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td></td>";
-        echo "<td><p class='location'>$details[2]</p></td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-  }
-    echo "
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>business_center</span>&nbsp;Experience:</p><br>";
-   if($experience=='-'){
-      echo "<p style='margin-left:2.5%;'>$experience</p>";
-   }
-   else{
-    $experiences = explode("$", $experience);
-    echo "<table class='eduTable' border=0>";
-    foreach ($experiences as $exp) {
-        $edetails = explode("^", $exp);
-        echo "<tr>";
-        echo "<td width=15%><p class='year'>$edetails[0]</p></td>";
-        echo "<td width=85%><p class='edu'>$edetails[1]</p></td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td></td>";
-        echo "<td><p class='location'>$edetails[2]</p></td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-  }
-    echo "
-    <br>
-    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-2px'>lab_research</span>&nbsp;Area:</p><br>";
-   $areas = explode(",", $row["area"]);
-    foreach ($areas as $area) {
-        echo "<p style='margin-left:2.5%'>- $area</p>";
-    }
-    echo "
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>badge</span>&nbsp;Annual Practicing Certificate(APC):</p>
-   <br>
-   <p class='vet-apc' style='margin-left:3.5%'>Click to view</p>
-   <p class='vet-apc' style='margin-left:3.5%'>Click to download</p>
-
-   </div>";
-  }?>
-<?php   
 }else{?>
-    <div style="width: 100%;display: flex;align-items: center;justify-content: center;">
-        <img src="media/no-document.jpg" width="300px" height="300px">
-    </div>
-<?php
-}
+  <tr>
+    <td colspan="6">No vet...</td>
+  </tr>
+</table>
+<?php } ?>
+ </table>
+</div>
+<?php 
 }
 ?>
 
@@ -461,8 +395,7 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', " . $row['vet
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>business_center</span>&nbsp;Experience:</p>
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>badge</span>&nbsp;Annual Practicing Certificate(APC):</p>
-   <p class='vet-apc' style='margin-left:3.5%'>Click to view</p>
-   <p class='vet-apc' style='margin-left:3.5%'>Click to download</p>
+   <a style='color:#008ae6;text-decoration: underline;' href='SideBar_Clinic-Downloadpdf.php?file=" . $apc . "'>" . $apc . "</a>
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>mail</span>&nbsp;" . $row['email'] . "</p>
    <br>
@@ -596,7 +529,7 @@ function sendApprovalEmail(email, name) {
     for (var i = 0; i < columns.length; i++) {
       var column = columns[i];
       if (checkbox.checked) {
-        column.classList.remove('collapsed');
+        column.classList.add('collapsed');
       } else {
         column.classList.add('collapsed');
       }
@@ -607,6 +540,30 @@ function sendApprovalEmail(email, name) {
 
   // Initial call to set the initial state based on the checkbox's initial checked state
   handleCheckboxChange();
+
+   function view_vet(i) {
+    window.location.href = "Clinic-Vet-Profile.php?vetid="+ i+"&admin=yes";
+
+  } 
+
+  function confirmDeleteVet(event) {
+  event.preventDefault();
+    if (confirm("Are You Sure To Delete This Vet Information?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", event.currentTarget.href, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert("Deleted Vet Information");
+                window.location.reload();
+            } else {
+                alert("Error Deleting Vet Information");
+            }
+        };
+        xhr.send();
+    } else {
+        console.log("User cancelled the Vet operation.");
+    }
+}
 </script>
 
 </script>
