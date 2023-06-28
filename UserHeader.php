@@ -16,6 +16,19 @@
     session_start();
     $adopterID = $_SESSION['adopterID'];
   }
+  include 'Connection.php';
+  $sql ="SELECT image FROM adopter WHERE adopterID=$adopterID";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+
+  $imageData = base64_encode($row['image']);
+            $imageSrc = "data:image/jpg;base64," . $imageData;
+            if ($row['image']=='') {
+                  $imageSrc = 'media/profile.png';
+            }
+              elseif (file_exists('adopter_images/' . $row['image'])) {
+                  $imageSrc = 'adopter_images/' . $row['image'];
+            }
     ?>
     <nav>
   <input type="checkbox" id="check">
@@ -29,15 +42,22 @@
   </label>
   <ul>
     <li class="dropdown">
-      <button class="dropbtn">Pet <i class="fas fa-caret-down"></i></button>
+      <button class="dropbtn">Pet</button>
       <div class="dropdown-content">
         <a href="User-Order-List.php">Order</a>
         <a href="User-Adoption-List.php">Adoption</a>
       </div>
     </li>
     <li><a href="User-Pet-Appointment-List.php">Clinic</a></li>
-    <li><a href="User-Profile.php">Profile</a></li>
-    <li><a href="Login.php">Log Out</a></li>
+    <li><a href="User-Chat.php">Message</a></li>
+    <li class="dropdown" style="width:120px;text-align: center;">
+      <button class="dropbtn" id="profile-icon" style="padding:9px 30px;"><img src="<?php echo $imageSrc ?>" style="width: 50px;height: 50px;border-radius: 50%;border: 1px solid black;vertical-align: -10px;"> </button>
+      <div class="dropdown-content">
+        <a href="User-Profile.php">Profile</a>
+        <a href="Login.php">Log Out</a>
+      </div>
+    </li>
+    
   </ul>
 </nav>
 

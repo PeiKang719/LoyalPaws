@@ -18,7 +18,7 @@
 	}
 </style>
 <body>
-<?php include 'UserHeader.php'; ?>
+<?php include 'AdminHeader.php'; ?>
 <?php
 $id = $_GET['id'];
 
@@ -64,9 +64,7 @@ else{
 				<span class="material-symbols-outlined" style="font-size:40px;margin-right: 3%;">distance</span><p class="seller-location"> <?php echo $row["state"] ?><span style="font-size: 20px;color:#4d4d4d;vertical-align: 5px;margin-left: 3%;margin-right: 3%">&#9679;</span><?php echo $row["area"] ?> </p>
 			</div>
 		</div>
-		<div class="seller-chat-button-container">
-			<button class="seller-chat-button"><span class="material-symbols-outlined" style="vertical-align:-3px">chat</span>Chat</button>
-		</div>
+
 	</div>
 	<div class="seller-section">
 		<a href="SideBar_Clinic-Profile.php?s=details&id=<?php echo$id ?>" style="border-bottom: 5px solid #00a8de;"><button class="seller-section-button" >Details</button></a>
@@ -184,119 +182,67 @@ else{
 
 	<?php } ?>
 	<?php function vets(){ 
-		$id = $_GET['id'];
-		include('Connection.php');
-
-		$sql = "SELECT * FROM vet WHERE clinicID = $id ORDER BY vetID"; 
-
-		    $result = $conn->query($sql);
-		    echo" <div class='vet-bar-container'>";
-    if ($result->num_rows > 0) {
-        // Fetch all the rows into an array
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-        foreach ($rows as $row) {
-   echo" <div class='vet-bar'><div class='expand-icon'>❯</div>
-   <img class='vet-img' src='media/email_male.png' alt='Vet'>
-   <p class='vet-name'>" . $row['name'] . "</p>
-   <button class='vet-bar-delete' style='background-color:#2eb82e'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-6px;color:white'>chat</span>Chat</button>
-   </div>";
-   echo "<div class='vet-bar-expand'>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-2px'>lab_research</span>&nbsp;Area:</p>";
-   $areas = explode(",", $row["area"]);
-    foreach ($areas as $area) {
-        echo "<p style='margin-left:2.5%'>- $area</p>";
-    }
-    echo "
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>school</span>&nbsp;Education:</p>
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>business_center</span>&nbsp;Experience:</p>
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>mail</span>&nbsp;" . $row['email'] . "</p>
-   <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>call</span>&nbsp;" . $row['phone'] . "</p>
-   </div>";
-    echo" </div>";
-  }?>
-<?php   
+		$id = $_GET['id'];?>
+		<div class="breed-container" style="padding-top:2%;height:auto">
+            <div class="breed-card" id="breed-card-container" style="width: 85%;padding-left: 7.5%;padding-right:7.5%;">
+            <?php include 'Connection.php'; ?>
+            <?php
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $count = "SELECT count(*) as total from vet where clinicID=$id AND ic REGEXP '^[0-9]+$'";
+            $data = $conn->query($count);
+            $dat = $data->fetch_assoc();
+            $total_records = $dat["total"];
+            $records_per_page = 12;
+            $total_pages = ceil($total_records / $records_per_page);
+            if ($page < 1) {
+                $page = 1;
+            }
+            $offset = ($page - 1) * $records_per_page;
+            $sql = "SELECT * FROM vet WHERE clinicID = $id AND ic REGEXP '^[0-9]+$' ORDER BY vetID ";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                echo '<div style="width:100%;height:20px">';
+                echo $total_records. " vets";
+                echo '</div>';
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+                foreach ($rows as $row) {
+                    if($row['image']!=''){
+                $imageData = base64_encode($row['image']);
+                $imageSrc = "data:image/jpg;base64," . $imageData;
+                // Check if the image file exists before displaying it
+                if (file_exists('vet_images/' . $row['image'])) {
+                    $imageSrc = 'vet_images/' . $row['image'];
+                }
+                }
+                else{
+                  $gender=$row['ic'][-1];
+                  if( $gender% 2 == 0){
+                    $imageSrc='media/email_female.png';
+                  }
+                  else{
+                    $imageSrc='media/email_male.png';
+                  }
+                }
+            echo '<a href="Clinic-Vet-Profile.php?vetid=' . $row['vetID'] . '" target="_blank" style="margin:2%"><div class="card2" style="height:275px">';
+            echo '<img src="' . $imageSrc . '" alt="Pet Image" style="width:100%;height: 154px;">';
+            echo '<div class="breedName3">';
+            
+            echo '<p><b>' . $row['name'] . '</b></p>';
+            echo '</div>';
+                   
+            echo '<div class="view-breed3">';
+            echo '<p>View Profile</p>';
+            echo '</div>';
+            echo '</div></a>';
+                }
+            }
+            ?>
+        </div>
+    </div>
+<?php
 }
-} ?>
-</div>
+?>
 <script>
-$(document).ready(function() {
-    // Listen for changes to the checkboxes
-    $('#search-button').click(function() {
-        var type = $('input[name="pet[]"]:checked').map(function() {
-            return this.value;
-        }).get().join(',');
-        var purpose = $('input[name="purpose[]"]:checked').map(function() {
-            return this.value;
-        }).get().join(',');
-        var size = $('input[name="size[]"]:checked').map(function() {
-            return this.value;
-        }).get().join(',');
-        var searchQuery = $('#breed-search').val();
-
-        // Make an AJAX request to the server to get the updated breed cards
-        $.ajax({
-            url: 'Seller-Get-Pet.php',
-            type: 'GET',
-            data: { type: type, size: size,purpose: purpose, searchQuery: searchQuery },
-            success: function(response) {
-                // Update the breed cards with the new HTML
-                $('#breed-card-container').html(response);
-            },
-            error: function() {
-                alert('Error getting pets.');
-            }
-        });
-    });
-
-    $('input[type="checkbox"]').change(function() {
-        // Get the values of the checked checkboxes
-        var type = $('input[name="pet[]"]:checked').map(function() {
-            return this.value;
-        }).get().join(',');
-        var purpose = $('input[name="purpose[]"]:checked').map(function() {
-            return this.value;
-        }).get().join(',');
-        var size = $('input[name="size[]"]:checked').map(function() {
-            return this.value;
-        }).get().join(',');
-        var searchQuery = $('#breed-search').val();
-
-        // Make an AJAX request to the server to get the updated breed cards
-        $.ajax({
-            url: 'Seller-Get-Pet.php',
-            type: 'GET',
-            data: { type: type, size: size,purpose: purpose, searchQuery: searchQuery },
-            success: function(response) {
-                // Update the breed cards with the new HTML
-                $('#breed-card-container').html(response);
-            },
-            error: function() {
-                alert('Error getting pets.');
-            }
-        });
-    });
-});
-
-$(document).ready(function() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var sValue = urlParams.get('s');
-
-  // Add or modify styles based on the 's' parameter value
-  if (sValue === 'pet') {
-    $('a[href="Seller-Profile.php?s=pet"]').css('border-bottom', '5px solid #00a8de');
-    $('a[href="Seller-Profile.php?s=about"]').css('border-bottom', '0');
-  } else if (sValue === 'about') {
-    $('a[href="Seller-Profile.php?s=about"]').css('border-bottom', '5px solid #00a8de');
-    $('a[href="Seller-Profile.php?s=pet"]').css('border-bottom', '0');
-  }
-  else{
-  	$('a[href="Seller-Profile.php?s=pet"]').css('border-bottom', '5px solid #00a8de');
-  }
-});
 
 
 jQuery(function ($) {

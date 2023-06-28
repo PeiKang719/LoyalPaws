@@ -25,20 +25,27 @@ label.logo{
   padding: 0 40px;
   font-weight: bold;
 }
+.logo a:hover{
+  background: transparent;
+}
+
 nav ul{
   float: right;
   margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 nav ul li{
   display: inline-block;
   line-height: 40px;
   margin: 0 -3px;
-  vertical-align: -30px;
+  vertical-align: -25px;
 }
 nav ul li a{
   color: #4d4d4d;
-  font-size: 23px;
-  padding: 23px 40px;
+  font-size: 18px;
+  padding: 27px 40px;
   border-radius: 3px;
   margin: 0;
 }
@@ -60,16 +67,15 @@ nav a.active,nav a:hover{
 }
 
 .dropdown {
-  float: left;
   overflow: hidden;
   color: #4d4d4d;
 
 }
 
 .dropdown .dropbtn {
-  font-size: 23px; 
+  font-size: 18px; 
   border: 0; 
-  padding: 23px 45px;
+  padding: 24px 45px;
   background-color: inherit;
   margin: 0 5px 1px 0 ;
   color: #4d4d4d;
@@ -81,7 +87,7 @@ nav a.active,nav a:hover{
 }
 
 .dropdown-content {
-  margin-top: -5px;
+  margin-top: 0px;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -98,6 +104,7 @@ nav a.active,nav a:hover{
   text-decoration: none;
   display: block;
   text-align: left;
+  font-size: 18px;
 }
 
 .dropdown-content a:hover {
@@ -107,6 +114,11 @@ nav a.active,nav a:hover{
 .dropdown:hover .dropdown-content {
   display: block;
 }
+#profile-icon:hover{
+  background: transparent;
+}
+
+
 @media (max-width: 952px){
   label.logo{
     padding-left: 20px;

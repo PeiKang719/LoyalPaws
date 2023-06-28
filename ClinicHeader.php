@@ -25,6 +25,27 @@
     else{
       $role='Vet';
     }
+
+    $sql="SELECT * FROM vet WHERE vetID=$vetID";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    if($row['image']!=''){
+        $imageData = base64_encode($row['image']);
+        $imageSrc = "data:image/jpg;base64," . $imageData;
+        // Check if the image file exists before displaying it
+        if (file_exists('vet_images/' . $row['image'])) {
+            $imageSrc = 'vet_images/' . $row['image'];
+        }
+        }
+        else{
+          $gender=$row['ic'][-1];
+          if( $gender% 2 == 0){
+            $imageSrc='media/email_female.png';
+          }
+          else{
+            $imageSrc='media/email_male.png';
+          }
+        }
     ?>
     <nav>
       <label for="check" class="checkbtn" style="display:block;margin-right: 0px;">
@@ -37,8 +58,8 @@
     </nav>
     <input type="checkbox" id="check">
     <div class="sidebar">
-  <img id="profile" src="media/profile.png">
-  <p id="name">Vet Name</p>
+  <img id="profile" src="<?php echo $imageSrc ?>">
+  <p id="name" style="margin-top: 5px;"><?php echo $row['name'] ?></p>
   <hr >
 
   <?php if($role=='Admin'){?>

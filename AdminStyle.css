@@ -201,21 +201,12 @@ hr{
 }
 
 #check:checked ~ .content {
-  width: 74.35%;
-  animation-name: slideLeft;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
   left: 290px;
+    width: 74.35%;
+    transition: 0.5s ;
 }
 
-@keyframes slideLeft {
-  from {
-    left: 0;
-  }
-  to {
-    left: 290px;
-  }
-}
+
 
 .content{
   padding: 50px;
@@ -224,10 +215,8 @@ hr{
   height: 100%;
   position: absolute;
   display: block;
-  transition: 0.5s;
-  animation-name: slideRight;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+  transition: 0.3s;
+
   left: 0px;
 }
 

@@ -8,7 +8,79 @@
 <link rel="stylesheet" type="text/css" href="ClinicHeaderStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   </head>
-  
+  <style type="text/css">
+    #sidebar-icon{
+  color:#999999;
+  font-size: 27px;
+  vertical-align: -3px;
+}
+
+.sidebar a,.dropdown-btn {
+  padding: 15px 40px 15px 35px;
+  text-decoration: none;
+  font-size: 25px;
+  color:#999999;
+  display: block;
+  border: none;
+  width: 100%;
+  background: black;
+  background-size: 300% 100%;
+
+}
+
+#dropdown-btn-id{
+  text-align: left;
+}
+
+#dropdown-btn-id:hover #sidebar-icon,a:hover #sidebar-icon {
+  color: white;
+
+}
+
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover,.dropdown-btn:hover{
+  color:white;
+  background: linear-gradient(to right,black 20%,#0099ff 60%);
+  background-size: 300% 100%;
+  background-position: -100% 0;
+}
+
+
+.dropdown-container {
+  display: none;
+  background-color: #004080;
+  padding-left: 50px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.active {
+ background: linear-gradient(to right,black 20%,#0099ff 60%);
+ background-size: 300% 100%;
+ background-position: -100% 0;
+  color: white;
+  width: 100%;
+}
+
+.sidebar a.active {
+  background: linear-gradient(to right,black 20%,#0099ff 60%);
+  background-size: 300% 100%;
+  background-position: -100% 0;
+  color: white;
+  width: 100%;
+}
+
+.sidebar a.active #sidebar-icon,.dropdown-btn.active #sidebar-icon {
+/*icon active color*/
+  color: white; 
+}
+
+  </style>
   <body>
     <?php
     $currentURL = $_SERVER['PHP_SELF'];
@@ -23,13 +95,13 @@
       </label>
       <label class="logo"><a href="UserHomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
       <ul>
-        <li><a href="Login.php"> Log In</a></li>
+        <li><a href="Login.php"> Log Out</a></li>
       </ul>
     </nav>
     <input type="checkbox" id="check">
     <aside class="sidebar" >
-  <img id="profile" src="media/profile.png">
-  <p id="name">Admin Name</p>
+  <img id="profile" src="media/admin.jpg">
+  <p id="name" style="margin-top:5px">ADMIN</p>
   <hr >
 
       <a href="AdminHomePage.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon" >grid_view</span>&nbsp;Dashboard</a>
@@ -42,10 +114,10 @@
       <a href="SideBar_Breed_Cat.php" class="sidebar-item">Cat</a>
     </div>
       <a href="SideBar_Donation.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">volunteer_activism</span>&nbsp;Donation</a>
-      <a href="Users.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">group</span>&nbsp;View Users</a>
+      <a href="SideBar-View-User.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">group</span>&nbsp;View Users</a>
       <a href="Pets.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">pets</span>&nbsp;View Sellers</a>
       <a href="Report.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">bar_chart</span>&nbsp;Report</a>
-      <a href="Logout.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">account_circle</span>&nbsp;Profile</a>
+      <a href="SideBar-Password.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">key</span>&nbsp;Password</a>
       
 </aside>
 

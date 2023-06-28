@@ -204,7 +204,11 @@ function showClinic_Approved() {
         echo '<a href="SideBar_Donation.php?page=' . ($page+1) . '"> &gt;</a>';
      }
         echo '</div>';
-    }
+    }else{?>
+        <div style="width: 100%;display: flex;align-items: center;justify-content: center;">
+        <img src="media/no-document.jpg" width="300px" height="300px">
+    </div>
+    <?php } 
 }
 
 ?>
@@ -274,7 +278,11 @@ function showClinic_Pending() {
         echo '<a href="SideBar_Donation.php?page=' . ($page+1) . '"> &gt;</a>';
      }
         echo '</div>';
-    }
+    }else{?>
+        <div style="width: 100%;display: flex;align-items: center;justify-content: center;">
+        <img src="media/no-document.jpg" width="300px" height="300px">
+    </div>
+    <?php }
 }
 
 ?>
@@ -393,6 +401,11 @@ if ($result->num_rows > 0) {
    </div>";
   }?>
 <?php   
+}else{?>
+    <div style="width: 100%;display: flex;align-items: center;justify-content: center;">
+        <img src="media/no-document.jpg" width="300px" height="300px">
+    </div>
+<?php
 }
 }
 ?>
@@ -456,6 +469,11 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', " . $row['vet
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>call</span>&nbsp;" . $row['phone'] . "</p>
    </div>";
   }
+}else{?>
+    <div style="width: 100%;display: flex;align-items: center;justify-content: center;">
+        <img src="media/no-document.jpg" width="300px" height="300px">
+    </div>
+<?php
 }
 }
 ?>

@@ -11,7 +11,14 @@
 <link rel="stylesheet" type="text/css" href="AdminStyle.css">
 </head>
 <body>
-<?php include 'UserHeader.php'; ?>
+<?php 
+if(isset($_GET['admin'])){
+	include 'AdminHeader.php'; 
+}else{
+	include 'UserHeader.php'; 
+}
+
+?>
 <?php
 $oID = $_GET['id'];
 

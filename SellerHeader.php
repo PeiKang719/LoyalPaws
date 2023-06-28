@@ -25,23 +25,49 @@
     $role=$_SESSION['role'];
     $key = $_SESSION['key'];
    }
+   include 'Connection.php';
+   if($role=='seller'){
+      $sql = "SELECT CONCAT(firstName,' ',lastName) AS sname ,image FROM seller WHERE sellerID=$sellerID";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $imageData = base64_encode($row['image']);
+              $imageSrc = "data:image/jpg;base64," . $imageData;
+              if ($row['image']=='') {
+                    $imageSrc = 'media/pet-shop.png';
+              }
+                elseif (file_exists('seller_images/' . $row['image'])) {
+                    $imageSrc = 'seller_images/' . $row['image'];
+              }
+    }
+    elseif($role=='pet_shop'){
+      $sql = "SELECT shopname AS sname ,shop_image AS image FROM pet_shop WHERE shopID=$sellerID";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $imageData = base64_encode($row['image']);
+              $imageSrc = "data:image/jpg;base64," . $imageData;
+              if ($row['image']=='') {
+                    $imageSrc = 'media/pet-shop.png';
+              }
+                elseif (file_exists('pet_shop_images/' . $row['image'])) {
+                    $imageSrc = 'pet_shop_images/' . $row['image'];
+              }
+    }
+    
     ?>
+    
     <nav>
       <label for="check" class="checkbtn" style="display:block;margin-right: 0px;">
         <i class="fas fa-bars"></i>
       </label>
       <label class="logo"><a href="UserHomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
       <ul>
-        <li><a href="Login.php"><?php echo $sellerID ?></a></li>
-        <li><a href="Login.php"><?php echo $role ?></a></li>
-        <li><a href="Login.php"><?php echo $key ?></a></li>
         <li><a href="Login.php">Log Out</a></li>
       </ul>
     </nav>
     <input type="checkbox" id="check">
     <aside class="sidebar" >
-  <img id="profile" src="media/profile.png">
-  <p id="name">Seller Name</p>
+  <img id="profile" src="<?php echo $imageSrc ?>">
+  <p id="name" style="margin-top: 5px;"><?php echo $row['sname'] ?></p>
   <hr>
   <a href="Seller_HomePage.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon" >grid_view</span>&nbsp;Dashboard</a>
  <a href="Seller_Pets.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">pets</span>&nbsp;Pets</a>

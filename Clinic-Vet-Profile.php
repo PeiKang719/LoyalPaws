@@ -88,7 +88,11 @@ $(document).ready(function() {
 
 <?php if(isset($_GET['vid'])){
 include 'UserHeader.php';
-} else{
+}elseif(isset($_GET['vetid'])){
+include 'AdminHeader.php';
+$id=$_GET['vetid'];
+} 
+ else{
 include 'ClinicHeader.php';
 } ?>
 <?php include 'Connection.php'; ?>
@@ -208,7 +212,7 @@ else{
       <td id="td1">Phone</td>
       <td>:</td>
       <td colspan="2" id="myPhone" style="transition:background-color 0.3s;"><?php echo $phone ?></td>
-      <?php if(isset($_SESSION['adopterID']) || (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
+      <?php if(isset($_SESSION['adopterID']) || isset($_GET['vetid']) || (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
       <td><span class="material-symbols-outlined" id="edit-button1" style="display:none">edit</span></td>
     <?php }else{ ?>
       <td><span class="material-symbols-outlined" id="edit-button1">edit</span></td>
@@ -220,7 +224,7 @@ else{
       <td id="td1">Education</td>
       <td>:</td>
       <td colspan="2"><?php echo $education ?></td>
-      <?php if(isset($_SESSION['adopterID'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
+      <?php if(isset($_SESSION['adopterID'])|| isset($_GET['vetid'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
       <td><span class="material-symbols-outlined" id="edit-button2" style="display:none">edit</span></td>
     <?php }else{ ?>
       <td><span class="material-symbols-outlined" id="edit-button2">edit</span></td>
@@ -241,7 +245,7 @@ else{
          <?php if($b==0){?>
           <td class="year"><?php echo $details[0] ?></td>
           <td class="edu"><?php echo $details[1] ?></td>
-          <?php if(isset($_SESSION['adopterID'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
+          <?php if(isset($_SESSION['adopterID'])||isset($_GET['vetid'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
       <td><span class="material-symbols-outlined" id="edit-button2" style="display:none">edit</span></td>
     <?php }else{ ?>
       <td><span class="material-symbols-outlined" id="edit-button2">edit</span></td>
@@ -272,7 +276,7 @@ else{
       <td id="td1">Experience</td>
       <td>:</td>
       <td colspan="2"><?php echo $experience ?></td>
-      <?php if(isset($_SESSION['adopterID'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
+      <?php if(isset($_SESSION['adopterID'])||isset($_GET['vetid'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
       <td><span class="material-symbols-outlined" id="edit-button3" style="display:none">edit</span></td>
     <?php }else{ ?>
       <td><span class="material-symbols-outlined" id="edit-button3">edit</span></td>
@@ -293,7 +297,7 @@ else{
          <?php if($b==0){?>
           <td class="year2"><?php echo $details[0] ?></td>
           <td class="edu2"><?php echo $details[1] ?></td>
-          <?php if(isset($_SESSION['adopterID'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
+          <?php if(isset($_SESSION['adopterID'])||isset($_GET['vetid'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
       <td><span class="material-symbols-outlined" id="edit-button3" style="display:none">edit</span></td>
     <?php }else{ ?>
       <td><span class="material-symbols-outlined" id="edit-button3">edit</span></td>
@@ -324,7 +328,7 @@ else{
       <?php for ($c=0; $c <count($areas) ; $c++) {
               if($c==0){?> 
         <td colspan="2" class="area"><p>- <?php echo $areas[$c]?></p></td>
-      <?php if(isset($_SESSION['adopterID'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
+      <?php if(isset($_SESSION['adopterID'])||isset($_GET['vetid'])|| (isset($_SESSION['vetID'])) && $id!=$_SESSION['vetID']){?>
       <td><span class="material-symbols-outlined" id="edit-button4" style="display:none">edit</span></td>
     <?php }else{ ?>
       <td><span class="material-symbols-outlined" id="edit-button4">edit</span></td>

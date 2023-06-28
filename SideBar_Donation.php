@@ -79,7 +79,7 @@ function showOrganization() {
             echo '<p><b>' . $row['oname'] . '</b></p>';
             echo '</div>';
             echo '<div class="breedIcon">';
-            echo '<a href="SideBar_Donation-Organization-Profile.php?id=' . $row['oID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button">open_in_new</span></a>';
+            echo '<a href="SideBar_Donation-Organization-Profile.php?admin=yes&id=' . $row['oID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button">open_in_new</span></a>';
             echo '<a href="SideBar_Donation-Edit-Modal.php?id=' . $row['oID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button-edit">edit</span>';
             echo '<iframe name="hiddenFrame3" class="hide"></iframe>';
             echo '<a href="SideBar_Donation-Delete-Organization.php?id=' . $row['oID'] . '" target="hiddenFrame3" onclick="deleteOrganization(event)"><span class="material-symbols-outlined" id="card-button-delete">delete</span></a>';

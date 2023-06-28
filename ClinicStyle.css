@@ -1299,6 +1299,7 @@ input:checked + .slider:before {
   left: 290px;
 }
 
+
 @keyframes slideLeft {
   from {
     left: 0;
