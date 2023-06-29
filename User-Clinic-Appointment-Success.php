@@ -212,7 +212,7 @@ elseif ($_GET['action']=='update') {
                 </td>
                 
                 <td class="booking-intro" style="margin-top:0;font-size: 35px;color: black;">
-                   RM <?php echo $amount ?>
+                   RM <?php echo number_format($amount,2) ?>
                 </td>
             </tr>
             <tr>

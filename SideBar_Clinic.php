@@ -46,32 +46,11 @@
       <a href="SideBar_Clinic.php?c=vet"><button class="clinic-vet-button" style="right:0;border-radius:6px 0 0 6px">❯</button> </a>
   </div>
   <div class="clinic-section">
-      <a href="SideBar_Clinic.php?c=clinic&t=approved"><button class="clinic-approved-pending-button" style="border-right: 1px solid #4d4d4d;">Approved</button></a>
+      <a href="SideBar_Clinic.php?c=clinic&t=approved"><button class="clinic-approved-pending-button" >Approved</button></a>
       <a href="SideBar_Clinic.php?c=clinic&t=pending"><button class="clinic-approved-pending-button">Pending</button></a>
   </div>
   <div class="clinic-card-container">
-    <div class="search-part">
-  <input type="text" class="search" placeholder="Search For Clinic" id="organization-search" list="clinic-list">
-<datalist id="clinic-list">
-  <?php
-  // Connect to the database
-  include('Connection.php');
 
-  $sql = "SELECT clinicID,name FROM clinic ORDER BY name";
-  $result = mysqli_query($conn, $sql);
-
-  // Loop through the results and populate the datalist options
-  while ($row = mysqli_fetch_assoc($result)) {
-    // Check if breedID exists before adding it as a data attribute
-    $clinicID = isset($row['clinicID']) ? 'data-clinicid="' . $row['clinicID'] . '"' : '';
-    echo '<option value="' . $row['name'] . '" ' . $clinicID . '>' . $row['name'] . '</option>';
-  }
-
-  // Close the database connection
-  mysqli_close($conn);
-  ?>
-</datalist>
-</div>
 <div class="card-part">
   <?php 
         if (isset($_GET['t'])) {
@@ -92,13 +71,13 @@
 
 <?php function showVetTab(){ ?>
 <div class="clinic-container">
-  <div class="clinic-header" style="height: 15.3%;">
+  <div class="clinic-header">
       <p class="clinic-vet-font">Vet</p>
       <a href="SideBar_Clinic.php?c=clinic"><button class="clinic-vet-button" style="left:0;border-radius: 0 6px 6px 0">❮</button> </a>
   </div>
-  <div class="clinic-section" style="height: 5.5%;">
+  <div class="clinic-section">
       <a href="SideBar_Clinic.php?c=vet&t=approved"><button class="clinic-approved-pending-button">Approved</button></a>
-      <a href="SideBar_Clinic.php?c=vet&t=pending"><button class="clinic-approved-pending-button" style="border-left: 1px solid #4d4d4d;">Pending</button></a>
+      <a href="SideBar_Clinic.php?c=vet&t=pending"><button class="clinic-approved-pending-button" >Pending</button></a>
   </div>
   <div class="clinic-card-container">
 
@@ -135,8 +114,23 @@ function showClinic_Approved() {
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT c.clinicID,c.name,c.clinic_image,v.ic FROM clinic c,vet v WHERE c.vetID=v.vetID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%'  ORDER BY c.name LIMIT $offset, $records_per_page";
-
+    $sql = "SELECT c.clinicID,c.name,c.clinic_image,c.phone,c.email,c.no_of_patient,v.ic,v.name AS cname FROM clinic c,vet v WHERE c.vetID=v.vetID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%'  ORDER BY c.name LIMIT $offset, $records_per_page";?>
+<div style="width:92%;padding:1% 4%" >
+    <br>
+  <div class="add-new-treatment-container">
+  <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search By Name" >
+</div>
+  <br>
+  <table class="treatment-table" border="0" id="treatment-table">
+  <th style="width:40px">ID</th>
+  <th style="width:105px">Image</th>
+  <th style="width:230px">Name</th>
+  <th style="width:40px">Phone</th>
+  <th style="width:40px">Email</th>
+  <th style="width:40px">No of patient</th>
+  <th style="width:40px">Admin</th>
+  <th colspan="1" style="width: 282px;" > </th>
+  <?php 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // Fetch all the rows into an array
@@ -144,54 +138,35 @@ function showClinic_Approved() {
         foreach ($rows as $row) {
             $imageData = base64_encode($row['clinic_image']);
             $imageSrc = "data:image/jpg;base64," . $imageData;
-            if (file_exists('clinic_images/' . $row['clinic_image'])) {
-                $imageSrc = 'clinic_images/' . $row['clinic_image'];
+            if($row['clinic_image']==NULL){
+                $imageSrc = 'media/clinic-default.jpg';
             }
-            echo '<div class="column">';
-            echo '<div class="card">';
-            echo '<img src="' . $imageSrc . '" alt="Organization Image" style="width:100%;height: 154px;">';
-            echo '<div class="breedName">';
-            echo '<p><b>' . $row['name'] . '</b></p>';
-            echo '</div>';
-            echo '<div class="breedIcon">';
-            echo '<a href="SideBar_Clinic-Profile.php?id=' . $row['clinicID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button">open_in_new</span></a>';
-            echo '<iframe name="hiddenFrame3" class="hide"></iframe>';
-            echo '<a href="SideBar_Donation-Delete-Organization.php?id=' . $row['clinicID'] . '" target="hiddenFrame3" onclick="deleteOrganization(event)"><span class="material-symbols-outlined" id="card-button-delete">delete</span></a>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-        }
-        // Add links to navigate to different pages
-        echo '<div class="pagination">';
+            elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
+                $imageSrc = 'clinic_images/' . $row['clinic_image'];
+            }?>
+<tr>
+    <td><?php echo $row['clinicID']?></td>
+    <td><img src="<?php echo $imageSrc ?>" style="width: 100px;height: 100px;"> </td>
+    <td><?php echo $row['name'] ?></td>
+    <td><?php echo $row['phone']?></td>
+    <td><?php echo $row['email'] ?></td>
+    <td style="text-align:center"><?php echo $row['no_of_patient'] ?></td>
+    <td><?php echo $row['cname'] ?></td>
+    <td><button class="manage-button" onclick="view_clinic(<?php echo$row['clinicID'] ?>)"><span class="material-symbols-outlined">person</span></button>  <a href="SideBar_Clinic-Process.php?p=deleteClinic&clinicID=<?php echo $row['clinicID'] ?>" onclick="confirmDeleteClinic(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
+  </tr>      
         
-        if($page==1){
-          
-        }
-        else{
-          echo '<a href="SideBar_Donation.php?page=' . ($page-1) . '">&lt;</a>';
-        }
-        for ($i = 1; $i <= $total_pages; $i++) {
-        if ($i == $page) {
-            echo '<a href="SideBar_Donation.php?page=' . $i . '" class="page-active">' . $i . '</a>';
-        } else {
-            echo '<a href="SideBar_Donation.php?page=' . $i . '">' . $i . '</a>';
-        }
-  }
-    if($page == $total_pages){
-       
-    }
-    else{
-        echo '<a href="SideBar_Donation.php?page=' . ($page+1) . '"> &gt;</a>';
-     }
-        echo '</div>';
-    }else{?>
-        <div style="width: 100%;display: flex;align-items: center;justify-content: center;">
-        <img src="media/no-document.jpg" width="300px" height="300px">
-    </div>
-    <?php } 
-}
 
-?>
+       
+    <?php }} 
+else{?>
+  <tr>
+    <td colspan="6">No clinic...</td>
+  </tr>
+</table>
+<?php } ?>
+ </table>
+
+<?php } ?>
 
 <?php
 function showClinic_Pending() {
@@ -415,21 +390,6 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', " . $row['vet
 
 <script>
 
-var organizationInput = document.getElementById('organization-search');
-var organizationList = document.getElementById('clinic-list');
-
-organizationInput.addEventListener('change', function() {
-  // Get the selected option
-  var selectedOption = organizationList.querySelector('option[value="' + organizationInput.value + '"]');
-  
-  // Check if an option was selected
-  if (selectedOption !== null) {
-    // Redirect to the breed profile page with the selected breedID
-    var clinicID = selectedOption.getAttribute('data-clinicid');
-    window.open('SideBar_Clinic-Profile.php?id=' + clinicID, '_blank');
-    organizationInput.value = "";
-  }
-});
 
  jQuery(function ($) {
 
@@ -564,6 +524,90 @@ function sendApprovalEmail(email, name) {
         console.log("User cancelled the Vet operation.");
     }
 }
+
+function SearchFunction() {
+  var input, filter, table, tr, td2, i, txtValue , txtValue2;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("treatment-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+
+    td2 = tr[i].getElementsByTagName("td")[2];
+
+   if (td2) {
+      txtValue2 = td2.textContent || td2.innerText;
+      if (txtValue2.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      }  else {
+        tr[i].style.display = "none";
+      }
+    }     
+    }      
+    }
+     
+ function view_clinic(i) {
+    window.location.href = "SideBar_Clinic-Profile.php?id="+ i+"&admin=yes";
+
+  } 
+
+  function confirmDeleteClinic(event) {
+  event.preventDefault();
+    if (confirm("Are You Sure To Delete This Clinic Information?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", event.currentTarget.href, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert("Deleted Clinic Information");
+                window.location.reload();
+            } else {
+                alert("Error Deleting Clinic Information");
+            }
+        };
+        xhr.send();
+    } else {
+        console.log("User cancelled the Clinic operation.");
+    }
+}
+
+
+  $(document).ready(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var sValue = urlParams.get('t');
+  var sValue2 = urlParams.get('c');
+
+  // Add or modify styles based on the 's' parameter value
+  if (sValue === 'approved' && sValue2 === 'clinic') {
+    $('a[href*="SideBar_Clinic.php?c=clinic&t=approved"]').css('border-bottom', '5px solid #00a8de');
+    $('a[href*="SideBar_Clinic.php?c=clinic&t=pending"]').css('border-bottom', '0');
+  }
+  else if (sValue === 'pending'  && sValue2 === 'clinic') {
+    $('a[href*="SideBar_Clinic.php?c=clinic&t=approved"]').css('border-bottom', '0');
+    $('a[href*="SideBar_Clinic.php?c=clinic&t=pending"]').css('border-bottom', '5px solid #00a8de');
+  } 
+  else{
+    $('a[href*="SideBar_Clinic.php?c=clinic&t=approved"]').css('border-bottom', '5px solid #00a8de');
+  }
+});
+
+  $(document).ready(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var sValue = urlParams.get('t');
+  var sValue2 = urlParams.get('c');
+
+  // Add or modify styles based on the 's' parameter value
+  if (sValue === 'approved' && sValue2 === 'vet') {
+    $('a[href*="SideBar_Clinic.php?c=vet&t=approved"]').css('border-bottom', '5px solid #00a8de');
+    $('a[href*="SideBar_Clinic.php?c=vet&t=pending"]').css('border-bottom', '0');
+  }
+  else if (sValue === 'pending'  && sValue2 === 'vet') {
+    $('a[href*="SideBar_Clinic.php?c=vet&t=approved"]').css('border-bottom', '0');
+    $('a[href*="SideBar_Clinic.php?c=vet&t=pending"]').css('border-bottom', '5px solid #00a8de');
+  } 
+  else{
+    $('a[href*="SideBar_Clinic.php?c=vet&t=approved"]').css('border-bottom', '5px solid #00a8de');
+  }
+});
 </script>
 
 </script>

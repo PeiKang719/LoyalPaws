@@ -581,53 +581,45 @@ input:checked + .slider:before {
 }
 
 .clinic-header{
-  width: 100%;
-  height: 21.5%;
-  background-image: url("media/cbg2.jpg");
-  background-repeat: no-repeat;
-  background-size: 1530px 450px;
-  background-position: 0 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  font-size: 27px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 52px;
 }
 
 .clinic-vet-font{
-  font-size: 45px;
-  font-weight: bold;
-  text-shadow: 0 0px 3px rgba(0,0,0,0.25);
-  color: black;
+  font-size: 27px;
+    font-weight: bold;
 }
 
 .clinic-section{
-  width: 100%;
-  height: 8%;
-  display: flex;
-  flex-direction: row;
+  width: 96%;
+    padding: 0% 2%;
+    box-shadow: 0 10px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+
 }
 
 .clinic-section a{
-  width: 50%;
+      width: 20%;
+    margin-left: 4%;  
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+
 }
 .clinic-approved-pending-button{
   width: 100%;
-  background-color: white;
+  padding: 3% 2%;
   height: 100%;
-  font-size: 25px;
-  color: #4d4d4d;
-  cursor: pointer;
+  background-color: transparent;
   border: 0;
-  border-top: 1px solid #4d4d4d;
-  border-bottom: 1px solid #4d4d4d;
+  font-size: 30px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.clinic-approved-pending-button:hover{
-  background-color: #e6f2ff;
-  font-size: 27px;
-}
 
 .clinic-card-container{
   width: 91.6%;
@@ -1566,4 +1558,106 @@ input:checked + .slider:before {
   background-color: #008ae6;
   color: white;
   box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);;
+}
+
+/*-------------------------------------------Report Table-------------------------------------------------*/
+.report-table-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2% 0;
+}
+.report-table th{
+  font-size: 25px;
+  padding: 5px 15px;
+  background-color: #004d80;
+  color: white;
+  border: 1px solid #004d80;
+  text-align: center;
+}
+.report-table td{
+  font-size: 23px;
+  padding: 5px 15px;
+  border: 1px solid #808080;
+  text-align: center;
+}
+
+
+/*---------------------------------------------Dashboard---------------------------------------------------------*/
+.dashboard-container{
+  width: 25%;
+  height: 270px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+  align-items: center;
+  margin: 0 1%;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dashboard-container p{
+  font-size: 30px;
+  color: #e6e6e6;
+}
+
+.dashboard-container img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.dashboard-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.dashboard-overlay{
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+}
+
+#dashboard-clinic{
+  background-image: url('media/dashboard-clinic.jpg');
+  background-size: 100% 100%;
+}
+#dashboard-clinic:hover{
+  background-image: url('media/dashboard-clinic.jpg');
+  background-size: 110% 110%;
+}
+
+#dashboard-appointment{
+  background-image: url('media/dashboard-clinic-appointment.jpg');
+  background-size: 100% 120%;
+  background-position: 10% 50%;
+}
+#dashboard-appointment:hover{
+  background-image: url('media/dashboard-clinic-appointment.jpg');
+  background-size: 110% 130%;
+  background-position: 10% 50%;
+}
+
+#dashboard-record{
+  background-image: url('media/dashboard-clinic-record.jpg');
+  background-size: 100% 100%;
+}
+
+#dashboard-record:hover{
+  background-size: 110% 110%;
+}
+#dashboard-revenue{
+  background-image: url('media/dashboard-clinic-revenue.jpg');
+  background-size: 100% 100%;
+}
+
+#dashboard-revenue:hover{
+  background-size: 110% 110%;
 }

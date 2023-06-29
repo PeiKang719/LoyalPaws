@@ -51,6 +51,14 @@
 
     $sql3 = "SELECT tr.recordID,tr.treatmentID,t.name,t.description,t.unit_price,tr.quantity,(tr.quantity*t.unit_price) AS total,r.comment,r.date,r.pet_name FROM treatment_record tr,treatment t,record r WHERE tr.treatmentID=t.treatmentID AND tr.recordID=r.recordID AND r.recordID=".$row['recordID'];
 
+    $sql5 = "SELECT extra FROM record WHERE recordID=".$row['recordID'];
+$result5 = $conn->query($sql5);
+$row5 = $result5->fetch_assoc();
+$extra = $row5['extra'];
+if($extra!=NULL){
+  $each_treatments=explode("$",$extra);
+
+  }
 ?>
 <!-- Container -->
 <div style="width: 80%;padding: 1% 3%;border: 3px solid black;position: relative;margin-right: auto;margin-left: auto;background-color: white;">
@@ -140,20 +148,38 @@
             <td class="td2"><?php echo $description ?></td>
           </tr>
         <?php } ?>
+        <?php 
+        if(isset($each_treatments)){
+        foreach ($each_treatments as $each_treatment) {
+          $components = explode("^", $each_treatment);
+            $sub_total+=($components[1] * $components[2]);
+           ?>
+       
+          <tr>
+            <td class="td1"><b><?php echo $components[0] ?></b></td>
+            <td rowspan="2" style="text-align: center;">RM <?php echo $components[1] ?></td>
+            <td rowspan="2" style="text-align: center;"><?php echo $components[2] ?></td>
+            <td rowspan="2" style="text-align: center;">RM <?php echo $components[1] * $components[2] ?></td>
+          </tr>
+          <tr>
+            <td class="td2"><?php echo $components[3] ?></td>
+          </tr>
+          
+       <?php }}?>
         <?php
           if($row['petID'] != NULL){?>
             <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $row['discount_percent'] ?>%):</td>
-            <td colspan="3" class="total_row" width="138px" style="text-align: center;">-RM <?php echo $row['discount_percent']/100*$sub_total?></td>
+            <td colspan="3" class="total_row" width="138px" style="text-align: center;">-RM <?php echo number_format($row['discount_percent']/100*$sub_total,2)?></td>
           </tr>
           <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;"><b>Sub-Total:</b></td>
-            <td colspan="3" class="total_row" width="138px" style="text-align: center;"><b>RM <?php echo $sub_total*(1-$row['discount_percent']/100) ?></b></td>
+            <td colspan="3" class="total_row" width="138px" style="text-align: center;"><b>RM <?php echo number_format($sub_total*(1-$row['discount_percent']/100),2) ?></b></td>
           </tr>
           <?php }else{ ?>
           <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;"><b>Sub-Total:</b></td>
-            <td colspan="3" class="total_row" width="138px" style="text-align: center;"><b>RM <?php echo $sub_total ?></b></td>
+            <td colspan="3" class="total_row" width="138px" style="text-align: center;"><b>RM <?php echo number_format($sub_total,2) ?></b></td>
           </tr>
         <?php } ?>
         </table> 

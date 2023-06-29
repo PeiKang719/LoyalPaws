@@ -23,12 +23,12 @@
 
 
 <div class="clinic-container">
-  <div class="clinic-header" style="height: 15.3%;">
+  <div class="clinic-header" >
       <p class="clinic-vet-font">Vet</p>
   </div>
-  <div class="clinic-section" style="height: 5.5%;">
-      <a href="Clinic-Veterinarian.php?c=vet&t=approved"><button class="clinic-approved-pending-button">Approved</button></a>
-      <a href="Clinic-Veterinarian.php?c=vet&t=pending"><button class="clinic-approved-pending-button" style="border-left: 1px solid #4d4d4d;">Pending</button></a>
+  <div class="clinic-section">
+      <a href="Clinic-Veterinarian.php?c=vet&t=approved"><button class="clinic-approved-pending-button" >Approved</button></a>
+      <a href="Clinic-Veterinarian.php?c=vet&t=pending"><button class="clinic-approved-pending-button">Pending</button></a>
   </div>
   <div class="clinic-card-container">
     <div class="search-part">
@@ -54,7 +54,7 @@
 <?php
 function showVet_Approved($clinicID,$vetID) {
   include('Connection.php');
-  $sql = "SELECT v.vetID,v.name,v.ic,c.name AS cname,v.email,v.phone,v.area,v.image,v.education,v.experience FROM vet v,clinic c WHERE v.clinicID=c.clinicID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%' AND v.clinicID=$clinicID ORDER BY v.name ";
+  $sql = "SELECT v.vetID,v.name,v.ic,c.name AS cname,v.email,v.phone,v.area,v.image,v.education,v.experience FROM vet v,clinic c WHERE v.clinicID=c.clinicID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%' AND v.clinicID=$clinicID ORDER BY v.vetID ";
 
     $result = $conn->query($sql);
 
@@ -294,7 +294,7 @@ function deleteVet(event) {
     for (var i = 0; i < columns.length; i++) {
       var column = columns[i];
       if (checkbox.checked) {
-        column.classList.remove('collapsed');
+        column.classList.add('collapsed');
       } else {
         column.classList.add('collapsed');
       }
@@ -305,6 +305,25 @@ function deleteVet(event) {
 
   // Initial call to set the initial state based on the checkbox's initial checked state
   handleCheckboxChange();
+
+   $(document).ready(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var sValue = urlParams.get('t');
+  var sValue2 = urlParams.get('c');
+
+  // Add or modify styles based on the 's' parameter value
+  if (sValue === 'approved' && sValue2 === 'vet') {
+    $('a[href*="Clinic-Veterinarian.php?c=vet&t=approved"]').css('border-bottom', '5px solid #00a8de');
+    $('a[href*="Clinic-Veterinarian.php?c=vet&t=pending"]').css('border-bottom', '0');
+  }
+  else if (sValue === 'pending'  && sValue2 === 'vet') {
+    $('a[href*="Clinic-Veterinarian.php?c=vet&t=approved"]').css('border-bottom', '0');
+    $('a[href*="Clinic-Veterinarian.php?c=vet&t=pending"]').css('border-bottom', '5px solid #00a8de');
+  } 
+  else{
+    $('a[href*="Clinic-Veterinarian.php?c=vet&t=approved"]').css('border-bottom', '5px solid #00a8de');
+  }
+});
 </script>
 </body>
 </html>

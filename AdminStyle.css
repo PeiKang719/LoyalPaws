@@ -991,23 +991,15 @@ footer{
 }
 
 .clinic-header{
-  width: 100%;
-  height: 21.5%;
-  background-image: url("media/cbg2.jpg");
-  background-repeat: no-repeat;
-  background-size: 1530px 450px;
-  background-position: 0 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  font-size: 27px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 52px;
 }
 
 .clinic-vet-font{
-  font-size: 45px;
-  font-weight: bold;
-  text-shadow: 0 0px 3px rgba(0,0,0,0.25);
-  color: black;
+  font-size: 27px;
+    font-weight: bold;
 }
 
 .clinic-vet-button{
@@ -1017,13 +1009,14 @@ footer{
     color: white;
     font-weight: bold;
     font-size: 18px;
-    transition: 0.6s ease;
+    transition: 0.2s ease;
     user-select: none;
     background-color: black;
     box-shadow: 0 0px 5px rgba(0,0,0,0.2);
     top:4%;
     border: 0;
     position: absolute;
+    height: 100px;
 }
 
 .clinic-vet-button:hover{
@@ -1033,33 +1026,31 @@ footer{
 }
 
 .clinic-section{
-  width: 100%;
-  height: 8%;
-  display: flex;
-  flex-direction: row;
+      width: 96%;
+    padding: 0% 2%;
+    box-shadow: 0 10px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
 }
 
 .clinic-section a{
-  width: 50%;
+      width: 20%;
+    margin-left: 4%;  
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
 }
 .clinic-approved-pending-button{
   width: 100%;
-  background-color: white;
+  padding: 3% 2%;
   height: 100%;
-  font-size: 25px;
-  color: #4d4d4d;
-  cursor: pointer;
+  background-color: transparent;
   border: 0;
-  border-top: 1px solid #4d4d4d;
-  border-bottom: 1px solid #4d4d4d;
+  font-size: 30px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.clinic-approved-pending-button:hover{
-  background-color: #e6f2ff;
-  font-size: 27px;
-}
 
 .clinic-card-container{
   width: 91.6%;
@@ -1201,16 +1192,17 @@ footer{
   display: flex;
   flex-direction: row;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
   align-items: center;
   margin: 0 1%;
   justify-content: center;
+  cursor: pointer;
 }
 
 .dashboard-container p{
-  font-size: 27px;
-  color: white;
+  font-size: 30px;
+  color: #e6e6e6;
 }
 
 .dashboard-container img{
@@ -1225,18 +1217,22 @@ footer{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   width: 50%;
   height: 100%;
 }
 
 .dashboard-overlay{
   background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
 }
 
 #dashboard-clinic{
   background-image: url('media/dashboard-clinic.jpg');
   background-size: 100% 100%;
+}
+#dashboard-clinic:hover{
+  background-image: url('media/dashboard-clinic.jpg');
+  background-size: 110% 110%;
 }
 
 #dashboard-pet{
@@ -1244,25 +1240,52 @@ footer{
   background-size: 100% 120%;
   background-position: 10% 50%;
 }
+#dashboard-pet:hover{
+  background-image: url('media/fyp1.jpg');
+  background-size: 110% 130%;
+  background-position: 10% 50%;
+}
 
 #dashboard-owner{
   background-image: url('media/dashboard-owner.jpg');
   background-size: 100% 100%;
 }
+#dashboard-owner:hover{
+  background-image: url('media/dashboard-owner.jpg');
+  background-size: 110% 110%;
+}
+
 #dashboard-adopter{
   background-image: url('media/dashboard-adopter.jpg');
   background-size: 120% 100%;
   background-position: 50% 0%;
 }
+#dashboard-adopter:hover{
+  background-image: url('media/dashboard-adopter.jpg');
+  background-size: 130% 110%;
+  background-position: 50% 0%;
+}
+
 
 #dashboard-organization{
   background-image: url('media/dashboard-organization.jpg');
   background-size: 160% 100%;
   background-position: 50% 0%;
 }
+#dashboard-organization:hover{
+  background-image: url('media/dashboard-organization.jpg');
+  background-size: 170% 110%;
+  background-position: 50% 0%;
+}
 
 #dashboard-breed{
   background-image: url('media/dashboard-breed.jpg');
   background-size: 230% 130%;
+  background-position: 50% 30%;
+}
+
+#dashboard-breed:hover{
+  background-image: url('media/dashboard-breed.jpg');
+  background-size: 240% 140%;
   background-position: 50% 30%;
 }

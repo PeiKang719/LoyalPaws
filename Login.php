@@ -35,7 +35,7 @@ if (isset($_SESSION['adopterID']) || isset($_SESSION['sellerID']) || isset($_SES
     <button id="toggle-btn2" type="button" class="side-container-button" >Sign Up</button>
 </div>
 
-<div class="login-container">
+<div class="login-container" style="overflow-y:hidden">
   <div style="padding-left:30px;padding-top:10px;border-bottom: 2px solid #4d4d4d;"><img src="media/lp.png" width="250" height="70" >
     <a href="SignUp.php?c=1"><button type="button" class="signupbtn">Sign Up</button></a>
     </div>

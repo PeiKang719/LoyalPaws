@@ -147,10 +147,27 @@
         }else{
                 $imageSrc2 = 'media/clinic-default.png';
             }
-         if($petID!=NULL){
+
+          $sql5 = "SELECT extra FROM record WHERE recordID=".$row['recordID'];
+          $result5 = $conn->query($sql5);
+          $row5 = $result5->fetch_assoc();
+          $extra = $row5['extra'];
+          if($extra!=NULL){
+            $each_treatments=explode("$",$extra);
+            foreach ($each_treatments as $each_treatment) {
+          $components = explode("^", $each_treatment);
+            $sub_total+=($components[1] * $components[2]);
+          }
+          }
+          if($petID!=NULL){
           $sub_total*=(1-$row7['discount_percent']/100);
          }
+
         ?>
+        <?php $sql9="SELECT paymentID FROM clinic_payment WHERE recordID=$recordID";
+          $result9 = $conn->query($sql9);
+          $rows9 = $result9->fetch_all(MYSQLI_ASSOC);
+          if ($result9->num_rows == 0) { ?>
     <a href="User-Clinic-Profile.php?cid=<?php echo $clinicID ?>" class="appointment-list-container">
       <div class="appointment-list-container-row">
       <img src="<?php echo $imageSrc ?>" alt="pet">
@@ -164,7 +181,7 @@
     </div>
     <div class="appointment-list-container-column">
       <p><span class="material-symbols-outlined">stethoscope</span> Vet: <?php echo $vet_name ?></p>
-      <p><span class="material-symbols-outlined">paid</span> Total: RM <?php echo $sub_total ?></p>
+      <p><span class="material-symbols-outlined">paid</span> Total: RM <?php echo number_format($sub_total,2) ?></p>
     </div>
   </div>
   <br>
@@ -188,7 +205,7 @@
       <tr>
         <td style="font-size: 30px;">Amount</td>
         <td style="font-size: 30px;">:</td>
-        <td><p style="font-size: 30px;"><b>RM <?php echo $sub_total ?></b></p></td>
+        <td><p style="font-size: 30px;"><b>RM <?php echo number_format($sub_total,2) ?></b></p></td>
       </tr>
       <tr>
         <td style="font-size: 30px;">Transfer to</td>
@@ -201,7 +218,7 @@
   </div>
   </div>
 </div>
-<?php }}else{?>
+<?php }}}else{?>
   <img src="media/no-document.jpg" width="300px" height="300px">
 <?php }
       }?>
@@ -249,7 +266,7 @@
     </div>
     <div class="appointment-list-container-column">
       <p><span class="material-symbols-outlined">stethoscope</span> Vet: <?php echo $vet_name ?></p>
-      <p><span class="material-symbols-outlined">paid</span> Total: RM <?php echo $amount ?></p>
+      <p><span class="material-symbols-outlined">paid</span> Total: RM <?php echo number_format($amount,2) ?></p>
     </div>
   </div>
   <br>

@@ -15,6 +15,8 @@ if (isset($_GET['p'])) {
         reject_vet($ic, $id,$email,$name);
     }else if ($p == 'deleteVet') {
         delete_vet($id);
+    }else if ($p == 'deleteClinic') {
+        delete_clinic($id);
     }
 }
 
@@ -100,8 +102,20 @@ $result = mysqli_query($conn, $sql);
 }
 }
 
-
-
 }
+
+function delete_clinic($id){
+
+     include('Connection.php');
+
+    $sql2 = "DELETE FROM clinic WHERE clinicID = $id"; 
+
+    if (mysqli_query($conn, $sql2)) {
+     mysqli_close($conn);
+    } else {
+        echo "Error Deleting Vet Information: " . mysqli_error($conn);
+}
+}
+
 ?>
 
