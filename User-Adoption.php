@@ -214,20 +214,20 @@
         	
         }
         else{
-        	echo '<a href="Seller-Profile.php?page=' . ($page-1) . '">&lt;</a>';
+        	echo '<a href="User-Adoption.php?page=' . ($page-1) . '">&lt;</a>';
         }
         for ($i = 1; $i <= $total_pages; $i++) {
 		    if ($i == $page) {
-		        echo '<a href="Seller-Profile.php?page=' . $i . '" class="page-active">' . $i . '</a>';
+		        echo '<a href="User-Adoption.php?page=' . $i . '" class="page-active">' . $i . '</a>';
 		    } else {
-		        echo '<a href="Seller-Profile.php?page=' . $i . '">' . $i . '</a>';
+		        echo '<a href="User-Adoption.php?page=' . $i . '">' . $i . '</a>';
 		    }
 	}
 		if($page == $total_pages){
 		   
 		}
 		else{
-		    echo '<a href="Seller-Profile.php?page=' . ($page+1) . '"> &gt;</a>';
+		    echo '<a href="User-Adoption.php?page=' . ($page+1) . '"> &gt;</a>';
 		 }
         echo '</div>';
     }?>
@@ -235,21 +235,6 @@
 		</div>
 	</div>
 <script type="text/javascript">
-var breedInput = document.getElementById('breed-search');
-var breedList = document.getElementById('breed-list');
-
-breedInput.addEventListener('change', function() {
-  // Get the selected option
-  var selectedOption = breedList.querySelector('option[value="' + breedInput.value + '"]');
-  
-  // Check if an option was selected
-  if (selectedOption !== null) {
-    // Redirect to the breed profile page with the selected breedID
-    var oID = selectedOption.getAttribute('data-oid');
-    window.open('SideBar_Donation-Organization-Profile.php?id=' + oID, '_blank');
-    breedInput.value = "";
-  }
-});
 
 $(document).ready(function() {
     // Listen for changes to the checkboxes
@@ -309,12 +294,14 @@ $(document).ready(function() {
     });
 });
 
+<?php if(isset($_GET['breedID'])){ ?>
 window.onload = function() {
     var breedID = '<?php echo $_GET["breedID"]; ?>';
     if (breedID) {
       document.getElementById('search-button').click();
     }
   };
+<?php } ?>
 </script>
 </body>
 </html>

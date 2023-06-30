@@ -1,12 +1,13 @@
 <?php
 include('Connection.php');
 
-
+$searchQuery = $_GET['searchQuery'];
 $size[] = $_GET['size'];
 
-if(strlen($size[0])<10 && strlen($size[0])>1){
+if($searchQuery!=='' || $size[0]!=='' ){
+if(strlen($size[0])<10 && strlen($size[0])>1 && $searchQuery!==''){
 
-$sql = "SELECT * FROM breed WHERE type='Cat' and size=$size[0] ORDER BY name";
+$sql = "SELECT * FROM breed WHERE type='Cat' and size=$size[0] and name LIKE '%$searchQuery%' ORDER BY name";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -33,8 +34,93 @@ if ($result->num_rows > 0) {
     echo "No results found.";
 }
 }
-elseif(strlen($size[0])>10){
+elseif(strlen($size[0])<10 && strlen($size[0])>1 && $searchQuery==''){
+
+$sql = "SELECT * FROM breed WHERE type='Cat' and size=$size[0]  ORDER BY name";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+        echo '<div style="width:100%;height:20px">';
+        echo $result->num_rows. " results was found";
+        echo '</div>';
+    while ($row = $result->fetch_assoc()) {
+        $imageData = base64_encode($row['breed_image']);
+        $imageSrc = "data:image/jpg;base64," . $imageData;
+        if (file_exists('breed_images/' . $row['breed_image'])) {
+            $imageSrc = 'breed_images/' . $row['breed_image'];
+        }
+        echo '<div class="card2">';
+        echo '<img src="' . $imageSrc . '" alt="Breed Image" style="width:100%;height: 154px;">';
+        echo '<div class="breedName2">';
+        echo '<p><b>' . $row['name'] . '</b></p>';
+        echo '</div>';
+        echo '<div class="view-breed">';
+        echo '<a href="SideBar_Breed-Breed-Profile.php?id=' . $row['breedID'] . '" target="_blank"><p>Learn More <span class="material-symbols-outlined" style="vertical-align:-5px">open_in_new</span></p></a>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
     echo "No results found.";
+}
+}
+elseif(strlen($size[0])==0 && $searchQuery!==''){
+
+$sql = "SELECT * FROM breed WHERE type='Cat' and name LIKE '%$searchQuery%'  ORDER BY name";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+        echo '<div style="width:100%;height:20px">';
+        echo $result->num_rows. " results was found";
+        echo '</div>';
+    while ($row = $result->fetch_assoc()) {
+        $imageData = base64_encode($row['breed_image']);
+        $imageSrc = "data:image/jpg;base64," . $imageData;
+        if (file_exists('breed_images/' . $row['breed_image'])) {
+            $imageSrc = 'breed_images/' . $row['breed_image'];
+        }
+        echo '<div class="card2">';
+        echo '<img src="' . $imageSrc . '" alt="Breed Image" style="width:100%;height: 154px;">';
+        echo '<div class="breedName2">';
+        echo '<p><b>' . $row['name'] . '</b></p>';
+        echo '</div>';
+        echo '<div class="view-breed">';
+        echo '<a href="SideBar_Breed-Breed-Profile.php?id=' . $row['breedID'] . '" target="_blank"><p>Learn More <span class="material-symbols-outlined" style="vertical-align:-5px">open_in_new</span></p></a>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "No results found.";
+}
+}
+elseif(strlen($size[0])>10 && $searchQuery==''){
+
+$sql = "SELECT * FROM breed WHERE type='Cat' and size='abc'  ORDER BY name";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+        echo '<div style="width:100%;height:20px">';
+        echo $result->num_rows. " results was found";
+        echo '</div>';
+    while ($row = $result->fetch_assoc()) {
+        $imageData = base64_encode($row['breed_image']);
+        $imageSrc = "data:image/jpg;base64," . $imageData;
+        if (file_exists('breed_images/' . $row['breed_image'])) {
+            $imageSrc = 'breed_images/' . $row['breed_image'];
+        }
+        echo '<div class="card2">';
+        echo '<img src="' . $imageSrc . '" alt="Breed Image" style="width:100%;height: 154px;">';
+        echo '<div class="breedName2">';
+        echo '<p><b>' . $row['name'] . '</b></p>';
+        echo '</div>';
+        echo '<div class="view-breed">';
+        echo '<a href="SideBar_Breed-Breed-Profile.php?id=' . $row['breedID'] . '" target="_blank"><p>Learn More <span class="material-symbols-outlined" style="vertical-align:-5px">open_in_new</span></p></a>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "No results found.";
+}
+}
 }
 else{
    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer

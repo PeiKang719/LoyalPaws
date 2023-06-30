@@ -51,7 +51,7 @@
             breed();
           }
 }else{
- pet();
+ adopter();
 }?>
  
  <!-------------------------------------------------------PET------------------------------------------------------------->
@@ -110,7 +110,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
   },
   axisY: {
     title: "Number of Pets",
-    suffix: ""
+    suffix: "",
+    minimum:0
+
   },
   legend: {
     cursor: "pointer",
@@ -166,6 +168,7 @@ function toggleDataSeries(e) {
     <th>Adopted</th>
     <th>Selling</th>
     <th>Purchased</th>
+    <th>Total</th>
   </tr>
   <tr>
     <td>Dog</td>
@@ -173,6 +176,7 @@ function toggleDataSeries(e) {
     <td><?php echo $dog[2] ?></td>
     <td><?php echo $dog[1] ?></td>
     <td><?php echo $dog[3] ?></td>
+    <td style="font-weight: bold;"><?php echo $dog[0]+$dog[1]+$dog[2]+$dog[3] ?></td>
   </tr>
   <tr>
     <td>Cat</td>
@@ -180,6 +184,15 @@ function toggleDataSeries(e) {
     <td><?php echo $cat[2] ?></td>
     <td><?php echo $cat[1] ?></td>
     <td><?php echo $cat[3] ?></td>
+    <td style="font-weight: bold;"><?php echo $cat[0]+$cat[1]+$cat[2]+$cat[3] ?></td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">Total</td>
+    <td style="font-weight: bold;"><?php echo $cat[0]+$dog[0] ?></td>
+    <td style="font-weight: bold;"><?php echo $cat[2]+$dog[2] ?></td>
+    <td style="font-weight: bold;"><?php echo $cat[1]+$dog[1] ?></td>
+    <td style="font-weight: bold;"><?php echo $cat[3]+$dog[3] ?></td>
+    <td style="font-weight: bold;"><?php echo $cat[0]+$cat[1]+$cat[2]+$cat[3]+$dog[0]+$dog[1]+$dog[2]+$dog[3] ?></td>
   </tr>
 </table>
 </div>
@@ -232,10 +245,11 @@ chart2.render();
   <tr>
     <th>State</th>
 <?php 
+$i=0;
 $result2 = $conn->query($sql);
 while ($row2 = $result2->fetch_assoc()) { ?>
         <th><?php echo $row2['state'] ?></th>    
-<?php } ?>
+<?php $i++;} ?>
   </tr>
   <tr>
     <td>No of adopter</td>
@@ -244,6 +258,16 @@ $result3 = $conn->query($sql);
 while ($row3 = $result3->fetch_assoc()) { ?>
         <td><?php echo $row3['number'] ?></td>    
 <?php } ?>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">Total</td>
+<?php 
+$result4 = $conn->query($sql);
+$total_adopter=0;
+while ($row4 = $result4->fetch_assoc()) { 
+  $total_adopter+=$row4['number']; 
+ } ?>
+ <td colspan="<?php echo $i ?>" style="font-weight: bold;"><?php echo $total_adopter ?></td>    
   </tr>
 </table>
 </div>
@@ -306,9 +330,16 @@ while ($row2 = $result2->fetch_assoc()) { ?>
     <td>Number</td>
 <?php 
 $result3 = $conn->query($sql);
-while ($row3 = $result3->fetch_assoc()) { ?>
+$total_owner=0;
+$i=0;
+while ($row3 = $result3->fetch_assoc()) { 
+  $total_owner+=$row3['number'];  ?>
         <td><?php echo $row3['number'] ?></td>    
-<?php } ?>
+<?php $i++;} ?>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">Total</td>
+      <td colspan="<?php echo $i ?>" style="font-weight: bold;"><?php echo $total_owner ?></td>    
   </tr>
 </table>
 </div>
@@ -344,7 +375,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
     text: "Number of vets in each clinic"
   },
   axisY: {
-    title: "Number of vets"
+    title: "Number of vets",
+    interval: 1,
+    minimum: 0
   },
   data: [{
     type: "column",
@@ -365,13 +398,18 @@ chart.render();
   </tr>
 <?php 
 $result2 = $conn->query($sql);
+$i=0;
+$total_vet=0;
 while ($row2 = $result2->fetch_assoc()) { ?>
   <tr>
         <td><?php echo $row2['title'] ?></td>    
         <td><?php echo $row2['number'] ?></td> 
   </tr>   
-<?php } ?>
-  
+<?php $i++;$total_vet+=$row2['number'];} ?>
+  <tr>
+        <td style="font-weight: bold;">Total: <?php echo $i ?></td>    
+        <td style="font-weight: bold;">Total: <?php echo $total_vet ?></td> 
+  </tr>   
 </table>
 </div>
 <div class="report-container">

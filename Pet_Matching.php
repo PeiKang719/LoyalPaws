@@ -15,7 +15,7 @@
         height: 100%;
     }
     </style>
-<body style="background-image: url(media/match3.jpg);background-repeat: no-repeat;background-size: 100% 100%; overflow: hidden;">
+<body style="background-image: url(media/matching-bg.jpg);background-repeat: no-repeat;background-size: 100% 100%; overflow: hidden;">
 <?php include 'UserHeader.php'; ?>
     <div class="container" >
 	   

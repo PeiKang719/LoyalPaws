@@ -1661,3 +1661,51 @@ input:checked + .slider:before {
 #dashboard-revenue:hover{
   background-size: 110% 110%;
 }
+
+#dashboard-treatment{
+  background-image: url('media/dashboard-clinic-treatment.jpg');
+  background-size: 120% 160%;
+}
+
+#dashboard-treatment:hover{
+  background-size: 130% 170%;
+}
+#dashboard-vet-profile{
+  background-image: url('media/dashboard-vet-profile.jpg');
+  background-size: 120% 160%;
+}
+
+#dashboard-vet-profile:hover{
+  background-size: 130% 170%;
+}
+
+#dashboard-order{
+  background-image: url('media/dashboard-seller-order.jpg');
+  background-size: 100% 120%;
+  background-position: 10% 60%;
+}
+
+#dashboard-order:hover{
+  background-size: 110% 130%;
+}
+#dashboard-adoption{
+  background-image: url('media/fyp2.jpg');
+  background-size: 100% 120%;
+  background-position: 10% 50%;
+}
+
+#dashboard-adoption:hover{
+  background-size: 110% 130%;
+  background-position: 10% 50%;
+}
+
+#dashboard-dog-cat{
+  background-image: url('media/dashboard-breed.jpg');
+  background-size: 230% 130%;
+  background-position: 50% 30%;
+}
+
+#dashboard-dog-cat:hover{
+  background-image: url('media/dashboard-breed.jpg');
+  background-size: 240% 140%;
+}

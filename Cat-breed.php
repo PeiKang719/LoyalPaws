@@ -28,27 +28,7 @@
 			<div class="filter">
 				<div class="search-breed">
 					<input type="text" name="search-breed" placeholder="Search" id="breed-search" list="breed-list" style="width:100%;margin: 0;">
-					<span class="material-symbols-outlined" style="font-size:35px;vertical-align:10px">search</span>
-						<datalist id="breed-list">
-						  <?php
-						  // Connect to the database
-						  include('Connection.php');
-
-						  // Fetch breed names from the database
-						  $sql = "SELECT breedID,name FROM breed WHERE type='Cat' ORDER BY name";
-						  $result = mysqli_query($conn, $sql);
-
-						  // Loop through the results and populate the datalist options
-						  while ($row = mysqli_fetch_assoc($result)) {
-						    // Check if breedID exists before adding it as a data attribute
-						    $breedID = isset($row['breedID']) ? 'data-breedid="' . $row['breedID'] . '"' : '';
-						    echo '<option value="' . $row['name'] . '" ' . $breedID . '>' . $row['name'] . '</option>';
-						  }
-
-						  // Close the database connection
-						  mysqli_close($conn);
-						  ?>
-						</datalist>
+					<button class="search-pet-button"><span class="material-symbols-outlined" id="search-button" style="font-size:35px;vertical-align:0px">search</span></button>
 				</div>
 				<div class="row" style="justify-content: center;align-items: flex-end;">Size</div>
 				<div class="row">
@@ -132,44 +112,51 @@
 		</div>
 	</div>
 <script type="text/javascript">
-var breedInput = document.getElementById('breed-search');
-var breedList = document.getElementById('breed-list');
-
-breedInput.addEventListener('change', function() {
-  // Get the selected option
-  var selectedOption = breedList.querySelector('option[value="' + breedInput.value + '"]');
-  
-  // Check if an option was selected
-  if (selectedOption !== null) {
-    // Redirect to the breed profile page with the selected breedID
-    var breedID = selectedOption.getAttribute('data-breedid');
-    window.open('SideBar_Breed-Breed-Profile.php?id=' + breedID, '_blank');
-    breedInput.value = "";
-  }
-});
-
 $(document).ready(function() {
-	// Listen for changes to the checkboxes
-	$('input[type="checkbox"]').change(function() {
-		// Get the values of the checked checkboxes
-		var size = $('input[name="size[]"]:checked').map(function() {
-			return this.value;
-		}).get().join(',');
+    // Listen for changes to the checkboxes
+    $('#search-button').click(function() {
+        var size = $('input[name="size[]"]:checked').map(function() {
+            return this.value;
+        }).get().join(',');
+        var searchQuery = $('#breed-search').val();
 
-		// Make an AJAX request to the server to get the updated breed cards
-		$.ajax({
-			url: 'Cat-breed-Get-Breed.php',
-			type: 'GET',
-			data: { size: size },
-			success: function(response) {
-				// Update the breed cards with the new HTML
-				$('#breed-card-container').html(response);
-			},
-			error: function() {
-				alert('Error getting breed cards.');
-			}
-		});
-	});
+        // Make an AJAX request to the server to get the updated breed cards
+        $.ajax({
+            url: 'Cat-Breed-Get-Breed.php',
+            type: 'GET',
+            data: { size: size, searchQuery: searchQuery },
+            success: function(response) {
+                // Update the breed cards with the new HTML
+                $('#breed-card-container').html(response);
+            },
+            error: function() {
+                alert('Error getting pets.');
+            }
+        });
+    });
+
+    $('input[type="checkbox"]').change(function() {
+        // Get the values of the checked checkboxes
+        
+        var size = $('input[name="size[]"]:checked').map(function() {
+            return this.value;
+        }).get().join(',');
+        var searchQuery = $('#breed-search').val();
+
+        // Make an AJAX request to the server to get the updated breed cards
+        $.ajax({
+            url: 'Cat-Breed-Get-Breed.php',
+            type: 'GET',
+            data: {  size: size, searchQuery: searchQuery },
+            success: function(response) {
+                // Update the breed cards with the new HTML
+                $('#breed-card-container').html(response);
+            },
+            error: function() {
+                alert('Error getting pets.');
+            }
+        });
+    });
 });
 
 </script>

@@ -51,9 +51,11 @@ while ($row = $result->fetch_assoc()) {
 ?>
 <?php 
 $sql2 =
-"SELECT 'my' AS title,COUNT(appointmentID) AS number FROM clinic_appointment WHERE status='Uncompleted' AND vetID=$vetID UNION ALL
- SELECT 'assigned' AS title,COUNT(appointmentID) AS number FROM clinic_appointment WHERE status='Uncompleted' AND vetID IS NOT NULL AND clinicID=$clinicID 
- UNION ALL SELECT 'unassigned' AS title,COUNT(appointmentID) AS number FROM clinic_appointment WHERE vetID IS NULL AND clinicID=$clinicID ;"; 
+"SELECT 'my' AS title, COUNT(appointmentID) AS number FROM clinic_appointment WHERE status = 'Uncompleted' AND vetID =$vetID AND DATE(`date`) = CURDATE()
+ UNION ALL
+ SELECT 'assigned' AS title,COUNT(appointmentID) AS number FROM clinic_appointment WHERE status='Uncompleted' AND vetID IS NOT NULL AND vetID =$vetID 
+ UNION ALL 
+ SELECT 'unassigned' AS title,COUNT(appointmentID) AS number FROM clinic_appointment WHERE vetID IS NULL AND clinicID=$clinicID ;"; 
 $result2 = $conn->query($sql2);
 $number2 = array();
 
@@ -104,11 +106,11 @@ while ($row4 = $result4->fetch_assoc()) {
       <p style="text-align: center;margin-top: 20px;font-weight:bold">Appointment</p>
       <div style="display: flex;flex-direction: row;width: 100%;height: 100%;">
     <div class="dashboard-column">
-      <p>My Appointment</p>
+      <p>Appointment Today</p>
       <h1><?php echo $number2[0] ?></h1>
     </div>
     <div class="dashboard-column">
-      <p>Assigned</p>
+      <p>Assigned To Me</p>
       <h1><?php echo $number2[1] ?></h1>
     </div>
     <div class="dashboard-column">

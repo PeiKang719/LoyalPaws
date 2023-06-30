@@ -29,7 +29,9 @@
   <th>Pet</th>
   <th style="width:300px">Vet</th>
   <th style="width:100px">Record</th>
+  <?php if($role=='Admin'){?>
   <th style="width:100px">Receipt</th>
+<?php } ?>
 <?php 
 $i=1;
 $sql = "SELECT * FROM (SELECT r.date,CONCAT(firstName,' ',lastName) AS adopterName,a.adopterID,r.pet_name,v.name AS vet_name,r.recordID FROM record r,adopter a,vet v,clinic_appointment ca WHERE r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.adopterID=a.adopterID AND ca.clinicID=$clinicID UNION ALL SELECT r.date,CONCAT(a.firstName,' ',a.lastName) AS adopterName,a.adopterID,r.pet_name,v.name AS vet_name,r.recordID FROM record r,adopter a,vet v,clinic_appointment ca,pet p,clinic c WHERE r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.clinicID=c.clinicID AND ca.petID=p.petID AND p.adopterID=a.adopterID AND c.clinicID=$clinicID) AS combined_table ORDER BY recordID DESC ";
@@ -54,6 +56,7 @@ $sql = "SELECT * FROM (SELECT r.date,CONCAT(firstName,' ',lastName) AS adopterNa
     <td style="text-align:center">
       <button class="reschedule-button" onclick="recordModal2(<?php echo $recordID ?>)"><span class="material-symbols-outlined" style="vertical-align:-3px">history_edu</span></button>
     </td>
+    <?php if($role=='Admin'){?>
     <?php $sql2 = "SELECT paymentID FROM clinic_payment WHERE recordID = $recordID";
           $result2 = $conn->query($sql2);
           if ($result2->num_rows > 0) { 
@@ -65,7 +68,7 @@ $sql = "SELECT * FROM (SELECT r.date,CONCAT(firstName,' ',lastName) AS adopterNa
     <td style="text-align:center">
       <button class="reschedule-button" style="color:white;cursor:not-allowed;background-color: #cc9900;" disabled ><span class="material-symbols-outlined" style="vertical-align:-3px">hourglass_bottom</span></button>
     </td>
-  <?php } ?>
+  <?php }} ?>
   </tr>      
 <?php $i++; }
 

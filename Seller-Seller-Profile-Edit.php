@@ -153,7 +153,7 @@ $role=$_POST['role'];
 $newName=$_POST['new'];
 
 
-$sql2 = "UPDATE pet_shop SET shop_name='$newName' WHERE shopID='$id'";
+$sql2 = "UPDATE pet_shop SET shopname='$newName' WHERE shopID='$id'";
 $result2 = mysqli_query($conn, $sql2);
 if ($conn->query($sql2) === TRUE) {
     echo '<script type="text/javascript">';
