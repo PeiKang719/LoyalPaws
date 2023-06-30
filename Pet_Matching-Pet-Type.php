@@ -10,8 +10,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
-<body style="background-image:url('media/bg1.jpg');background-size:1550px 800px; ;height: 721px;">
+<body style="background-image:url('media/matching-bg.jpg');background-size:100% 100%; height: 721px;">
 <?php include 'UserHeader.php'; ?>
+<div class="dashboard-overlay" style="width: 100%;height: 100%;">
 <div class="container" style="top:10%;">
     <div class="question">
         <div class="matchingForm-header">Find Your Perfect Pet Match</div>
@@ -64,8 +65,8 @@ with its owner?</p>
 <form id="matchingForm" action="Pet_Matching-Algorithm.php" method="post" enctype="multipart/form-data" >
     <p style="margin-top:15px;">&nbsp;&nbsp;Your Choose:</p>
     <div class="tab" style="display:block;">
-        <button type="button" class="button-cat-dog" onclick="changeColor(this)" value="cat" id="cat"><img src="media/cc.png" class="logo-cat-dog"><br>Cat</button>
-        <button type="button" class="button-cat-dog" onclick="changeColor(this)" value="dog" id="dog"><img src="media/dd.png" class="logo-cat-dog"><br>Dog</button>
+        <button type="button" class="button-cat-dog" onclick="changeColor(this)" value="cat" id="cat"><img src="media/cc.png" class="logo-cat-dog"></button>
+        <button type="button" class="button-cat-dog" onclick="changeColor(this)" value="dog" id="dog"><img src="media/dd.png" class="logo-cat-dog"></button>
     </div>
     <div class="tab" id="tab-3-choice">
         <label class="radio-container" style="padding-top:10px;height: 49px;">Small cat <br><p style="font-size:15px;margin-top: 1px;">(Weight=2.3-4.5 kg and Length<45.7 cm)</p>
@@ -303,6 +304,7 @@ with its owner?</p>
         </div>
     </div>
 </form>
+</div>
 </div>
 </body>
 <script type="text/javascript">

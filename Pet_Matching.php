@@ -14,21 +14,23 @@
         width: 100%;
         height: 100%;
     }
+
     </style>
 <body style="background-image: url(media/matching-bg.jpg);background-repeat: no-repeat;background-size: 100% 100%; overflow: hidden;">
 <?php include 'UserHeader.php'; ?>
+<div class="dashboard-overlay" style="width: 100%;height: 100%;">
     <div class="container" >
 	   
-       <div class="matching-letsgo">
-            <div class="matching-letsgo-header" >Find Your Perfect Pet Match</div>
-                <p style="margin-top: 50px;">Answer a series of quick questions to help us find your best pet breed matches! We’ll ask about your preferences and needs for your new pet, and we’ll ask about your everyday lifestyle. The more questions you answer, the better matches we can make.Keep in mind that these matches are a great starting point, but we always encourage you to meet your favorite breeds in person, and talk with people who own or breed them to learn more!</p>
-                <a href='Pet_Matching-Pet-Type.php'><button class="matching-letsgo-button" style="width: 300px;margin-top: 5%;">LET'S START</button></a>
+       <div class="matching-letsgo" style="margin-top:50px">
+            <div class="matching-letsgo-header" style="color:white;font-weight: bold;">Find Your Perfect Pet Match</div>
+                <p style="margin-top: 50px;color:white">Answer a series of quick questions to help us find your best pet breed matches! We’ll ask about your preferences and needs for your new pet, and we’ll ask about your everyday lifestyle. The more questions you answer, the better matches we can make.Keep in mind that these matches are a great starting point, but we always encourage you to meet your favorite breeds in person, and talk with people who own or breed them to learn more!</p>
+                <a href='Pet_Matching-Pet-Type.php'><button class="matching-letsgo-button">LET'S START</button></a>
             </div>
       
         
 	
 </div>
-
+</div>
 </body>
 
 </html>
