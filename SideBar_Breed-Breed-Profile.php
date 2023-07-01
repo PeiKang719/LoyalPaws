@@ -46,13 +46,14 @@ if (file_exists('breed_images/' . $row['breed_image'])) {
 ?>
 
 <section>
-<img src="media/ttg.jpeg"  style="width: 100%;height: 500px;">
+<img src="media/field.jpg"  style="width: 100%;height: 500px;">
 <div style="padding-left: 50px;">
 	<img class="organization-image" src="<?php echo $imageSrc ?>" alt="Avatar">
 	<p class="organization-name"> <?php  echo $row["name"] ?> </p>
+	<?php if(isset($_SESSION['adopterID'])){ ?>
 	<button class="button-adoptable-pet" style="margin-left:-230px;margin-top: 20px;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -8px;color:white;">filter_list</span>View Adoptable Pets</button>
+<?php } ?>
 </div>
-
 <input type="hidden" name="breedID" id="breedID" value="<?php echo $row['name'] ?>">
 </section>
 <br><br><br><br><br><br><br>

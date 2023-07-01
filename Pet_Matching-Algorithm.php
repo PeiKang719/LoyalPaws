@@ -15,7 +15,10 @@
 <br><br><br><br><br>
     <div class="container" >
         <div class="matchingForm-header" style="text-align: center;position: absolute;font-weight: bold;">Breed Matching Results</div>
-        <img src="media/matching-result.svg" alt="avatar" style="width: 400px;height: 350px;margin-left: 55%;margin-top: -15px;">
+        <div style="display:flex;flex-direction: row;align-items: center;">
+        <img src="media/matching-result2.svg" alt="avatar" style="width: 400px;height: 250px;margin-top: -20px;margin-left: 100px;">
+        <img src="media/matching-result.svg" alt="avatar" style="width: 400px;height: 300px;margin-top: -20px;margin-left: 335px;">
+    </div>
 <?php
 include('Connection.php');
 
@@ -119,8 +122,8 @@ uasort($breeds, function ($a, $b) {
 
 // Display the breeds in order of compatibility
 $i=0; ?>
-<div style="margin-top:0px;text-align:center;background-color:#e6e6e6;padding:30px 0px 70px 0px;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);">
-    <div style="text-align: center;font-size:30px;font-weight: bold;">Top 3 Highest Match</div>
+<div style="margin-top:-20px;text-align:center;background-color:#e6f2ff;padding:30px 0px 70px 0px;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);">
+    <div style="text-align: center;font-size:30px;font-weight: bold;">Top 10 Highest Match</div>
 <?php
 foreach ($breeds as $breed => $characteristics) {
     $breed_image = $characteristics["breed_image"];
@@ -130,47 +133,11 @@ foreach ($breeds as $breed => $characteristics) {
     if (file_exists('breed_images/' . $breed_image)) {
         $imageSrc = 'breed_images/' . $breed_image;
     }?>
-    <?php if ($i <= 2) { ?>
+
     <a href="SideBar_Breed-Breed-Profile.php?id=<?php echo $characteristics['breedID']; ?>" target="_blank">
-        <div class="card" style="height:350px;width:20%">
-            <img src="<?php echo $imageSrc; ?>" alt="Breed Image" style="width:100%;height: 154px;">
-            <div class="breedName" style="font-size:30px;">
-                <p><b><?php echo $breed; ?><br></b></p>
-            </div>
-            <hr style="width:100%;border:2px solid #bfbfbf">
-            <div style="display:flex;flex-direction: row;align-items: center;margin-top: 10px;height: 120px;">
-                <p style="text-align:left;width:70%;font-size:25px;">Match Percentage</p>
-                <div class="single-chart" style="display:inline-block;">
-                    <?php if ($characteristics['score'] / 50 * 100 > 50) { ?>
-                        <svg viewBox="0 0 36 36" class="circular-chart green">
-                    <?php } else { ?>
-                        <svg viewBox="0 0 36 36" class="circular-chart orange">
-                    <?php } ?>
-                        <path class="circle-bg"
-                            d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"
-                        />
-                        <path class="circle"
-                            stroke-dasharray="<?php echo $characteristics['score'] / 50 * 100; ?>, 100"
-                            d="M18 2.0845
-                            a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"
-                        />
-                        <text x="18" y="20.35" class="percentage"><?php echo $characteristics['score'] / 50 * 100; ?>%</text>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </a>
-<?php }  
-elseif ($i > 2) { ?>
-    </div>
-    </a>
-    <a href="SideBar_Breed-Breed-Profile.php?id=<?php echo $characteristics['breedID']; ?>" target="_blank">
-        <div class="matching-result-rectangle">
-            <img src="<?php echo $imageSrc; ?>" alt="Breed Image" style="width:100px;height: 100px;">
-            <p style="font-size:25px;padding-left:40px;padding-top:10px;height:100%;width:70%;"><b><?php echo $breed; ?><br></b></p>
+        <div class="matching-result-rectangle" style="display:flex;flex-direction:row;align-items:center;border-radius:5px;border: 1px solid #4d4d4d;">
+            <img src="<?php echo $imageSrc; ?>" alt="Breed Image" style="width:100px;height: 100px;border-radius: 5px 0 0 5px;">
+            <p style="font-size:25px;width:70%;"><b><?php echo $breed; ?><br></b></p>
             <div style="display:flex;width:100%;padding:8px;">
                 <p style="text-align:right;width:100%;margin-top:30px;">Match Percentage</p>
                 <div class="single-chart" style="width:18%;height:18%;">
@@ -196,16 +163,17 @@ elseif ($i > 2) { ?>
             </div>
         </div>
     </a>
-<?php } 
+<?php  
 
-if($i===2){
-    echo"</div><div style='text-align: center;font-size:30px;''>Other pets that may match your preferences:</div>";
-}
-if(++$i > 12) break;
+if(++$i > 10) break;
 }
  ?>
 </div>
-<br><br><br>
+<br><br>
+<div style="display: flex;justify-content: center;align-items: center;">
+<a href='UserHomePage.php' style="width:40%;margin:0"><button class="matching-letsgo-button" style="margin:0;width:100%">Back to homepage</button></a>
+</div>
+<br><br>
 </body>
 
 </html>

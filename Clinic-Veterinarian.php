@@ -31,9 +31,7 @@
       <a href="Clinic-Veterinarian.php?c=vet&t=pending"><button class="clinic-approved-pending-button">Pending</button></a>
   </div>
   <div class="clinic-card-container">
-    <div class="search-part">
-  <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search clinic" title="Type in a name">
-</div>
+    
 <div class="card-part">
   <?php 
         if (isset($_GET['t'])) {

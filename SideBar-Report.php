@@ -353,7 +353,7 @@ while ($row3 = $result3->fetch_assoc()) {
 <?php function clinic(){ ?>
   <?php
  include 'Connection.php';
-$sql = "SELECT c.name as title, COUNT(v.vetID)AS number FROM vet v,clinic c WHERE v.clinicID=c.clinicID GROUP BY v.clinicID ORDER BY title;";
+$sql = "SELECT c.name as title, COUNT(v.vetID)AS number FROM vet v,clinic c WHERE v.clinicID=c.clinicID AND v.ic NOT LIKE 'B%' AND v.ic NOT LIKE 'P%' AND v.ic NOT LIKE 'F%' GROUP BY v.clinicID ORDER BY title;";
 $result = $conn->query($sql);
 
 $dataPoints = array();

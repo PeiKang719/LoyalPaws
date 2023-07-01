@@ -59,7 +59,7 @@
       <label for="check" class="checkbtn" style="display:block;margin-right: 0px;">
         <i class="fas fa-bars"></i>
       </label>
-      <label class="logo"><a href="UserHomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
+      <label class="logo"><a href="Seller_HomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
       <ul>
         <li><a href="Login.php">Log Out</a></li>
       </ul>

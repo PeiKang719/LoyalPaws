@@ -39,14 +39,14 @@ if($new1==$new2){
             if ($conn->query($sql2) === TRUE) {
                 echo '<script type="text/javascript">';
                 echo 'alert("Your password has been updated successfully.");';
-                echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+                echo 'window.parent.location.href = "User-Profile.php";';
 
                 echo '</script>';
             }
              else { 
                 echo '<script type="text/javascript">';
                 echo 'alert("Failed to update password. Please try again.");';
-                echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+                echo 'window.parent.location.href = "User-Profile.php";';
 
                 echo '</script>';
             }
@@ -91,14 +91,14 @@ $result2 = mysqli_query($conn, $sql2);
 if ($conn->query($sql2) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Your phone number has been updated successfully.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
 }
  else { 
     echo '<script type="text/javascript">';
     echo 'alert("Failed to update phone number. Please try again.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
 }
@@ -122,14 +122,14 @@ $result2 = mysqli_query($conn, $sql2);
 if ($conn->query($sql2) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Your location has been updated successfully.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
 }
  else { 
     echo '<script type="text/javascript">';
     echo 'alert("Failed to update your location. Please try again.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
 }
@@ -167,14 +167,14 @@ else{
   if ($conn->query($sql) === TRUE) {
      echo '<script type="text/javascript">';
     echo 'alert("Your new profile picture has been updated successfully.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
     }
     else { 
     echo '<script type="text/javascript">';
     echo 'alert("Failed to update your profile picture. Please try again.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
     }
@@ -200,14 +200,14 @@ $result2 = mysqli_query($conn, $sql2);
 if ($conn->query($sql2) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Your date of birth has been updated successfully.");';
-    echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+    echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
 }
  else { 
     echo '<script type="text/javascript">';
     echo 'alert("Failed to update your date of birth. Please try again.");';
-   echo 'window.parent.location.href = "User-Profile.php?id=' . $id . '";';
+   echo 'window.parent.location.href = "User-Profile.php";';
 
     echo '</script>';
 }

@@ -20,8 +20,8 @@
 	
 
 	<div class="cat-container">
-		<div class="match-section">
-			<p class="learn-more-header">Donation Page</p>
+		<div class="match-section" style="background-image:url('media/foot.png');background-size:auto 100%">
+			<p class="learn-more-header" style="font-weight:bold;font-size: 50px;">Internationally Recognized Organizations</p>
 		</div>
 		<div class="breed-container">
 			<div class="filter">

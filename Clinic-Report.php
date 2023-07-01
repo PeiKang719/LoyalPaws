@@ -124,9 +124,9 @@ for($p=0 ; $p < COUNT($month); $p++) {
 
 <select id="mySelect" style="width: 15%;position: absolute;margin-top: 80px;margin-left: 75px;border: 2px solid black;" >
     <option value="">Select Interval</option>
-    <option value="total">Total</option>
-    <option value="year">This Year</option>
-    <option value="month">This Month</option>
+    <option value="total&report=record">Total</option>
+    <option value="year&report=record">This Year</option>
+    <option value="month&report=record">This Month</option>
   </select>
   <?php function total($clinicID){ ?>
 

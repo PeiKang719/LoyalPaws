@@ -20,12 +20,12 @@
 	
 
 	<div class="cat-container">
-		<div class="match-section">
-			<p class="learn-more-header">Adoption Page</p>
+		<div class="match-section" style="background-image:url('media/foot.png');background-size:auto 100%">
+			<p class="learn-more-header" style="font-weight:bold;font-size: 50px;">Adoption & Purchasing</p>
 		</div>
 		<div class="category-container">
 			<a href="User-Adoption.php"><button class="category-container-button">Pets</button></a>
-			<a href="User-Adoption-Sellers.php"><button class="category-container-button">Seller</button></a>
+			<a href="User-Adoption-Sellers.php"><button class="category-container-button" style="background-color:#008ae6;color: white;">Seller</button></a>
 		</div>
 
 <div class="breed-container" style="height:auto">

@@ -20,8 +20,8 @@
 	
 
 	<div class="cat-container">
-		<div class="match-section">
-			<p class="learn-more-header">Match Your Ideal Breed!</p>
+		<div class="match-section" style="background-image:url('media/foot.png');background-size:auto 100%">
+			<p class="learn-more-header" style="font-size:50px;font-weight:bold;margin-top: -20px;">Match Your Ideal Breed!</p>
 			<a href='Pet_Matching.php' class="learn-more-button">Learn More</a>
 		</div>
 		<div class="breed-container">

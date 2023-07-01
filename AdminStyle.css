@@ -258,7 +258,7 @@ hr{
 }
 
 .button1:hover {
-  background-color: #2eb82e;
+  background-color: #0099cc;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -741,7 +741,6 @@ small{
 }
 
 .button-adoptable-pet{
-  text-shadow: 0 2px 5px rgba(0,0,0,.45);
 	font-size: 20px;
 	color: white;
 	 z-index: 1;
@@ -753,9 +752,12 @@ small{
 	 left: 41.05%;
 	 background-color: #00a8de;
 	 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	 border-radius: 30px;
+	 border-radius: 15px;
 	 border: 0;
    cursor: pointer;
+}
+.button-adoptable-pet:hover{
+  background-color: #0099cc;
 }
 
 /*--------------------------------------------DONATION-------------------------------------------*/
@@ -893,21 +895,22 @@ small{
 }
 
 .donate-button{
-  cursor: pointer;
-  width: 40%;
-  height: 60px;
-  text-shadow: 0 2px 5px rgba(0,0,0,.45);
-font-size: 30px;
-color: white;
-padding: 10px 20px 15px;
-background-color: #00a8de;
-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-border-radius: 30px;
-border: 0;
-margin-left: 30%;
+  width: 30%;
+    padding: 10px 20px;
+    color: white;
+    background-color: #00a8de;
+    box-shadow: 0px 0px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    border: 0;
+    font-size: 27px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 35%;
+}
+.donate-button:hover{
+  background-color: #0099cc;
 }
 
-word-wrap: break-word !important;
 @media (max-width: 700px){
   .organization-name{
     margin-top: 10px;

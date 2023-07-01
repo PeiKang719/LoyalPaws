@@ -51,7 +51,11 @@
       <label for="check" class="checkbtn" style="display:block;margin-right: 0px;">
         <i class="fas fa-bars"></i>
       </label>
-      <label class="logo"><a href="UserHomePage.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
+       <?php if($role=='Admin'){?>
+      <label class="logo"><a href="Clinic-Dashboard.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
+    <?php }elseif($role=='Vet'){?>
+      <label class="logo"><a href="Clinic-Vet-Dashboard.php"><img src="media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;"></a></label>
+    <?php } ?>
       <ul>
         <li><a href="Login.php">Log Out</a></li>
       </ul>

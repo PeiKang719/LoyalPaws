@@ -20,12 +20,12 @@
 	
 
 	<div class="cat-container">
-		<div class="match-section">
-			<p class="learn-more-header">Adoption Page</p>
+		<div class="match-section" style="background-image:url('media/foot.png');background-size:auto 100%">
+			<p class="learn-more-header" style="font-weight:bold;font-size: 50px;">Adoption & Purchasing</p>
 		</div>
 		<div class="category-container">
-			<a href="User-Adoption.php"><button class="category-container-button">Pets</button></a>
-			<a href="User-Adoption-Sellers.php"><button class="category-container-button">Seller</button></a>
+			<a href="User-Adoption.php"><button class="category-container-button" style="background-color:#008ae6;color: white;">Pets</button></a>
+			<a href="User-Adoption-Sellers.php"><button class="category-container-button">Pet Owners</button></a>
 		</div>
 
 <div class="breed-container" style="height:auto">
@@ -41,11 +41,11 @@
 				</div>
 				<div class="row" style="justify-content: center;align-items: flex-end;">Type</div>
 				<div class="row">
-					<div class="column1"><input type="checkbox" name="pet[]" value="'Cat'" style="width: 40%;margin: 0;"></div>
+					<div class="column1"><input type="checkbox" name="pet[]" value="'Cat'" id="petCat" style="width: 40%;margin: 0;"></div>
 					<div class="column2">Cat</div>
 				</div>
 				<div class="row">
-					<div class="column1"><input type="checkbox" name="pet[]" value="'Dog'" style="width: 40%;margin: 0;"></div>
+					<div class="column1"><input type="checkbox" name="pet[]" value="'Dog'" id="petDog" style="width: 40%;margin: 0;"></div>
 					<div class="column2">Dog</div>
 				</div>
 				<div class="row" style="justify-content: center;align-items: flex-end;">Purpose</div>
@@ -299,6 +299,18 @@ window.onload = function() {
     var breedID = '<?php echo $_GET["breedID"]; ?>';
     if (breedID) {
       document.getElementById('search-button').click();
+    }
+  };
+<?php } ?>
+
+<?php if(isset($_GET['p'])){ ?>
+window.onload = function() {
+    var pet = '<?php echo $_GET["p"]; ?>';
+    if (pet=='Dog') {
+      document.getElementById('petDog').click();
+    }
+    else if(pet=='Cat'){
+      document.getElementById('petCat').click();  
     }
   };
 <?php } ?>
