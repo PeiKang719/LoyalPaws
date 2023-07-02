@@ -18,6 +18,11 @@
     width: 100%;
     height: 100%;
   }
+
+#myTable th{
+  cursor: pointer;
+}
+
 </style>
 <body style="background-color:white;">
 
@@ -114,21 +119,21 @@ function showClinic_Approved() {
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT c.clinicID,c.name,c.clinic_image,c.phone,c.email,c.no_of_patient,v.ic,v.name AS cname FROM clinic c,vet v WHERE c.vetID=v.vetID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%'  ORDER BY c.name LIMIT $offset, $records_per_page";?>
+    $sql = "SELECT c.clinicID,c.name,c.clinic_image,c.phone,c.email,c.no_of_patient,v.ic,v.name AS cname FROM clinic c,vet v WHERE c.vetID=v.vetID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%'  ORDER BY c.clinicID LIMIT $offset, $records_per_page";?>
 <div style="width:92%;padding:1% 4%" >
     <br>
   <div class="add-new-treatment-container">
   <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search By Name" >
 </div>
   <br>
-  <table class="treatment-table" border="0" id="treatment-table">
-  <th style="width:40px">ID</th>
+  <table class="treatment-table" border="0" id="myTable">
+  <th style="width:40px" onclick="sortTable2(0)">ID</th>
   <th style="width:105px">Image</th>
-  <th style="width:230px">Name</th>
-  <th style="width:40px">Phone</th>
-  <th style="width:40px">Email</th>
-  <th style="width:40px">No of patient</th>
-  <th style="width:40px">Admin</th>
+  <th style="width:230px" onclick="sortTable(2)">Name</th>
+  <th style="width:40px" onclick="sortTable2(3)">Phone</th>
+  <th style="width:40px" onclick="sortTable(4)">Email</th>
+  <th style="width:40px" onclick="sortTable2(5)">No of patient</th>
+  <th style="width:40px" onclick="sortTable(6)">Admin</th>
   <th colspan="1" style="width: 282px;" > </th>
   <?php 
     $result = $conn->query($sql);
@@ -139,7 +144,7 @@ function showClinic_Approved() {
             $imageData = base64_encode($row['clinic_image']);
             $imageSrc = "data:image/jpg;base64," . $imageData;
             if($row['clinic_image']==NULL){
-                $imageSrc = 'media/clinic-default.jpg';
+                $imageSrc = 'media/clinic-default.png';
             }
             elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
                 $imageSrc = 'clinic_images/' . $row['clinic_image'];
@@ -183,7 +188,7 @@ function showClinic_Pending() {
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT c.clinicID, c.name, c.clinic_image, v.ic FROM clinic c JOIN vet v ON c.vetID = v.vetID WHERE v.ic LIKE 'P.%' OR v.ic LIKE 'B.%' ORDER BY c.name LIMIT $offset, $records_per_page";
+    $sql = "SELECT c.clinicID, c.name, c.clinic_image, v.ic FROM clinic c, vet v WHERE c.clinicID = v.clinicID AND v.ic LIKE 'B.%' ORDER BY c.name LIMIT $offset, $records_per_page";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -192,7 +197,10 @@ function showClinic_Pending() {
         foreach ($rows as $row) {
             $imageData = base64_encode($row['clinic_image']);
             $imageSrc = "data:image/jpg;base64," . $imageData;
-            if (file_exists('clinic_images/' . $row['clinic_image'])) {
+            if($row['clinic_image']==NULL){
+                $imageSrc = 'media/clinic-default.png';
+            }
+            elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
                 $imageSrc = 'clinic_images/' . $row['clinic_image'];
             }
             echo '<div class="column">';
@@ -202,10 +210,7 @@ function showClinic_Pending() {
             echo '<p><b>' . $row['name'] . '</b></p>';
             echo '</div>';
             echo '<div class="breedIcon">';
-            echo '<a href="SideBar_Donation-Organization-Profile.php?id=' . $row['clinicID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button">open_in_new</span></a>';
-            echo '<a href="SideBar_Donation-Edit-Modal.php?id=' . $row['clinicID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button-edit">edit</span>';
-            echo '<iframe name="hiddenFrame3" class="hide"></iframe>';
-            echo '<a href="SideBar_Donation-Delete-Organization.php?id=' . $row['clinicID'] . '" target="hiddenFrame3" onclick="deleteOrganization(event)"><span class="material-symbols-outlined" id="card-button-delete">delete</span></a>';
+            echo '<a href="SideBar_Clinic-Profile.php?admin=yes&id=' . $row['clinicID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button">open_in_new</span></a>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -253,13 +258,13 @@ function showVet_Approved() {
   <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search By Name" >
 </div>
   <br>
-  <table class="treatment-table" border="0" id="treatment-table">
-  <th style="width:40px">ID</th>
+  <table class="treatment-table" border="0" id="myTable">
+  <th style="width:40px" onclick="sortTable2(0)">ID</th>
   <th style="width:105px">Image</th>
-  <th style="width:230px">Name</th>
-  <th style="width:130px">Clinic</th>
-  <th style="width:40px">Phone</th>
-  <th style="width:40px">APC</th>
+  <th style="width:230px" onclick="sortTable(2)">Name</th>
+  <th style="width:130px" onclick="sortTable(3)">Clinic</th>
+  <th style="width:40px" onclick="sortTable2(4)">Phone</th>
+  <th style="width:140px" onclick="sortTable(5)">APC</th>
   <th colspan="1" style="width: 150px;" > </th>
 <?php 
 include 'Connection.php';
@@ -322,13 +327,14 @@ $sql = "SELECT v.vetID,v.name,v.image,v.phone,v.email,c.name AS cname,v.ic,v.apc
 <?php
 function showVet_Pending() {
   include('Connection.php');
-  $sql = "SELECT v.vetID, v.name, v.ic,v.email, c.name AS cname, v.email, v.phone, v.area FROM vet v INNER JOIN clinic c ON v.clinicID = c.clinicID WHERE v.ic LIKE 'P.%' OR v.ic LIKE 'B.%' ORDER BY v.name";
+  $sql = "SELECT v.vetID, v.name, v.ic,v.email, c.name AS cname, v.email, v.phone, v.area,v.apc FROM vet v INNER JOIN clinic c ON v.clinicID = c.clinicID WHERE v.ic LIKE 'P.%' OR v.ic LIKE 'B.%' ORDER BY v.name";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // Fetch all the rows into an array
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($rows as $row) {
+            $apc = $row['apc'];
           $ic = substr($row['ic'], 2);
 
           $gender=$ic[-1];
@@ -371,7 +377,7 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', " . $row['vet
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>badge</span>&nbsp;Annual Practicing Certificate(APC):</p>
    <a style='color:#008ae6;text-decoration: underline;' href='SideBar_Clinic-Downloadpdf.php?file=" . $apc . "'>" . $apc . "</a>
-   <br>
+   <br><br><br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>mail</span>&nbsp;" . $row['email'] . "</p>
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>call</span>&nbsp;" . $row['phone'] . "</p>
@@ -529,7 +535,7 @@ function SearchFunction() {
   var input, filter, table, tr, td2, i, txtValue , txtValue2;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("treatment-table");
+  table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
 
@@ -608,7 +614,118 @@ function SearchFunction() {
     $('a[href*="SideBar_Clinic.php?c=vet&t=approved"]').css('border-bottom', '5px solid #00a8de');
   }
 });
-</script>
+
+
+
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+function sortTable2(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc"; 
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from the current row and one from the next: */
+      x = parseFloat(rows[i].getElementsByTagName("TD")[n].innerHTML);
+      y = parseFloat(rows[i + 1].getElementsByTagName("TD")[n].innerHTML);
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x > y) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x < y) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
 
 </script>
 </body>

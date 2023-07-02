@@ -106,13 +106,14 @@ function showVet_Approved($clinicID,$vetID) {
 <?php
 function showVet_Pending($clinicID) {
   include('Connection.php');
-  $sql = "SELECT v.vetID, v.name, v.ic,v.email, c.name AS cname, v.email, v.phone, v.area FROM vet v INNER JOIN clinic c ON v.clinicID = c.clinicID WHERE v.ic LIKE 'C.%' AND v.clinicID=$clinicID ORDER BY v.name";
+  $sql = "SELECT v.vetID, v.name, v.ic,v.email, c.name AS cname, v.email, v.phone, v.area,v.apc FROM vet v INNER JOIN clinic c ON v.clinicID = c.clinicID WHERE v.ic LIKE 'C.%' AND v.clinicID=$clinicID ORDER BY v.name";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // Fetch all the rows into an array
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         foreach ($rows as $row) {
+          $apc = $row['apc'];
           $id = $row['vetID'];
           $ic = substr($row['ic'], 2);
 
@@ -145,9 +146,9 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', '" . $row['ve
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>call</span>&nbsp;" . $row['phone'] . "</p>
    <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>school</span>&nbsp;Education:</p>
+   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>school</span>&nbsp;Education: -</p>
    <br>
-   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>business_center</span>&nbsp;Experience:</p>
+   <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>business_center</span>&nbsp;Experience: -</p>
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-2px'>lab_research</span>&nbsp;Area:</p><br>";
        $areas = explode(",", $row["area"]);
@@ -157,9 +158,8 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', '" . $row['ve
     echo "
    <br>
    <p class='vet-bar-expand-header'><span class='material-symbols-outlined' style='font-weight: 800;font-size:30px;vertical-align:-5px'>badge</span>&nbsp;Annual Practicing Certificate(APC):</p>
-   <br>
-   <p class='vet-apc' style='margin-left:3.5%'>Click to view</p>
-   <p class='vet-apc' style='margin-left:3.5%'>Click to download</p>
+   <a style='color:#008ae6;text-decoration: underline;' href='SideBar_Clinic-Downloadpdf.php?file=" . $apc . "'>" . $apc . "</a>
+   <br><br><br>
    <br>
    
    </div>";?>

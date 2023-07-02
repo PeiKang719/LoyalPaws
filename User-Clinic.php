@@ -88,7 +88,7 @@
 				<?php include 'Connection.php'; ?>
 				<?php
 				$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from clinic";
+$count = "SELECT count(*) as total from clinic c,vet v WHERE c.vetID=v.vetID AND v.ic REGEXP '^[0-9]+$'";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -98,11 +98,11 @@
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT * FROM clinic ORDER BY name LIMIT $offset, $records_per_page";
+    $sql = "SELECT DISTINCT c.clinic_image,c.name,c.state,c.area,c.discount_percent,c.clinicID FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic REGEXP '^[0-9]+$' ORDER BY name LIMIT $offset, $records_per_page";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    	echo '<div style="width:100%;height:20px">';
+    	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
     	echo $total_records. " results was found";
     	echo '</div>';
         // Fetch all the rows into an array
@@ -111,7 +111,7 @@
             $imageData = base64_encode($row['clinic_image']);
             $imageSrc = "data:image/jpg;base64," . $imageData;
             if($row['clinic_image']==NULL){
-            	$imageSrc = 'media/clinic-default.jpg';
+            	$imageSrc = 'media/clinic-default.png';
             }
             elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
                 $imageSrc = 'clinic_images/' . $row['clinic_image'];

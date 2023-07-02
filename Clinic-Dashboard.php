@@ -41,7 +41,7 @@ include 'Connection.php';
 $sql =
 "SELECT 'Vet' AS title,COUNT(vetID) AS number FROM vet v WHERE ic REGEXP '^[0-9]+$' AND clinicID=$clinicID
 UNION ALL
-SELECT 'Vet_Pending' AS title,COUNT(vetID) AS number FROM vet v WHERE ic LIKE 'P.%' AND clinicID=$clinicID;"; 
+SELECT 'Vet_Pending' AS title,COUNT(vetID) AS number FROM vet v WHERE ic LIKE 'C.%' AND clinicID=$clinicID;"; 
 $result = $conn->query($sql);
 $number = array();
 

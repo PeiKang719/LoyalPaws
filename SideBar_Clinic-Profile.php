@@ -30,12 +30,13 @@ $result = $conn->query($sql);
 
 $row = $result->fetch_assoc();
 $imageData = base64_encode($row['clinic_image']);
-$imageSrc = "data:image/jpg;base64," . $imageData;
-// Check if the image file exists before displaying it
-if (file_exists('clinic_images/' . $row['clinic_image'])) {
-    $imageSrc = 'clinic_images/' . $row['clinic_image'];
-}
-
+            $imageSrc = "data:image/jpg;base64," . $imageData;
+            if($row['clinic_image']==NULL){
+                $imageSrc = 'media/clinic-default.png';
+            }
+            elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
+                $imageSrc = 'clinic_images/' . $row['clinic_image'];
+            }
 if($row['cover']!=''){
 $cover=$row['cover'];
 $imageData2 = base64_encode($cover);
@@ -201,7 +202,7 @@ else{
             $sql = "SELECT * FROM vet WHERE clinicID = $id AND ic REGEXP '^[0-9]+$' ORDER BY vetID ";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                echo '<div style="width:100%;height:20px">';
+                echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
                 echo $total_records. " vets";
                 echo '</div>';
                 $rows = $result->fetch_all(MYSQLI_ASSOC);

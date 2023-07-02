@@ -10,7 +10,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<style type="text/css">
+#myTable th{
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
 <?php include 'AdminHeader.php'; ?>
@@ -42,17 +46,18 @@
   <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search By Name" >
 </div>
   <br>
-  <table class="treatment-table" border="0" id="treatment-table">
-  <th style="width:40px">ID</th>
+  <table class="treatment-table" border="0" id="myTable">
+  <th style="width:40px" onclick="sortTable2(0)">ID</th>
   <th style="width:105px">Image</th>
-  <th style="width:230px">Name</th>
-  <th style="width:40px">Phone</th>
-  <th style="width:40px">Email</th>
-  <th colspan="1" style="width: 100px;" > </th>
+  <th style="width:230px" onclick="sortTable(2)">Name</th>
+  <th style="width:40px" onclick="sortTable2(3)">Phone</th>
+  <th style="width:40px" onclick="sortTable(4)">Email</th>
+  <th style="width:40px" onclick="sortTable2(5)">Pets</th>
+  <th colspan="1" style="width: 110px;" > </th>
 <?php 
 include 'Connection.php';
 $i=1;
-$sql = "SELECT * FROM seller  ORDER BY sellerID ";
+$sql = "SELECT s.sellerID,s.image,s.firstName,s.lastName,s.dob,s.phone,s.email,COUNT(p.petID) as pet FROM seller s LEFT JOIN pet p ON p.sellerID=s.sellerID GROUP BY s.sellerID ORDER BY s.sellerID ";
       $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -64,6 +69,7 @@ $sql = "SELECT * FROM seller  ORDER BY sellerID ";
           $dob=$row["dob"];
           $phone=$row["phone"];
           $email=$row["email"];
+          $pet=$row['pet'];
 
           $imageData = base64_encode($image);
           $imageSrc = "data:image/jpg;base64," . $imageData;
@@ -81,6 +87,7 @@ $sql = "SELECT * FROM seller  ORDER BY sellerID ";
     <td><?php echo $firstName?> <?php echo $lastName ?></td>
     <td><?php echo $phone?></td>
     <td><?php echo $email?></td>
+    <td style="text-align: center;"><?php echo $pet?></td>
     <td><button class="manage-button" onclick="view_seller(<?php echo$sellerID ?>)"><span class="material-symbols-outlined">person</span></button>  <a href="SideBar-View-Seller-Process.php?action=seller&sellerID=<?php echo $sellerID ?>" onclick="confirmDeleteSeller(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
   </tr>      
 <?php $i++;}
@@ -103,17 +110,18 @@ $sql = "SELECT * FROM seller  ORDER BY sellerID ";
   <input type="text" class="search" id="myInput" onkeyup="SearchFunction()" placeholder="Search By Name" >
 </div>
   <br>
-  <table class="treatment-table" border="0" id="treatment-table">
-  <th style="width:40px">ID</th>
+  <table class="treatment-table" border="0" id="myTable">
+  <th style="width:40px" onclick="sortTable2(0)">ID</th>
   <th style="width:105px">Image</th>
-  <th style="width:230px">Name</th>
-  <th style="width:40px">Phone</th>
-  <th style="width:40px">Email</th>
-  <th colspan="1" style="width: 85px;" > </th>
+  <th style="width:230px" onclick="sortTable(2)">Name</th>
+  <th style="width:40px" onclick="sortTable2(3)">Phone</th>
+  <th style="width:40px" onclick="sortTable(4)">Email</th>
+  <th style="width:40px" onclick="sortTable2(5)">Pets</th>
+  <th colspan="1" style="width: 110px;" > </th>
 <?php 
 include 'Connection.php';
 $i=1;
-$sql = "SELECT * FROM pet_shop  ORDER BY shopID ";
+$sql = "SELECT s.shopID,s.shop_image,s.shopname,s.phone,s.email,COUNT(p.petID) as pet FROM pet_shop s LEFT JOIN pet p ON p.shopID=s.shopID GROUP BY s.shopID  ORDER BY s.shopID ";
       $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -123,6 +131,7 @@ $sql = "SELECT * FROM pet_shop  ORDER BY shopID ";
           $firstName=$row["shopname"];
           $phone=$row["phone"];
           $email=$row["email"];
+          $pet=$row['pet'];
 
           $imageData = base64_encode($image);
           $imageSrc = "data:image/jpg;base64," . $imageData;
@@ -140,6 +149,7 @@ $sql = "SELECT * FROM pet_shop  ORDER BY shopID ";
     <td><?php echo $firstName ?></td>
     <td><?php echo $phone?></td>
     <td><?php echo $email?></td>
+    <td style="text-align: center;"><?php echo $pet?></td>
     <td><button class="manage-button" onclick="view_shop(<?php echo$sellerID ?>)"><span class="material-symbols-outlined">person</span></button>  <a href="SideBar-View-Seller-Process.php?action=shop&shopID=<?php echo $sellerID ?>" onclick="confirmDeleteShop(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
   </tr>      
 <?php $i++;}
@@ -181,7 +191,7 @@ function SearchFunction() {
   var input, filter, table, tr, td2, i, txtValue , txtValue2;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("treatment-table");
+  table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
 
@@ -244,6 +254,119 @@ function confirmDeleteShop(event) {
         console.log("User cancelled the Pet Shop operation.");
     }
 }
+
+
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+
+function sortTable2(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc"; 
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from the current row and one from the next: */
+      x = parseFloat(rows[i].getElementsByTagName("TD")[n].innerHTML);
+      y = parseFloat(rows[i + 1].getElementsByTagName("TD")[n].innerHTML);
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x > y) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x < y) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
 </script>
 
 </body>

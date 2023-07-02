@@ -52,7 +52,7 @@ try {
 
     $mail->send();
     echo '<script type="text/javascript">';
-    echo 'alert("Email has been sent");';
+    echo 'alert("Verification email had been sent. Please enter the 4-digit verification code sent to your email for verification.");';
     echo '</script>';
 } catch (Exception $e) {
     echo '<script type="text/javascript">';

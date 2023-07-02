@@ -54,8 +54,8 @@ $imageSrc = "data:image/jpg;base64," . $imageData;
 if (file_exists('breed_images/' . $breed_image)) {
     $imageSrc = 'breed_images/' .$breed_image;
 }?>
-
-<form  action="SideBar_Breed-Edit-Breed.php" method="post" enctype="multipart/form-data">
+<iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
+<form  action="SideBar_Breed-Edit-Breed.php" method="post" target="hiddenFrame" enctype="multipart/form-data">
 <section>
 <input type="hidden" id="type" name="type" value="<?php echo "$type" ?>">
 				<input type="hidden" id="breedID" name="breedID" value="<?php echo "$breedID" ?>">

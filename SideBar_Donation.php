@@ -199,7 +199,7 @@ function showOrganization() {
       </table>
         <br>
         <label>Minimum Donation (RM):</label><br>
-        <input type="number" id="minimum" name="minimum" required style="width:79%;">
+        <input type="number" id="minimum" name="minimum" required min="0" style="width:79%;">
       </div>
       <div  style="overflow:auto; ">
         <div class="nextprevButton">
@@ -378,6 +378,13 @@ function validateForm(x) {
     alert("All fields must be filled out");
     return false;
   }
+
+  var urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    if (!c.match(urlRegex)) {
+      alert("Invalid URL");
+      return false;
+    }
+
   return true;
   }
   else if (x==1){

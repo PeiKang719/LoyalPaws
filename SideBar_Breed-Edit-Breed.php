@@ -23,6 +23,44 @@ $eight=$_POST['eight'];
 $nine=$_POST['nine'];
 $ten=$_POST['ten'];
 
+if($_POST['life1'] >= $_POST['life2']){
+    echo '<script type="text/javascript">';
+    echo 'alert("Maximum life span must be higher than minimum life span");';
+    echo '</script>';
+    exit();
+}
+elseif($_POST['weight1'] >=$_POST['weight2']){
+    echo '<script type="text/javascript">';
+    echo 'alert("Maximum weight must be higher than minimum weight");';
+    echo '</script>';
+    exit();
+}
+elseif($_POST['length1'] >= $_POST['length2']){
+    echo '<script type="text/javascript">';
+    echo 'alert("Maximum lenth must be higher than minimum length");';
+    echo '</script>';
+    exit();
+}
+elseif($_POST['life1']<=0 || $_POST['life2']<=0){
+    echo '<script type="text/javascript">';
+    echo 'alert("Life span cannot be negative");';
+    echo '</script>';
+    exit();
+}
+elseif($_POST['weight1']<=0 || $_POST['weight2']<=0){
+    echo '<script type="text/javascript">';
+    echo 'alert("Weight cannot be negative");';
+    echo '</script>';
+    exit();
+}
+elseif($_POST['length1']<=0 || $_POST['length2']<=0){
+    echo '<script type="text/javascript">';
+    echo 'alert("Length cannot be negative");';
+    echo '</script>';
+    exit();
+}
+
+    
     if($type == 'Dog'){
         if($avg_length<40){
             $size='small';
@@ -76,13 +114,13 @@ $result = mysqli_query($conn, $sql);
 if ($conn->query($sql) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Pet Info Edited");';
-    echo 'window.location.href = "SideBar_Breed-Edit-Modal.php?id=' . $breedID . '";';
+    echo 'parent.window.location.href = "SideBar_Breed-Edit-Modal.php?id=' . $breedID . '";';
     echo '</script>';
 }
  else { 
     echo '<script type="text/javascript">';
     echo 'alert("Failed To Edit Pet Info");';
-    echo 'window.location.href = "SideBar_Breed-Edit-Modal.php?id=' . $breedID . '";';
+    echo 'parent.window.location.href = "SideBar_Breed-Edit-Modal.php?id=' . $breedID . '";';
     echo '</script>';
 }
 

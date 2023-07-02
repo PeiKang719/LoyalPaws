@@ -86,7 +86,7 @@ if (file_exists('clinic_images/' . $image)) {
 }
 }
 else{
-    $imageSrc2='media/clinic.png';
+    $imageSrc2='media/clinic-default.png';
   }
 
 if($cover!=''){

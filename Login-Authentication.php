@@ -8,7 +8,7 @@ $password = $_POST["password1"];
  $sql = "SELECT * FROM adopter WHERE username='$username' AND password=md5('$password')";
  $sql2 = "SELECT * FROM seller WHERE username='$username' AND password=md5('$password')";
  $sql3 = "SELECT * FROM pet_shop WHERE username='$username' AND password=md5('$password')";
- $sql4 = "SELECT * FROM vet WHERE username='$username' AND password=md5('$password')";
+ $sql4 = "SELECT * FROM vet WHERE username='$username' AND ic REGEXP '^[0-9]+$' AND password=md5('$password')";
  $sql5 = "SELECT * FROM admin WHERE username='$username' AND password=md5('$password')";
 
  $result = $conn->query($sql);

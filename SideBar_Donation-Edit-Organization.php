@@ -10,8 +10,34 @@ $description = $_POST['description'];
 $type=$_POST['type'];
 $method=$_POST['method'];
 $minimum=$_POST['minimum'];
-$categories = implode(',', $_POST['category']);
-$methods = implode(',', $_POST['method']);
+
+
+
+if (filter_var($url, FILTER_VALIDATE_URL)) {
+    if($_POST['category']==NULL){
+        echo '<script type="text/javascript">';
+        echo 'alert("Organization category cannot be null.");';
+        echo '</script>';
+        exit();
+    }else{
+        $categories = implode(',', $_POST['category']);
+        if($_POST['method']==NULL){
+           echo '<script type="text/javascript">';
+            echo 'alert("Payment method cannot be null.");';
+            echo '</script>'; 
+            exit();
+        }else{
+           $methods = implode(',', $_POST['method']); 
+        }
+    }
+    
+}else{
+        echo '<script type="text/javascript">';
+        echo 'alert("Invalid URL.");';
+        echo '</script>';
+        exit();
+}
+
 
 if($_FILES['img']['name'] !== ""){
   if(isset($_FILES['img'])){
@@ -43,13 +69,13 @@ $result = mysqli_query($conn, $sql);
 if ($conn->query($sql) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Pet Info Edited");';
-    echo 'window.location.href = "SideBar_Donation-Edit-Modal.php?id=' . $oID . '";';
+    echo 'parent.window.location.href = "SideBar_Donation-Edit-Modal.php?id=' . $oID . '";';
     echo '</script>';
 }
  else { 
     echo '<script type="text/javascript">';
     echo 'alert("Failed To Edit Pet Info");';
-    echo 'window.location.href = "SideBar_Donation-Edit-Modal?id=' . $oID . '";';
+    echo 'parent.window.location.href = "SideBar_Donation-Edit-Modal?id=' . $oID . '";';
     echo '</script>';
 }
 

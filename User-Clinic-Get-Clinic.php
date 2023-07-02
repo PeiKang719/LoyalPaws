@@ -24,8 +24,7 @@ if($searchQuery!=='' || $area[0]!=='' ){
     elseif(count($areas)==1){
         $areaCondition .= "state = '$areas[0]' ";
     }
-
-            $sql = "SELECT * FROM clinic WHERE name LIKE '%$searchQuery%' AND $areaCondition ORDER BY name; ";
+            $sql = "SELECT DISTINCT c.clinic_image,c.name,c.state,c.area,c.discount_percent,c.clinicID FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic REGEXP '^[0-9]+$' AND c.name LIKE '%$searchQuery%' AND $areaCondition ORDER BY c.name; ";
 
     }
 //
@@ -50,27 +49,27 @@ if($searchQuery!=='' || $area[0]!=='' ){
         $areaCondition .= "state = '$areas[0]' ";
     }
 
-          $sql = "SELECT * FROM clinic WHERE $areaCondition ORDER BY name; ";
+          $sql = "SELECT DISTINCT c.clinic_image,c.name,c.state,c.area,c.discount_percent,c.clinicID FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic REGEXP '^[0-9]+$' AND $areaCondition ORDER BY c.name; ";
     }
 
 //
     elseif($searchQuery!=='' &&  $area[0]=='' ){
 
-        $sql = "SELECT * FROM clinic WHERE name LIKE '%$searchQuery%' ORDER BY name; ";
+        $sql = "SELECT DISTINCT c.clinic_image,c.name,c.state,c.area,c.discount_percent,c.clinicID FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic REGEXP '^[0-9]+$' AND c.name LIKE '%$searchQuery%' ORDER BY c.name; ";
         }
 
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-        echo '<div style="width:100%;height:20px">';
+        echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
         echo $result->num_rows. " results was found";
         echo '</div>';
     while ($row = $result->fetch_assoc()) {
         $imageData = base64_encode($row['clinic_image']);
             $imageSrc = "data:image/jpg;base64," . $imageData;
             if($row['clinic_image']==NULL){
-                $imageSrc = 'media/clinic-default.jpg';
+                $imageSrc = 'media/clinic-default.png';
             }
             elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
                 $imageSrc = 'clinic_images/' . $row['clinic_image'];
@@ -90,13 +89,12 @@ if ($result->num_rows > 0) {
         }
     }
  else {
-    echo "No results found.";
-
+    echo "<div style='width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px'>No results found.</div>";
 }
 }
 else{
    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from clinic";
+    $count = "SELECT count(*) as total from clinic c,vet v WHERE c.vetID=v.vetID AND v.ic REGEXP '^[0-9]+$'";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -106,11 +104,11 @@ else{
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT * FROM clinic ORDER BY name LIMIT $offset, $records_per_page";
+    $sql = "SELECT DISTINCT c.clinic_image,c.name,c.state,c.area,c.discount_percent,c.clinicID FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic REGEXP '^[0-9]+$' ORDER BY c.name LIMIT $offset, $records_per_page";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        echo '<div style="width:100%;height:20px">';
+        echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
         echo $total_records. " results was found";
         echo '</div>';
         // Fetch all the rows into an array
@@ -119,7 +117,7 @@ else{
             $imageData = base64_encode($row['clinic_image']);
             $imageSrc = "data:image/jpg;base64," . $imageData;
             if($row['clinic_image']==NULL){
-                $imageSrc = 'media/clinic-default.jpg';
+                $imageSrc = 'media/clinic-default.png';
             }
             elseif (file_exists('clinic_images/' . $row['clinic_image'])) {
                 $imageSrc = 'clinic_images/' . $row['clinic_image'];

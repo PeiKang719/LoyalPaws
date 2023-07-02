@@ -120,7 +120,7 @@ if($row['cover']!=''){
         <?php function seller_pet(){
         $id=$_GET['iid'];  ?>
         <input type="hidden" name="iid" id="iid" value="<?php echo$id ?>" >
-			<div class="breed-container" style="padding-top:2%;height:auto">
+			<div class="breed-container" style="padding-top:0%;height:auto">
 			<div class="filter">
 				<div class="search-breed">
 					<input type="text" name="search-breed" placeholder="Search" id="breed-search" list="breed-list" style="width:100%;margin: 0;border-radius: 5px 0 0 5px;">
@@ -189,7 +189,7 @@ if($row['cover']!=''){
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    	echo '<div style="width:100%;height:20px">';
+    	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
     	echo $total_records. " pets";
     	echo '</div>';
         // Fetch all the rows into an array
@@ -303,6 +303,10 @@ if($row['cover']!=''){
 		    echo '<a href="Seller-Profile.php?page=' . ($page+1) . '"> &gt;</a>';
 		 }
         echo '</div>';
+    }else{
+    	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
+    	echo $total_records. " pet";
+    	echo '</div>';
     }?>
 			</div>
 		</div>
@@ -470,7 +474,7 @@ if($row['cover']!=''){
         <?php function pet(){ 
         	$id=$_GET['sid'];?>
         	<input type="hidden" name="sid" id="sid" value="<?php echo$id ?>" >
-			<div class="breed-container" style="padding-top:2%;height:auto">
+			<div class="breed-container" style="padding-top:0%;height:auto">
 			<div class="filter">
 				<div class="search-breed">
 					<input type="text" name="search-breed" placeholder="Search" id="breed-search" list="breed-list" style="width:100%;margin: 0;border-radius: 5px 0 0 5px;">
@@ -539,7 +543,7 @@ if($row['cover']!=''){
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    	echo '<div style="width:100%;height:20px">';
+    	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
     	echo $total_records. " pets";
     	echo '</div>';
         // Fetch all the rows into an array
@@ -653,6 +657,10 @@ if($row['cover']!=''){
 		    echo '<a href="Seller-Profile.php?page=' . ($page+1) . '"> &gt;</a>';
 		 }
         echo '</div>';
+    }else{
+    	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
+    	echo $total_records. " pets";
+    	echo '</div>';
     }?>
 			</div>
 		</div>

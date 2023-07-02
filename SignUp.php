@@ -8,6 +8,7 @@
 <script src="http://www.w3schools.com/lib/w3data.js"></script>
 <link rel="stylesheet" type="text/css" href="UserStyle.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <style>
@@ -20,6 +21,9 @@
   }
 }
 
+textarea{
+    font-size: 20px;
+} 
   </style>
 <body style="margin: 0;background-image: url(media/login.jpg);background-repeat: no-repeat;background-size: 1550px 800px;">
 
@@ -115,7 +119,7 @@
     <?php } ?>
         <?php function adopter(){ ?>
             <iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
-            <form action="SignUp-Account.php?r=adopter" method="post" target="hiddenFrame" enctype="multipart/form-data">
+            <form action="SignUp-Validation.php?r=adopter" method="post" target="hiddenFrame" enctype="multipart/form-data">
         <div class="tab" id="tab-signup"  style="display:block;animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;">
         <a href="SignUp.php?c=1"><p style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
         <p class="signup-form-header" > Sign Up </p>
@@ -128,20 +132,31 @@
             <input type="email" placeholder="Email" name="email" required>
             <input type="date" placeholder="Date of Birth" name="dob" required>
             <input type="text" placeholder="Contact No." name="contact" required><br>
-            <select name="state" required style="width:23.3% !important" id="state">
+            <select name="state" required style="width:23.3% !important" onchange="updateAreaOptions(this.value);">
               <option value="" disabled selected>Select your living state</option>
               <option>Johor</option>
-              <option>Melaka</option>
-              <option>Kuala Lumpur</option>
+                <option>Kedah</option>
+                <option>Kelantan</option>
+                <option>Melaka</option>
+                <option>Negeri Sembilan</option>
+                <option>Pahang</option>
+                <option>Perak</option>
+                <option>Perlis</option>
+                <option>Penang</option>
+                <option>Sabah</option>
+                <option>Sarawak</option>
+                <option>Terengganu</option>
+                <option>Kuala Lumpur</option>
+                <option>Labuan</option>
+                <option>Putrajaya</option>
+                <option>Kelantan</option>
           </select>
-           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;" id="area">
+           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;" id="areaSelect">
               <option value="" disabled selected>Select your area</option>
-              <option>Johor Bahru</option>
-              <option>Batu Pahat</option>
-              <option>Segamat</option>
+
           </select><br>
           <label id="clinic-image">Profile Image:</label>
-            <input type="file" id="img" name="img" accept="image/*" required style="width:39%"><br><br><br>
+            <input type="file" id="img" name="img" accept="image/*" style="width:39%"><br><br><br>
             <button type="submit" class="signup-button">Sign Up</button>
             <br><br><br><br>
         </div>
@@ -149,7 +164,7 @@
     <?php } ?>
         <?php function individual(){ ?>
             <iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
-            <form action="SignUp-Account.php?r=individual" method="post" target="hiddenFrame" enctype="multipart/form-data">
+            <form action="SignUp-Validation.php?r=individual" method="post" target="hiddenFrame" enctype="multipart/form-data">
         <div class="tab" id="tab-signup"  style="display:block;animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;">
         <a href="SignUp.php?c=seller-type"><p style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
         <p class="signup-form-header" > Sign Up </p>
@@ -162,21 +177,32 @@
             <input type="email" placeholder="Email" name="email" required>
             <input type="date" placeholder="Date of Birth" name="dob" required>
             <input type="text" placeholder="Contact No." name="contact" required><br>
-            <select name="state" required style="width:23.3% !important" id="state">
+            <select name="state" required style="width:23.3% !important" id="state" onchange="updateAreaOptions(this.value);">
               <option value="" disabled selected>Select your living state</option>
               <option>Johor</option>
-              <option>Melaka</option>
-              <option>Kuala Lumpur</option>
+                <option>Kedah</option>
+                <option>Kelantan</option>
+                <option>Melaka</option>
+                <option>Negeri Sembilan</option>
+                <option>Pahang</option>
+                <option>Perak</option>
+                <option>Perlis</option>
+                <option>Penang</option>
+                <option>Sabah</option>
+                <option>Sarawak</option>
+                <option>Terengganu</option>
+                <option>Kuala Lumpur</option>
+                <option>Labuan</option>
+                <option>Putrajaya</option>
+                <option>Kelantan</option>
           </select>
-           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;" id="area">
+           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;" id="areaSelect">
               <option value="" disabled selected>Select your area</option>
-              <option>Johor Bahru</option>
-              <option>Batu Pahat</option>
-              <option>Segamat</option>
+
           </select>
-          <input type="text" placeholder="Detailed Address" name="address" required><br>
+          <input type="text" placeholder="Detailed Address (e.g: 1,Jalan ABC)" name="address" required><br>
           <label id="clinic-image">Profile Image:</label>
-            <input type="file" id="img" name="img" accept="image/*" required style="width:39%">
+            <input type="file" id="img" name="img" accept="image/*" style="width:39%">
           <textarea maxlength="1000" placeholder="Write something to describe your bussiness...(max 1000 characters)" name="description" required style="height:250px;width: 50%;"></textarea><br><br><br>
           <label >Available Time:</label>
             <table class="workingday" border="0"><br>
@@ -188,9 +214,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Monday</td>
@@ -200,9 +226,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Tuesday</td>
@@ -212,9 +238,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Wednesday</td>
@@ -224,9 +250,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Thursday</td>
@@ -236,9 +262,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Friday</td>
@@ -248,9 +274,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Saturday</td>
@@ -260,9 +286,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
                 </tr>
             </table>
             <button type="submit" class="signup-button">Sign Up</button>
@@ -272,35 +298,46 @@
     <?php } ?>
         <?php function petshop(){ ?>
             <iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
-            <form action="SignUp-Account.php?r=pet-shop" method="post" target="hiddenFrame" enctype="multipart/form-data">
+            <form action="SignUp-Validation.php?r=pet-shop" method="post" target="hiddenFrame" enctype="multipart/form-data">
         <div class="tab" id="tab-signup"  style="display:block;animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;">
         <a href="SignUp.php?c=seller-type"><p style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
-        <p class="signup-form-header"> Sign Up(Shop) </p>
+        <p class="signup-form-header"> Sign Up </p>
     
             <input type="text" placeholder="Username" name="username" required>
             <input type="password" placeholder="Password" name="password1" required>
             <input type="password" placeholder="Confirm Password" name="password2" required>
-
-
         <p class="signup-form-header" > About Your Shop </p>
             <input type="text" placeholder="Shop Name" name="shop-name" required><br>
-            <select name="state" required style="width:23.3%  !important">
-              <option value="" disabled selected>Select shop state</option>
-              <option>Johor</option>
-              <option>Melaka</option>
-              <option>Kuala Lumpur</option>
-          </select>
-           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;">
-              <option value="" disabled selected>Select shop area</option>
-              <option>Johor Bahru</option>
-              <option>Batu Pahat</option>
-              <option>Segamat</option>
-          </select>
-            <input type="text" placeholder="Detailed Address" name="address" required>
-            <input type="text" placeholder="Contact No." name="contact" required><br>
+            <select name="state" required style="width: 23.3% !important" onchange="updateAreaOptions(this.value);">
+    <option value="" disabled selected>Select shop state</option>
+    <option>Johor</option>
+    <option>Kedah</option>
+    <option>Kelantan</option>
+    <option>Melaka</option>
+    <option>Negeri Sembilan</option>
+    <option>Pahang</option>
+    <option>Perak</option>
+    <option>Perlis</option>
+    <option>Penang</option>
+    <option>Sabah</option>
+    <option>Sarawak</option>
+    <option>Terengganu</option>
+    <option>Kuala Lumpur</option>
+    <option>Labuan</option>
+    <option>Putrajaya</option>
+    <option>Kelantan</option>
+</select>
+
+<select name="area" required style="width: 23.3% !important; margin-left: 3.8%;" id="areaSelect">
+    <option value="" disabled selected>Select shop area</option>
+ 
+</select>
+
+            <input type="text" placeholder="Detailed Address (e.g: 1,Jalan ABC)" name="address" required>
+            <input type="number" placeholder="Contact No." name="contact" required><br>
             <input type="email" placeholder="Email" name="email" required><br>
             <label id="clinic-image">Shop Image:</label>
-            <input type="file" id="img" name="img" accept="image/*" required style="width:40.2%">
+            <input type="file" id="img" name="img" accept="image/*"  style="width:40.2%">
             <textarea maxlength="1000" placeholder="Write something to describe the shop...(max 1000 characters)" name="description" required style="height:250px;width: 50%;"></textarea><br><br><br>
             <label >Working Day & Hour:</label>
             <table class="workingday"  border="0" ><br>
@@ -312,9 +349,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Monday</td>
@@ -324,9 +361,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Tuesday</td>
@@ -336,9 +373,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Wednesday</td>
@@ -348,9 +385,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Thursday</td>
@@ -360,9 +397,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Friday</td>
@@ -372,9 +409,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Saturday</td>
@@ -384,9 +421,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
                 </tr>
             </table>
 
@@ -397,10 +434,10 @@
     <?php } ?>
         <?php function clinic(){ ?>
             <iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
-            <form action="SignUp-Account.php?r=clinic" method="post" target="hiddenFrame" enctype="multipart/form-data">
+            <form action="SignUp-Validation.php?r=clinic" method="post" target="hiddenFrame" enctype="multipart/form-data">
         <div class="tab" id="tab-signup"  style="display:block;animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;">
         <a href="SignUp.php?c=vet-type"><p style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
-        <p class="signup-form-header" > Sign Up(Clnic) </p>
+        <p class="signup-form-header" > Sign Up </p>
     
             <input type="text" placeholder="Username" name="username" required>
             <input type="password" placeholder="Password" name="password1" required>
@@ -412,7 +449,7 @@
             
         <p class="signup-form-header">About Your Professional</p>
             <label>APC:</label>
-            <input name="apc" type="file" accept="application/pdf"><br>
+            <input name="apc" type="file" accept="application/pdf" required><br>
             <div class="focus" style="width:100%;height:550px;">
             <label  id="professional-focus">The areas of services you are focusing on:</label>
             <table id="professional-area" style="width: 55%;text-align: center;margin-top: 30px;" border="0">
@@ -456,24 +493,35 @@
   </div>
         <p class="signup-form-header" > About Your Clinic </p>
             <input type="text" placeholder="Clinic Name" name="clinic-name" required><br>
-            <select name="state" required style="width:23.3% !important">
+            <select name="state" required style="width:23.3% !important" onchange="updateAreaOptions(this.value);">
               <option value="" disabled selected>Select clinic state</option>
               <option>Johor</option>
-              <option>Melaka</option>
-              <option>Kuala Lumpur</option>
+                <option>Kedah</option>
+                <option>Kelantan</option>
+                <option>Melaka</option>
+                <option>Negeri Sembilan</option>
+                <option>Pahang</option>
+                <option>Perak</option>
+                <option>Perlis</option>
+                <option>Penang</option>
+                <option>Sabah</option>
+                <option>Sarawak</option>
+                <option>Terengganu</option>
+                <option>Kuala Lumpur</option>
+                <option>Labuan</option>
+                <option>Putrajaya</option>
+                <option>Kelantan</option>
           </select>
-           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;">
+           <select name="area" required style="width:23.3% !important;margin-left: 3.8%;" id="areaSelect">
               <option value="" disabled selected>Select clinic area</option>
-              <option>Johor Bahru</option>
-              <option>Batu Pahat</option>
-              <option>Segamat</option>
+
           </select>
-            <input type="text" placeholder="Detailed Address" name="address" required>
+            <input type="text" placeholder="Detailed Address (e.g: 1,Jalan ABC)" name="address" required>
             <input type="text" placeholder="Clinic Contact No." name="contact2" required><br>
             <input type="email" placeholder="Email" name="email2" required><br>
             <label id="clinic-image">Clinic Image:</label>
-            <input type="file" id="img" name="img" accept="image/*" required style="width:40.2%">
-            <input type="number" placeholder="Discount Percent for Adopter" name="discount" required>
+            <input type="file" id="img" name="img" accept="image/*" style="width:40.2%">
+            <input type="number" placeholder="Adopter Exclusive Discount" name="discount" min="1" max="100" required>
             <textarea id="description-clinic" maxlength="1000" placeholder="Write something to describe the clinic...(max 1000 characters)" name="description" required style="height:250px;width: 50%;"></textarea><br><br><br>
             <label >Working Day & Hour:</label>
             <table class="workingday" border="0"><br>
@@ -485,9 +533,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Monday</td>
@@ -497,9 +545,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Tuesday</td>
@@ -509,9 +557,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Wednesday</td>
@@ -521,9 +569,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Thursday</td>
@@ -533,9 +581,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Friday</td>
@@ -545,9 +593,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
                 <tr>
                     <td>Saturday</td>
@@ -557,9 +605,9 @@
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
                 </tr>
             </table>
 
@@ -569,11 +617,11 @@
     </form>
     <?php } ?>
         <?php function vet(){ ?>
-            
-            <form action="SignUp-Verification-Code.php" method="post" enctype="multipart/form-data">
+            <iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
+            <form action="SignUp-Validation.php?r=vet" method="post" target="hiddenFrame" enctype="multipart/form-data">
         <div class="tab-signup" id="tab-signup"  style="display:block;animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;">
         <a href="SignUp.php?c=vet-type"><p id="back" style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
-        <p class="signup-form-header" > Sign Up(vet) </p>
+        <p class="signup-form-header" > Sign Up </p>
     
             <input type="text" placeholder="Username" name="username" required>
             <input type="password" placeholder="Password" name="password1" required>
@@ -585,7 +633,7 @@
 
         <p class="signup-form-header">About Your Professional</p>
             <label id="apc">APC:</label>
-            <input name="apc" type="file" accept="application/pdf"><br>
+            <input name="apc" type="file" accept="application/pdf" required><br>
             <div class="focus" style="width:100%;height:550px;">
             <label id="professional-focus">The areas of services you are focusing on:</label>
             <table id="professional-area" style="width: 55%;margin-top: 30px;" border="0">
@@ -636,7 +684,7 @@
                   include('Connection.php');
 
                   // Fetch breed names from the database
-                  $sql = "SELECT clinicID,name FROM clinic ORDER BY name";
+                  $sql = "SELECT DISTINCT c.clinicID,c.name FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic REGEXP '^[0-9]+$' ORDER BY c.name";
                   $result = mysqli_query($conn, $sql);
 
                   if ($result->num_rows > 0) {
@@ -662,6 +710,7 @@
     </div>
 </div>
 <script type="text/javascript">
+
     function changeColor2(radio) {
   var radios = document.getElementsByName(radio.name);
   for (var i = 0; i < radios.length; i++) {
@@ -786,6 +835,23 @@ checkboxes3.forEach(checkbox => {
     }
   });
 });
+
+
+
+    function updateAreaOptions(state) {
+        var areaSelect = document.getElementById('areaSelect');
+        areaSelect.innerHTML = '';
+        areaSelect.options.add(new Option('Loading areas...'));
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                areaSelect.innerHTML = xhr.responseText;
+            }
+        }
+        xhr.open('GET', 'Area-Getter.php?state=' + state, true);
+        xhr.send();
+    }
 
 </script>
 </body>

@@ -57,26 +57,96 @@ input:focus {
     <a href="Login.php"><button type="button" class="loginbtn">Login</button></a>
     </div>
     <?php
+
+    if($_GET['role']=='vet'){
     $username = $_POST['username'];
-    $password = $_POST['password1'];
+    $password = $_POST['password'];
     $ic = $_POST['ic'];
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $focus_area = $_POST['area'];
-    $focus = implode(',', $focus_area);
+    $focus_area = $_POST['focus_area'];
     $clinic = $_POST['clinic'];
     $contact = $_POST['contact'];
-    $apc=$_FILES['apc']['name'];
+    $unique_name2=$_POST['unique_name2'];
 
-if(isset($_FILES['apc'])) {
-    $target_dir = "vet_apc/";
-    $unique_name = time() . '_' .$_FILES['apc']['name'];
-    $target_file = $target_dir . $unique_name;
+  }elseif($_GET['role']=='pet-shop'){
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $shop_name = $_POST['shop_name'];
+    $state = $_POST['state'];
+    $area = $_POST['area'];
+    $address = $_POST['address'];
+    $contact = $_POST['contact'];
+    $email = $_POST['email'];
+    $description = $_POST['description'];
+    $workingday = $_POST['workingday'];
+    $opentime = $_POST['opentime'];
+    $closetime = $_POST['closetime'];
+    $unique_name = $_POST['unique_name'];
+  }
+  elseif($_GET['role']=='individual'){
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $first = $_POST['first'];
+    $last = $_POST['last'];
+    $state = $_POST['state'];
+    $area = $_POST['area'];
+    $address = $_POST['address'];
+    $contact = $_POST['contact'];
+    $email = $_POST['email'];
+    $dob = $_POST['dob'];
+    $description = $_POST['description'];
+    $workingday = $_POST['workingday'];
+    $opentime = $_POST['opentime'];
+    $closetime = $_POST['closetime'];
+    $unique_name = $_POST['unique_name'];
+  }
+  elseif($_GET['role']=='adopter'){
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $first = $_POST['first'];
+    $last = $_POST['last'];
+    $state = $_POST['state'];
+    $area = $_POST['area'];
+    $contact = $_POST['contact'];
+    $email = $_POST['email'];
+    $dob = $_POST['dob'];
+    $unique_name = $_POST['unique_name'];
+  }
+  elseif($_GET['role']=='clinic'){
+    $clinic_name=$_POST['clinic_name'];
+    $state=$_POST['state'];
+    $area=$_POST['area'];
+    $address=$_POST['address'];
+    $contact2=$_POST['contact2'];
+    $email2=$_POST['email2'];
+    $unique_name = $_POST['unique_name'];
+    $description = $_POST['description'];
+    $discount=$_POST['discount'];
+    $workingday = $_POST['workingday'];
+    $opentime = $_POST['opentime'];
+    $closetime = $_POST['closetime'];
 
-    if (move_uploaded_file($_FILES["apc"]["tmp_name"], $target_file)) {
-        
-    } 
-} 
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $ic = $_POST['ic'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $focus_area = $_POST['focus_area'];
+    $contact = $_POST['contact'];
+    $unique_name2 = $_POST['unique_name2'];
+  }
+  elseif($_GET['role']=='vet'){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $ic = $_POST['ic'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $focus_area = $_POST['focus_area'];
+    $contact = $_POST['contact'];
+    $clinic = $_POST['clinic'];
+    $unique_name2 = $_POST['unique_name2'];
+  }
 
 $code=(rand(1000,9999));
  include 'SignUp-Email.php'; 
@@ -87,20 +157,94 @@ $expired=date("h:i:sa", $duration)?>
 
 <div class="signup-form">
 
-            <form id="verifyForm" action="SignUp-Account.php?r=vet" method="post"  enctype="multipart/form-data">
+            <form id="verifyForm" action="SignUp-Account.php?r=<?php echo $_GET['role'] ?>" method="post"  enctype="multipart/form-data">
         <div class="tab-signup" id="tab-signup"  style="display:block;animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;">
-        <a href="SignUp.php?c=vet"><p id="back" style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
+        <a href="SignUp.php?c=<?php echo $_GET['role'] ?>"><p id="back" style="color:#4d4d4d;position: relative;left: -20%">&larr;Back </p></a>
         <p class="signup-form-header" > Email Verification </p>
+        <?php if($_GET['role']=='vet'){ ?>
             <input type="hidden"  name="username" value='<?php echo$username ?>'>
             <input type="hidden"  name="password" value=<?php echo$password ?>>
             <input type="hidden"  name="ic" value=<?php echo$ic ?>>
             <input type="hidden"  name="name" value='<?php echo$name ?>'>
             <input type="hidden"  name="email" value=<?php echo$email ?>>
-            <input type="hidden"  name="area" value=<?php echo$focus ?>>
+            <input type="hidden"  name="area" value=<?php echo$focus_area ?>>
             <input type="hidden"  name="clinic" value=<?php echo$clinic ?>>
             <input type="hidden"  name="contact" value=<?php echo$contact ?>>
-            <input type="hidden"  name="apc" value="'<?php echo $unique_name; ?>'">
+            <input type="hidden"  name="apc" value="'<?php echo $unique_name2; ?>'">
+          <?php }elseif($_GET['role']=='pet-shop'){?>
+            <input type="hidden" name="name" value="<?php echo $name ?>">
+            <input type="hidden" name="password" value="<?php echo $password ?>">
+            <input type="hidden" name="shop_name" value="<?php echo $shop_name ?>">
+            <input type="hidden" name="state" value="<?php echo $state ?>">
+            <input type="hidden" name="area" value="<?php echo $area ?>">
+            <input type="hidden" name="address" value="<?php echo $address ?>">
+            <input type="hidden" name="contact" value="<?php echo $contact ?>">
+            <input type="hidden" name="email" value="<?php echo $email ?>">
+            <input type="hidden" name="description" value="<?php echo $description ?>">
+            <input type="hidden" name="workingday" value="<?php echo $workingday ?>">
+            <input type="hidden" name="opentime" value="<?php echo $opentime ?>">
+            <input type="hidden" name="closetime" value="<?php echo $closetime ?>">
+            <input type="hidden" name="unique_name" value="<?php echo $unique_name ?>">
+          <?php }elseif($_GET['role']=='individual'){ ?>
+            <input type="hidden" name="name" value="<?php echo $name ?>">
+            <input type="hidden" name="password" value="<?php echo $password ?>">
+            <input type="hidden" name="first" value="<?php echo $first ?>">
+            <input type="hidden" name="last" value="<?php echo $last ?>">
+            <input type="hidden" name="state" value="<?php echo $state ?>">
+            <input type="hidden" name="area" value="<?php echo $area ?>">
+            <input type="hidden" name="address" value="<?php echo $address ?>">
+            <input type="hidden" name="contact" value="<?php echo $contact ?>">
+            <input type="hidden" name="email" value="<?php echo $email ?>">
+            <input type="hidden" name="dob" value="<?php echo $dob ?>">
+            <input type="hidden" name="description" value="<?php echo $description ?>">
+            <input type="hidden" name="workingday" value="<?php echo $workingday ?>">
+            <input type="hidden" name="opentime" value="<?php echo $opentime ?>">
+            <input type="hidden" name="closetime" value="<?php echo $closetime ?>">
+            <input type="hidden" name="unique_name" value="<?php echo $unique_name ?>">
+          <?php } elseif($_GET['role']=='adopter'){ ?>
+            <input type="hidden" name="name" value="<?php echo $name ?>">
+            <input type="hidden" name="password" value="<?php echo $password ?>">
+            <input type="hidden" name="first" value="<?php echo $first ?>">
+            <input type="hidden" name="last" value="<?php echo $last ?>">
+            <input type="hidden" name="state" value="<?php echo $state ?>">
+            <input type="hidden" name="area" value="<?php echo $area ?>">
+            <input type="hidden" name="contact" value="<?php echo $contact ?>">
+            <input type="hidden" name="email" value="<?php echo $email ?>">
+            <input type="hidden" name="dob" value="<?php echo $dob ?>">
+            <input type="hidden" name="unique_name" value="<?php echo $unique_name ?>">
+          <?php } elseif($_GET['role']=='clinic'){ ?>
+            <input type="hidden" name="clinic_name" value="<?php echo $clinic_name ?>">
+            <input type="hidden" name="state" value="<?php echo $state ?>">
+            <input type="hidden" name="area" value="<?php echo $area ?>">
+            <input type="hidden" name="address" value="<?php echo $address ?>">
+            <input type="hidden" name="contact2" value="<?php echo $contact2 ?>">
+            <input type="hidden" name="email2" value="<?php echo $email2 ?>">
+            <input type="hidden" name="description" value="<?php echo $description ?>">
+            <input type="hidden" name="unique_name" value="<?php echo $unique_name ?>">
+            <input type="hidden" name="discount" value="<?php echo $discount ?>">
+            <input type="hidden" name="workingday" value="<?php echo $workingday ?>">
+            <input type="hidden" name="opentime" value="<?php echo $opentime ?>">
+            <input type="hidden" name="closetime" value="<?php echo $closetime ?>">
 
+            <input type="hidden" name="username" value="<?php echo $username ?>">
+            <input type="hidden" name="password" value="<?php echo $password ?>">
+            <input type="hidden" name="ic" value="<?php echo $ic ?>">
+            <input type="hidden" name="name" value="<?php echo $name ?>">
+            <input type="hidden" name="email" value="<?php echo $email ?>">
+            <input type="hidden" name="focus_area" value="<?php echo $focus_area ?>">
+            <input type="hidden" name="contact" value="<?php echo $contact ?>">
+            <input type="hidden" name="unique_name2" value="<?php echo $unique_name2 ?>">
+          <?php } elseif($_GET['role']=='vet'){ ?>
+            <input type="hidden" name="username" value="<?php echo $username ?>">
+            <input type="hidden" name="password" value="<?php echo $password ?>">
+            <input type="hidden" name="ic" value="<?php echo $ic ?>">
+            <input type="hidden" name="name" value="<?php echo $name ?>">
+            <input type="hidden" name="email" value="<?php echo $email ?>">
+            <input type="hidden" name="focus_area" value="<?php echo $focus_area ?>">
+            <input type="hidden" name="contact" value="<?php echo $contact ?>">
+            <input type="hidden" name="unique_name2" value="<?php echo $unique_name2 ?>">
+            <input type="hidden" name="clinic" value="<?php echo $clinic ?>">
+          <?php } ;?>
             <label id="professional-focus" style="left:-5%;position:relative;">Enter the code sent to <?php echo $email ?></label>
             <br>
             <div class="digits">

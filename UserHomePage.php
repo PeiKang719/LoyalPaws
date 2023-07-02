@@ -251,7 +251,7 @@ $row5 = $result5->fetch_assoc();
 		<div style="width: 100%;display: flex;flex-direction: row;align-items: center;justify-content: space-evenly;">
 			<div class="home-section-data-container-column">
 			<div class="home-section-data-container">
-				<img src="media/section-cat-breed.png" width="100px" height="100px">
+				<img src="media/section-organization.png" width="100px" height="100px">
 			</div>
 			<p style="text-align:center"><b><?php echo $row5['onumber'] ?></b> <br>Internationally Recognized Organizations</p>
 		</div>

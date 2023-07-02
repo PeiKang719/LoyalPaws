@@ -646,7 +646,7 @@ input:checked + .slider:before {
   height: 90px;
   font-size: 25px;
   position: relative;
-  background-color: lightsteelblue;
+  background-color: #e6f2ff;
   display: flex;
   align-items: center;
   border: 1px solid black;
@@ -664,7 +664,7 @@ input:checked + .slider:before {
 }
 
 .vet-bar-approve{
-  background-color: green;
+  background-color: #29a329;
   color: white;
   width: 100%;
   border-radius: 10px;

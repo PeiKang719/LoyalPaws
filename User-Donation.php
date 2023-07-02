@@ -94,7 +94,7 @@
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    	echo '<div style="width:100%;height:20px">';
+    	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
     	echo $total_records. " results was found";
     	echo '</div>';
         // Fetch all the rows into an array

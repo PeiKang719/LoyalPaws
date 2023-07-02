@@ -40,7 +40,8 @@ $imageSrc = "data:image/jpg;base64," . $imageData;
 if (file_exists('organization_images/' . $logo)) {
     $imageSrc = 'organization_images/' .$logo;
 }?>
-<form  action="SideBar_Donation-Edit-Organization.php" method="post" enctype="multipart/form-data">
+<iframe name="hiddenFrame" class="hide" style="border: 0;display: none;"></iframe>
+<form  action="SideBar_Donation-Edit-Organization.php" target="hiddenFrame" method="post" enctype="multipart/form-data">
  <section style="width: 100%;">
 <img src="media/ttg.jpeg"  style="width: 100%;height: 500px;">
 <div style="margin-left: 50px;width: 60%;">
@@ -156,7 +157,7 @@ if (file_exists('organization_images/' . $logo)) {
         <tr >
             <td><p class="organization-payment" >Minimum Donation</p></td>
             <td><p style="font-size: 40px;">:</p></td>
-            <td colspan="3"><p style="display:inline-block;font-size: 30px;vertical-align: -30px;">RM &nbsp;</p><input type="number" id="minimum" name="minimum" required style="width:77.2%;vertical-align: -25px;" value="<?php echo"$minimum" ?>"></td>
+            <td colspan="3"><p style="display:inline-block;font-size: 30px;vertical-align: -30px;">RM &nbsp;</p><input type="number" id="minimum" name="minimum" min="0" required style="width:77.2%;vertical-align: -25px;" value="<?php echo"$minimum" ?>"></td>
         </tr>
     </table>    
 </section>
