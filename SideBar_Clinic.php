@@ -134,7 +134,7 @@ function showClinic_Approved() {
   <th style="width:40px" onclick="sortTable(4)">Email</th>
   <th style="width:40px" onclick="sortTable2(5)">No of patient</th>
   <th style="width:40px" onclick="sortTable(6)">Admin</th>
-  <th colspan="1" style="width: 282px;" > </th>
+  <th colspan="1" style="width: 110px;" > </th>
   <?php 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -157,7 +157,7 @@ function showClinic_Approved() {
     <td><?php echo $row['email'] ?></td>
     <td style="text-align:center"><?php echo $row['no_of_patient'] ?></td>
     <td><?php echo $row['cname'] ?></td>
-    <td><button class="manage-button" onclick="view_clinic(<?php echo$row['clinicID'] ?>)"><span class="material-symbols-outlined">person</span></button>  <a href="SideBar_Clinic-Process.php?p=deleteClinic&clinicID=<?php echo $row['clinicID'] ?>" onclick="confirmDeleteClinic(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
+    <td><button class="manage-button" onclick="view_clinic(<?php echo$row['clinicID'] ?>)"><span class="material-symbols-outlined">person</span></button>  <a href="SideBar_Clinic-Process.php?p=deleteClinic&i=<?php echo $row['clinicID'] ?>" onclick="confirmDeleteClinic(event);"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
   </tr>      
         
 
@@ -559,7 +559,7 @@ function SearchFunction() {
 
   function confirmDeleteClinic(event) {
   event.preventDefault();
-    if (confirm("Are You Sure To Delete This Clinic Information?")) {
+    if (confirm("Are You Sure To Delete This Clinic Information?\nAll the veterinarians under this clinic will be removed.")) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", event.currentTarget.href, true);
         xhr.onload = function() {

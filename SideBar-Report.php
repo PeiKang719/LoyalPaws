@@ -490,13 +490,18 @@ chart3.render();
   </tr>
 <?php 
 $result2 = $conn->query($sql);
-while ($row2 = $result2->fetch_assoc()) { ?>
+$total_dbreed=0;
+while ($row2 = $result2->fetch_assoc()) { 
+  $total_dbreed+= $row2['number'];?>
   <tr>
         <td><?php echo $row2['title'] ?></td>    
         <td><?php echo $row2['number'] ?></td> 
   </tr>   
 <?php } ?>
-  
+  <tr>
+    <td style="font-weight:bold">Total</td>
+    <td style="font-weight:bold"><?php echo$total_dbreed ?> </td>
+  </tr>
 </table>
 
 <table class="report-table">
@@ -506,13 +511,18 @@ while ($row2 = $result2->fetch_assoc()) { ?>
   </tr>
 <?php 
 $result3 = $conn->query($sql2);
-while ($row3 = $result3->fetch_assoc()) { ?>
+$total_cbreed=0;
+while ($row3 = $result3->fetch_assoc()) { 
+  $total_cbreed+= $row3['number'];?>
   <tr>
         <td><?php echo $row3['title'] ?></td>    
         <td><?php echo $row3['number'] ?></td> 
   </tr>   
 <?php } ?>
-  
+  <tr>
+    <td style="font-weight:bold">Total</td>
+    <td style="font-weight:bold"><?php echo$total_cbreed ?> </td>
+  </tr>
 </table>
 </div>
 <div class="report-container" style="display: flex;flex-direction:row">

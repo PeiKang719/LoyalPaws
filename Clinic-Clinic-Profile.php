@@ -318,19 +318,30 @@ else{
           <td></td>
           <td></td>
           <td></td>
-          <td><select name="state" required >
+          <td><select name="state" required onchange="updateAreaOptions(this.value);">
               <option value="" disabled selected>Select state</option>
               <option>Johor</option>
+              <option>Kedah</option>
+              <option>Kelantan</option>
               <option>Melaka</option>
+              <option>Negeri Sembilan</option>
+              <option>Pahang</option>
+              <option>Perak</option>
+              <option>Perlis</option>
+              <option>Penang</option>
+              <option>Sabah</option>
+              <option>Sarawak</option>
+              <option>Terengganu</option>
               <option>Kuala Lumpur</option>
-          </select>
+              <option>Labuan</option>
+              <option>Putrajaya</option>
+              <option>Kelantan</option>          
+  </select>
           </td>
           <td>
-           <select name="area" required >
+           <select name="area" required id="areaSelect">
               <option value="" disabled selected>Select area</option>
-              <option>Johor Bahru</option>
-              <option>Batu Pahat</option>
-              <option>Segamat</option>
+
           </select>
         </td>
         </tr>
@@ -364,7 +375,7 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">volunteer_activism</span></td>
           <td><label>New Discount (%)</label></td>
           <td>:</td>
-          <td><input type="text" oninput="this.className = ''" name="new" required></td>
+          <td><input type="number"  name="new" min="1" max="100" required></td>
         </tr>
       </table>
       <div class="submit-button-container">
@@ -862,6 +873,21 @@ checkboxes.forEach(checkbox => {
     }
   });
 });
+
+function updateAreaOptions(state) {
+        var areaSelect = document.getElementById('areaSelect');
+        areaSelect.innerHTML = '';
+        areaSelect.options.add(new Option('Loading areas...'));
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                areaSelect.innerHTML = xhr.responseText;
+            }
+        }
+        xhr.open('GET', 'Area-Getter.php?state=' + state, true);
+        xhr.send();
+    }
 </script>
 
 </body>

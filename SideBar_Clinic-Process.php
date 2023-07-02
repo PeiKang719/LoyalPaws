@@ -96,18 +96,28 @@ $result = mysqli_query($conn, $sql);
     $sql2 = "DELETE FROM vet WHERE vetID = $id"; 
 
     if (mysqli_query($conn, $sql2)) {
+        $sql3 = "DELETE FROM clinic WHERE vetID = $id"; 
+        if (mysqli_query($conn, $sql3)) {
      mysqli_close($conn);
     } else {
         echo "Error Deleting Vet Information: " . mysqli_error($conn);
 }
-}
+}else {
+        echo "Error Deleting Vet Information: " . mysqli_error($conn);
+    }
 
+}else {
+        echo "Error Deleting Vet Information: " . mysqli_error($conn);
+    }
 }
 
 function delete_clinic($id){
 
      include('Connection.php');
+     $sql = "DELETE FROM vet WHERE clinicID = $id"; 
+$result = mysqli_query($conn, $sql);
 
+  if ($conn->query($sql) === TRUE) {
     $sql2 = "DELETE FROM clinic WHERE clinicID = $id"; 
 
     if (mysqli_query($conn, $sql2)) {
@@ -116,6 +126,6 @@ function delete_clinic($id){
         echo "Error Deleting Vet Information: " . mysqli_error($conn);
 }
 }
-
+}
 ?>
 

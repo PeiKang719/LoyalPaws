@@ -486,21 +486,21 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td style="width: 29%;"><label>Year</label></td>
           <td>:</td>
-          <td><input type="text" oninput="this.className = ''" name="eduyear1[]" disabled ></td>
+          <td><input type="text" oninput="this.className = ''" name="eduyear1[]" disabled required></td>
           <td> to </td>
-          <td><input type="text" oninput="this.className = ''" name="eduyear2[]" disabled></td>
+          <td><input type="text" oninput="this.className = ''" name="eduyear2[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
           <td><label>Academic Level</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" disabled></td>
+          <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
           <td><label>institution</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="eduinstitution[]" disabled></td>
+          <td colspan="3"><input type="text" oninput="this.className = ''" name="eduinstitution[]" disabled required></td>
         </tr>
       </table>
     </div>
@@ -550,21 +550,21 @@ else{
                         <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
                         <td style="width: 29%;"><label>Year</label></td>
                         <td>:</td>
-                        <td><input type="text" oninput="this.className = ''" name="eduyear1[]" disabled ></td>
+                        <td><input type="text" oninput="this.className = ''" name="eduyear1[]" disabled required></td>
                         <td> to </td>
-                        <td><input type="text" oninput="this.className = ''" name="eduyear2[]" disabled></td>
+                        <td><input type="text" oninput="this.className = ''" name="eduyear2[]" disabled required></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
                         <td><label>Academic Level</label></td>
                         <td>:</td>
-                        <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" disabled></td>
+                        <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" disabled required></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
                         <td><label>institution</label></td>
                         <td>:</td>
-                        <td colspan="3"><input type="text" oninput="this.className = ''" name="eduinstitution[]" disabled></td>
+                        <td colspan="3"><input type="text" oninput="this.className = ''" name="eduinstitution[]" disabled required></td>
                       </tr>
                     </table>
                   </div>
@@ -632,21 +632,21 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td style="width: 23%;"><label>Year</label></td>
           <td>:</td>
-          <td><input type="text" oninput="this.className = ''" name="expyear1[]" disabled></td>
+          <td><input type="text" oninput="this.className = ''" name="expyear1[]" disabled required></td>
           <td> to </td>
-          <td><input type="text" oninput="this.className = ''" name="expyear2[]" disabled></td>
+          <td><input type="text" oninput="this.className = ''" name="expyear2[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">business_center</span></td>
           <td><label>Position</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="position[]" disabled></td>
+          <td colspan="3"><input type="text" oninput="this.className = ''" name="position[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
           <td><label>institution</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="expinstitution[]" disabled></td>
+          <td colspan="3"><input type="text" oninput="this.className = ''" name="expinstitution[]" disabled required></td>
         </tr>
       </table>
     </div>
@@ -696,21 +696,21 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td style="width: 23%;"><label>Year</label></td>
           <td>:</td>
-          <td><input type="text" oninput="this.className = ''" name="expyear1[]" disabled></td>
+          <td><input type="text" oninput="this.className = ''" name="expyear1[]" disabled required></td>
           <td> to </td>
-          <td><input type="text" oninput="this.className = ''" name="expyear2[]" disabled></td>
+          <td><input type="text" oninput="this.className = ''" name="expyear2[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">business_center</span></td>
           <td><label>Position</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="position[]" disabled></td>
+          <td colspan="3"><input type="text" oninput="this.className = ''" name="position[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
           <td><label>institution</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="expinstitution[]" disabled></td>
+          <td colspan="3"><input type="text" oninput="this.className = ''" name="expinstitution[]" disabled required></td>
         </tr>
       </table>
     </div>
@@ -1032,11 +1032,7 @@ close3.onclick = function() {
   window.location.reload();
 }
 
-submit3.onclick = function() {
-  setTimeout(function() {
-    document.getElementById("educationForm").reset();
-  }, 500);
-};
+
 
 var modal4 = document.getElementById("experienceModal");
 var btn4 = document.getElementById("edit-button3");
@@ -1061,11 +1057,6 @@ close4.onclick = function() {
   window.location.reload();
 }
 
-submit4.onclick = function() {
-  setTimeout(function() {
-    document.getElementById("experienceForm").reset();
-  }, 500);
-};
 
 var modal5 = document.getElementById("areaModal");
 var btn5 = document.getElementById("edit-button4");

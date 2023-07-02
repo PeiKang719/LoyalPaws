@@ -23,12 +23,12 @@ if ($action == 'add') {
         }
             echo '<script type="text/javascript">';
             echo 'alert("New treatment inserted successfully.");';
-            echo 'window.location.href = "Clinic-Treatment.php";';
+            echo 'window.location.href = "Clinic-Treatment.php?treatment=manage";';
             echo '</script>';
     } else {
         echo '<script type="text/javascript">';
         echo 'alert("Insertion error, Please try again.");';
-        echo 'window.location.href = "Clinic-Treatment.php";';
+        echo 'window.location.href = "Clinic-Treatment.php?treatment=manage";';
         echo '</script>';
     }
     $stmt->close();
@@ -58,14 +58,14 @@ elseif ($action == 'edit') {
         }
             echo '<script type="text/javascript">';
             echo 'alert("Treatment edited successfully.");';
-            echo 'window.location.href = "Clinic-Treatment.php";';
+            echo 'window.location.href = "Clinic-Treatment.php?treatment=manage";';
             echo '</script>';
         }
             
     } else {
         echo '<script type="text/javascript">';
         echo 'alert("Edition error, Please try again.");';
-        echo 'window.location.href = "Clinic-Treatment.php";';
+        echo 'window.location.href = "Clinic-Treatment.php?treatment=manage";';
         echo '</script>';
     }
     $stmt->close();
@@ -82,13 +82,13 @@ elseif ($action == 'delete') {
         if ($conn->query($sql2) === TRUE) {
             echo '<script type="text/javascript">';
             echo 'alert("Treatment deleted successfully.");';
-            echo 'window.location.href = "Clinic-Treatment.php";';
+            echo 'window.location.href = "Clinic-Treatment.php?treatment=manage";';
             echo '</script>';
         }          
      else {
         echo '<script type="text/javascript">';
         echo 'alert("Deletion error, Please try again.");';
-        echo 'window.location.href = "Clinic-Treatment.php";';
+        echo 'window.location.href = "Clinic-Treatment.php?treatment=manage";';
         echo '</script>';
     }
     $stmt->close();

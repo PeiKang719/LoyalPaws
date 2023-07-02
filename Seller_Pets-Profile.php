@@ -78,7 +78,8 @@ $videoData = base64_encode($row['video']);
     $result3 = $conn->query($sql3);
  	$row3 = $result3->fetch_assoc();
 
-    $imageData6 = base64_encode($row['image']);
+
+    $imageData6 = base64_encode($row3['image']);
 	$imageSrc6 = "data:image/jpg;base64," . $imageData6;
 	// Check if the image file exists before displaying it
 	if($row3['image']==NULL){
@@ -94,7 +95,7 @@ $videoData = base64_encode($row['video']);
  	$result3 = $conn->query($sql3);
  	$row3 = $result3->fetch_assoc();
 
-    $imageData6 = base64_encode($row['image']);
+    $imageData6 = base64_encode($row3['image']);
 	$imageSrc6 = "data:image/jpg;base64," . $imageData6;
 	// Check if the image file exists before displaying it
 	if($row3['image']==NULL){

@@ -52,7 +52,7 @@
 <?php
 function showVet_Approved($clinicID,$vetID) {
   include('Connection.php');
-  $sql = "SELECT v.vetID,v.name,v.ic,c.name AS cname,v.email,v.phone,v.area,v.image,v.education,v.experience FROM vet v,clinic c WHERE v.clinicID=c.clinicID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%' AND v.clinicID=$clinicID ORDER BY v.vetID ";
+  $sql = "SELECT v.vetID,v.name,v.ic,c.name AS cname,v.email,v.phone,v.area,v.image,v.education,v.experience FROM vet v,clinic c WHERE v.clinicID=c.clinicID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%' AND v.clinicID=$clinicID ORDER BY v.vetID DESC ";
 
     $result = $conn->query($sql);
 
@@ -165,6 +165,11 @@ echo "<a style='width:12%;' onclick=\"process_vet('reject', '$ic', '" . $row['ve
    </div>";?>
 <?php
   }
+}else{?>
+    <div style="width: 100%;height: 100%; display: flex;justify-content: center;align-items: center;padding-top: 5%;">
+  <img src="media/no-document.jpg" width="300px" height="300px">
+</div>
+<?php
 }
 }
 ?>

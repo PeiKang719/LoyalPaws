@@ -23,27 +23,9 @@ include 'SellerHeader.php';
 <section class="content" id="dog-breed">
 	<div class="container">
 	<button class="button1" id="button1"><i class="material-icons addIcon">add</i>Add New Pets</button>
-<input type="text" class="search" placeholder="Search For Pets" id="pet-search" list="pet-list">
-<datalist id="pet-list">
-  <?php
-  // Connect to the database
-  include('Connection.php');
+<input type="text" class="search" name="search" placeholder="Search by name" oninput="searchPets(this.value)">
 
-  // Fetch breed names from the database
-  $sql = "SELECT distinct(p.breedID),b.name FROM pet p,breed b WHERE p.breedID=b.breedID ORDER BY b.name";
-  $result = mysqli_query($conn, $sql);
 
-  // Loop through the results and populate the datalist options
-  while ($row = mysqli_fetch_assoc($result)) {
-    // Check if breedID exists before adding it as a data attribute
-    $breedID = isset($row['breedID']) ? 'data-breedid="' . $row['breedID'] . '"' : '';
-    echo '<option value="' . $row['name'] . '" ' . $breedID . '>' . $row['name'] . '</option>';
-  }
-
-  // Close the database connection
-  mysqli_close($conn);
-  ?>
-</datalist>
 
 
 </div>
@@ -54,7 +36,7 @@ include 'SellerHeader.php';
 function showPet($pk, $sid) {
     include('Connection.php');
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from pet";
+    $count = "SELECT count(*) as total from pet where $pk=$sid";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -257,7 +239,7 @@ function showPet($pk, $sid) {
       <label>Color:</label><br>
         <input type="text" placeholder="Color..." name="color" required>
       <label>Price (RM):</label><br>
-        <input type="number" id="minimum" name="price" required style="width:100%;">
+        <input type="number" id="minimum" name="price" min="0" required style="width:100%;">
       
       </div>
        <div class="tab">
@@ -272,25 +254,25 @@ function showPet($pk, $sid) {
 	      <table border="0" style="width: 100%;margin-left: 30px;margin-bottom: 5.5px;">
 	      	<tr>
 	        <td style="width: 10%;"><label>Image1:</label></td>
-	        <td style="width: 210px;"><input type="file" id="img2" name="img1" accept="image/*" required ></td>
+	        <td style="width: 210px;"><input type="file" id="img2" name="img1" accept="image/*" ></td>
 	        <td style="width: 10%;"><label>Image2:</label></td>
 	        <td style="width: 210px;"><input type="file" id="img2" name="img2" accept="image/*"></td>
 	        </tr>
 	        <tr>
 	        <td><label>Image3:</label></td>
-	        <td><input type="file" id="img2" name="img3" accept="image/*" required></td>
+	        <td><input type="file" id="img2" name="img3" accept="image/*" ></td>
 	        <td><label>Image4:</label></td>
-	        <td><input type="file" id="img2" name="img4" accept="image/*" required></td>
+	        <td><input type="file" id="img2" name="img4" accept="image/*" ></td>
 	        </tr>
 	    	<tr>
 	        <td><label>Image5:</label></td>
-	        <td><input type="file" id="img2" name="img5" accept="image/*" required></td>
+	        <td><input type="file" id="img2" name="img5" accept="image/*" ></td>
 	        <td><label>Image6:</label></td>
-	        <td><input type="file" id="img2" name="img6" accept="image/*" required></td>
+	        <td><input type="file" id="img2" name="img6" accept="image/*" ></td>
 	        </tr>
 	    </table>
 	        <label>Video:</label>
-	        <input type="file" id="video" name="video" accept="video/*" required>    
+	        <input type="file" id="video" name="video" accept="video/*">    
       </div>
       <div  style="overflow:auto; ">
         <div class="nextprevButton">
@@ -449,7 +431,7 @@ function nextPrev(n) {
 	var x = document.getElementsByClassName("tab");
 	// Exit the function if any field in the current tab is invalid:
 	if (n == 1 ){
-		//if (!validateForm(currentTab)) return false;
+		if (!validateForm(currentTab)) return false;
 		
 		// Hide the current tab:
 		document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -517,74 +499,67 @@ function fixStepIndicator(n) {
 }
 
 function validateForm(x) {
-	if (x==0 ){
-  let a = document.forms["petForm"]["name"].value;
-  let b = document.forms["petForm"]["img"].value;
-  let c = document.forms["petForm"]["description"].value;
-  if (a == "" || b == "" || c == "") {
+  if (x == 0) {
+  let a = document.forms["petForm"]["type"].value;
+  let b = document.forms["petForm"]["breed"].value;
+  let c = document.forms["petForm"]["gender"].value;
+  let d = document.forms["petForm"]["birthday"].value;
+  
+  if (a == "" || b == "" || c == "" || d == "") {
     alert("All fields must be filled out");
     return false;
- 	}
- 	else
- 		{return true;}
-	}
-	else if (x==1){
-    let a = document.forms["petForm"]["country"].value;
-	let b = parseInt(document.forms["petForm"]["life1"].value.trim());
-	let c = parseInt(document.forms["petForm"]["life2"].value.trim());
-	let d = parseInt(document.forms["petForm"]["weight1"].value.trim());
-	let e = parseInt(document.forms["petForm"]["weight2"].value.trim());
-	let f = parseInt(document.forms["petForm"]["length1"].value.trim());
-	let g = parseInt(document.forms["petForm"]["length2"].value.trim());
-	if (a === "" || isNaN(b) || isNaN(c) || isNaN(d) || isNaN(e) || isNaN(f) || isNaN(g)) {
+  }
+  
+  // Validate birthday not after current date
+  let currentDate = new Date().toISOString().split('T')[0];
+  if (d > currentDate) {
+    alert("Invalid birthday. Please select a date before or equal to the current date.");
+    return false;
+  }
+
+  return true;
+}
+
+	else if (x == 1) {
+  let a = document.forms["petForm"]["purpose"].value;
+  let b = document.forms["petForm"]["spayed"].value;
+  let c = document.forms["petForm"]["vaccinated"].value;
+  let d = document.forms["petForm"]["color"].value;
+  let e = document.forms["petForm"]["price"].value;
+  
+  if (a == "" || b == "" || c == "" || d == "" || e == "") {
     alert("All fields must be filled out");
     return false;
- 	}
-  else if ( b >= c ) {
-    alert("Maximum life span must be higher than minimum life span");
+  }
+  
+  // Validate price must be at least 0
+  if (e < 0) {
+    alert("Invalid price. Please enter a value greater than or equal to 0.");
     return false;
- 	}
-  else if ( d >= e ) {
-    alert("Maximum weight must be higher than minimum weight");
-    return false;
- 	}
-  else if ( f >= g ) {
-    alert("Maximum lenth must be higher than minimum length");
-    return false;
- 	}
-  else if ( b <0 || c <0) {
-    alert("Life span cannot be negative");
-    return false;
- 	}
-  else if ( d <0 || e <0) {
-    alert("Weight cannot be negative");
-    return false;
- 	}
-  else if ( f <0 || g <0) {
-    alert("Length cannot be negative");
-    return false;
- 	}
- 	else
- 		{return true;}
-	}
-	else if (x==2){
-  let a = document.forms["petForm"]["one"].value;
-  let b = document.forms["petForm"]["two"].value;
-  let c = document.forms["petForm"]["three"].value;
-  let d = document.forms["petForm"]["four"].value;
-  let e = document.forms["petForm"]["five"].value;
-  let f = document.forms["petForm"]["six"].value;
-  let g = document.forms["petForm"]["seven"].value;
-  let h = document.forms["petForm"]["eight"].value;
-  let i = document.forms["petForm"]["nine"].value;
-  let j = document.forms["petForm"]["ten"].value;
-  if (a == "" || b == "" || c == "" || d == "" || e == ""||f == ""||g == ""||h == ""||i == ""||j == "") {
+  }
+
+  return true;
+}
+
+	else if (x==2 ){
+  let a = document.forms["petForm"]["description"].value;
+
+  if (a == "" ) {
     alert("All fields must be filled out");
     return false;
- 	}
- 	else
- 		{return true;}
-	}
+  }
+  else
+    {return true;}
+  }
+  else if (x==3 ){
+  let a = document.forms["petForm"]["img0"].value;
+  if (a == "") {
+    alert("Must upload atleast one pet image");
+    return false;
+  }
+  else
+    {return true;}
+  }
 }
 
 function deletePet(event) {
@@ -640,6 +615,32 @@ function updateBreedOptions(type) {
 
   // Initial call to set the initial state based on the checkbox's initial checked state
   handleCheckboxChange();
+
+
+var searchTimeout;
+
+function searchPets(searchQuery) {
+  clearTimeout(searchTimeout); // Clear previous timeout
+  
+  // Set a new timeout to wait for user to finish typing
+  searchTimeout = setTimeout(function() {
+    // Get all the pet cards
+    var petCards = document.getElementsByClassName('card');
+  
+    // Loop through each pet card and check if it matches the search query
+    for (var i = 0; i < petCards.length; i++) {
+      var petName = petCards[i].querySelector('.petName b').textContent;
+      
+      // Hide or show the pet card based on the search query match
+      if (petName.toLowerCase().includes(searchQuery.toLowerCase())) {
+        petCards[i].style.display = 'block'; // Show the card
+      } else {
+        petCards[i].style.display = 'none'; // Hide the card
+      }
+    }
+  }, 300); // Adjust the timeout delay (in milliseconds) to fit your needs
+}
+
 </script>
 </body>
 

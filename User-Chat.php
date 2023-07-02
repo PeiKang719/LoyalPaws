@@ -18,7 +18,7 @@
     <div class="vet-message-menu">
       <?php
       include 'Connection.php';
-      $sql = "SELECT DISTINCT v.name, v.vetID, s.sellerID, CONCAT(s.firstName, ' ', s.lastName) AS sname, ps.shopID, ps.shopname, v.image AS vimage, s.image AS simage, ps.shop_image FROM message m LEFT JOIN vet v ON m.vetID = v.vetID LEFT JOIN seller s ON m.sellerID = s.sellerID LEFT JOIN pet_shop ps ON m.shopID = ps.shopID WHERE m.adopterID = $adopterID ORDER BY m.messageID DESC;";
+      $sql = "SELECT DISTINCT v.name, v.vetID, s.sellerID, CONCAT(s.firstName, ' ', s.lastName) AS sname, ps.shopID, ps.shopname, v.image AS vimage, s.image AS simage, ps.shop_image FROM message m LEFT JOIN vet v ON m.vetID = v.vetID LEFT JOIN seller s ON m.sellerID = s.sellerID LEFT JOIN pet_shop ps ON m.shopID = ps.shopID WHERE m.adopterID = $adopterID AND (v.name IS NOT NULL OR CONCAT(s.firstName, ' ', s.lastName) IS NOT NULL OR ps.shopname IS NOT NULL) ORDER BY m.messageID DESC;";
       $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row

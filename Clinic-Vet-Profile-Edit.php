@@ -25,9 +25,9 @@ if (isset($_GET['c'])) {
 function password(){
 include('Connection.php');
 $id=$_POST['id'];
-$old=$_POST['old'];
-$new1=$_POST['new1'];
-$new2=$_POST['new2'];
+$old=MD5($_POST['old']);
+$new1=MD5($_POST['new1']);
+$new2=MD5($_POST['new2']);
 
 if($new1==$new2){
     $sql = "SELECT password from vet WHERE vetID='$id'";

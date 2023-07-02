@@ -71,7 +71,7 @@
   <a href="Clinic-Appointment.php" class="sidebar-item" id="dashboard-link"><span class="material-symbols-outlined" id="sidebar-icon">content_paste</span>&nbsp;Appointment</a>
   <a href="Clinic-Record-List.php" class="sidebar-item" id="billing-link"><span class="material-symbols-outlined" id="sidebar-icon">folder_open</span>&nbsp;Record</a>
   <a href="Clinic-Treatment.php" class="sidebar-item" id="treatment-link"><span class="material-symbols-outlined" id="sidebar-icon">vaccines</span>&nbsp;Treatment</a>
-  <a href="Clinic-Report.php?&interval=total" class="sidebar-item" id="report-link"><span class="material-symbols-outlined" id="sidebar-icon">bar_chart</span>&nbsp;Report</a>
+  <a href="Clinic-Report.php" class="sidebar-item" id="report-link"><span class="material-symbols-outlined" id="sidebar-icon">bar_chart</span>&nbsp;Report</a>
   <a href="Clinic-Veterinarian.php" class="sidebar-item" id="veterinarian-link"><span class="material-symbols-outlined" id="sidebar-icon">group</span>&nbsp;Veterinarian</a>
   <a href="Clinic-Chat.php" class="sidebar-item" id="veterinarian-link"><span class="material-symbols-outlined" id="sidebar-icon">chat</span>&nbsp;Message</a>
   <a href="Clinic-Clinic-Profile.php" class="sidebar-item" id="clinic-profile-link"><span class="material-symbols-outlined" id="sidebar-icon">local_hospital</span>&nbsp;Clinic Profile</a>
