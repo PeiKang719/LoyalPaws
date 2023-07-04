@@ -174,7 +174,9 @@ else{
     <?php if(isset($_SESSION['vetID'])){
            if($id!==$_SESSION['vetID']){ ?>
       <br>
-     <?php } else{ ?>
+     <?php } elseif(isset($adopterID)){ ?>
+      <br>
+    <?php }else{ ?>
     <tr>
       <td id="td2"><span class="material-symbols-outlined">account_circle</span></td>
       <td id="td1">Username</td>
@@ -460,9 +462,9 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td style="width: 29%;"><label>Year</label></td>
           <td>:</td>
-          <td><input type="text" oninput="this.className = ''" name="eduyear1[]" required></td>
+          <td><input type="number" oninput="this.className = ''" name="eduyear1[]" required></td>
           <td> to </td>
-          <td><input type="text" oninput="this.className = ''" name="eduyear2[]" required></td>
+          <td><input type="number" oninput="this.className = ''" name="eduyear2[]" required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
@@ -486,9 +488,9 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td style="width: 29%;"><label>Year</label></td>
           <td>:</td>
-          <td><input type="text" oninput="this.className = ''" name="eduyear1[]" disabled required></td>
+          <td><input type="number" oninput="this.className = ''" name="eduyear1[]" disabled required></td>
           <td> to </td>
-          <td><input type="text" oninput="this.className = ''" name="eduyear2[]" disabled required></td>
+          <td><input type="number" oninput="this.className = ''" name="eduyear2[]" disabled required></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
@@ -520,21 +522,21 @@ else{
                         <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
                         <td style="width: 29%;"><label>Year</label></td>
                         <td>:</td>
-                        <td><input type="text" oninput="this.className = ''" name="eduyear1[]" value="<?php echo $year12[0]?>"></td>
+                        <td><input type="number" oninput="this.className = ''" name="eduyear1[]" value="<?php echo $year12[0]?>" required></td>
                         <td> to </td>
-                        <td><input type="text" oninput="this.className = ''" name="eduyear2[]"  value="<?php echo$year12[1]?>"></td>
+                        <td><input type="number" oninput="this.className = ''" name="eduyear2[]"  value="<?php echo$year12[1]?>" required></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
                         <td><label>Academic Level</label></td>
                         <td>:</td>
-                        <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]"  value="<?php echo$details[1]?>"></td>
+                        <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]"  value="<?php echo$details[1]?>" required></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
                         <td><label>institution</label></td>
                         <td>:</td>
-                        <td colspan="3"><input type="text" oninput="this.className = ''" name="eduinstitution[]"  value="<?php echo$details[2]?>"></td>
+                        <td colspan="3"><input type="text" oninput="this.className = ''" name="eduinstitution[]"  value="<?php echo$details[2]?>" required></td>
                       </tr>
                     </table>
                   </div>
@@ -550,9 +552,9 @@ else{
                         <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
                         <td style="width: 29%;"><label>Year</label></td>
                         <td>:</td>
-                        <td><input type="text" oninput="this.className = ''" name="eduyear1[]" disabled required></td>
+                        <td><input type="number" oninput="this.className = ''" name="eduyear1[]" disabled required></td>
                         <td> to </td>
-                        <td><input type="text" oninput="this.className = ''" name="eduyear2[]" disabled required></td>
+                        <td><input type="number" oninput="this.className = ''" name="eduyear2[]" disabled required></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>

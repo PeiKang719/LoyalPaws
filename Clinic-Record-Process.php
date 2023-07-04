@@ -9,6 +9,7 @@ if($_GET['action']=='insert'){
     $comment = $_POST['comment'];
     $quantity = $_POST['quantity'];
     $treatmentID = $_POST['treatmentID'];
+    $discount_percent = $_POST['discount_percent'];
     $extra = NULL;
     if(isset($_POST['name2'])){
         $name2 = $_POST['name2'];
@@ -38,8 +39,8 @@ if($_GET['action']=='insert'){
     $record_date = date('Y-m-d H:i:s');
 
 
-   $stmt = $conn->prepare("INSERT INTO record (appointmentID, pet_name, comment, date, extra) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $appointmentID, $name, $comment, $record_date, $extra);
+   $stmt = $conn->prepare("INSERT INTO record (appointmentID, pet_name, comment, date, extra,discount) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $appointmentID, $name, $comment, $record_date, $extra, $discount_percent);
     if ($stmt->execute()) {
         $sql5 = "UPDATE clinic_appointment SET status='Completed' WHERE appointmentID=$appointmentID ";
         if ( $conn->query($sql5) === TRUE) {
@@ -60,12 +61,12 @@ if($_GET['action']=='insert'){
         }
             echo '<script type="text/javascript">';
             echo 'alert("New record inserted successfully.");';
-            echo 'window.location.href = "Clinic-Appointment.php";';
+            echo 'window.location.href = "Clinic-Record-List.php";';
             echo '</script>';
     }}} else {
         echo '<script type="text/javascript">';
         echo 'alert("Insertion error, Please try again.");';
-        echo 'window.location.href = "Clinic-Record.php";';
+        echo 'window.location.href = "Clinic-Record-List.php";';
         echo '</script>';
     }
     $stmt->close();

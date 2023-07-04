@@ -77,7 +77,7 @@
   <a href="Clinic-Clinic-Profile.php" class="sidebar-item" id="clinic-profile-link"><span class="material-symbols-outlined" id="sidebar-icon">local_hospital</span>&nbsp;Clinic Profile</a>
   <a href="Clinic-Vet-Profile.php?id=<?php echo $vetID ?>" class="sidebar-item" id="vet-profile-link"><span class="material-symbols-outlined" id="sidebar-icon">account_circle</span>&nbsp;My Profile</a>
   <br><br><br><br><br>
-<?php }else{?>
+<?php }elseif($role=='Vet'){?>
   <a href="Clinic-Vet-Dashboard.php" class="sidebar-item" id="dashboard-link"><span class="material-symbols-outlined" id="sidebar-icon">grid_view</span>&nbsp;Dashboard</a>
   <a href="Clinic-Appointment.php" class="sidebar-item" id="dashboard-link"><span class="material-symbols-outlined" id="sidebar-icon">content_paste</span>&nbsp;Appointment</a>
   <a href="Clinic-Record-List.php" class="sidebar-item" id="billing-link"><span class="material-symbols-outlined" id="sidebar-icon">folder_open</span>&nbsp;Record</a>

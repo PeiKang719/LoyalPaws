@@ -53,7 +53,7 @@
   <th  onclick="sortTable2(2);">Description</th>
   <th style="width:140px"  onclick="sortTable(3,'number');">Unit Price</th>
   <th style="width:40px" onclick="sortTable2(4);">Vets</th>
-  <th colspan="1" style="width: 110px;" > </th>
+  <th colspan="1" style="width: 60px;" > </th>
 <?php 
 include 'Connection.php';
 $i=1;
@@ -74,7 +74,7 @@ $sql = "SELECT * FROM treatment WHERE clinicID= $clinicID  ORDER BY name ";
     <td><?php echo $description?></td>
     <td>RM<?php echo $unit_price?></td>
     <td><button class="manage-button" onclick="treatment_vet(<?php echo $treatmentID ?>)"><span class="material-symbols-outlined">groups</span></button></td>
-    <td><button class="manage-button" onclick="edit_treatment(<?php echo$treatmentID?>)"><span class="material-symbols-outlined">edit</span></button>  <a href="Clinic-Treatment-Process.php?action=delete&treatmentID=<?php echo $treatmentID ?>" onclick="return confirmDelete();"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a></td>
+    <td><button class="manage-button" onclick="edit_treatment(<?php echo$treatmentID?>)"><span class="material-symbols-outlined">edit</span></button> <!--<a href="Clinic-Treatment-Process.php?action=delete&treatmentID=<?php echo $treatmentID ?>" onclick="return confirmDelete();"><button class="manage-button" style="background-color:#e62e00"><span class="material-symbols-outlined">delete</span></button></a>--></td>
     <td style="width: 0px;padding: 0;border:0" >
     <div id="treatment_vet_Modal<?php echo$treatmentID ?>" class="modal">
   <!-- Modal content -->
@@ -145,28 +145,12 @@ $sql = "SELECT * FROM treatment WHERE clinicID= $clinicID  ORDER BY name ";
       </div>
       <iframe name="hiddenFrame" class="hide" style="display: none;"></iframe>
     <form class="passwordForm" id="edittreatmentForm<?php echo$treatmentID?>" action="Clinic-Treatment-Process.php?action=edit" method="post" target="hiddenFrame" enctype="multipart/form-data">
+      <input type="hidden" name="name" value="<?php echo $row["name"] ?>">
+      <input type="hidden" name="description" value="<?php echo $row["description"] ?>">
+      <input type="hidden" name="price" value="<?php echo $row["unit_price"] ?>">
       <input type="hidden" name="clinicID" value="<?php echo $clinicID ?>">
       <input type="hidden" name="treatmentID" value="<?php echo $treatmentID ?>">
-      <div class="edittab<?php echo $treatmentID ?>" style="display:block">
-        <table border="0" style="font-size:27px" id="edit-treatment-table">
-        <tr>
-          <td style="width: 36%;"><label>Treatment Name</label></td>
-          <td>:</td>
-          <td style="width:55%"><input type="text" name="name" required value="<?php echo$tname ?>"></td>
-        </tr>
-        <tr>
-          <td style="width: 36%;"><label>Description</label></td>
-          <td>:</td>
-          <td style="width:55%"><textarea name="description" rows="4" cols="50"><?php echo str_replace("'", "&#39;", $description); ?></textarea></td>
-        </tr>
-        <tr>
-          <td style="width: 36%;"><label>Unit Price (RM)</label></td>
-          <td>:</td>
-          <td style="width:55%"><input type="number" name="price" required value="<?php echo$price ?>"></td>
-        </tr>
-      </table>
-    </div>
-    <div class="edittab<?php echo $treatmentID ?>" style="display:none">
+    <div class="edittab<?php echo $treatmentID ?>" >
         <p style="font-size: 25px;">Provided by:</p>
         <div class="treatment-assign-vet-container">
             <?php
@@ -227,8 +211,8 @@ $sql = "SELECT * FROM treatment WHERE clinicID= $clinicID  ORDER BY name ";
         </div>
     </div>
       <div class="submit-button-container" style="margin-top:3%">
-      <button class="submit-button" id="submitbtn<?php echo$treatmentID?>" type="button" onclick="nextPrev2(1,<?php echo$treatmentID ?>)">Next</button>
-      <button class="submit-button" id="closebtn<?php echo$treatmentID?>" type="button" style="background-color: white;color: #4d4d4d;" onclick="nextPrev2(-1,<?php echo$treatmentID ?>)">Back</button>
+      <button class="submit-button" id="submitbtn<?php echo$treatmentID?>" type="submit" >Submit</button>
+      <button class="submit-button" id="closebtn<?php echo$treatmentID?>" type="button" style="background-color: white;color: #4d4d4d;">Close</button>
     </div>
     </form>
   </div>
@@ -301,7 +285,7 @@ $sql = "SELECT * FROM treatment t,vet_treatment vt WHERE vt.treatmentID=t.treatm
       <h2>New Treatment</h2>
       <span class="close">&times;</span>
       </div>
-  
+    <iframe name="hiddenFrame" class="hide" style="display: none;"></iframe>
     <form class="passwordForm" id="treatmentForm" action="Clinic-Treatment-Process.php?action=add" method="post" target="hiddenFrame" enctype="multipart/form-data">
       <input type="hidden" name="clinicID" value="<?php echo $clinicID ?>">
       <div class="tab" style="display:block">
@@ -538,16 +522,18 @@ var submit2 = document.getElementById("submitbtn"+treatmentID);
 var span2 = modal2.getElementsByClassName("close")[0];
 
   modal2.style.display = "block"; 
-  showTab2(0,treatmentID);
 
 // When the user clicks on <span> (x), close the modal
 span2.onclick = function() {
   modal2.style.display = "none";
-  document.getElementById("edittreatmentForm"+treatmentID).reset();
+  window.location.reload();
+}
+close2.onclick = function() {
+  modal2.style.display = "none";
   window.location.reload();
 }
 }
-
+/*
 var currentTab2=0;
 function showTab2(n,treatmentID) {
   // This function will display the specified tab of the form...
@@ -623,7 +609,7 @@ function validateForm2(x,treatmentID) {
 function confirmDelete() {
   return confirm("Are you sure you want to delete this treatment?"); // Display confirmation dialog
 }
-
+*/
 
 function SearchFunction() {
   var input, filter, table, tr, td2, i, txtValue , txtValue2;

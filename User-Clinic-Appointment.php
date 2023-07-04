@@ -76,11 +76,7 @@ else{
             <input type="hidden" id="cid" name="cid" value="<?php echo $clinicID ?>">
             <input type="hidden" id="clinic_name" name="clinic_name" value="<?php echo $clinic_name ?>">
             <div class="time-slot" id="time-slot" >
-                 <?php if(isset($_GET['purpose'])){ ?>
-                    <p style="font-size:30px;color: red;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align:-7px;color: red;">today</span>Omit selecting a date if you dont't want to change the appointment date.</p> 
-                 <?php }else{ ?>
                <p style="font-size:30px;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align:-7px">today</span> Please select a date.</p> 
-           <?php } ?>
             </div>
         </div>
 
@@ -244,7 +240,7 @@ else{
       
       <input type="hidden" name="cid" value="<?php echo $clinicID ?>">
       <input type="hidden" name="aid" value="<?php echo $adopterID ?>">
-      <div class="confirm-booking-container" id="confirm-booking-container" style="background-color: #eff3f5 !important;">
+      <div class="confirm-booking-container" id="confirm-booking-container" style="background-color: #eef3f5 !important;">
       <!--------------User-Adoption-Booking-Modal.php------------------>
   </div>
 

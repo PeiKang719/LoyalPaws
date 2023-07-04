@@ -101,16 +101,11 @@ foreach ($breeds as $breed => $characteristics) {
                     $score += 5;
                 } else if (!in_array($characteristics[$trait], $response)) {
                     $average = array_sum($response)/count($response);
-                    $score -=  abs($average - $characteristics[$trait]);
+                    $score += 5 - abs($average - $characteristics[$trait]);
                 } 
             
         } else { // If the user's response is a single value
-                if ($response == $characteristics[$trait]){
-                    $score +=5;
-                }
-                else{
-                $score -=  abs($response - $characteristics[$trait]); // Calculate the score based on the difference between the response and the characteristic 
-                }  
+                $score += 5 - abs($response - $characteristics[$trait]); // Calculate the score based on the difference between the response and the characteristic   
         }
     }
     $breeds[$breed]["score"] = $score; // Store the compatibility score for the breed

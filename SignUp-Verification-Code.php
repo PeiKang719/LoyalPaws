@@ -136,17 +136,7 @@ input:focus {
     $contact = $_POST['contact'];
     $unique_name2 = $_POST['unique_name2'];
   }
-  elseif($_GET['role']=='vet'){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $ic = $_POST['ic'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $focus_area = $_POST['focus_area'];
-    $contact = $_POST['contact'];
-    $clinic = $_POST['clinic'];
-    $unique_name2 = $_POST['unique_name2'];
-  }
+  
 
 $code=(rand(1000,9999));
  include 'SignUp-Email.php'; 
@@ -170,7 +160,7 @@ $expired=date("h:i:sa", $duration)?>
             <input type="hidden"  name="area" value=<?php echo$focus_area ?>>
             <input type="hidden"  name="clinic" value=<?php echo$clinic ?>>
             <input type="hidden"  name="contact" value=<?php echo$contact ?>>
-            <input type="hidden"  name="apc" value="'<?php echo $unique_name2; ?>'">
+            <input type="hidden"  name="apc" value="<?php echo $unique_name2; ?>">
           <?php }elseif($_GET['role']=='pet-shop'){?>
             <input type="hidden" name="name" value="<?php echo $name ?>">
             <input type="hidden" name="password" value="<?php echo $password ?>">
@@ -234,17 +224,7 @@ $expired=date("h:i:sa", $duration)?>
             <input type="hidden" name="focus_area" value="<?php echo $focus_area ?>">
             <input type="hidden" name="contact" value="<?php echo $contact ?>">
             <input type="hidden" name="unique_name2" value="<?php echo $unique_name2 ?>">
-          <?php } elseif($_GET['role']=='vet'){ ?>
-            <input type="hidden" name="username" value="<?php echo $username ?>">
-            <input type="hidden" name="password" value="<?php echo $password ?>">
-            <input type="hidden" name="ic" value="<?php echo $ic ?>">
-            <input type="hidden" name="name" value="<?php echo $name ?>">
-            <input type="hidden" name="email" value="<?php echo $email ?>">
-            <input type="hidden" name="focus_area" value="<?php echo $focus_area ?>">
-            <input type="hidden" name="contact" value="<?php echo $contact ?>">
-            <input type="hidden" name="unique_name2" value="<?php echo $unique_name2 ?>">
-            <input type="hidden" name="clinic" value="<?php echo $clinic ?>">
-          <?php } ;?>
+          <?php };?>
             <label id="professional-focus" style="left:-5%;position:relative;">Enter the code sent to <?php echo $email ?></label>
             <br>
             <div class="digits">

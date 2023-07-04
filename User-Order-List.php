@@ -106,7 +106,7 @@
   </a>
 
   <div id="PaymentModal<?php echo$j ?>" class="modal">
-  <div class="modal-content" style="height: auto;padding-bottom: 40px;margin-bottom: 70px;">
+  <div class="modal-content" style="height: auto;padding-bottom: 40px;margin-bottom: 30px;margin-top: -20px;">
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2>Payment</h2>

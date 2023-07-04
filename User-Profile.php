@@ -295,19 +295,29 @@ function closeChatModal() {
           <td><span class="material-symbols-outlined" style="font-size:30px">Distance</span></td>
           <td><label>New Location</label></td>
           <td>:</td>
-          <td><select name="state" required >
+          <td><select name="state" required  onchange="updateAreaOptions(this.value);">
               <option value="" disabled selected>Select state</option>
               <option>Johor</option>
+              <option>Kedah</option>
+              <option>Kelantan</option>
               <option>Melaka</option>
+              <option>Negeri Sembilan</option>
+              <option>Pahang</option>
+              <option>Perak</option>
+              <option>Perlis</option>
+              <option>Penang</option>
+              <option>Sabah</option>
+              <option>Sarawak</option>
+              <option>Terengganu</option>
               <option>Kuala Lumpur</option>
+              <option>Labuan</option>
+              <option>Putrajaya</option>
+              <option>Kelantan</option>
           </select>
           </td>
           <td>
-           <select name="area" required >
+           <select name="area" required id="areaSelect">
               <option value="" disabled selected>Select area</option>
-              <option>Johor Bahru</option>
-              <option>Batu Pahat</option>
-              <option>Segamat</option>
           </select>
         </td>
         </tr>
@@ -332,13 +342,13 @@ function closeChatModal() {
       <input type="hidden" name="id" value="<?php echo $adopterID ?>">
       <table border="0">
         <tr>
-          <td ><span class="material-symbols-outlined" style="font-size:30px">call</span></td>
+          <td ><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td style="width: 36%;"><label>Date of Birth</label></td>
           <td>:</td>
           <td style="width:55%"><p><?php echo$dob ?></p></td>
         </tr>
         <tr>
-          <td><span class="material-symbols-outlined" style="font-size:30px">call</span></td>
+          <td><span class="material-symbols-outlined" style="font-size:30px">calendar_month</span></td>
           <td><label>New Date of Birth</label></td>
           <td>:</td>
           <td><input type="date" oninput="this.className = ''" name="dob" required></td>
@@ -539,6 +549,21 @@ elseif (isset($vid)) { ?>
 
  elseif (!isset($sid) && !isset($vid)) { ?>
 <script>
+  function updateAreaOptions(state) {
+        var areaSelect = document.getElementById('areaSelect');
+        areaSelect.innerHTML = '';
+        areaSelect.options.add(new Option('Loading areas...'));
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                areaSelect.innerHTML = xhr.responseText;
+            }
+        }
+        xhr.open('GET', 'Area-Getter.php?state=' + state, true);
+        xhr.send();
+    }
+    
 var modal6 = document.getElementById("picModal");
 var btn6 = document.getElementById("upload-button");
 var close6 = document.getElementById("closebtn6");

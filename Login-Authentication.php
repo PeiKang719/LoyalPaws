@@ -56,11 +56,20 @@ elseif($result4->num_rows == 1) {
   session_start();
   $_SESSION['vetID'] = $row4['vetID'];
    $_SESSION['clinicID'] = $row4['clinicID'];
-
+   $sql9="SELECT vetID FROM clinic WHERE vetID=". $row4['vetID'];
+   $result9 = $conn->query($sql9);
+   $row9 = $result9->fetch_assoc();
+   if($result9->num_rows == 1){
   echo '<script type="text/javascript">';
   echo 'alert("Login successful!");';
   echo 'window.location.href = "Clinic-Dashboard.php";';
   echo '</script>';
+  }else{
+    echo '<script type="text/javascript">';
+    echo 'alert("Login successful!");';
+    echo 'window.location.href = "Clinic-Vet-Dashboard.php";';
+    echo '</script>';
+  }
 }
 elseif($result5->num_rows == 1) {
   session_start();

@@ -84,7 +84,7 @@ if($row['cover']!=''){
 				<span class="material-symbols-outlined" style="font-size:40px;margin-right: 3%;">distance</span><p class="seller-location"> <?php echo $row["state"] ?><span style="font-size: 20px;color:#4d4d4d;vertical-align: 5px;margin-left: 3%;margin-right: 3%">&#9679;</span><?php echo $row["area"] ?> </p>
 			</div>
 		</div>
-		<?php if(isset($adopterID)){ ?>
+		<?php if(!isset($_GET['admin'])){ ?>
 		<div class="seller-chat-button-container">
 			<button class="seller-chat-button" onclick="openChatModal()"><span class="material-symbols-outlined" style="vertical-align:-3px;color: white;" >chat</span>Chat</button>
 		</div>
@@ -438,7 +438,7 @@ if($row['cover']!=''){
 				<span class="material-symbols-outlined" style="font-size:40px;margin-right: 3%;">distance</span><p class="seller-location"> <?php echo $row["state"] ?><span style="font-size: 20px;color:#4d4d4d;vertical-align: 5px;margin-left: 3%;margin-right: 3%">&#9679;</span><?php echo $row["area"] ?> </p>
 			</div>
 		</div>
-		<?php if(isset($adopterID)){ ?>
+		<?php if(!isset($_GET['admin'])){ ?>
 		<div class="seller-chat-button-container">
 			<button class="seller-chat-button" onclick="openChatModal()"><span class="material-symbols-outlined" style="vertical-align:-3px;color:white" >chat</span>Chat</button>
 		</div>
@@ -906,7 +906,7 @@ $(document).ready(function() {
 });
 </script>
 
-<?php if(isset($adopterID)){ ?>
+<?php if(!isset($_GET['admin'])){ ?>
 <script>
 function openChatModal() {
     var modal = document.getElementById("chatModal");

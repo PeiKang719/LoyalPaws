@@ -165,7 +165,7 @@ function showClinic_Approved() {
     <?php }} 
 else{?>
   <tr>
-    <td colspan="6">No clinic...</td>
+    <td colspan="8">No clinic...</td>
   </tr>
 </table>
 <?php } ?>
@@ -314,7 +314,7 @@ $sql = "SELECT v.vetID,v.name,v.image,v.phone,v.email,c.name AS cname,v.ic,v.apc
 
 }else{?>
   <tr>
-    <td colspan="6">No vet...</td>
+    <td colspan="7">No vet...</td>
   </tr>
 </table>
 <?php } ?>

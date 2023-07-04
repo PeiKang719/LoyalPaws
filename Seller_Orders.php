@@ -192,8 +192,6 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,m.status,
 					<span class="material-symbols-outlined fail">flaky</span>
 					<span class="material-symbols-outlined fail">payments</span>
 					<span class="material-symbols-outlined fail" id="last-process" >cancel</span>
-				</div>
-			</div>
 				<?php } ?>
 			</div>
 		<?php
@@ -270,7 +268,6 @@ elseif($z==3 ){?>
 	</div>
 </div>
 </div>
-
 <div id="RefundModal<?php echo$i ?>" class="modal">
   <div class="modal-content" style="height: auto;padding-bottom: 40px;margin-top:130px;width: 55%;">
     <div class="modal-header">
@@ -904,7 +901,7 @@ span8.onclick = function() {
     for (var i = 0; i < columns.length; i++) {
       var column = columns[i];
       if (checkbox.checked) {
-        column.classList.remove('collapsed');
+        column.classList.add('collapsed');
       } else {
         column.classList.add('collapsed');
       }

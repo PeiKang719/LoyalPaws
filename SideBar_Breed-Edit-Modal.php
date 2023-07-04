@@ -219,8 +219,8 @@ if (file_exists('breed_images/' . $breed_image)) {
 <br><br>
 <p class="head" style="margin-left:42px">About the breed:</p>
 <br>
-<section class="s3">
-	<textarea maxlength="800" placeholder="Write something to describe the breed...(max 800 characters)" name="description"  required style="height:106px"><?php echo"$description" ?></textarea>
+<section class="s3" style="height:350px">
+	<textarea maxlength="4000" placeholder="Write something to describe the breed...(max 4000 characters)" name="description"  required style="height:320px"><?php echo"$description" ?></textarea>
 </section>
 <br><br><br>
 <section class="s2" >

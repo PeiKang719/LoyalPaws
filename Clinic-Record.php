@@ -80,7 +80,7 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
     <td style="font-size: 25px;"><?php echo $tname?></td>
     <td style="font-size: 25px;"><?php echo $description?></td>
     <td style="text-align:center;font-size: 25px;">RM <?php echo $unit_price?></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity" value="1" required></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity" value="1" min="1" required></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
     <td style="width:0%;border:0;padding:0"><input type="hidden" name="treatmentID" value="<?php echo $treatmentID ?>"></td>
   </tr>      
@@ -88,22 +88,22 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
 <tr  style="display:none">
     <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
     <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
-    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" disabled></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" value="1" disabled></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" min="1" required disabled></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
   </tr> 
   <tr style="display:none">
     <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
     <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
-    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" disabled></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" value="1" disabled></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required min="1" disabled></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
   </tr>
   <tr style="display:none">
     <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
     <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
-    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" disabled></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1"  value="1"disabled></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1"  required min="1" disabled></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
   </tr>
   <?php
@@ -120,12 +120,12 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
     </div>
  <br><br>
 <hr>
-<form id="recordForm" action="Clinic-Record-Process.php?action=insert" method="post" target="hiddenFrame" enctype="multipart/form-data">
+<form id="recordForm" action="Clinic-Record-Process.php?action=insert" method="post" enctype="multipart/form-data">
   <input type="hidden" name="appointmentID" value="<?php echo $appointmentID ?>">
   <?php if($petID != NULL){ ?>
   <input type="hidden" name="discount_percent" id="discount_percent" value="<?php echo $discount_percent ?>">
   <?php }else{ ?>
-    <input type="hidden" name="discount_percent" id="discount_percent" value="100">
+    <input type="hidden" name="discount_percent" id="discount_percent" value="NULL">
   <?php } ?>
 <div class="patient-recod-container">
   <p class="recordTable-header">Treatment Record</p>
@@ -137,7 +137,7 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
     <th style="width:580px">Treatment</th>
     <th>Unit Price</th>
     <th>Quantity</th>
-    <th style="width:147px">Total</th>
+    <th style="width:170px">Total</th>
 
   </table>
 
@@ -145,19 +145,19 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
   <?php if($petID != NULL){ ?>
     <tr>
 <td colspan="3" class="total_row" style="text-align:right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $discount_percent ?>%): </td>
-<td id="minus" class="total_row" style="width:137.5px;text-align:center"></td>
+<td id="minus" class="total_row" style="width:160px;text-align:center"></td>
 </tr>
   <?php } ?>
   <tr>
 <td colspan="3" class="total_row" style="text-align:right;background-color: #e6f5ff;">Sub-Total: </td>
-<td id="total" class="total_row" style="width:137.5px;text-align:center"></td>
+<td id="total" class="total_row" style="width:160px;text-align:center"></td>
 </tr>
 </table>
 
 <p style="font-size:20px;margin-top: 30px;">Comment:</p>
-<textarea class="record-description" name="comment" rows="5"></textarea>
+<textarea class="record-description" name="comment" rows="5" required></textarea>
 <br><br><br><br>
-<button class="submit-record-button" type="submit" onclick="confirmSubmit()">Submit</button>
+<button class="submit-record-button" type="submit">Submit</button>
 
 </div>
 </form>
@@ -188,14 +188,24 @@ if (treatmentID) {
   var quantity = parseInt(row.find('input[name="quantity2[]"]').val());
   var total = unitPrice * quantity;
 }
-
+  
+  if (!treatment || !description) {
+      alert('Please fill in the treatment and description fields.');
+      return;
+    }
+    
     console.log(treatmentID);
     // Check if the row exists in the record table
-    var isRowExist = $('#recordTable').find('td:contains(' + treatment + ')').length > 0;
+    var isRowExist = $('#recordTable').find('td').filter(function() {
+  return $(this).text().trim() === treatment;
+}).length > 0;
+
 
     if (isRowExist) {
       // Row exists in record table, remove the row
-      var recordRow = $('#recordTable').find('td:contains(' + treatment + ')').closest('tr');
+      var recordRow =$('#recordTable').find('td').filter(function() {
+  return $(this).text().trim() === treatment;
+}).closest('tr');
       recordRow.next('tr').remove(); // Remove the next row
       recordRow.remove();
       updateSubtotal();
@@ -283,19 +293,8 @@ function toggleAddRemoveButton(row) {
 
 }
 
-function confirmSubmit() {
-  // Display a confirmation dialog
-  var result = confirm("Are you sure you want to submit the record?");
-  
-  // If user confirms, submit the form
-  if (result) {
-    // Get the form element
-    var form = document.getElementById("recordForm");
-    
-    // Submit the form
-    form.submit();
-  }
-}
+
+
 
 
 function SearchFunction() {

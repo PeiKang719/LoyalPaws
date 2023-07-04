@@ -81,7 +81,7 @@ $sql = "SELECT * FROM adopter  ORDER BY adopterID ";
 
 }else{?>
   <tr>
-    <td colspan="6">No User yet...</td>
+    <td colspan="8">No User yet...</td>
   </tr>
 </table>
 <?php } ?>

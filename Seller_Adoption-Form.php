@@ -277,7 +277,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
-            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
+            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
             <?php } ?>
             </div>
             </div>
@@ -458,7 +458,12 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
   <br>
    <div class="adoption-form-subcontainer">
   <label for="comments">Please provide any additional comments or information:</label>
+  <?php if (!empty($question10)) { ?>
   <p><?php echo $question10 ?></p>
+  <?php
+}else{ ?>
+	<p><?php echo "-" ?></p>
+<?php } ?>
 </div>
 </div>
 <br>
@@ -502,7 +507,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 function appointment($role,$key,$sellerID){
 	include 'Connection.php';
 $i=1;
-$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND (m.status='Booked' OR m.status='Appointment' OR m.status='Decision' OR m.status='Payment') GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND (m.status='Booked' OR m.status='Appointment' OR m.status='Decision' OR m.status='Payment' OR m.status='Y') GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Booked' THEN 1
@@ -629,7 +634,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 			</div>
 		<?php } 
 		elseif ($z==3){ ?>
-			<div class="adopt-form-pet-name"><span class="material-symbols-outlined" style="font-size: 40px; vertical-align: -5px; color: #4d4d4d; font-weight: 800;">pending</span>Status: <b>Meet with adopter</b>
+			<div class="adopt-form-pet-name"><span class="material-symbols-outlined" style="font-size: 40px; vertical-align: -5px; color: #4d4d4d; font-weight: 800;">pending</span>Status: <b>Make Decision</b>
 			</div>
 		<?php }
 		elseif ($z==2){ ?>
@@ -726,7 +731,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
-            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
+            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
             <?php } ?>
             </div>
             </div>
@@ -907,7 +912,12 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
   <br>
    <div class="adoption-form-subcontainer">
   <label for="comments">Please provide any additional comments or information:</label>
+  <?php if (!empty($question10)) { ?>
   <p><?php echo $question10 ?></p>
+  <?php
+}else{ ?>
+	<p><?php echo "-" ?></p>
+<?php } ?>
 </div>
 </div>
 <br>
@@ -1175,7 +1185,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
-            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
+            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
             <?php } ?>
             </div>
             </div>
@@ -1624,7 +1634,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
-            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
+            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
             <?php } ?>
             </div>
             </div>
@@ -1903,7 +1913,7 @@ span8.onclick = function() {
     for (var i = 0; i < columns.length; i++) {
       var column = columns[i];
       if (checkbox.checked) {
-        column.classList.remove('collapsed');
+        column.classList.add('collapsed');
       } else {
         column.classList.add('collapsed');
       }
@@ -1916,17 +1926,23 @@ span8.onclick = function() {
   handleCheckboxChange();
 
 
-    function accept(i) {
+    function accept(i,event) {
     	event.preventDefault();
+    	if (confirm("Are you sure you want to accept this applicant?")) {
+    	
      var mid= document.getElementById("mid"+i).value;
     window.location.href = "Seller_Adoption-Form-Process.php?id="+mid+"&c=sdecision";
-    
+    }
   }
 
-  function reject(i,n) {
+  function reject(i, n,event) {
   	event.preventDefault();
-    window.location.href = "Seller_Adoption-Form-Process.php?id="+i+"&iid="+n+"&c=sreject";
+  if (confirm("Are you sure you want to reject this applicant?")) {
+    
+    window.location.href = "Seller_Adoption-Form-Process.php?id=" + i + "&iid=" + n + "&c=sreject";
   }
+}
+
 
   function restart(iID,mID) {
 

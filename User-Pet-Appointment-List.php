@@ -128,10 +128,11 @@
         $record_date = $row['record_date'];
         $recordID = $row['recordID'];
 
-        $sql6 = "SELECT SUM(quantity * unit_price) AS sub_total FROM treatment_record tr,treatment t,record r WHERE tr.treatmentID=t.treatmentID AND tr.recordID=r.recordID AND tr.recordID=$recordID";
+        $sql6 = "SELECT SUM(quantity * unit_price) AS sub_total,r.discount FROM treatment_record tr,treatment t,record r WHERE tr.treatmentID=t.treatmentID AND tr.recordID=r.recordID AND tr.recordID=$recordID";
          $result6 = $conn->query($sql6);
          $row6 = $result6->fetch_assoc();
          $sub_total=$row6['sub_total'];
+         $discount=$row6['discount'];
 
          $sql7 = "SELECT ca.petID, c.discount_percent,c.clinic_image,c.name AS vname FROM clinic c,clinic_appointment ca WHERE ca.clinicID=c.clinicID AND ca.appointmentID=$appointmentID";
          $result7 = $conn->query($sql7);
@@ -160,7 +161,7 @@
           }
           }
           if($petID!=NULL){
-          $sub_total*=(1-$row7['discount_percent']/100);
+          $sub_total*=(1-$discount/100);
          }
 
         ?>
@@ -173,8 +174,8 @@
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <div class="appointment-list-container-column">
         <p><span class="material-symbols-outlined">local_hospital</span> Clinic: <?php echo $name ?></p>
-        <?php if($discount_percent!=NULL){ ?>
-        <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: <?php echo $discount_percent ?> %</p>
+        <?php if($discount!=NULL){ ?>
+        <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: <?php echo $discount ?> %</p>
       <?php }else{ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: Not Applied</p>
       <?php } ?>
@@ -226,7 +227,7 @@
 
 <?php function history($adopterID){
  include 'Connection.php';
-      $sql = "SELECT * FROM (SELECT c.clinicID,c.name,ca.adopterID,ca.petID,null as pet_image,null as discount_percent,r.recordID,r.comment,r.date AS record_date,v.name AS vet_name,cp.paymentID,cp.transactionID,cp.date,cp.amount FROM clinic_appointment ca,clinic c,record r,vet v,clinic_payment cp WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.clinicID=c.clinicID AND ca.adopterID =$adopterID UNION ALL SELECT c.clinicID,c.name,ca.adopterID,ca.petID,b.pet_image,c.discount_percent,r.recordID,r.comment,r.date AS record_date,v.name AS vet_name,cp.paymentID,cp.transactionID,cp.date,cp.amount FROM clinic_appointment ca,pet b,clinic c,record r,vet v,clinic_payment cp WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.petID=b.petID AND ca.clinicID=c.clinicID AND b.adopterID =$adopterID) AS combined_table ORDER BY paymentID DESC;;";
+      $sql = "SELECT * FROM (SELECT c.clinicID,c.name,ca.adopterID,ca.petID,null as pet_image,null as discount,r.recordID,r.comment,r.date AS record_date,v.name AS vet_name,cp.paymentID,cp.transactionID,cp.date,cp.amount FROM clinic_appointment ca,clinic c,record r,vet v,clinic_payment cp WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.clinicID=c.clinicID AND ca.adopterID =$adopterID UNION ALL SELECT c.clinicID,c.name,ca.adopterID,ca.petID,b.pet_image,r.discount,r.recordID,r.comment,r.date AS record_date,v.name AS vet_name,cp.paymentID,cp.transactionID,cp.date,cp.amount FROM clinic_appointment ca,pet b,clinic c,record r,vet v,clinic_payment cp WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.vetID=v.vetID AND ca.petID=b.petID AND ca.clinicID=c.clinicID AND b.adopterID =$adopterID) AS combined_table ORDER BY paymentID DESC;;";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     if ($result->num_rows > 0) {
@@ -243,7 +244,7 @@
         $clinicID=$row['clinicID'];
         $name=$row['name'];
         $petID=$row['petID'];
-        $discount_percent = $row['discount_percent'];
+        $discount_percent = $row['discount'];
         $recordID = $row['recordID'];
         $comment = $row['comment'];
         $record_date = $row['record_date'];

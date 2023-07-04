@@ -194,7 +194,17 @@ include('Connection.php');
 $id=$_POST['id'];
 $dob=$_POST['dob'];
 
+$currentDate = date('Y-m-d'); // Get the current date
 
+// Convert the date strings to timestamps
+$dobTimestamp = strtotime($dob);
+$currentDateTimestamp = strtotime($currentDate);
+
+// Compare the timestamps
+if ($dobTimestamp > $currentDateTimestamp) {
+  // Date of birth is more than the current date, display an alert
+  echo '<script>alert("Error: Date of birth cannot be in the future");</script>';
+}else{
 $sql2 = "UPDATE adopter SET dob='$dob' WHERE adopterID='$id'";
 $result2 = mysqli_query($conn, $sql2);
 if ($conn->query($sql2) === TRUE) {
@@ -214,5 +224,6 @@ if ($conn->query($sql2) === TRUE) {
 
 
 $conn->close();
+}
 }
 ?>

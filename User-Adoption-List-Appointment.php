@@ -252,18 +252,27 @@ var modal8 = document.getElementById("ConfirmModal");
 var btn8 = document.getElementById("proceed-payment");
 var btn9 = document.getElementById("cancel-booking-btn");
 var span8 = modal8.getElementsByClassName("close")[0];
+var dateInput = document.getElementById("dateInput");
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, check if the date is entered
 btn8.onclick = function() {
-  modal8.style.display = "block"; 
+  var time = $('input[name="radio"]:checked').val();
+  if (dateInput.value !== "" && time !== undefined) {
+    modal8.style.display = "block";
+  } else {
+    alert("Please enter a date and select a time.");
+  }
 }
+
 // When the user clicks on <span> (x), close the modal
 span8.onclick = function() {
   modal8.style.display = "none";
 }
+
 btn9.onclick = function() {
   modal8.style.display = "none";
 }
+
 </script>
 </body>
 </html>

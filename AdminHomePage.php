@@ -41,7 +41,7 @@ include 'Connection.php';
 $sql =
 "SELECT 'Clinic' AS title,COUNT(c.clinicID) AS number FROM clinic c,vet v WHERE c.vetID=v.vetID AND v.ic NOT LIKE 'P.%' AND v.ic NOT LIKE 'F.%' AND v.ic NOT LIKE 'B.%' AND v.ic NOT LIKE 'C.%'
 UNION ALL
-SELECT 'Clinic_Pending' AS title,COUNT(c.clinicID) AS number FROM clinic c,vet v WHERE c.vetID=v.vetID AND v.ic LIKE 'B.%'
+SELECT 'Clinic_Pending' AS title,COUNT(v.clinicID) AS number FROM clinic c,vet v WHERE c.clinicID=v.clinicID AND v.ic LIKE 'B.%'
 UNION ALL
 SELECT 'Vet' AS title,COUNT(vetID) AS number FROM vet v WHERE ic REGEXP '^[0-9]+$'
 UNION ALL

@@ -214,9 +214,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Monday</td>
@@ -226,9 +226,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Tuesday</td>
@@ -238,9 +238,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Wednesday</td>
@@ -250,9 +250,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Thursday</td>
@@ -262,9 +262,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Friday</td>
@@ -274,9 +274,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Saturday</td>
@@ -286,9 +286,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime3[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime3[]" disabled required style="width:60%"> </td>
                 </tr>
             </table>
             <button type="submit" class="signup-button">Sign Up</button>
@@ -349,9 +349,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required  style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Monday</td>
@@ -361,9 +361,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required  style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Tuesday</td>
@@ -373,9 +373,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Wednesday</td>
@@ -385,9 +385,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Thursday</td>
@@ -397,9 +397,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Friday</td>
@@ -409,9 +409,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Saturday</td>
@@ -421,9 +421,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime[]" disabled required style="width:60%"> </td>
                 </tr>
             </table>
 
@@ -533,9 +533,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Monday</td>
@@ -545,9 +545,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Tuesday</td>
@@ -557,9 +557,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Wednesday</td>
@@ -569,9 +569,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Thursday</td>
@@ -581,9 +581,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Friday</td>
@@ -593,9 +593,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
                 <tr>
                     <td>Saturday</td>
@@ -605,9 +605,9 @@ textarea{
                         <div class="slider round"></div>
                         </label>
                     </td>
-                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="opentime2[]" disabled  style="width:60%"> </td>
                     <td style="text-align: center;">to</td>
-                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required> </td>
+                    <td style="text-align: center;"><input type="time" name="closetime2[]" disabled required style="width:60%"> </td>
                 </tr>
             </table>
 

@@ -109,7 +109,7 @@
 ?>
 
 <div class="booking-container">
-    <img src="media/appointment.png" width="180px" height="180px" style="margin-top: 30px;margin-bottom: 20px;">
+    <img src="media/adoption-appointment.png" width="380px" height="380px" style="margin-top: 10px;margin-bottom: 20px;">
     <p class="booking-header" style="color:#248f24">Appointment Scheduled Successful!</p>
     <br>
       <p class="booking-intro" style="font-size:25px">You can reschedule your appointment before the day</p>

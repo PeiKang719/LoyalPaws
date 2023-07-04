@@ -94,7 +94,7 @@ $sql = "SELECT s.sellerID,s.image,s.firstName,s.lastName,s.dob,s.phone,s.email,C
 
 }else{?>
   <tr>
-    <td colspan="6">No individual seller...</td>
+    <td colspan="7">No individual seller...</td>
   </tr>
 </table>
 <?php } ?>
@@ -156,7 +156,7 @@ $sql = "SELECT s.shopID,s.shop_image,s.shopname,s.phone,s.email,COUNT(p.petID) a
 
 }else{?>
   <tr>
-    <td colspan="6">No pet shop...</td>
+    <td colspan="7">No pet shop...</td>
   </tr>
 </table>
 <?php } ?>

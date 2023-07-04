@@ -330,6 +330,8 @@ function showTab(n) {
 
 
     } else {
+        document.getElementById("subBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("nextBtn").innerHTML = "Next";
     }
     fixStepIndicator(n);
@@ -342,7 +344,7 @@ function nextPrev(n) {
     // Exit the function if any field in the current tab is invalid:
     console.log(currentTab);
     if (n == 1 ){
-        /*if (!validateForm(currentTab)) return false;*/
+        if (!validateForm(currentTab)) return false;
         if(currentTab == 0){
             console.log("zero");
             var pet_button = document.getElementsByClassName('button-cat-dog clicked')[0].value;
@@ -448,6 +450,37 @@ function fixStepIndicator(n) {
     }
     }
 }
+
+function validateForm(x) {
+  var form = document.getElementById("matchingForm");
+  var tabs = form.getElementsByClassName("tab");
+  var isValid = true;
+
+  if (x === 0) {
+    // First tab with buttons
+    var catButton = form.querySelector("#cat");
+    var dogButton = form.querySelector("#dog");
+
+    if (!catButton.classList.contains("clicked") && !dogButton.classList.contains("clicked")) {
+      isValid = false;
+    }
+  } else {
+    // Subsequent tabs with radio buttons
+    var currentTabRadios = tabs[x].querySelectorAll("input[type='radio']:checked");
+    if (currentTabRadios.length === 0) {
+      isValid = false;
+    }
+  }
+
+  if (!isValid) {
+    alert("Please select an option in each tab before proceeding.");
+  }
+
+  return isValid;
+}
+
+
+
 
 function changeColor(button) {
     var buttons = document.getElementsByClassName("button-cat-dog");

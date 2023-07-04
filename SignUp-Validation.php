@@ -21,6 +21,7 @@ if(!isset($_POST['opentime']) ){
     echo '<script type="text/javascript">';
     echo 'alert("Working day & time cannot be empty.");';
     echo '</script>';
+    exit();
 }else{
     $workingday = $_POST['workingday'];
     $opentime = $_POST['opentime'];
@@ -113,6 +114,7 @@ else if ($r == 'individual') {
     echo '<script type="text/javascript">';
     echo 'alert("Available day & time cannot be empty.");';
     echo '</script>';
+    exit();
 }else{
     $workingday3 = $_POST['workingday3'];
     $opentime3 = $_POST['opentime3'];

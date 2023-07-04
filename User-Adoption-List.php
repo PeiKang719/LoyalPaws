@@ -9,6 +9,34 @@
 <link rel="stylesheet" type="text/css" href="UserStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+  .confirmBtn{
+    width: 30%;
+    border: 0;
+    color: white;
+    background-color: #29a329;
+    border-radius: 5px;
+    font-size: 30px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+    margin: 0 10px;
+  }
+  .closeBtn{
+    width: 30%;
+    border: 0;
+    color: #4d4d4d;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 30px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+    margin: 0 10px;
+  }
+</style>
 </head>
 
 <body>
@@ -150,7 +178,7 @@
       <button class="form-list-button" id="form-list-button-payment<?php echo $j?>" onclick="payment(event,<?php echo $j?>,<?php echo $price?>)" style="width: 90%;font-size: 23px;background-color: #00cc00;color: white;cursor: pointer;">Make Payment</button>
     <?php }
     else{ ?>
-      <button class="form-list-button" id="form-list-button-red" onclick="adopt(event,<?php echo $j?>)" style="background-color: #29a329;"><span class="material-symbols-outlined"  style="vertical-align:-8px;font-weight: bold;color: white;font-size: 35px;">check</span>Adopt</button>
+      <button class="form-list-button" id="form-list-button-red" onclick="adoptModal(event,<?php echo $j?>)" style="background-color: #29a329;"><span class="material-symbols-outlined"  style="vertical-align:-8px;font-weight: bold;color: white;font-size: 35px;">check</span>Adopt</button>
       <button class="form-list-button" id="form-list-button-red" onclick="cancel2(event,<?php echo $paymentID ?>)"><span class="material-symbols-outlined" style="vertical-align:-8px;font-weight: bold;color: white;font-size: 35px;">close</span>Reject</button>
     <?php } ?>
       <input type="hidden" id="pid<?php echo $j ?>" value="<?php echo $petID ?>">
@@ -181,6 +209,39 @@
   </table>
     <div id="paypal-payment-button<?php echo$j ?>" style="width: 100%;margin-left: 170px;"></div>
     <script src="https://www.paypal.com/sdk/js?client-id=AVKhPyIREMp1EynqC_9932cWY2SPi_zMNmnSPlP9hyorwbiOogLrslLKz9bDhXs6vGQr9LYbD38_zapW&currency=MYR"></script>
+  </div>
+  </div>
+</div>
+
+<div id="agreementModal<?php echo$j ?>" class="modal">
+  <div class="modal-content" style="height: auto;padding-bottom: 40px;margin-top:-15px">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Agreement</h2>
+    </div>
+    <div style="width: 100%;display: flex;flex-direction: column; align-items: center;">
+      <br><br>
+    <div style="width: 90%;padding: 0 5%;font-size: 20px;">
+    <h2>Adoption Terms</h2><br>
+    <p>I, the undersigned adopter, agree to the following terms and conditions:</p>
+    <ol>
+      <li style="margin-top: 5px;">1. The pet will be given proper care, including adequate food, water, shelter, and veterinary care.</li>
+      <li style="margin-top: 5px;">2. The pet will receive necessary vaccinations and regular veterinary check-ups as recommended by the veterinarian.</li>
+      <?php if($price>0){ ?>
+      <li style="margin-top: 5px;">3. I understand that the adoption fee for the pet is RM <?php echo $price?>. This fee covers the costs associated with the adoption process and the care provided to the pet prior to adoption.</li>
+    <?php }else{ ?>
+      <li style="margin-top: 5px;">3. I understand that there is no adoption fee for the pet.</li>
+    <?php } ?>
+      <li style="margin-top: 5px;">4. I will not subject the pet to any form of abuse, neglect, or cruelty.</li>
+      <li style="margin-top: 5px;">5. If for any reason I am no longer able to care for the pet, I will contact the adoption organization to arrange for its return.</li>
+      <li style="margin-top: 5px;">6. I acknowledge and agree to the terms and conditions outlined in this adoption agreement. I understand that by proceeding with the adoption process, I am legally bound by these terms.</li>
+    </ol>
+  </div>
+    
+  </div>
+  <div style="width: 100%;display: flex;flex-direction: row;justify-content: center;align-items: center;margin-top: 50px;">
+    <button class="closeBtn" id="closeBtn<?php echo$j ?>">Close</button>
+    <button class="confirmBtn" id="confirmBtn<?php echo$j ?>">Confirm</button>
   </div>
   </div>
 </div>
@@ -332,17 +393,45 @@ $k++;}}else{?>
     window.location.href = "User-Adoption-List-Appointment.php?id="+ id+"&iid="+mid+"&u=update";
   }
 
-  function adopt(event,i) {
-    event.preventDefault(); // Prevents anchor tag from triggering its default behavior
+
+function adoptModal(event, i) {
+  event.preventDefault(); // Prevents anchor tag from triggering its default behavior
+  
+  // Show the modal pop-up
+  var modal = document.getElementById("agreementModal"+i);
+  modal.style.display = "block";
+  var span = modal.getElementsByClassName("close")[0];
+  // Add event listeners to the buttons
+  var confirmBtn = document.getElementById("confirmBtn"+i);
+  var cancelBtn = document.getElementById("closeBtn"+i);
+  confirmBtn.addEventListener("click", function() {
+    closeModal(i);
+    executeAdopt(i);
+  });
+  cancelBtn.addEventListener("click", function() {
+    closeModal(i);
+  });
+  span.onclick = function() {
+      modal.style.display = "none";
+    }
+}
+  function executeAdopt(i) {
      var mid= document.getElementById("mid"+i).value;
     window.location.href = "User-Adoption-Book-Process.php?iid="+mid+"&u=udecision";
     
   }
+function closeModal(i) {
+  var modal = document.getElementById("agreementModal" + i);
+  modal.style.display = "none";
+}
 
   function cancel2(event, i) {
     event.preventDefault(); // Prevents anchor tag from triggering its default behavior
+    if (confirm("Are you sure you want to reject this adoption?")) {
     window.location.href = "User-Adoption-Book-Process.php?id="+i+"&r=fail";
   }
+}
+
 
  function payment(event,n,price){
   event.preventDefault();

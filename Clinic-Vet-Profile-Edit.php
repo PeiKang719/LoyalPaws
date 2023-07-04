@@ -126,6 +126,24 @@ $years2Array = explode(',', $years2);
 $educationsArray = explode(',', $educations);
 $institutionsArray = explode(',', $institutions);
 
+if (!(count($years1Array) === count($years2Array) && count($years1Array) === count($educationsArray) && count($years1Array) === count($institutionsArray))) {
+  // Arrays have different lengths, display an error message or take appropriate action
+  echo "<script>alert('Make sure all the informations are filled.');</script>";
+  exit();
+} 
+
+for ($i = 0; $i < count($years1Array); $i++) {
+  $value1 = $years1Array[$i];
+  $value2 = $years2Array[$i];
+
+  if ($value1 > $value2) {
+    // Display an error message or take appropriate action
+    echo "<script>alert('Start Year cannot exceed End Year');</script>";
+
+    exit();
+  }
+}
+
 $education_descriptions = array();
 for($j = 0; $j < count($years1Array); $j++) {
     $education_description=$years1Array[$j].'-'.$years2Array[$j].'^'.$educationsArray[$j].'^'.$institutionsArray[$j];
@@ -172,6 +190,24 @@ $years1Array = explode(',', $years1);
 $years2Array = explode(',', $years2);
 $positionsArray = explode(',', $positions);
 $institutionsArray = explode(',', $institutions);
+
+if (!(count($years1Array) === count($years2Array) && count($years1Array) === count($positionsArray) && count($years1Array) === count($institutionsArray))) {
+  // Arrays have different lengths, display an error message or take appropriate action
+  echo "<script>alert('Make sure all the informations are filled.');</script>";
+  exit();
+} 
+
+for ($i = 0; $i < count($years1Array); $i++) {
+  $value1 = $years1Array[$i];
+  $value2 = $years2Array[$i];
+
+  if ($value1 > $value2) {
+    // Display an error message or take appropriate action
+    echo "<script>alert('Start Year cannot exceed End Year');</script>";
+
+    exit();
+  }
+}
 
 $experience_descriptions = array();
 for($j = 0; $j < count($years1Array); $j++) {

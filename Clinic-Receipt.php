@@ -41,7 +41,7 @@
     $paymentID=$_GET['paymentID'];
     $adopterID=$_GET['adopterID'];
 
-    $sql= "SELECT cp.transactionID,cp.date,cp.recordID,c.address,c.area,c.state,c.phone,c.name,c.email,c.discount_percent,ca.petID FROM clinic_payment cp,record r,clinic_appointment ca,clinic c WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.clinicID=c.clinicID AND cp.paymentID='$paymentID'";
+    $sql= "SELECT cp.transactionID,cp.date,cp.recordID,c.address,c.area,c.state,c.phone,c.name,c.email,r.discount,ca.petID FROM clinic_payment cp,record r,clinic_appointment ca,clinic c WHERE cp.recordID=r.recordID AND r.appointmentID=ca.appointmentID AND ca.clinicID=c.clinicID AND cp.paymentID='$paymentID'";
     $sql2 = "SELECT * FROM adopter WHERE adopterID='$adopterID'";
 
     $result = $conn->query($sql);
@@ -169,12 +169,12 @@ if($extra!=NULL){
         <?php
           if($row['petID'] != NULL){?>
             <tr>
-            <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $row['discount_percent'] ?>%):</td>
-            <td colspan="3" class="total_row" width="138px" style="text-align: center;">-RM <?php echo number_format($row['discount_percent']/100*$sub_total,2)?></td>
+            <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $row['discount'] ?>%):</td>
+            <td colspan="3" class="total_row" width="138px" style="text-align: center;">-RM <?php echo number_format($row['discount']/100*$sub_total,2)?></td>
           </tr>
           <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;"><b>Sub-Total:</b></td>
-            <td colspan="3" class="total_row" width="138px" style="text-align: center;"><b>RM <?php echo number_format($sub_total*(1-$row['discount_percent']/100),2) ?></b></td>
+            <td colspan="3" class="total_row" width="138px" style="text-align: center;"><b>RM <?php echo number_format($sub_total*(1-$row['discount']/100),2) ?></b></td>
           </tr>
           <?php }else{ ?>
           <tr>

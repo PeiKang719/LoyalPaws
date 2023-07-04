@@ -649,24 +649,23 @@ input:checked + .slider:before {
   cursor: pointer;
   box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
   background-color: #f2f2f2;
+
 }
 
   .button-cat-dog:hover {
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    background-color: #e6e6e6;
     box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.2);
   }
 
   .button-cat-dog:active {
-    background-color:#e6e6e6;
+    
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     transform: scale(0.98);
   }
 
   .clicked {
-  background-color: #e6e6e6;
+  transition: background-color 1s ease;
+  background-color: #3380cc;
   transform: scale(1.02);
-  transition: transform 0.2s;
   box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.50);
   }
 

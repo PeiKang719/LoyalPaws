@@ -64,10 +64,10 @@ else{
         if($avg_length<30){
             $size='small';
         }
-        elseif($avg_length>=30 && $avg_length<=50){
+        elseif($avg_length>=30 && $avg_length<=40){
             $size='medium';
         }
-        elseif($avg_length>50){
+        elseif($avg_length>40){
             $size='large';
         }
     }

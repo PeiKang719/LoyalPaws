@@ -45,16 +45,8 @@
 
 	<form action="User-Adoption-Inquiry-Process.php" method="POST" id="adoption-form" enctype="multipart/form-data">
         <div class="adoption-form-container" id="form-container">
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <!--------------------------------------------Fixed adopter ID 50 here--------------------------------->
-            <input type="hidden" name="aid" value="50">
+
+            <input type="hidden" name="aid" value="<?php echo $adopterID?>">
             <input type="hidden" name="pid" value="<?php echo $petID ?>;">
   <h2 style="color:black">Pet Adoption Evaluation Form</h2>
   <br>
@@ -101,7 +93,7 @@
 </div>
 
   <label for="residence-details">2) Please provide details about your residence (e.g., house, apartment, yard size):</label>
-  <textarea id="residence-details" name="residence-details" rows="4" ></textarea>
+  <textarea id="residence-details" name="residence-details" rows="4" required></textarea>
 </div>
 <br><hr style="width: 100%;"><br>
   <h3>About Pet Care:</h3>

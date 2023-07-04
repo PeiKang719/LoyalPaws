@@ -63,17 +63,18 @@ elseif($status=='sdecision'){
       if ($conn->query($sql) === TRUE) {
         echo '<script type="text/javascript">';
         echo 'alert("Approved adoption of this applicant ");';
-        echo 'window.location.href = "Seller_Adoption-Form.php?id=' . 1 . '";';
+        echo 'window.location.href = "Seller_Adoption-Form.php?adoption=appointment&id=' . 1 . '";';
         echo '</script>';
     }
      else { 
         echo '<script type="text/javascript">';
         echo 'alert("Failed to approve the applicant");';
-        echo 'window.location.href = "Seller_Adoption-Form.php?id=' . 1 . '";';
+        echo 'window.location.href = "Seller_Adoption-Form.php?adoption=appointment&id=' . 1 . '";';
         echo '</script>';
     }
   }
   elseif($row2['status']=='y'){
+
   if($row5['price']>0){
   $sql = "UPDATE pet_payment SET status='Payment' WHERE paymentID=$qID";
 
@@ -100,7 +101,7 @@ elseif($status=='sdecision'){
    $result = mysqli_query($conn, $sql);
    $result6 = mysqli_query($conn, $sql6);
 
-  if ($conn->query($sql) === TRUE && conn->query($sql6) === TRUE) {
+  if ($conn->query($sql) === TRUE && $conn->query($sql6) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Approved adoption to the this applicant ");';
     echo 'window.location.href = "Seller_Adoption-Form.php?id=' . 1 . '";';
@@ -121,7 +122,7 @@ $conn->close();
 elseif($status=='sreject'){
   $inquiryID=$_GET['iid'];
   $sql = "UPDATE inquiry SET status='Rejected' WHERE inquiryID=$inquiryID";
-  $sql2 = "UPDATE pet_payment SET status='Cancel' WHERE paymentID=$qID";
+  $sql2 = "DELETE FROM pet_payment WHERE paymentID=$qID";
   $result = mysqli_query($conn, $sql);
   $result2 = mysqli_query($conn, $sql2);
 
@@ -143,7 +144,7 @@ $conn->close();
 elseif($status=='restart'){
   $mid=$_GET['mid'];
   $sql = "UPDATE inquiry SET status='Rejected' WHERE inquiryID=$qID";
-  $sql2 = "UPDATE pet_payment SET status='Cancel' WHERE paymentID=$mid";
+  $sql2 = "DELETE FROM pet_payment WHERE paymentID=$mid";
   $result = mysqli_query($conn, $sql);
   $result2 = mysqli_query($conn, $sql2);
 
