@@ -728,9 +728,9 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             <div class="breedIcon" style="display: flex;flex-direction: row;">
             	<input type="hidden" name="paymentID" id="mid<?php echo $i ?>" value="<?php echo $paymentID ?>">
             	<?php if($status2=='Y' || $status2=='Free'){?>
-            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
+            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>,event)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
-            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
+            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>,event)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
             	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
             <?php } ?>
             </div>
@@ -747,7 +747,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             <p><b><?php echo $row2['adopter_name'] ?></b></p>
             </div>
             <div class="breedIcon" style="display: flex;flex-direction: row;">
-            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">payments</span>Waiting Payment</button>
+            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>,event)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">payments</span>Waiting Payment</button>
             </div>
             </div>
         </a>
@@ -1182,7 +1182,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             <div class="breedIcon" style="display: flex;flex-direction: row;">
             	<input type="hidden" name="paymentID" id="mid<?php echo $i ?>" value="<?php echo $paymentID ?>">
             	<?php if($status2=='Y' || $status2=='Free'){?>
-            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
+            	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>,event)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
             	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
