@@ -172,7 +172,7 @@ if($row['cover']!=''){
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.sellerID=$id AND (BINARY status <> 'Cancel' OR status IS NULL) ORDER BY
+    $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.sellerID=$id AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -526,7 +526,7 @@ if($row['cover']!=''){
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN pet_shop s ON p.shopID=s.shopID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.shopID=$id  AND (BINARY status <> 'Cancel' OR status IS NULL) ORDER BY
+    $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN pet_shop s ON p.shopID=s.shopID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.shopID=$id  AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1

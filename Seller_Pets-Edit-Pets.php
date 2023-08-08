@@ -12,7 +12,13 @@ $spayed=$_POST['spayed'];
 $vaccinated=$_POST['vaccinated'];
 $purpose=$_POST['purpose'];
 $price=$_POST['price'];
+$availability=$_POST['availability'];
 $description=$_POST['description'];
+if(isset($_POST['date'])){
+    $date=$_POST['date'];
+}else{
+    $date=NULL;
+}
 $delete1=$_POST['delete1'];
 $delete2=$_POST['delete2'];
 $delete3=$_POST['delete3'];
@@ -31,6 +37,15 @@ $image=array($img0,$img1,$img2,$img3,$img4,$img5,$img6);
 $delete7=$_POST['delete7'];
 $video=$_FILES['video']['name'];
 $unique = array(null, null, null, null, null, null, null);
+
+
+if (strtotime($date) <= strtotime('today') && $date!=NULL) {
+  // Arrays have different lengths, display an error message or take appropriate action
+  echo "<script>alert('Make sure all the return date is after today');</script>";
+  echo "<script>window.location.href = 'Seller_Pets-Edit-Modal.php?petID=" . $pet_id . "';</script>";
+  exit();
+
+} 
 
 // Loop through each file
 for ($i = 1; $i <= 6; $i++) {
@@ -160,11 +175,11 @@ if($_FILES['img0']['name'] !== ""){
         else{
             echo "image not found!";
         }
-$sql2 = "UPDATE pet SET type='$type', breedID='$breedID', gender='$gender',purpose='$purpose', birthday='$birthday', color='$color', spayed='$spayed', vaccinated='$vaccinated', price='$price', description='$description', pet_image='$main' WHERE petID='$pet_id';";
+$sql2 = "UPDATE pet SET type='$type', breedID='$breedID', gender='$gender',purpose='$purpose', birthday='$birthday', color='$color', spayed='$spayed', vaccinated='$vaccinated', price='$price', availability='$availability',return_date='$date', description='$description', pet_image='$main' WHERE petID='$pet_id';";
 
 }
 else{
-$sql2 = "UPDATE pet SET type='$type', breedID='$breedID', gender='$gender',purpose='$purpose', birthday='$birthday', color='$color', spayed='$spayed', vaccinated='$vaccinated', price='$price', description='$description' WHERE petID='$pet_id';";
+$sql2 = "UPDATE pet SET type='$type', breedID='$breedID', gender='$gender',purpose='$purpose', birthday='$birthday', color='$color', spayed='$spayed', vaccinated='$vaccinated', price='$price', availability='$availability',return_date='$date', description='$description' WHERE petID='$pet_id';";
 }
 
 if ($conn->query($sql2) === TRUE) {

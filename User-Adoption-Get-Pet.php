@@ -8,7 +8,7 @@ $purpose[] = $_GET['purpose'];
 
 if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     if($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status  FROM pet p JOIN breed b ON p.breedID = b.breedID JOIN seller s ON p.sellerID = s.sellerID LEFT JOIN pet_payment pp ON pp.petID = p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND b.type=$type[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status  FROM pet t JOIN breed d ON t.breedID = d.breedID JOIN pet_shop o ON t.shopID = o.shopID LEFT JOIN pet_payment pp ON pp.petID = t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] AND d.type=$type[0] AND t.purpose=$purpose[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status  FROM pet p JOIN breed b ON p.breedID = b.breedID JOIN seller s ON p.sellerID = s.sellerID LEFT JOIN pet_payment pp ON pp.petID = p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND b.type=$type[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status  FROM pet t JOIN breed d ON t.breedID = d.breedID JOIN pet_shop o ON t.shopID = o.shopID LEFT JOIN pet_payment pp ON pp.petID = t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] AND d.type=$type[0] AND t.purpose=$purpose[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -24,7 +24,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] AND d.type=$type[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] AND d.type=$type[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -40,7 +40,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1 &&strlen($type[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] AND t.purpose=$purpose[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] AND t.purpose=$purpose[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -56,7 +56,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif($searchQuery!=='' && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($size[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.type=$type[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.type=$type[0] AND t.purpose=$purpose[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.type=$type[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,p.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.type=$type[0] AND t.purpose=$purpose[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -72,7 +72,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif(strlen($type[0])<6 && strlen($type[0])>1 && strlen($size[0])<10 && strlen($size[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1 &&$searchQuery==''){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size=$size[0] AND b.type=$type[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.size=$size[0] AND d.type=$type[0] AND t.purpose=$purpose[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size=$size[0] AND b.type=$type[0] AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.size=$size[0] AND d.type=$type[0] AND t.purpose=$purpose[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -89,7 +89,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     }
     elseif($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($type[0])==0 && strlen($purpose[0])==0){
     $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender
-,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.size=$size[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -106,7 +106,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     }
     elseif($searchQuery!=='' && strlen($type[0])<6 && strlen($type[0])>1 && strlen($size[0])==0 && strlen($purpose[0])==0){
     $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender
-,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.type=$type[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND d.type=$type[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -122,7 +122,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif($searchQuery!=='' && strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($size[0])==0 && strlen($type[0])==0){
-    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND t.purpose=$purpose[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' AND t.purpose=$purpose[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -138,7 +138,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif(strlen($type[0])<6 && strlen($type[0])>1 && strlen($size[0])<10 && strlen($size[0])>1  && strlen($purpose[0])==0 && $searchQuery==''){
-    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.type=$type[0] AND b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.type=$type[0] AND d.size=$size[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.type=$type[0] AND b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.type=$type[0] AND d.size=$size[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -154,7 +154,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif(strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($size[0])<10 && strlen($size[0])>1  && strlen($type[0])==0 && $searchQuery==''){
-    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose=$purpose[0] AND d.size=$size[0] ) as combined_table  WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose=$purpose[0] AND d.size=$size[0] ) as combined_table  WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -170,7 +170,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif(strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($type[0])<6 && strlen($type[0])>1  && strlen($size[0])==0 && $searchQuery==''){
-    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose=$purpose[0] AND d.type=$type[0] ) as combined_table  WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+    $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose=$purpose[0] AND d.type=$type[0] ) as combined_table  WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -187,7 +187,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     }
 
     elseif($searchQuery!=='' && strlen($type[0])==0 && strlen($size[0])==0 && strlen($purpose[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.name LIKE '%$searchQuery%' ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -204,7 +204,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     }
 
     elseif(strlen($type[0])<6 && strlen($type[0])>1 && strlen($size[0])==0 && $searchQuery=='' && strlen($purpose[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.type=$type[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.type=$type[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.type=$type[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -220,7 +220,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif(strlen($size[0])<10 && strlen($size[0])>1 && strlen($type[0])==0 && $searchQuery=='' && strlen($purpose[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.size=$size[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size=$size[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.size=$size[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -236,7 +236,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     }
     elseif(strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($type[0])==0 && $searchQuery=='' && strlen($size[0])==0){
-        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose=$purpose[0] ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose=$purpose[0] ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -254,7 +254,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
 
     elseif(strlen($size[0])>10){
 
-        $sql="SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size='abc' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.size='abc' ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+        $sql="SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size='abc' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.size='abc' ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -270,7 +270,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     }
 
     elseif(strlen($type[0])>6){
-         $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.type='abc' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender ,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.type='abc' ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+         $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.type='abc' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender ,t.availability,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE d.type='abc' ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -285,8 +285,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     petID DESC";
     }
     elseif(strlen($purpose[0])>9){
-     $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose='abc' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender 
-,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose='abc' ) as combined_table WHERE BINARY status <> 'Cancel' OR status IS NULL ORDER BY
+     $sql = "SELECT * from(SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN seller s ON p.sellerID=s.sellerID LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose='abc' UNION ALL SELECT t.petID,t.pet_image,d.name,t.purpose,t.price,o.state,o.area,t.gender,t.availability ,pp.status FROM pet t JOIN breed d ON t.breedID=d.breedID JOIN pet_shop o ON t.shopID=o.shopID LEFT JOIN pet_payment pp ON pp.petID=t.petID WHERE t.purpose='abc' ) as combined_table WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
         WHEN status = 'Booked' THEN 1
@@ -412,19 +411,19 @@ else{
 }
     $offset = ($page - 1) * $records_per_page;
     $sql = "SELECT * FROM (
-    SELECT p.petID, p.pet_image, b.name, p.purpose, p.price, s.state, s.area, p.gender, pp.status
+    SELECT p.petID, p.pet_image, b.name, p.purpose, p.price, s.state, s.area, p.gender,p.availability, pp.status
     FROM pet p
     JOIN breed b ON p.breedID = b.breedID
     JOIN seller s ON p.sellerID = s.sellerID
     LEFT JOIN pet_payment pp ON pp.petID = p.petID
     UNION ALL
-    SELECT t.petID, t.pet_image, d.name, t.purpose, t.price, o.state, o.area, t.gender, pp.status
+    SELECT t.petID, t.pet_image, d.name, t.purpose, t.price, o.state, o.area, t.gender,t.availability, pp.status
     FROM pet t
     JOIN breed d ON t.breedID = d.breedID
     JOIN pet_shop o ON t.shopID = o.shopID
     LEFT JOIN pet_payment pp ON pp.petID = t.petID
     ) AS combined_table
-    WHERE BINARY status <> 'Cancel' OR status IS NULL
+    WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y'
     ORDER BY
     CASE
         WHEN status IS NULL THEN 0

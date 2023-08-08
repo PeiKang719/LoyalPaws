@@ -17,7 +17,7 @@
 <?php 
 include 'Connection.php';
 $petID = $_GET['petID'];
-    $sql = "SELECT p.petID, p.type, p.gender, p.birthday, p.color,p.purpose, p.description, p.video,p.pet_image, p.img1, p.img2, p.img3, p.img4, p.img5, p.img6, p.vaccinated, p.spayed, p.price, p.breedID,b.name FROM pet p,breed b WHERE p.petID = $petID AND p.breedID=b.breedID;";
+    $sql = "SELECT p.petID, p.type, p.gender, p.birthday, p.color,p.purpose, p.description, p.video,p.pet_image, p.img1, p.img2, p.img3, p.img4, p.img5, p.img6, p.vaccinated, p.spayed, p.price, p.breedID ,p.availability,p.return_date,b.name FROM pet p,breed b WHERE p.petID = $petID AND p.breedID=b.breedID;";
       $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -35,6 +35,13 @@ $petID = $_GET['petID'];
           $vaccinated=$row["vaccinated"];
           $spayed=$row["spayed"];
           $price=$row["price"];
+          $availability=$row["availability"];
+          $return_date=$row['return_date'];
+          if ($availability == 'Y') {
+              $available = 'Yes';
+          }else{
+              $available = 'No';
+          }
           $video=$row["video"];
           $img0=$row["pet_image"];
           $img1=$row["img1"];
@@ -216,17 +223,36 @@ for ($i = 1; $i <= 7; $i++) {
         <tr>
             <td>Purpose</td>
             <td>:</td>
-            <td><select name="purpose" required style="width:100%;">
+            <td><select id="purpose" name="purpose" required style="width:100%;">
                 <option value="<?php echo"$purpose" ?>"  selected><?php echo"$purpose" ?></option>
               <?php if($purpose=='Sell'){
               echo "<option>Rehome</option>";}
               else{
               echo "<option>Sell</option>";} ?>
           </select></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td width="30%"></td>
+            <td>Availability</td>
+            <td>:</td>
+            <td><select name="availability" required style="width:100%;">
+                <option value="<?php echo"$availability" ?>"  selected><?php echo"$available" ?></option>
+              <?php if($availability=='Y'){
+              echo "<option value='N'>No</option>";}
+              else{
+              echo "<option value='Y'>Yes</option>";} ?>
+          </select></td>
+        </tr>
+        <tr style="display: none;" id="return">
+            <td style="width:15%">Duration</td>
+            <td>:</td>
+            <td style="width: 32.5%;text-align: center;">
+                        <label class="switch" for="return_date">
+                        <input type="checkbox" id="return_date" name="return_date" value="Yes" <?php if($return_date!='0000-00-00' && $return_date !=NULL){echo 'checked';} ?> />
+                        <div class="slider round"></div>
+                        </label> </td>
+            <td style="width: 34.7%;"></td>
+            <td style="font-size: 31px;">Return Date</td>
+            <td>: </td>
+            <td><input type="date" name="date" id="date" style="width:90%" <?php if($return_date=='0000-00-00' || $return_date==NULL){echo 'disabled';} ?> value="<?php echo $return_date ?>"> </td>
         </tr>
     </table>
     <br><br>
@@ -238,7 +264,7 @@ for ($i = 1; $i <= 7; $i++) {
 </section>
 
 
-<footer style="margin-top: -938px;"><button class="save-change" type="submit">SAVE CHANGE</button></footer>
+<footer id="foot" style="margin-top: -938px;"><button class="save-change" type="submit">SAVE CHANGE</button></footer>
 <br><br><br><br>
 </form>
 <?php
@@ -380,6 +406,51 @@ function updateBreedOptions(type) {
     xhr.open('GET', 'Seller_Pets-Get-Breed.php?type=' + type, true);
     xhr.send();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var purpose = document.getElementById('purpose');
+    var tr = document.getElementById('return');
+    var return_btn = document.getElementById('return_date');
+    var r_date = document.getElementById('date');
+    var foot = document.getElementById('foot');
+
+    // Function to handle the behavior
+    function handlePurposeChange() {
+        var selectedValue = purpose.value;
+        if (selectedValue == 'Rehome') {
+            tr.style.display = 'table-row';
+            foot.style.marginTop = '-1033px';
+        } else {
+            tr.style.display = 'none';
+            return_btn.checked = false; 
+            r_date.value = '';
+            foot.style.marginTop = '-938px';
+            r_date.removeAttribute('required');
+        }
+    }
+
+    // Initial behavior setup
+    handlePurposeChange();
+
+    // Listen for changes to the select element
+    purpose.addEventListener('change', handlePurposeChange);
+});
+
+
+var return_date = document.getElementById('return_date');
+var date = document.getElementById('date');
+
+return_date.addEventListener('change', function() {
+    if (return_date.checked) {
+        date.disabled = false;
+        date.setAttribute('required', 'required');
+    } else {
+        date.disabled = true;
+        date.value = '';
+        date.removeAttribute('required');
+    }
+});
+
 </script>
 </body>
 

@@ -86,19 +86,19 @@
 	}
     $offset = ($page - 1) * $records_per_page;
     $sql = "SELECT * FROM (
-    SELECT p.petID, p.pet_image, b.name, p.purpose, p.price, s.state, s.area, p.gender, pp.status
+    SELECT p.petID, p.pet_image, b.name, p.purpose, p.price, s.state, s.area, p.gender,p.availability, pp.status
     FROM pet p
     JOIN breed b ON p.breedID = b.breedID
     JOIN seller s ON p.sellerID = s.sellerID
     LEFT JOIN pet_payment pp ON pp.petID = p.petID
     UNION ALL
-    SELECT t.petID, t.pet_image, d.name, t.purpose, t.price, o.state, o.area, t.gender, pp.status
+    SELECT t.petID, t.pet_image, d.name, t.purpose, t.price, o.state, o.area, t.gender,t.availability, pp.status
     FROM pet t
     JOIN breed d ON t.breedID = d.breedID
     JOIN pet_shop o ON t.shopID = o.shopID
     LEFT JOIN pet_payment pp ON pp.petID = t.petID
 	) AS combined_table
-	WHERE BINARY status <> 'Cancel' OR status IS NULL
+	WHERE (BINARY status <> 'Cancel' OR status IS NULL) AND availability = 'Y'
 	ORDER BY
     CASE
         WHEN status IS NULL THEN 0
