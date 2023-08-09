@@ -23,7 +23,7 @@ function expand(n) {
   x[number].style.display = "block";
 
   // Make the input fields within the displayed table focusable
-  var inputFields = x[number].getElementsByTagName("input");
+  var inputFields = x[number].querySelectorAll("input, select");
   for (var i = 0; i < inputFields.length; i++) {
     inputFields[i].disabled = false;
   }
@@ -470,7 +470,13 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
           <td><label>Academic Level</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" required></td>
+          <td colspan="3"><select name="education[]" required>
+            <option selected disabled>Select Your Academic Level</option>
+            <option>Bachelor`s Degree</option>
+            <option>Master`s Degree</option>
+            <option>Doctoral Degree (Ph.D.)</option>
+            <option>Professional Degrees</option>
+          </select></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
@@ -496,7 +502,13 @@ else{
           <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
           <td><label>Academic Level</label></td>
           <td>:</td>
-          <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" disabled required></td>
+          <td colspan="3"><select name="education[]" required>
+            <option selected disabled>Select Your Academic Level</option>
+            <option>Bachelor`s Degree</option>
+            <option>Master`s Degree</option>
+            <option>Doctoral Degree (Ph.D.)</option>
+            <option>Professional Degrees</option>
+          </select></td>
         </tr>
         <tr>
           <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
@@ -530,7 +542,13 @@ else{
                         <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
                         <td><label>Academic Level</label></td>
                         <td>:</td>
-                        <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]"  value="<?php echo$details[1]?>" required></td>
+                        <td colspan="3"><select name="education[]" required>
+                          <option value="<?php echo$details[1]?>" selected><?php echo$details[1]?></option>
+                          <option>Bachelor`s Degree</option>
+                          <option>Master`s Degree</option>
+                          <option>Doctoral Degree (Ph.D.)</option>
+                          <option>Professional Degrees</option>
+                        </select></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>
@@ -560,7 +578,13 @@ else{
                         <td><span class="material-symbols-outlined" style="font-size:30px">school</span></td>
                         <td><label>Academic Level</label></td>
                         <td>:</td>
-                        <td colspan="3"><input type="text" oninput="this.className = ''" name="education[]" disabled required></td>
+                        <td colspan="3"><select name="education[]" required disabled>
+                          <option selected disabled>Select Your Academic Level</option>
+                        <option>Bachelor`s Degree</option>
+                        <option>Master`s Degree</option>
+                        <option>Doctoral Degree (Ph.D.)</option>
+                        <option>Professional Degrees</option>
+                      </select></td>
                       </tr>
                       <tr>
                         <td><span class="material-symbols-outlined" style="font-size:30px">location_on</span></td>

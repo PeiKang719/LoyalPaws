@@ -9,7 +9,14 @@
 <link rel="icon" type="image/png" href="media/tabIcon.png">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+<style type="text/css">
+  .unavailable{
+    position: absolute;
+    color: red;
+    margin-left: 70px;
+    font-weight: bold;
+  }
+</style>
 
 </head>
 <body style="background-color: white;">
@@ -46,7 +53,7 @@ function showPet($pk, $sid) {
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT p.petID, p.type, p.gender, p.birthday, p.color, p.description, p.pet_image, p.img1, p.img2, p.img3, p.img4, p.img5, p.img6, p.vaccinated, p.spayed, p.price, p.breedID,b.name,p.adopterID FROM pet p,breed b WHERE p.breedID=b.breedID AND $pk=$sid ORDER BY CASE WHEN p.adopterID IS NULL THEN 0 ELSE 1 END,b.name LIMIT $offset, $records_per_page";
+    $sql = "SELECT p.petID, p.type, p.gender, p.birthday, p.color, p.description, p.pet_image, p.img1, p.img2, p.img3, p.img4, p.img5, p.img6, p.vaccinated, p.spayed, p.price,p.availability, p.breedID,b.name,p.adopterID FROM pet p,breed b WHERE p.breedID=b.breedID AND $pk=$sid ORDER BY CASE WHEN p.adopterID IS NULL THEN 0 ELSE 1 END,b.name LIMIT $offset, $records_per_page";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -62,6 +69,9 @@ function showPet($pk, $sid) {
             echo '<div class="column">';
             echo '<div class="card">';
             echo '<img src="' . $imageSrc . '" alt="Pet Image" style="width:100%;height: 154px;">';
+            if($row['availability']=='N'){
+            echo '<p class="unavailable">Unavailable</p>';
+            }
             echo '<div class="petName">';
             if($row['gender']=='Male'){
             echo '<p><span class="material-symbols-outlined" style="font-size:30px;vertical-align:-5px;color:#1ab2ff;font-weight: 800;">male</span><b>' . $row['name'] . '</b></p>';

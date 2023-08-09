@@ -38,7 +38,7 @@ $petID = $_GET['id'];
 include('Connection.php');
 
 // sql to delete a record
-$sql = "SELECT p.petID, p.type, p.gender, p.birthday, p.color, p.purpose, p.description, p.video, p.pet_image, p.img1, p.img2, p.img3, p.img4, p.img5, p.img6, p.vaccinated, p.spayed, p.price, p.breedID, b.name, m.status
+$sql = "SELECT p.petID, p.type, p.gender, p.birthday, p.color, p.purpose, p.description, p.video, p.pet_image, p.img1, p.img2, p.img3, p.img4, p.img5, p.img6, p.vaccinated, p.spayed, p.price, p.breedID,p.return_date, b.name, m.status
 	FROM pet p
 	JOIN breed b ON p.breedID = b.breedID
 	LEFT JOIN pet_payment m ON m.petID = p.petID
@@ -222,10 +222,19 @@ for ($i = 1; $i <= 6; $i++) {
 			<td>Purpose</td>
 			<td>:</td>
 			<td><?php  echo $row["purpose"] ?></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td width="30%"></td>
+			<?php 
+			if($row["purpose"]=='Rehome'){ ?>
+			<td style="font-size: 31px;">Return Date</td>
+			<td>:</td>
+			<?php if($row['return_date']!=NULL AND $row['return_date']!='0000-00-00'){?>
+				<td style="font-size: 31px;"><?php echo $row['return_date'] ?></td>
+			<?php }else{ ?>
+				<td> - </td>
+			<?php } ?>
+		<?php }else{ ?>
+			<td colspan="3"></td>
+		<?php } ?>
 		</tr>
 	</table>
 	<br><br>

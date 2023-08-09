@@ -254,6 +254,10 @@ for ($i = 1; $i <= 7; $i++) {
             <td>: </td>
             <td><input type="date" name="date" id="date" style="width:90%" <?php if($return_date=='0000-00-00' || $return_date==NULL){echo 'disabled';} ?> value="<?php echo $return_date ?>"> </td>
         </tr>
+        <tr style="display:none;" id="warning">
+            <td colspan="4"></td>
+            <td colspan="3" style="color: red;font-size: 15px;padding-top: 0;">*The pet will become unavailable if return date has expired*</td>
+        </tr>
     </table>
     <br><br>
     <p class="pet-info" style="font-weight: 600;">About the pet: </p>
@@ -410,6 +414,7 @@ function updateBreedOptions(type) {
 document.addEventListener('DOMContentLoaded', function() {
     var purpose = document.getElementById('purpose');
     var tr = document.getElementById('return');
+    var tr2 = document.getElementById('warning');
     var return_btn = document.getElementById('return_date');
     var r_date = document.getElementById('date');
     var foot = document.getElementById('foot');
@@ -419,9 +424,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var selectedValue = purpose.value;
         if (selectedValue == 'Rehome') {
             tr.style.display = 'table-row';
+            tr2.style.display = 'table-row';
             foot.style.marginTop = '-1033px';
         } else {
             tr.style.display = 'none';
+            tr2.style.display = 'none';
             return_btn.checked = false; 
             r_date.value = '';
             foot.style.marginTop = '-938px';

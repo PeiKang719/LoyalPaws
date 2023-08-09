@@ -394,6 +394,7 @@ function showBreed() {
 			</div>
 			<div class="tab" id="thirdTab">
 				<h1 class="tab3head">Breed Characteristics</h1><br>
+				<img src="media/scale.png" style="position: absolute;margin-left: -150px;margin-top: -70px; width: 100px;height: 500px;">
 				<table>
 					<tr height="60px">
 						<td><label class="characteristics">Kid-Friendly</label></td>

@@ -29,7 +29,16 @@ if (isset($_SESSION['adopterID']) || isset($_SESSION['sellerID']) || isset($_SES
   </style>
 <body style="margin: 0;background-image: url(media/login.jpg);background-repeat: no-repeat;background-size: 1550px 800px;">
 
+<?php
+include 'Connection.php';
+$timezone = new DateTimeZone('Asia/Kuala_Lumpur');
+$current_date = new DateTime('now', $timezone);
+$expired = $current_date->format('Y-m-d');
 
+$sql = "UPDATE pet SET availability='N' WHERE return_date IS NOT NULL AND return_date !='0000-00-00' AND return_date<='$expired' ";
+$conn->query($sql);
+$conn->close();
+?>
 <div class="side-container"> 
     <p id="toggle-word2">Don't have an account?</p>
     <button id="toggle-btn2" type="button" class="side-container-button" >Sign Up</button>
