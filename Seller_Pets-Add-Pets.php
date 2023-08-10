@@ -14,6 +14,11 @@ $spayed=$_POST['spayed'];
 $vaccinated=$_POST['vaccinated'];
 $price=$_POST['price'];
 $description=$_POST['description'];
+if(isset($_POST['date'])){
+    $date=$_POST['date'];
+}else{
+    $date=NULL;
+}
 $img0=$_FILES['img0']['name'];
 $img1=$_FILES['img1']['name'];
 $img2=$_FILES['img2']['name'];
@@ -67,8 +72,8 @@ else{
     echo "video not found!";
 }
 
-$sql2 = "INSERT INTO pet(type,breedID,gender, birthday, color,spayed, vaccinated,purpose, price, description,video,pet_image,img1,img2,img3,img4,img5,img6,$pk) 
-VALUES ('$type','$breedID','$gender','$birthday','$color','$spayed','$vaccinated','$purpose','$price','$description','$video_name',";
+$sql2 = "INSERT INTO pet(type,breedID,gender, birthday, color,spayed, vaccinated,purpose,return_date,availability, price, description,video,pet_image,img1,img2,img3,img4,img5,img6,$pk) 
+VALUES ('$type','$breedID','$gender','$birthday','$color','$spayed','$vaccinated','$purpose','$date','Y', '$price','$description','$video_name',";
 
 $sql2 .= isset($imgName[0]) ? "'$imgName[0]'" : "null";
 $sql2 .= ",";

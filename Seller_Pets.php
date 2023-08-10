@@ -205,13 +205,13 @@ function showPet($pk, $sid) {
          <table  width="720px;" style="margin-bottom:9px;">
           <td width="50%" align="center">
         <label class="radio-container" >Sell
-            <input type="radio" name="purpose" onchange="changeColor(this)" value="Sell">
+            <input type="radio" name="purpose" onchange="changeColor(this)" value="Sell" id="sell_btn">
             <span class="radiomark2"></span>
         </label>
       	</td>
       <td align="center">
         <label class="radio-container" >Rehome
-            <input type="radio" name="purpose" onchange="changeColor(this)" value="Rehome">
+            <input type="radio" name="purpose" onchange="changeColor(this)" value="Rehome" id="rehome_btn">
             <span class="radiomark2"></span>
         </label>
       </td>
@@ -247,14 +247,28 @@ function showPet($pk, $sid) {
       </td>
       </table>
       <label>Color:</label><br>
-        <input type="text" placeholder="Color..." name="color" required>
+        <input type="text" placeholder="Color..." name="color" required onkeydown="return /[a-z]/i.test(event.key)">
       <label>Price (RM):</label><br>
         <input type="number" id="minimum" name="price" min="0" required style="width:100%;">
       
       </div>
        <div class="tab">
         <label>Description:</label>
-        <textarea maxlength="800" placeholder="Write something to describe the pet...(max 800 characters)" name="description" required style="height:311px;"></textarea>
+        <textarea maxlength="800" placeholder="Write something to describe the pet...(max 800 characters)" name="description" required style="height:181px;" id="description"></textarea>
+        <label id="required" style="display: none;">Return required? (Optional)<p style="color:red">*The pet will become unavailable if return date has expired*</p></label>
+         <table  width="720px;" style="margin-bottom:9px;margin-top: 20px;">
+          <tr id="return" style="display: none;">
+          <td width="50%" align="center">
+        <label class="switch" for="return_date">
+                        <input type="checkbox" id="return_date" name="return_date" value="Yes" />
+                        <div class="slider round"></div>
+                        </label>
+        </td>
+      <td align="center">
+        <input type="date" name="date" id="date" style="width:90%" disabled>
+      </td>
+    </tr>
+      </table>
       </div>
         <div class="tab">
 	        <h1 class="tab2head" style="margin-left:215px;">Images & Video</h1>
@@ -553,9 +567,20 @@ function validateForm(x) {
 
 	else if (x==2 ){
   let a = document.forms["petForm"]["description"].value;
+  let b = document.getElementById('return_date');
+  let c = document.forms["petForm"]["date"].value;
 
   if (a == "" ) {
     alert("All fields must be filled out");
+    return false;
+  }
+  else if(b.checked && c==""){
+    alert("Please enter a valid return date");
+    return false;
+  }
+  let currentDate = new Date().toISOString().split('T')[0];
+  if (c!="" && c < currentDate) {
+    alert("Invalid return date. Please select a date which is after today");
     return false;
   }
   else
@@ -651,6 +676,45 @@ function searchPets(searchQuery) {
   }, 300); // Adjust the timeout delay (in milliseconds) to fit your needs
 }
 
+
+var tr = document.getElementById('return');
+var btn = document.getElementById('rehome_btn');
+var sbtn = document.getElementById('sell_btn');
+var description = document.getElementById('description');
+var required = document.getElementById('required');
+var ret = document.getElementById('return_date');
+var dat = document.getElementById('date');
+
+btn.addEventListener('change', function() {
+    if (btn.checked) {
+        required.style.display = 'block';
+        tr.style.display = 'table-row';
+        description.style.height = '181px';
+    }
+});
+sbtn.addEventListener('change', function() {
+    if (sbtn.checked) {
+        required.style.display = 'none';
+        tr.style.display = 'none';
+        description.style.height = '282px';
+        ret.checked = false;
+        dat.value = '';
+    } 
+});
+
+var return_date = document.getElementById('return_date');
+var date = document.getElementById('date');
+
+return_date.addEventListener('change', function() {
+    if (return_date.checked) {
+        date.disabled = false;
+        date.setAttribute('required', 'required');
+    } else {
+        date.disabled = true;
+        date.value = '';
+        date.removeAttribute('required');
+    }
+});
 </script>
 </body>
 

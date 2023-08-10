@@ -1954,6 +1954,14 @@ function details( i, event) {
   event.preventDefault();
   window.open("User-Adoption-Receipt.php?paymentID=" + i, "_blank");
 }
+
+function reason(id,process,event){
+	let reason = prompt("Please enter the reason", "");
+  if (person != null) {
+    document.getElementById("demo").innerHTML =
+    "Hello " + person + "! How are you today?";
+  }
+}
 </script>
 
 

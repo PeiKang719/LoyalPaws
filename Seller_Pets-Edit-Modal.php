@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedValue == 'Rehome') {
             tr.style.display = 'table-row';
             tr2.style.display = 'table-row';
-            foot.style.marginTop = '-1033px';
+            foot.style.marginTop = '-1067px';
         } else {
             tr.style.display = 'none';
             tr2.style.display = 'none';
