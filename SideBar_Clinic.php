@@ -432,28 +432,33 @@ function process_vet(p, ic, vetID,email,name) {
     event.preventDefault(); // Prevent the link from opening
 
     if (p === 'approve') {
+        var reason='';
         if (confirm("Are you sure you want to verify this vet's information?")) {
-            sendRequest(p, ic, vetID,email,name);
+            sendRequest(p, ic, vetID,email,name,reason);
         } else {
             console.log("User cancelled the approval.");
         }
     } else if (p === 'approve-clinic') {
+        var reason='';
         if (confirm("Are you sure you want to verify this vet's and clinic's registration?")) {
-            sendRequest(p, ic, vetID,email,name);
+            sendRequest(p, ic, vetID,email,name,reason);
         } else {
             console.log("User cancelled the rejection.");
         }
     }
     else if (p === 'reject') {
-        if (confirm("Are you sure you want to reject this vet's registration?")) {
-            sendRequest(p, ic, vetID,email,name);
+        let reason = prompt("Please enter the reason", "");
+        if (reason === '') {
+        alert("Please provide a reason.");
+        return;
+    }
+            sendRequest(p, ic, vetID,email,name,reason);
         } else {
             console.log("User cancelled the rejection.");
         }
     }
-}
 
-function sendRequest(p, ic, vetID,email,name) {
+function sendRequest(p, ic, vetID,email,name,reason) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", 'SideBar_Clinic-Process.php?p=' + p + '&c=' + ic + '&i=' + vetID+ '&e=' + email+ '&name=' + name, true);
     xhr.onload = function() {
@@ -463,12 +468,11 @@ function sendRequest(p, ic, vetID,email,name) {
                 sendApprovalEmail(email, name);
             } else if (p === 'reject') {
                 alert("Vet has been rejected.");
+                sendRejectEmail(email, name,reason);
             }
-            if (p === 'approve-clinic') {
+            else if (p === 'approve-clinic') {
                 alert("Vet and clinic has been approved.");
                 sendApprovalEmail(email, name);
-            } else if (p === 'reject') {
-                alert("Vet and clinic has been rejected.");
             }
             window.location.reload();
         } else {
@@ -485,6 +489,12 @@ function sendRequest(p, ic, vetID,email,name) {
 function sendApprovalEmail(email, name) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", 'Email_Success.php?email=' + email + '&name=' + name, true);
+    xhr.send();
+}
+function sendRejectEmail(email, name,reason) {
+    var xhr = new XMLHttpRequest();
+    console.log("reason"+reason);
+    xhr.open("GET", 'Email_Reject.php?email=' + email + '&name=' + name +'&reason='+ reason, true);
     xhr.send();
 }
 

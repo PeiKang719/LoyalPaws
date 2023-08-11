@@ -123,7 +123,7 @@
       <?php function appointment($adopterID){ 
       $j=1;
       include 'Connection.php';
-      $sql = "SELECT p.pet_image,p.gender,p.petID,b.name,m.status,m.paymentID,m.visit_time,m.visit_date,p.price,p.sellerID,p.shopID FROM pet p,breed b,adopter a,pet_payment m WHERE p.breedID=b.breedID AND p.petID=m.petID AND m.adopterID=a.adopterID AND (m.status='Decision' OR m.status='y' OR m.status='Y' OR m.status='Payment' OR m.status='Free') AND m.adopterID=$adopterID ORDER BY m.visit_date,m.visit_time";
+      $sql = "SELECT p.pet_image,p.gender,p.petID,b.name,m.status,m.paymentID,m.visit_time,m.visit_date,p.price,p.return_date,p.sellerID,p.shopID FROM pet p,breed b,adopter a,pet_payment m WHERE p.breedID=b.breedID AND p.petID=m.petID AND m.adopterID=a.adopterID AND (m.status='Decision' OR m.status='y' OR m.status='Y' OR m.status='Payment' OR m.status='Free') AND m.adopterID=$adopterID ORDER BY m.visit_date,m.visit_time";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     if ($result->num_rows > 0) {
@@ -143,6 +143,7 @@
         $visit_time=$row['visit_time'];
         $sellerID=$row['sellerID'];
         $shopID=$row['shopID'];
+        $return_date=$row['return_date'];
 
         if ($row['sellerID'] !== NULL) {
           $sql11 = "SELECT CONCAT(firstName,' ' ,LastName) AS sname FROM seller WHERE sellerID = " . $row['sellerID'];
@@ -226,7 +227,11 @@
     <p>I, the undersigned adopter, agree to the following terms and conditions:</p>
     <ol>
       <li style="margin-top: 5px;">1. The pet will be given proper care, including adequate food, water, shelter, and veterinary care.</li>
-      <li style="margin-top: 5px;">2. The pet will receive necessary vaccinations and regular veterinary check-ups as recommended by the veterinarian.</li>
+      <?php if($return_date!=NULL && $return_date!='0000-00-00'){ ?>
+      <li style="margin-top: 5px;">2. This pet will be returned to previous owner on <?php echo $return_date?>.</li>
+      <?php }else{ ?>
+      <li style="margin-top: 5px;">2. I understand that there is no return date for the pet.</li>
+    <?php } ?>
       <?php if($price>0){ ?>
       <li style="margin-top: 5px;">3. I understand that the adoption fee for the pet is RM <?php echo $price?>. This fee covers the costs associated with the adoption process and the care provided to the pet prior to adoption.</li>
     <?php }else{ ?>

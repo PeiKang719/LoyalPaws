@@ -475,11 +475,11 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
     else{?>
     	<a href="Seller_Adoption-Form-Process.php?id=<?php echo $qID ?>&c=appointment">
 <button class="application-form-button" onclick="return confirm('Are you sure to approve this applicant?');">Approve</button>	</a>
-        <a href="Seller_Adoption-Form-Process.php?id=<?php echo $qID ?>&c=rejected"><button class="application-form-button" style="background-color:red" onclick="return confirm('Are you sure to reject this applicant?');">Reject</button></a>
+        <button class="application-form-button" style="background-color:red;width: 30%;" onclick="reason(<?php echo $qID ?>,0,'rejected',event)">Reject</button>
     <?php }}else{ ?>
     	<a href="Seller_Adoption-Form-Process.php?id=<?php echo $qID ?>&c=appointment">
 <button class="application-form-button" onclick="return confirm('Are you sure to approve this applicant?');">Approve</button>	</a>
-        <a href="Seller_Adoption-Form-Process.php?id=<?php echo $qID ?>&c=rejected"><button class="application-form-button" style="background-color:red" onclick="return confirm('Are you sure to reject this applicant?');">Reject</button></a>
+        <button class="application-form-button" style="background-color:red;width:30%" onclick="reason(<?php echo $qID ?>,0,'rejected',event)">Reject</button>
     <?php } ?>
     </div>
 </div>
@@ -731,7 +731,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>,event)" style="background-color:#29a329 ;color: white;" disabled><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span>Pending...</button>
             <?php }else{?>
             	<button class="view-application-button" id="correct" type="button" onclick="accept(<?php echo $i ?>,event)" style="background-color:#29a329 ;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">check</span></button>
-            	<button class="view-application-button" id="wrong" type="button" onclick="reject(<?php echo $paymentID ?>,<?php echo $qID ?>,event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
+            	<button class="view-application-button" id="wrong" type="button" onclick="reason(<?php echo $paymentID ?>,<?php echo $qID ?>,'sreject',event)" style="background-color: red;"><span class="material-symbols-outlined" style="vertical-align:-4px;font-weight: bold;color: white;">close</span></button>
             <?php } ?>
             </div>
             </div>
@@ -1955,13 +1955,22 @@ function details( i, event) {
   window.open("User-Adoption-Receipt.php?paymentID=" + i, "_blank");
 }
 
-function reason(id,process,event){
+function reason(id,id2,proc,event){
+	event.preventDefault();
 	let reason = prompt("Please enter the reason", "");
-  if (person != null) {
-    document.getElementById("demo").innerHTML =
-    "Hello " + person + "! How are you today?";
-  }
+	if (reason === '') {
+    alert("Please provide a reason.");
+    return;
 }
+
+	if(proc=='rejected'){
+		window.location.href = "Seller_Adoption-Form-Email.php?id="+id+"&iid=0&c=rejected&reason="+reason;
+	}
+	else if(proc=='sreject'){
+		window.location.href = "Seller_Adoption-Form-Email.php?id=" + id + "&iid=" + id2 + "&c=sreject&reason="+reason;
+	}
+  }
+
 </script>
 
 

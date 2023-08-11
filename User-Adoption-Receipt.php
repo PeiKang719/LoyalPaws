@@ -32,7 +32,7 @@
   <?php
   $paymentID = $_GET['paymentID'];
   include 'Connection.php';
-  $sql = "SELECT a.firstName,a.lastName,a.phone,a.email,b.name,p.gender,p.birthday,p.color,p.price,pp.complete_date FROM pet_payment pp,adopter a,pet p,breed b WHERE pp.adopterID=a.adopterID AND pp.petID=p.petID AND p.breedID=b.breedID AND pp.paymentID=$paymentID";
+  $sql = "SELECT a.firstName,a.lastName,a.phone,a.email,b.name,p.gender,p.birthday,p.color,p.price,p.return_date,pp.complete_date FROM pet_payment pp,adopter a,pet p,breed b WHERE pp.adopterID=a.adopterID AND pp.petID=p.petID AND p.breedID=b.breedID AND pp.paymentID=$paymentID";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc(); 
   ?>
@@ -80,7 +80,11 @@
     <p>I, the undersigned adopter, agree to the following terms and conditions:</p>
     <ol>
       <li>The pet will be given proper care, including adequate food, water, shelter, and veterinary care.</li>
-      <li>The pet will receive necessary vaccinations and regular veterinary check-ups as recommended by the veterinarian.</li>
+      <?php if($row['return_date']!=NULL && $row['return_date']!='0000-00-00'){ ?>
+      <li>2. This pet will be returned to previous owner on <?php echo $row['return_date']?>.</li>
+      <?php }else{ ?>
+      <li>2. I understand that there is no return date for the pet.</li>
+    <?php } ?>
       <?php if($row['price']>0){ ?>
       <li>I understand that the adoption fee for the pet is RM <?php echo $row['price']?>. This fee covers the costs associated with the adoption process and the care provided to the pet prior to adoption.</li>
     <?php }else{ ?>
