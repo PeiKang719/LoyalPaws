@@ -60,9 +60,13 @@ function showOrganization() {
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT * FROM organization ORDER BY oname LIMIT $offset, $records_per_page";
+    $sql = "CALL GetOrganization(?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $offset, $records_per_page);
+    $stmt->execute();
 
-    $result = $conn->query($sql);
+    // Get the result set
+    $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         // Fetch all the rows into an array
         $rows = $result->fetch_all(MYSQLI_ASSOC);

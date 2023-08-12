@@ -60,9 +60,14 @@ function showBreed() {
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT * FROM breed WHERE type='Dog' ORDER BY name LIMIT $offset, $records_per_page";
+    $breed_type = 'Dog';
+    $sql = "CALL GetBreedByType(?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iis", $offset, $records_per_page,$breed_type);
+    $stmt->execute();
 
-    $result = $conn->query($sql);
+    // Get the result set
+    $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         // Fetch all the rows into an array
         $rows = $result->fetch_all(MYSQLI_ASSOC);

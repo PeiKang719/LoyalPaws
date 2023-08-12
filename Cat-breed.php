@@ -58,9 +58,14 @@
     $page = 1;
 }
     $offset = ($page - 1) * $records_per_page;
-    $sql = "SELECT * FROM breed WHERE type='Cat' ORDER BY name LIMIT $offset, $records_per_page";
+    $breed_type = 'Cat';
+    $sql = "CALL GetBreedByType(?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iis", $offset, $records_per_page,$breed_type);
+    $stmt->execute();
 
-    $result = $conn->query($sql);
+    // Get the result set
+    $result = $stmt->get_result();
     if ($result->num_rows > 0) {
     	echo '<div style="width:100%;height:20px;margin-top:5px;font-size:20px;margin-left:10px">';
     	echo $total_records. " results was found";
