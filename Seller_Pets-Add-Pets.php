@@ -30,6 +30,9 @@ $image=array($img0,$img1,$img2,$img3,$img4,$img5,$img6);
 $video=$_FILES['video']['name'];
 $unique = array(null, null, null, null, null, null, null);
 $a=0;
+
+
+
 // Loop through each file
 for ($i = 0; $i <= 6; $i++) {
     if (isset($_FILES["img{$i}"])) {
@@ -72,6 +75,10 @@ else{
     echo "video not found!";
 }
 
+$allowedExtensions = ['jpg', 'jpeg', 'png'];
+$uploadedFileExtension = strtolower(pathinfo($_FILES['img0']['name'], PATHINFO_EXTENSION));
+
+if (in_array($uploadedFileExtension, $allowedExtensions)) {
 $sql2 = "INSERT INTO pet(type,breedID,gender, birthday, color,spayed, vaccinated,purpose,return_date,availability, price, description,video,pet_image,img1,img2,img3,img4,img5,img6,$pk) 
 VALUES ('$type','$breedID','$gender','$birthday','$color','$spayed','$vaccinated','$purpose','$date','Y', '$price','$description','$video_name',";
 
@@ -97,7 +104,11 @@ if ($conn->query($sql2) === TRUE) {
 } else { 
     echo "<script type='text/javascript'>alert('Error Insert Pet,Please Try Again.')</script>";
 }
-
+}else{
+    echo '<script type="text/javascript">';
+    echo 'alert("Please upload a file with correct image format.");';
+    echo '</script>';
+}
 
 $conn->close();
 ?>

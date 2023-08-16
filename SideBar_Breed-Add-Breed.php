@@ -71,7 +71,11 @@ else{
             $size='large';
         }
     }
-   $sql2 = "INSERT INTO breed(name, type, description, breed_image, kid_friendly, pet_friendly, stranger_friendly, affection, grooming, playfulness, shedding, energy_level, intelligence, vocality, origin, life_span, length, weight, size) 
+    $allowedExtensions = ['jpg', 'jpeg', 'png'];
+$uploadedFileExtension = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));
+
+if (in_array($uploadedFileExtension, $allowedExtensions)) {
+       $sql2 = "INSERT INTO breed(name, type, description, breed_image, kid_friendly, pet_friendly, stranger_friendly, affection, grooming, playfulness, shedding, energy_level, intelligence, vocality, origin, life_span, length, weight, size) 
 VALUES ('$name','$type','$description','$unique_name','$one','$two','$three','$four','$five','$six','$seven','$eight','$nine','$ten','$country','$life','$length','$weight', '$size')";
 
 
@@ -80,6 +84,12 @@ VALUES ('$name','$type','$description','$unique_name','$one','$two','$three','$f
     } else { 
         echo "<script type='text/javascript'>alert('Error Insert Pet Breed,Please Try Again.')</script>";
     }
+}else{
+    echo '<script type="text/javascript">';
+    echo 'alert("Please upload a file with correct image format.");';
+    echo '</script>';
+}
+
 }
 
 $conn->close();

@@ -38,6 +38,10 @@ if ($result->num_rows > 0){
     echo "<script type='text/javascript'>alert('Organization Already In Database,Please Try Again.')</script>";
 }
 else{
+        $allowedExtensions = ['jpg', 'jpeg', 'png'];
+$uploadedFileExtension = strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));
+
+if (in_array($uploadedFileExtension, $allowedExtensions)) {
     $categories = implode(',', $_POST['category']);
     $methods = implode(',', $_POST['method']);
    $sql2 = "INSERT INTO organization(oname,url,logo,category,description,payment_type,payment_method,minimum,adminID)
@@ -49,6 +53,11 @@ VALUES ('$name','$url','$unique_name','$categories','$description','$type','$met
     } else { 
         echo "<script type='text/javascript'>alert('Error Insert Organization,Please Try Again.')</script>";
     }
+}else{
+    echo '<script type="text/javascript">';
+    echo 'alert("Please upload a file with correct image format.");';
+    echo '</script>';
+}
 }
 
 $conn->close();

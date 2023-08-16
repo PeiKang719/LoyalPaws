@@ -247,7 +247,7 @@ function showPet($pk, $sid) {
       </td>
       </table>
       <label>Color:</label><br>
-        <input type="text" placeholder="Color..." name="color" required onkeydown="return /[a-z]/i.test(event.key)">
+        <input type="text" placeholder="Color..." name="color" required onkeydown="return /[a-z ]/i.test(event.key)">
       <label>Price (RM):</label><br>
         <input type="number" id="minimum" name="price" min="0" required style="width:100%;">
       
