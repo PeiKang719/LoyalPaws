@@ -88,22 +88,22 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
 <tr  style="display:none">
     <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
     <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
-    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" max="300" value="1" disabled></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" min="1" required disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" max="300" value="1" disabled onkeydown="return event.key !== '-'"></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" min="1" required disabled onkeydown="return event.key !== '-'"></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
   </tr> 
   <tr style="display:none">
     <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
     <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
-    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" max="300" value="1" disabled></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required min="1" disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" max="300" value="1" disabled onkeydown="return event.key !== '-'"></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1" required min="1" disabled onkeydown="return event.key !== '-'"></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
   </tr>
   <tr style="display:none">
     <td style="font-size: 25px;"><input type="text" name="name2[]" disabled> </td>
     <td style="font-size: 25px;"><input type="text" name="description2[]" disabled></td>
-    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" max="300"  value="1"disabled></td>
-    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1"  required min="1" disabled></td>
+    <td style="text-align:center;font-size: 25px;">RM <input type="number" name="price2[]" min="1" max="300"  value="1"disabled onkeydown="return event.key !== '-'"></td>
+    <td style="text-align: center;font-size: 25px;"><input type="number" name="quantity2[]" value="1"  required min="1" disabled onkeydown="return event.key !== '-'"></td>
     <td><button class="manage-button" style="background-color: #29a329;"><span class="material-symbols-outlined" style="font-size:35px;vertical-align: -3px;">add_circle</span></button></td>
   </tr>
   <?php

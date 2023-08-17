@@ -2,7 +2,6 @@
 
 include('Connection.php');
 
-
 if($_GET['action']=='insert'){
     $appointmentID = $_POST['appointmentID'];
     $name = $_POST['name'];
@@ -16,6 +15,16 @@ if($_GET['action']=='insert'){
         $price2 = $_POST['price2'];
         $quantity2 = $_POST['quantity2'];
         $description2 = $_POST['description2'];
+
+        foreach ($price2 as $number) {
+            if ($number > 300) {
+                echo '<script type="text/javascript">';
+                echo 'alert("Custom price cannot exceed RM300.\n Please ask your clinic admin to add the treatment in treatment list.");';
+                echo "window.location.href='Clinic-Record.php?appointmentID=$appointmentID';";
+                echo '</script>';
+                exit();
+            }
+        }
 
         $name3 = implode(',', array_filter($name2, 'strlen'));
         $price3 = implode(',', array_filter($price2, 'strlen'));

@@ -206,7 +206,7 @@ else{
        <?php } ?>
         </div><br><br>
         <hr style="border:2px solid #d9d9d9"><br><br>
-    <p class="booking-header">Description of pet (if any)</p>
+    <p class="booking-header">Description of pet</p>
     <br>
         <div class="appointment-description-container">
 
@@ -302,6 +302,11 @@ else{
         var appointment_description = $('#appointment_description').val();
         var appointmentID = $('#appointmentID').val();
 
+        if (!time || !selectedPet || !date || !clinic_name || !appointment_description || !appointmentID) {
+            alert('Please fill out all fields.');
+            return; // Exit the function if any data is null
+        }
+
         // Make an AJAX request to the server to get the updated breed cards
         $.ajax({
             url: 'User-Clinic-Booking-Modal.php',
@@ -309,6 +314,7 @@ else{
             data: {time:time, date:date, clinic_name:clinic_name, selectedPet:selectedPet, appointment_description:appointment_description, appointmentID:appointmentID},
             success: function(response) {
                 // Update the breed cards with the new HTML
+                $('#ConfirmModal').css('display', 'block');
                 $('#confirm-booking-container').html(response);
             },
             error: function() {
@@ -323,10 +329,6 @@ var btn8 = document.getElementById("proceed-payment");
 var btn9 = document.getElementById("cancel-booking-btn");
 var span8 = modal8.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn8.onclick = function() {
-  modal8.style.display = "block"; 
-}
 // When the user clicks on <span> (x), close the modal
 span8.onclick = function() {
   modal8.style.display = "none";
