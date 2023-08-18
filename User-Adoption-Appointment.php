@@ -216,6 +216,10 @@ var returnedTime = '';
         var date = $('#dateInput').val();
         var price = $('#price').val();
 
+        if (!time || !date ) {
+            alert('Please fill out all fields.');
+            return; // Exit the function if any data is null
+        }
         // Make an AJAX request to the server to get the updated breed cards
         $.ajax({
             url: 'User-Adoption-Booking-Modal.php',
@@ -223,6 +227,7 @@ var returnedTime = '';
             data: {time:time, date:date, price:price },
             success: function(response) {
                 // Update the breed cards with the new HTML
+                $('#ConfirmModal').css('display', 'block');
                 $('#confirm-booking-container').html(response);
                  returnedDate = $('#date').val();
                  returnedTime = $('#time').val();
@@ -248,7 +253,6 @@ function purchase() {
     // When the user clicks the button, open the modal 
 
 
-      modal.style.display = "block"; 
     span.onclick = function() {
       modal.style.display = "none";
     }
