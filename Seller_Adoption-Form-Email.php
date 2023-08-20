@@ -57,7 +57,7 @@ try {
     <br><br>
     
     <p style="width: 100%; font-size: 25px; font-weight: bold;">Application Rejected</p>
-    <p style="width: 100%; font-size: 20px; color: #4d4d4d;">We regret to inform you that your adoption request for [Pet Name] has been rejected by the pet owner. We understand that this may come as disappointing news, and we sincerely apologize for any inconvenience this may have caused.
+    <p style="width: 100%; font-size: 20px; color: #4d4d4d;">We regret to inform you that your adoption request for '.$breed.' has been rejected by the pet owner. We understand that this may come as disappointing news, and we sincerely apologize for any inconvenience this may have caused.
 
 Please understand that the decision was made after careful consideration, and it does not reflect on your suitability as a pet owner. There could be various reasons for the decision, including factors related to the pet`s needs, the pet owner`s preferences, or other circumstances.</p><br><br>
     <p style="width: 100%; font-size: 20px; color: #4d4d4d;"><b>Reason:</b> '.$reason.'</p>
