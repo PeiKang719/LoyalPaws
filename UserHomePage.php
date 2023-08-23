@@ -49,13 +49,13 @@
 <?php
 include 'Connection.php';
 $sql2 =
-"SELECT 'rehoming' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NULL AND purpose = 'Rehome' 
+"SELECT 'rehoming' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NULL AND availability='Y' AND purpose = 'Rehome' 
 UNION ALL 
-SELECT 'selling' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NULL AND purpose = 'Sell'
+SELECT 'selling' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NULL AND availability='Y' AND purpose = 'Sell'
 UNION ALL 
-SELECT 'adopted' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NOT NULL AND purpose = 'Rehome'
+SELECT 'adopted' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NOT NULL AND availability='Y' AND purpose = 'Rehome'
  UNION ALL 
- SELECT 'purchased' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NOT NULL AND purpose = 'Sell';"; 
+ SELECT 'purchased' AS title, COUNT(petID) as pet FROM pet WHERE adopterID IS NOT NULL AND availability='Y' AND purpose = 'Sell';"; 
 
 $result2 = $conn->query($sql2);
 $pet = array();
@@ -81,7 +81,7 @@ while ($row3 = $result3->fetch_assoc()) {
 ?>
 <?php
 $sql4 =
-"SELECT 'clinic' AS title, COUNT(DISTINCT c.clinicID) as c FROM clinic c,vet v WHERE v.ic NOT LIKE 'B%' AND v.ic NOT LIKE 'P%' AND v.ic NOT LIKE 'F%' UNION ALL SELECT 'vet' AS title, COUNT(vetID) as c FROM vet WHERE ic NOT LIKE 'B%' AND ic NOT LIKE 'P%' AND ic NOT LIKE 'F%';  ;"; 
+"SELECT 'clinic' AS title, COUNT(DISTINCT c.clinicID) as c FROM clinic c,vet v WHERE v.ic NOT LIKE 'B%' AND v.ic NOT LIKE 'P%' AND v.ic NOT LIKE 'F%' AND ic NOT LIKE 'C%' UNION ALL SELECT 'vet' AS title, COUNT(vetID) as c FROM vet WHERE ic NOT LIKE 'B%' AND ic NOT LIKE 'P%' AND ic NOT LIKE 'F%' AND ic NOT LIKE 'C%';  ;"; 
 
 $result4 = $conn->query($sql4);
 $c = array();

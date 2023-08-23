@@ -39,13 +39,13 @@
 <?php 
 include 'Connection.php';
 $sql =
-"SELECT 'Available' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND m.status IS NULL
+"SELECT 'Available' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND p.availability='Y' AND m.status IS NULL
 UNION ALL
-SELECT 'Appointment' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND (m.status='Booked' OR m.status='Appointment' OR m.status='Decision' OR m.status='Payment')
+SELECT 'Appointment' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND p.availability='Y' AND  (m.status='Booked' OR m.status='Appointment' OR m.status='Decision' OR m.status='Payment')
 UNION ALL
-SELECT 'Complete' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND m.status='Complete'
+SELECT 'Complete' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND p.availability='Y' AND m.status='Complete'
 UNION ALL
-SELECT 'Cancelled' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND m.status='Fail';"; 
+SELECT 'Cancelled' as title, COUNT(p.petID) AS number FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND p.availability='Y' AND m.status='Fail';"; 
 $result = $conn->query($sql);
 $number = array();
 

@@ -170,13 +170,13 @@ while ($row3 = $result3->fetch_assoc()) {
   <?php
  include 'Connection.php';
 $sql = "
-SELECT 'Rehoming' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND purpose='Rehome' AND adopterID IS NULL AND $key=$sellerID  
+SELECT 'Rehoming' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND (purpose='Rehome' OR purpose='Lodging') AND adopterID IS NULL AND availability='Y' AND $key=$sellerID  
 UNION ALL
-SELECT 'Adopted' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND purpose='Rehome' AND adopterID IS NOT NULL AND $key=$sellerID  
+SELECT 'Adopted' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND (purpose='Rehome' OR purpose='Lodging') AND adopterID IS NOT NULL AND availability='Y' AND $key=$sellerID  
 UNION ALL
-SELECT 'Rehoming' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND purpose='Rehome' AND adopterID IS NULL AND $key=$sellerID  
+SELECT 'Rehoming' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND (purpose='Rehome' OR purpose='Lodging') AND adopterID IS NULL AND availability='Y' AND $key=$sellerID  
 UNION ALL
-SELECT 'Adoption' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND purpose='Rehome' AND adopterID IS NOT NULL AND $key=$sellerID  ";
+SELECT 'Adoption' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND (purpose='Rehome' OR purpose='Lodging') AND adopterID IS NOT NULL AND availability='Y' AND $key=$sellerID  ";
 $result = $conn->query($sql);
 
 $dataPoints = array();
@@ -186,13 +186,13 @@ while ($row = $result->fetch_assoc()) {
 }
 
 $sql2 = "
-SELECT 'Selling' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND purpose='Sell' AND adopterID IS NULL AND $key=$sellerID    
+SELECT 'Selling' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND purpose='Sell' AND availability='Y' AND adopterID IS NULL AND $key=$sellerID    
 UNION ALL
-SELECT 'Purchased' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND purpose='Sell' AND adopterID IS NOT NULL AND $key=$sellerID  
+SELECT 'Purchased' as title,'Dog' as pet, COUNT(petID)AS number FROM pet WHERE type='Dog' AND purpose='Sell' AND availability='Y'  AND adopterID IS NOT NULL AND $key=$sellerID  
 UNION ALL
-SELECT 'Selling' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND purpose='Sell' AND adopterID IS NULL AND $key=$sellerID  
+SELECT 'Selling' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND purpose='Sell' AND availability='Y'  AND adopterID IS NULL AND $key=$sellerID  
 UNION ALL
-SELECT 'Purchased' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND purpose='Sell' AND adopterID IS NOT NULL AND $key=$sellerID  ";
+SELECT 'Purchased' as title,'Cat' as pet, COUNT(petID)AS number FROM pet WHERE type='Cat' AND purpose='Sell' AND availability='Y'  AND adopterID IS NOT NULL AND $key=$sellerID  ";
 $result2 = $conn->query($sql2);
 
 $dataPoints2 = array();

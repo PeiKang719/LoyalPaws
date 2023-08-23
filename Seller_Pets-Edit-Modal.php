@@ -226,9 +226,15 @@ for ($i = 1; $i <= 7; $i++) {
             <td><select id="purpose" name="purpose" required style="width:100%;">
                 <option value="<?php echo"$purpose" ?>"  selected><?php echo"$purpose" ?></option>
               <?php if($purpose=='Sell'){
-              echo "<option>Rehome</option>";}
+              echo "<option value='Rehome'>Adopt</option>";
+              echo "<option>Lodging</option>";}
+              elseif($purpose=='Rehome'){
+              echo "<option>Sell</option>";
+              echo "<option>Lodging</option>";}
               else{
-              echo "<option>Sell</option>";} ?>
+                echo "<option>Sell</option>";
+                echo "<option value='Rehome'>Adopt</option>";
+              } ?>
           </select></td>
             <td width="30%"></td>
             <td>Availability</td>
@@ -422,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to handle the behavior
     function handlePurposeChange() {
         var selectedValue = purpose.value;
-        if (selectedValue == 'Rehome') {
+        if (selectedValue == 'Lodging') {
             tr.style.display = 'table-row';
             tr2.style.display = 'table-row';
             foot.style.marginTop = '-1067px';

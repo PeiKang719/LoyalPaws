@@ -224,7 +224,7 @@ for ($i = 1; $i <= 6; $i++) {
 			<td><?php  echo $row["purpose"] ?></td>
 			<td width="30%"></td>
 			<?php 
-			if($row["purpose"]=='Rehome'){ ?>
+			if($row["purpose"]=='Lodging'){ ?>
 			<td style="font-size: 31px;">Return Date</td>
 			<td>:</td>
 			<?php if($row['return_date']!=NULL AND $row['return_date']!='0000-00-00'){?>
@@ -278,7 +278,7 @@ for ($i = 1; $i <= 6; $i++) {
 		<?php }else{ ?>
 		<a href="User-Adoption-Appointment.php?id=<?php echo $petID; ?>"><button class='adopt-pet-button' id="adoptBtn">I Want Adopt &gt;</button></a>
 <?php }}
-	elseif($row['purpose']=='Rehome' && isset($_SESSION['adopterID'])){
+	elseif(($row['purpose']=='Rehome' || $row['purpose']=='Lodging')  && isset($_SESSION['adopterID'])){
 		if($row["status"]=='Complete'){?>
 			<a href="User-Adoption-Inquiry-Form.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Adopted</button></a>
 		<?php }else{?>

@@ -71,7 +71,7 @@
   <hr>
   <a href="Seller_HomePage.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon" >grid_view</span>&nbsp;Dashboard</a>
  <a href="Seller_Pets.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">pets</span>&nbsp;Pets</a>
- <a href="Seller_Adoption-Form.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">mail</span>&nbsp;Adoption Form</a>
+ <a href="Seller_Adoption-Form.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">mail</span>&nbsp;Adoption/Lodging</a>
   <a href="Seller_Orders.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">list_alt</span>&nbsp;Orders</a>
   <a href="Seller_Report.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">bar_chart</span>&nbsp;Report</a>
   <a href="Seller-Chat.php" class="sidebar-item"><span class="material-symbols-outlined" id="sidebar-icon">message</span>&nbsp;Message</a>

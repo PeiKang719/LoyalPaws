@@ -48,7 +48,7 @@
 
             <input type="hidden" name="aid" value="<?php echo $adopterID?>">
             <input type="hidden" name="pid" value="<?php echo $petID ?>;">
-  <h2 style="color:black">Pet Adoption Evaluation Form</h2>
+  <h2 style="color:black">Pet Adoption/Lodging Evaluation Form</h2>
   <br>
   <hr style="width: 100%;">
   <br>

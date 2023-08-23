@@ -51,6 +51,12 @@
       $row11 = $result11->fetch_assoc();
       $petID =$row11['petID'];
       $discount_percent = $row11['discount_percent'];
+
+      if($petID != NULL){
+  $sql9 = "SELECT purpose from pet WHERE petID=$petID;";
+  $result9 = $conn->query($sql9);
+  $row9 = $result9->fetch_assoc();
+}
 ?>
 
 <div class="container" style="display:flex;flex-direction: column;">
@@ -122,7 +128,7 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
 <hr>
 <form id="recordForm" action="Clinic-Record-Process.php?action=insert" method="post" enctype="multipart/form-data">
   <input type="hidden" name="appointmentID" value="<?php echo $appointmentID ?>">
-  <?php if($petID != NULL){ ?>
+  <?php if($petID != NULL AND $row9['purpose']!='Sell'){ ?>
   <input type="hidden" name="discount_percent" id="discount_percent" value="<?php echo $discount_percent ?>">
   <?php }else{ ?>
     <input type="hidden" name="discount_percent" id="discount_percent" value="NULL">
@@ -142,7 +148,7 @@ $sql = "SELECT *,t.name AS tname FROM treatment t,vet_treatment vt, vet v WHERE 
   </table>
 
 <table border="1" style="width: 100%;margin-bottom: 50px;">
-  <?php if($petID != NULL){ ?>
+  <?php if($petID != NULL AND $row9['purpose']!='Sell'){ ?>
     <tr>
 <td colspan="3" class="total_row" style="text-align:right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $discount_percent ?>%): </td>
 <td id="minus" class="total_row" style="width:160px;text-align:center"></td>
@@ -244,15 +250,20 @@ if (treatmentID) {
     $(this).find('td:nth-child(4)').text('RM ' + total.toFixed(2));
   });
 
-  // Calculate the total
-  if (discount==100){var minus = 0;}else{var minus = (subtotal * (discount/100)).toFixed(2);}
-  subtotal -= minus;
-  var total = subtotal.toFixed(2);
+  if ($('#minus').length) {
+        // Calculate the total
+      if (discount==100){var minus = 0;}else{var minus = (subtotal * (discount/100)).toFixed(2);}
+      subtotal -= minus;
+      var total = subtotal.toFixed(2);
 
-  // Display the subtotal and total in the designated elements
-  if (discount==100){}else{$('#minus').html('<b>- RM ' + minus + '</b>');}
+      // Display the subtotal and total in the designated elements
+      if (discount==100){}else{$('#minus').html('<b>- RM ' + minus + '</b>');}
+      
+      $('#total').html('<b>RM ' + total + '</b>');
+  }else{
+    $('#total').html('<b>RM ' + subtotal.toFixed(2) + '</b>');
+}
   
-  $('#total').html('<b>RM ' + total + '</b>');
 }
 
   });

@@ -83,7 +83,7 @@ elseif($status=='sdecision'){
   if ($conn->query($sql) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Approved adoption to the this applicant ");';
-    echo 'window.location.href = "Seller_Adoption-Form.php?id=' . 1 . '";';
+    echo 'window.location.href = "Seller_Adoption-Form.php?adoption=appointment";';
     echo '</script>';
 }
  else { 
@@ -104,7 +104,7 @@ elseif($status=='sdecision'){
   if ($conn->query($sql) === TRUE && $conn->query($sql6) === TRUE) {
     echo '<script type="text/javascript">';
     echo 'alert("Approved adoption to the this applicant ");';
-    echo 'window.location.href = "Seller_Adoption-Form.php?id=' . 1 . '";';
+    echo 'window.location.href = "Seller_Adoption-Form.php?adoption=appointment";';
     echo '</script>';
 }
  else { 

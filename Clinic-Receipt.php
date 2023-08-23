@@ -48,6 +48,7 @@
     $row = $result->fetch_assoc();
     $result2 = $conn->query($sql2);
     $row2 = $result2->fetch_assoc();
+    $petID=$row['petID'];
 
     $sql3 = "SELECT tr.recordID,tr.treatmentID,t.name,t.description,t.unit_price,tr.quantity,(tr.quantity*t.unit_price) AS total,r.comment,r.date,r.pet_name FROM treatment_record tr,treatment t,record r WHERE tr.treatmentID=t.treatmentID AND tr.recordID=r.recordID AND r.recordID=".$row['recordID'];
 
@@ -59,6 +60,11 @@ if($extra!=NULL){
   $each_treatments=explode("$",$extra);
 
   }
+  if($petID != NULL){
+  $sql9 = "SELECT purpose from pet WHERE petID=$petID;";
+  $result9 = $conn->query($sql9);
+  $row9 = $result9->fetch_assoc();
+}
 ?>
 <!-- Container -->
 <div style="width: 80%;padding: 1% 3%;border: 3px solid black;position: relative;margin-right: auto;margin-left: auto;background-color: white;">
@@ -167,7 +173,7 @@ if($extra!=NULL){
           
        <?php }}?>
         <?php
-          if($row['petID'] != NULL){?>
+          if($row['petID'] != NULL AND $row9['purpose']!='Sell'){?>
             <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $row['discount'] ?>%):</td>
             <td colspan="3" class="total_row" width="138px" style="text-align: center;">-RM <?php echo number_format($row['discount']/100*$sub_total,2)?></td>

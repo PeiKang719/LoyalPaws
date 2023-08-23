@@ -43,7 +43,7 @@ include 'SellerHeader.php';
 function showPet($pk, $sid) {
     include('Connection.php');
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from pet where $pk=$sid";
+    $count = "SELECT count(*) as total from pet where $pk=$sid AND availability='Y'";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -203,18 +203,24 @@ function showPet($pk, $sid) {
     	<div class="tab" style="margin-top:-25px;margin-bottom: -23px;">
         <label>Purpose</label>
          <table  width="720px;" style="margin-bottom:9px;">
-          <td width="50%" align="center">
-        <label class="radio-container" >Sell
+          <td width="20%" align="center">
+        <label class="radio-container" style="width:75%">Sell
             <input type="radio" name="purpose" onchange="changeColor(this)" value="Sell" id="sell_btn">
             <span class="radiomark2"></span>
         </label>
       	</td>
-      <td align="center">
-        <label class="radio-container" >Rehome
+      <td align="center" width="20%">
+        <label class="radio-container" style="width:75%">Adopt
             <input type="radio" name="purpose" onchange="changeColor(this)" value="Rehome" id="rehome_btn">
             <span class="radiomark2"></span>
         </label>
       </td>
+      <td width="20%" align="center">
+        <label class="radio-container" style="width:75%">Lodging
+            <input type="radio" name="purpose" onchange="changeColor(this)" value="Lodging" id="lodging_btn">
+            <span class="radiomark2"></span>
+        </label>
+        </td>
       </table>
         <label>Spayed?</label>
          <table  width="720px;" style="margin-bottom:9px;">
@@ -255,15 +261,9 @@ function showPet($pk, $sid) {
        <div class="tab">
         <label>Description:</label>
         <textarea maxlength="800" placeholder="Write something to describe the pet...(max 800 characters)" name="description" required style="height:181px;" id="description"></textarea>
-        <label id="required" style="display: none;">Return required? (Optional)<p style="color:red">*The pet will become unavailable if return date has expired*</p></label>
+        <label id="required" style="display: none;">Return Date<p style="color:red">*The pet will become unavailable if return date has expired*</p></label>
          <table  width="720px;" style="margin-bottom:9px;margin-top: 20px;">
           <tr id="return" style="display: none;">
-          <td width="50%" align="center">
-        <label class="switch" for="return_date">
-                        <input type="checkbox" id="return_date" name="return_date" value="Yes" />
-                        <div class="slider round"></div>
-                        </label>
-        </td>
       <td align="center">
         <input type="date" name="date" id="date" style="width:90%" disabled>
       </td>
@@ -567,7 +567,7 @@ function validateForm(x) {
 
 	else if (x==2 ){
   let a = document.forms["petForm"]["description"].value;
-  let b = document.getElementById('return_date');
+  let b = document.getElementById('lodging_btn');
   let c = document.forms["petForm"]["date"].value;
 
   if (a == "" ) {
@@ -680,16 +680,18 @@ function searchPets(searchQuery) {
 var tr = document.getElementById('return');
 var btn = document.getElementById('rehome_btn');
 var sbtn = document.getElementById('sell_btn');
+var lbtn = document.getElementById('lodging_btn');
 var description = document.getElementById('description');
 var required = document.getElementById('required');
-var ret = document.getElementById('return_date');
 var dat = document.getElementById('date');
 
-btn.addEventListener('change', function() {
-    if (btn.checked) {
+lbtn.addEventListener('change', function() {
+    if (lbtn.checked) {
         required.style.display = 'block';
         tr.style.display = 'table-row';
         description.style.height = '181px';
+        dat.setAttribute('required', 'required');
+        dat.disabled = false;
     }
 });
 sbtn.addEventListener('change', function() {
@@ -697,24 +699,23 @@ sbtn.addEventListener('change', function() {
         required.style.display = 'none';
         tr.style.display = 'none';
         description.style.height = '282px';
-        ret.checked = false;
+        dat.disabled = true;
         dat.value = '';
+        dat.removeAttribute('required');
+    } 
+});
+btn.addEventListener('change', function() {
+    if (btn.checked) {
+        required.style.display = 'none';
+        tr.style.display = 'none';
+        description.style.height = '282px';
+        dat.disabled = true;
+        dat.value = '';
+        dat.removeAttribute('required');
     } 
 });
 
-var return_date = document.getElementById('return_date');
-var date = document.getElementById('date');
 
-return_date.addEventListener('change', function() {
-    if (return_date.checked) {
-        date.disabled = false;
-        date.setAttribute('required', 'required');
-    } else {
-        date.disabled = true;
-        date.value = '';
-        date.removeAttribute('required');
-    }
-});
 </script>
 </body>
 

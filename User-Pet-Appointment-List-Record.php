@@ -34,6 +34,9 @@ if($extra!=NULL){
   $each_treatments=explode("$",$extra);
 
   }
+  $sql88 = "SELECT purpose FROM pet WHERE petID=$petID";
+        $result88 = $conn->query($sql88);
+        $row88 = $result88->fetch_assoc();
 ?>
 
   <div class="treatment-record-container">
@@ -93,7 +96,7 @@ if($extra!=NULL){
           
        <?php }}?>
 
-          <?php if($petID != NULL){?>
+          <?php if($petID != NULL AND $row88['purpose']!='Sell'){?>
             <tr>
             <td colspan="3" class="total_row" style="text-align: right;background-color: #e6f5ff;">Adopter Exclusive Discount (<?php echo $row2['discount'] ?>%):</td>
             <td colspan="3" class="total_row" width="145px" style="text-align: center;">-RM <?php echo number_format($row2['discount']/100*$sub_total,2); ?></td>

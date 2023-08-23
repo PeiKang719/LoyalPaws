@@ -24,7 +24,7 @@
 include 'SellerHeader.php'; 
 	  include 'Connection.php';?>
 <div class="form-container" style="padding-left:0;padding-right:0;width: 100%;">
- <p class="profile-header" style="margin-left:50px;font-size:27px;font-weight:bold">Adoption</p>
+ <p class="profile-header" style="margin-left:50px;font-size:27px;font-weight:bold">Adoption / Lodging</p>
   <div class="manage-appointment-section">
   	<a href="Seller_Adoption-Form.php?adoption=available">Available</a>
     <a href="Seller_Adoption-Form.php?adoption=appointment">Appointment/Decision</a>
@@ -53,7 +53,7 @@ include 'SellerHeader.php';
 function available($role,$key,$sellerID){
 	include 'Connection.php';
 $i=1;
-$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND m.status IS NULL GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND m.status IS NULL GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Booked' THEN 1
@@ -507,7 +507,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 function appointment($role,$key,$sellerID){
 	include 'Connection.php';
 $i=1;
-$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND (m.status='Booked' OR m.status='Appointment' OR m.status='Decision' OR m.status='Payment' OR m.status='Y') GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND (m.status='Booked' OR m.status='Appointment' OR m.status='Decision' OR m.status='Payment' OR m.status='Y') GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Booked' THEN 1
@@ -961,7 +961,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 function complete($role,$key,$sellerID){
 	include 'Connection.php';
 $i=1;
-$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND m.status='Complete' GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND m.status='Complete' GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Booked' THEN 1
@@ -1410,7 +1410,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 function cancel($role,$key,$sellerID){
 	include 'Connection.php';
 $i=1;
-$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND p.purpose='Rehome' AND m.status='Fail' GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND m.status='Fail' GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Booked' THEN 1

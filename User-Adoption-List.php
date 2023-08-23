@@ -42,7 +42,7 @@
 <body>
 <?php include 'UserHeader.php' ?>
 <div class="adoption-list-container">
-  <h1>Adoption</h1>
+  <h1>Adoption / Lodging</h1>
   <div class="status-section">
     <a href="User-Adoption-List.php?s=Pending">
       <button class="status-button">Pending</button>

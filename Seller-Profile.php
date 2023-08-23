@@ -138,11 +138,15 @@ if($row['cover']!=''){
 				<div class="row" style="justify-content: center;align-items: flex-end;">Purpose</div>
 				<div class="row">
 					<div class="column1"><input type="checkbox" name="purpose[]" value="'Rehome'" style="width: 40%;margin: 0;"></div>
-					<div class="column2">Rehome</div>
+					<div class="column2">Adopt</div>
 				</div>
 				<div class="row">
 					<div class="column1"><input type="checkbox" name="purpose[]" value="'Sell'" style="width: 40%;margin: 0;"></div>
 					<div class="column2">Sell</div>
+				</div>
+				<div class="row">
+					<div class="column1"><input type="checkbox" name="purpose[]" value="'Lodging'" style="width: 40%;margin: 0;"></div>
+					<div class="column2">Lodging</div>
 				</div>
 				<div class="row" style="justify-content: center;align-items: flex-end;">Size</div>
 				<div class="row">
@@ -162,7 +166,7 @@ if($row['cover']!=''){
 				<?php include 'Connection.php'; ?>
 				<?php
 				$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from pet where sellerID=$id";
+    $count = "SELECT count(*) as total from pet where sellerID=$id AND availability='Y'";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -217,7 +221,7 @@ if($row['cover']!=''){
              echo '<p><span class="material-symbols-outlined" style="font-size:25px;vertical-align:-7px">label</span>' .  $row['purpose'] .'</p>';
             echo '</div>';
             echo '<div class="view-breed3" style="background-color:#999999">';
-            if($row['purpose']=='Rehome'){
+            if($row['purpose']=='Rehome' || $row['purpose']=='Lodging'){
             echo '<p><b>Adopted</b></p>';
         	}
         	else{
@@ -492,11 +496,15 @@ if($row['cover']!=''){
 				<div class="row" style="justify-content: center;align-items: flex-end;">Purpose</div>
 				<div class="row">
 					<div class="column1"><input type="checkbox" name="purpose[]" value="'Rehome'" style="width: 40%;margin: 0;"></div>
-					<div class="column2">Rehome</div>
+					<div class="column2">Adopt</div>
 				</div>
 				<div class="row">
 					<div class="column1"><input type="checkbox" name="purpose[]" value="'Sell'" style="width: 40%;margin: 0;"></div>
 					<div class="column2">Sell</div>
+				</div>
+				<div class="row">
+					<div class="column1"><input type="checkbox" name="purpose[]" value="'Lodging'" style="width: 40%;margin: 0;"></div>
+					<div class="column2">Lodging</div>
 				</div>
 				<div class="row" style="justify-content: center;align-items: flex-end;">Size</div>
 				<div class="row">
@@ -516,7 +524,7 @@ if($row['cover']!=''){
 				<?php include 'Connection.php'; ?>
 				<?php
 				$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from pet where shopID=$id";
+    $count = "SELECT count(*) as total from pet where shopID=$id AND availability='Y'";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -571,7 +579,7 @@ if($row['cover']!=''){
              echo '<p><span class="material-symbols-outlined" style="font-size:25px;vertical-align:-7px">label</span>' .  $row['purpose'] .'</p>';
             echo '</div>';
             echo '<div class="view-breed3" style="background-color:#999999">';
-            if($row['purpose']=='Rehome'){
+            if($row['purpose']=='Rehome'  || $row['purpose']=='Lodging'){
             echo '<p><b>Adopted</b></p>';
         	}
         	else{

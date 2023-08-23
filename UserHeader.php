@@ -47,7 +47,7 @@
       <button class="dropbtn">Pet</button>
       <div class="dropdown-content">
         <a href="User-Order-List.php">Order</a>
-        <a href="User-Adoption-List.php">Adoption</a>
+        <a href="User-Adoption-List.php">Adoption/Lodging</a>
       </div>
     </li>
     <li><a href="User-Pet-Appointment-List.php">Clinic</a></li>

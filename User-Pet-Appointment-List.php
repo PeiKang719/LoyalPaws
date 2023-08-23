@@ -71,13 +71,22 @@
         $time=$row['time'];
         $petID=$row['petID'];
         $discount_percent=$row['discount_percent'];
+        if($petID !=NULL){
+        $sql9 = "SELECT purpose FROM pet WHERE petID=$petID";
+        $result9 = $conn->query($sql9);
+        $row9 = $result9->fetch_assoc();
+        $purpose=$row9['purpose'];
+        $petID=$row9['purpose'];}else{
+          $purpose='Sell';
+        }
+
         ?>
     <a href="User-Clinic-Profile.php?cid=<?php echo $clinicID ?>" class="appointment-list-container">
       <div class="appointment-list-container-row">
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <div class="appointment-list-container-column">
         <p><span class="material-symbols-outlined">local_hospital</span> Clinic: <?php echo $name ?></p>
-        <?php if($discount_percent!=NULL){ ?>
+        <?php if($discount_percent!=NULL AND $purpose!='Sell'){ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: <?php echo $discount_percent ?> %</p>
       <?php }else{ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: Not Applied</p>
@@ -168,13 +177,23 @@
         <?php $sql9="SELECT paymentID FROM clinic_payment WHERE recordID=$recordID";
           $result9 = $conn->query($sql9);
           $rows9 = $result9->fetch_all(MYSQLI_ASSOC);
-          if ($result9->num_rows == 0) { ?>
+
+          
+
+          if ($result9->num_rows == 0) {
+            if($petID!=NULL){
+          $sql88 = "SELECT purpose FROM pet WHERE petID=$petID";
+        $result88 = $conn->query($sql88);
+        $row88 = $result88->fetch_assoc();
+        $purpose=$row88['purpose'];}else{
+          $purpose='Sell';
+        } ?>
     <a href="User-Clinic-Profile.php?cid=<?php echo $clinicID ?>" class="appointment-list-container">
       <div class="appointment-list-container-row">
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <div class="appointment-list-container-column">
         <p><span class="material-symbols-outlined">local_hospital</span> Clinic: <?php echo $name ?></p>
-        <?php if($discount!=NULL){ ?>
+        <?php if($discount!=NULL AND $purpose!='Sell'){ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: <?php echo $discount ?> %</p>
       <?php }else{ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: Not Applied</p>
@@ -253,13 +272,22 @@
         $transactionID = $row['transactionID'];
         $date = $row['date'];
         $amount = $row['amount'];
+
+        if($petID !=NULL){
+        $sql88 = "SELECT purpose FROM pet WHERE petID=$petID";
+        $result88 = $conn->query($sql88);
+        $row88 = $result88->fetch_assoc();
+        $purpose=$row88['purpose'];
+        }else{
+          $purpose='Sell';
+        }
         ?>
     <a href="User-Clinic-Profile.php?cid=<?php echo $clinicID ?>" class="appointment-list-container">
       <div class="appointment-list-container-row">
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <div class="appointment-list-container-column">
         <p><span class="material-symbols-outlined">local_hospital</span> Clinic: <?php echo $name ?></p>
-        <?php if($discount_percent!=NULL){ ?>
+        <?php if($discount_percent!=NULL AND $purpose!='Sell'){ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: <?php echo $discount_percent ?> %</p>
       <?php }else{ ?>
         <p><span class="material-symbols-outlined">volunteer_activism</span> Discount: Not Applied</p>

@@ -32,7 +32,7 @@
   <?php
   $paymentID = $_GET['paymentID'];
   include 'Connection.php';
-  $sql = "SELECT a.firstName,a.lastName,a.phone,a.email,b.name,p.gender,p.birthday,p.color,p.price,p.return_date,pp.complete_date FROM pet_payment pp,adopter a,pet p,breed b WHERE pp.adopterID=a.adopterID AND pp.petID=p.petID AND p.breedID=b.breedID AND pp.paymentID=$paymentID";
+  $sql = "SELECT a.firstName,a.lastName,a.phone,a.email,b.name,p.gender,p.purpose,p.birthday,p.color,p.price,p.return_date,pp.complete_date FROM pet_payment pp,adopter a,pet p,breed b WHERE pp.adopterID=a.adopterID AND pp.petID=p.petID AND p.breedID=b.breedID AND pp.paymentID=$paymentID";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc(); 
   ?>
@@ -52,8 +52,13 @@
   
   <!-- Main Content -->
   <main  id="receipt">
+    <?php if($row['purpose']=='Rehome'){ ?>
      <h1 style="margin-left:6px">Pet Adoption Agreement</h1>
+   <?php }else{ ?>
+    <h1 style="margin-left:6px">Pet Lodging Agreement</h1>
+   <?php } ?>
      <hr>
+   }
 
   <div class="receipt-container-row">
     <div class="receipt-container-row-content"> <strong>PET INFORMATION</strong>

@@ -18,7 +18,7 @@ $size[] = $_GET['size'];
 $purpose[] = $_GET['purpose'];
 
 if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
-    if($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1){
+    if($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])<11 && strlen($purpose[0])>1){
         $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND b.type=$type[0] AND p.purpose=$purpose[0] AND p.$pk='$id'  AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -48,7 +48,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1 &&strlen($type[0])==0){
+    elseif($searchQuery!=='' && strlen($size[0])<10 && strlen($size[0])>1 && strlen($purpose[0])<11 && strlen($purpose[0])>1 &&strlen($type[0])==0){
         $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.size=$size[0] AND p.purpose=$purpose[0] AND p.$pk='$id'  AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -63,7 +63,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif($searchQuery!=='' && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($size[0])==0){
+    elseif($searchQuery!=='' && strlen($type[0])<6 && strlen($type[0])>1 && strlen($purpose[0])<11 && strlen($purpose[0])>1 && strlen($size[0])==0){
         $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND b.type=$type[0] AND p.purpose=$purpose[0] AND p.$pk='$id'  AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -78,7 +78,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif(strlen($type[0])<6 && strlen($type[0])>1 && strlen($size[0])<10 && strlen($size[0])>1 && strlen($purpose[0])<9 && strlen($purpose[0])>1 &&$searchQuery==''){
+    elseif(strlen($type[0])<6 && strlen($type[0])>1 && strlen($size[0])<10 && strlen($size[0])>1 && strlen($purpose[0])<11 && strlen($purpose[0])>1 &&$searchQuery==''){
         $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.size=$size[0] AND b.type=$type[0] AND p.purpose=$purpose[0] AND p.$pk='$id'  AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -123,7 +123,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif($searchQuery!=='' && strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($size[0])==0 && strlen($type[0])==0){
+    elseif($searchQuery!=='' && strlen($purpose[0])<11 && strlen($purpose[0])>1 && strlen($size[0])==0 && strlen($type[0])==0){
     $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE b.name LIKE '%$searchQuery%' AND p.purpose=$purpose[0] AND p.$pk='$id' AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -153,7 +153,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif(strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($size[0])<10 && strlen($size[0])>1  && strlen($type[0])==0 && $searchQuery==''){
+    elseif(strlen($purpose[0])<11 && strlen($purpose[0])>1 && strlen($size[0])<10 && strlen($size[0])>1  && strlen($type[0])==0 && $searchQuery==''){
     $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND b.size=$size[0] AND p.$pk='$id' AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -168,7 +168,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif(strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($type[0])<6 && strlen($type[0])>1  && strlen($size[0])==0 && $searchQuery==''){
+    elseif(strlen($purpose[0])<11 && strlen($purpose[0])>1 && strlen($type[0])<6 && strlen($type[0])>1  && strlen($size[0])==0 && $searchQuery==''){
     $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND b.type=$type[0] AND p.$pk='$id' AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -230,7 +230,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif(strlen($purpose[0])<9 && strlen($purpose[0])>1 && strlen($type[0])==0 && $searchQuery=='' && strlen($size[0])==0){
+    elseif(strlen($purpose[0])<11 && strlen($purpose[0])>1 && strlen($type[0])==0 && $searchQuery=='' && strlen($size[0])==0){
         $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose=$purpose[0] AND p.$pk='$id' AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -278,7 +278,7 @@ if($searchQuery!=='' || $size[0]!=='' || $type[0]!=='' || $purpose[0]!==''){
     END,
     petID DESC";
     }
-    elseif(strlen($purpose[0])>9){
+    elseif(strlen($purpose[0])>11){
      $sql = "SELECT p.petID,p.pet_image,b.name,p.purpose,p.price,s.state,s.area,p.gender,p.availability,pp.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $table s ON p.$pk=s.$pk LEFT JOIN pet_payment pp ON pp.petID=p.petID WHERE p.purpose='abc' AND p.$pk='$id' AND (BINARY status <> 'Cancel' OR status IS NULL) AND availability='Y' ORDER BY
     CASE
         WHEN status IS NULL THEN 0
@@ -323,7 +323,7 @@ if ($result->num_rows > 0) {
              echo '<p><span class="material-symbols-outlined" style="font-size:25px;vertical-align:-7px">label</span>' .  $row['purpose'] .'</p>';
             echo '</div>';
             echo '<div class="view-breed3" style="background-color:#999999">';
-            if($row['purpose']=='Rehome'){
+            if($row['purpose']=='Rehome' || $row['purpose']=='Lodging'){
             echo '<p><b>Adopted</b></p>';
             }
             else{
@@ -395,7 +395,7 @@ if ($result->num_rows > 0) {
 
 else{
    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Cast $page to an integer
-    $count = "SELECT count(*) as total from pet where $pk='$id'";
+    $count = "SELECT count(*) as total from pet where $pk='$id' AND availability='Y'";
     $data = $conn->query($count);
     $dat = $data->fetch_assoc();
     $total_records = $dat["total"];
@@ -449,7 +449,7 @@ else{
              echo '<p><span class="material-symbols-outlined" style="font-size:25px;vertical-align:-7px">label</span>' .  $row['purpose'] .'</p>';
             echo '</div>';
             echo '<div class="view-breed3" style="background-color:#999999">';
-            if($row['purpose']=='Rehome'){
+            if($row['purpose']=='Rehome' || $row['purpose']=='Lodging'){
             echo '<p><b>Adopted</b></p>';
             }
             else{

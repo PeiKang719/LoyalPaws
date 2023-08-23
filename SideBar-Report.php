@@ -60,13 +60,13 @@
  <?php 
 include 'Connection.php';
 $sql2 =
-"SELECT 'rehoming' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NULL AND purpose = 'Rehome' AND type IN ('Dog', 'Cat') 
+"SELECT 'rehoming' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NULL AND availability='Y' AND  purpose = 'Rehome' AND type IN ('Dog', 'Cat') 
 UNION ALL 
-SELECT 'selling' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NULL AND purpose = 'Sell' AND type IN ('Dog', 'Cat') 
+SELECT 'selling' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NULL AND availability='Y' AND purpose = 'Sell' AND type IN ('Dog', 'Cat') 
 UNION ALL 
-SELECT 'adopted' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NOT NULL AND purpose = 'Rehome' AND type IN ('Dog', 'Cat')
+SELECT 'adopted' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NOT NULL AND availability='Y' AND purpose = 'Rehome' AND type IN ('Dog', 'Cat')
  UNION ALL 
- SELECT 'purchased' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NOT NULL AND purpose = 'Sell' AND type IN ('Dog', 'Cat');"; 
+ SELECT 'purchased' AS title, SUM(CASE WHEN type = 'Dog' THEN 1 ELSE 0 END) AS Dog, SUM(CASE WHEN type = 'Cat' THEN 1 ELSE 0 END) AS Cat FROM pet WHERE adopterID IS NOT NULL AND availability='Y' AND purpose = 'Sell' AND type IN ('Dog', 'Cat');"; 
 
 $result2 = $conn->query($sql2);
 $dog = array();
