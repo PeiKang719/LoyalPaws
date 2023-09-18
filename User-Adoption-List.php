@@ -260,7 +260,7 @@
 <?php function complete($adopterID){
  include 'Connection.php';
  $k=1;
-      $sql = "SELECT p.pet_image,p.gender,p.petID,b.name,m.status,m.paymentID,m.transactionId,m.complete_date,p.price,p.sellerID,p.shopID FROM pet p,breed b,pet_payment m,adopter a WHERE p.breedID=b.breedID AND p.petID=m.petID AND m.adopterID=a.adopterID AND BINARY m.status='Complete' AND m.adopterID=$adopterID order by m.complete_date";
+      $sql = "SELECT p.pet_image,p.gender,p.petID,p.purpose,b.name,m.status,m.paymentID,m.transactionId,m.complete_date,p.price,p.sellerID,p.shopID FROM pet p,breed b,pet_payment m,adopter a WHERE p.breedID=b.breedID AND p.petID=m.petID AND m.adopterID=a.adopterID AND BINARY m.status='Complete' AND m.adopterID=$adopterID order by m.complete_date";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     if ($result->num_rows > 0) {
@@ -278,6 +278,7 @@
         $paymentID=$row['paymentID'];
         $transactionId=$row['transactionId'];
         $completedate=$row['complete_date'];
+        $purpose=$row['purpose'];
 
          if ($row['sellerID'] !== NULL) {
           $sql11 = "SELECT CONCAT(firstName,' ' ,LastName) AS sname FROM seller WHERE sellerID = " . $row['sellerID'];
@@ -298,7 +299,13 @@
     <?php } ?>
       <div style="width:40%;text-align:center">
      
-    <button class="form-list-button up" id="detials<?php echo $k?>" onclick="details(event,<?php echo $paymentID?>);" style="width: 60%;">Adoption Agreement</button>
+    <button class="form-list-button up" id="detials<?php echo $k?>" onclick="details(event,<?php echo $paymentID?>);" style="width: 60%;">
+      <?php if($purpose=='Rehome'){?>
+    Adoption Agreement
+    <?php }else{ ?>
+    Lodging Agreement
+  <?php } ?>
+  </button>
     <input type="hidden" id="iid<?php echo $k ?>" value="<?php echo $paymentID ?>">
     </div>
   </a>
