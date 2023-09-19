@@ -123,7 +123,7 @@
       <?php function appointment($adopterID){ 
       $j=1;
       include 'Connection.php';
-      $sql = "SELECT p.pet_image,p.gender,p.petID,b.name,m.status,m.paymentID,m.visit_time,m.visit_date,p.price,p.return_date,p.sellerID,p.shopID FROM pet p,breed b,adopter a,pet_payment m WHERE p.breedID=b.breedID AND p.petID=m.petID AND m.adopterID=a.adopterID AND (m.status='Decision' OR m.status='y' OR m.status='Y' OR m.status='Payment' OR m.status='Free') AND m.adopterID=$adopterID ORDER BY m.visit_date,m.visit_time";
+      $sql = "SELECT p.pet_image,p.gender,p.petID,p.purpose AS ppurpose,b.name,m.status,m.paymentID,m.visit_time,m.visit_date,p.price,p.return_date,p.sellerID,p.shopID FROM pet p,breed b,adopter a,pet_payment m WHERE p.breedID=b.breedID AND p.petID=m.petID AND m.adopterID=a.adopterID AND (m.status='Decision' OR m.status='y' OR m.status='Y' OR m.status='Payment' OR m.status='Free') AND m.adopterID=$adopterID ORDER BY m.visit_date,m.visit_time";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     if ($result->num_rows > 0) {
@@ -144,6 +144,7 @@
         $sellerID=$row['sellerID'];
         $shopID=$row['shopID'];
         $return_date=$row['return_date'];
+        $ppurpose=$row['ppurpose'];
 
         if ($row['sellerID'] !== NULL) {
           $sql11 = "SELECT CONCAT(firstName,' ' ,LastName) AS sname FROM seller WHERE sellerID = " . $row['sellerID'];
@@ -223,7 +224,11 @@
     <div style="width: 100%;display: flex;flex-direction: column; align-items: center;">
       <br><br>
     <div style="width: 90%;padding: 0 5%;font-size: 20px;">
+      <?php if($ppurpose =='Rehome'){ ?>
     <h2>Adoption Terms</h2><br>
+  <?php }else{ ?>
+    <h2>Lodging Terms</h2><br>
+  <?php } ?>
     <p>I, the undersigned adopter, agree to the following terms and conditions:</p>
     <ol>
       <li style="margin-top: 5px;">1. The pet will be given proper care, including adequate food, water, shelter, and veterinary care.</li>

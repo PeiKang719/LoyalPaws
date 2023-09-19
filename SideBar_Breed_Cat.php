@@ -86,7 +86,7 @@ function showBreed() {
             echo '<a href="SideBar_Breed-Breed-Profile.php?id=' . $row['breedID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button">open_in_new</span></a>';
              echo '<a href="SideBar_Breed-Edit-Modal.php?id=' . $row['breedID'] . '" target="_blank"><span class="material-symbols-outlined" id="card-button-edit">edit</span>';
             echo '<iframe name="hiddenFrame3" class="hide"></iframe>';
-            echo '<a href="SideBar_Breed-Delete-Breed.php?id=' . $row['breedID'] . '" ><span class="material-symbols-outlined" id="card-button-delete">delete</span></a>';
+            echo '<a href="SideBar_Breed-Delete-Breed.php?id=' . $row['breedID'] . '" target="hiddenFrame3" onclick="deleteBreed(event)"><span class="material-symbols-outlined" id="card-button-delete">delete</span></a>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -403,6 +403,7 @@ $conn->close();
 			</div>
 			<div class="tab" id="thirdTab">
 				<h1 class="tab3head">Breed Characteristics</h1><br>
+				<img src="media/scale.png" style="position: absolute;margin-left: -150px;margin-top: -70px; width: 100px;height: 500px;">
 				<table>
 					<tr height="60px">
 						<td><label class="characteristics">Kid-Friendly</label></td>
