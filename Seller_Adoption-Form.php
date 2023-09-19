@@ -961,7 +961,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 function complete($role,$key,$sellerID){
 	include 'Connection.php';
 $i=1;
-$sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND m.status='Complete' GROUP BY p.petID ORDER BY
+$sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name,i.inquiryID,COUNT(i.inquiryID) AS num,m.status FROM pet p JOIN breed b ON p.breedID=b.breedID JOIN $role s ON  p.$key=s.$key LEFT JOIN inquiry i ON i.petID=p.petID LEFT JOIN pet_payment m ON p.petID=m.petID WHERE s.$key=$sellerID AND (p.purpose='Rehome' OR p.purpose='Lodging') AND m.status='Complete' GROUP BY p.petID ORDER BY
     CASE
         WHEN m.status IS NULL THEN 0
         WHEN m.status = 'Booked' THEN 1
@@ -982,6 +982,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             }
 	   $petID=$row['petID'];
 	   $gender=$row['gender'];
+	   $purpose=$row['purpose'];
 	   $bname=$row['name'];
 	   $num=$row['num'];
  	   $sql7 = "SELECT status from pet_payment where status='Complete' AND petID=$petID;";
@@ -1231,7 +1232,13 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
             <p><b><?php echo $row2['adopter_name'] ?></b></p>
             </div>
             <div class="breedIcon" style="display: flex;flex-direction: row;">
-            	<button class="view-application-button" id="correct" type="button" onclick="details(<?php echo $paymentID ?>,event)" style="background-color:#29a329 ;color: white;">Adoption Agreement</button>
+            	<button class="view-application-button" id="correct" type="button" onclick="details(<?php echo $paymentID ?>,event)" style="background-color:#29a329 ;color: white;">
+            		<?php if($purpose=='Rehome'){ ?>
+            	Adoption Agreement
+            <?php }else{ ?>
+            	Lodging Agreement
+            <?php } ?>
+            </button>
             </div>
             </div>
         </a>
