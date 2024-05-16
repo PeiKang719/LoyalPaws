@@ -1,0 +1,154 @@
+body{
+  margin: 0;
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  letter-spacing: 1px;
+  }
+
+*{
+  text-decoration: none;
+  list-style: none;
+  color: #4d4d4d;
+  margin: 0;
+}
+nav{
+  background: #f9f9f9;
+  height: 70px;
+  width: 100%;
+  box-shadow: 0 2px 4px 0 #dfdfdf !important;
+  z-index: 2;
+  position: fixed;
+}
+label.logo{
+  color: white;
+  font-size: 25px;
+  line-height: 70px;
+  padding: 0 40px;
+  font-weight: bold;
+}
+.logo a:hover{
+  background: transparent;
+}
+
+nav ul{
+  float: right;
+  margin-right: 10px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 40px;
+  margin: 0 -3px;
+  vertical-align: -25px;
+}
+nav ul li a{
+  color: #4d4d4d;
+  font-size: 18px;
+  padding: 27px 40px;
+  border-radius: 3px;
+  margin: 0;
+}
+nav a.active,nav a:hover{
+  background: #d9d9d9;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: left;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  
+}
+#check{
+  display: none;
+}
+
+hr{
+  width: 80%;
+  margin: 20px 30px;
+}
+.hide { position:absolute; top:-1px; left:-1px; width:0.1px; height:0.1px; border:1px solid white;}
+
+.sidebar{
+  width: 290px;
+  height: 100%;
+  background-color: black;
+  top: 73px;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 18;
+  left: -70%;
+  transition: 0.3s ;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+#sidebar-icon{
+  color:#999999;
+  font-size: 27px;
+  vertical-align: -3px;
+}
+
+.sidebar a {
+  padding: 15px 40px 15px 35px;
+  text-decoration: none;
+  font-size: 25px;
+  color:#999999;
+  display: block;
+  border: none;
+  width: 100%;
+  background: black;
+  background-size: 300% 100%;
+
+}
+
+a:hover #sidebar-icon {
+  color: white;
+
+}
+
+.sidebar a:hover{
+  color:white;
+  background: linear-gradient(to right,black 20%,#0099ff 60%);
+  background-size: 300% 100%;
+  background-position: -100% 0;
+}
+
+.sidebar a.active {
+  background: linear-gradient(to right,black 20%,#0099ff 60%);
+  background-size: 300% 100%;
+  background-position: -100% 0;
+  color: white;
+  width: 100%;
+}
+
+.sidebar a.active #sidebar-icon{
+/*icon active color*/
+  color: white; 
+}
+
+#profile {
+  display: block;
+  margin-top: 27px;
+  margin-left: auto;
+  margin-right: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+
+}
+
+#name{
+  text-align: center;
+  color: white;
+}
+
+#check:checked ~ .sidebar{
+    left: 0%;
+  
+  }
+
