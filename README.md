@@ -54,7 +54,7 @@ To set up the project locally, follow these steps:
 
 ### Payment Processing
 
-![Paypal Logo](https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.webassist.com%2Fsupport%2Fpowerstore%2F%3Fslug%3Dpowerstore&psig=AOvVaw1tZp-tyzBWRW4uNI5H4-dH&ust=1716035617204000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIikzP7YlIYDFQAAAAAdAAAAABAu)
+![Paypal Logo](https://github.com/PeiKang719/LoyalPaws/blob/main/media/sandbox.png)
 
 - The payment system uses PayPal Sandbox for handling financial transactions securely.
    - Ensure you have a PayPal Sandbox account set up.
