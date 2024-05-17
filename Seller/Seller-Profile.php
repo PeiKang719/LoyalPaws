@@ -22,7 +22,7 @@
 if(isset($_GET['admin'])){
 include '../Admin/AdminHeader.php';
 }else{
-include '../User/UserHeader.php';
+include 'UserHeader.php';
 } ?>
 
 <?php 

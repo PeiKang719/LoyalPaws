@@ -2,7 +2,7 @@
 session_start();
 
 // Check if a session exists, then destroy it
-if (isset($_SESSION['adopterID']) || isset($_SESSION['sellerID']) || isset($_SESSION['shopID'])  || isset($_SESSION['vet'])) {
+if (isset($_SESSION['adminID']) || isset($_SESSION['adopterID']) || isset($_SESSION['sellerID']) || isset($_SESSION['shopID'])  || isset($_SESSION['vet'])) {
     session_destroy();
 }?>
 <!DOCTYPE html>

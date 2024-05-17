@@ -539,20 +539,20 @@ else{
             
         }
         else{
-            echo '<a href="Seller-Profile.php?page=' . ($page-1) . '">&lt;</a>';
+            echo '<a href="User-Adoption.php?page=' . ($page-1) . '">&lt;</a>';
         }
         for ($i = 1; $i <= $total_pages; $i++) {
             if ($i == $page) {
-                echo '<a href="Seller-Profile.php?page=' . $i . '" class="page-active">' . $i . '</a>';
+                echo '<a href="User-Adoption.php?page=' . $i . '" class="page-active">' . $i . '</a>';
             } else {
-                echo '<a href="Seller-Profile.php?page=' . $i . '">' . $i . '</a>';
+                echo '<a href="User-Adoption.php?page=' . $i . '">' . $i . '</a>';
             }
     }
         if($page == $total_pages){
            
         }
         else{
-            echo '<a href="Seller-Profile.php?page=' . ($page+1) . '"> &gt;</a>';
+            echo '<a href="User-Adoption.php?page=' . ($page+1) . '"> &gt;</a>';
          }
         echo '</div>';
     }

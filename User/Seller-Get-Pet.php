@@ -519,20 +519,40 @@ else{
             
         }
         else{
-            echo '<a href="../Breed/Dog-breed.php?page=' . ($page-1) . '">&lt;</a>';
+            if ($_GET['sid']!=NULL) {
+                echo '<a href="Seller-Profile.php?s=pet&sid=' . $_GET['sid'] . '&page=' . ($page-1) . '">&lt;</a>';
+            }
+            elseif($_GET['iid']!=NULL){
+                echo '<a href="Seller-Profile.php?s=pet&iid=' . $_GET['iid'] . '&page=' . ($page-1) . '">&lt;</a>';
+            }
         }
         for ($i = 1; $i <= $total_pages; $i++) {
             if ($i == $page) {
-                echo '<a href="../Breed/Dog-breed.php?page=' . $i . '" class="page-active">' . $i . '</a>';
+                if ($_GET['sid']!=NULL) {
+                    echo '<a href="Seller-Profile.php?s=pet&sid=' . $_GET['sid'] . '&page=' . $i . '" class="page-active">' . $i . '</a>';
+                }
+                elseif($_GET['iid']!=NULL){
+                    echo '<a href="Seller-Profile.php?s=pet&iid=' . $_GET['iid'] . '&page=' . $i . '" class="page-active">' . $i . '</a>';
+                }
             } else {
-                echo '<a href="../Breed/Dog-breed.php?page=' . $i . '">' . $i . '</a>';
+                if ($_GET['sid']!=NULL) {
+                    echo '<a href="Seller-Profile.php?s=pet&sid=' . $_GET['sid'] . '&page=' . $i . '">' . $i . '</a>';
+                }
+                elseif($_GET['iid']!=NULL){
+                    echo '<a href="Seller-Profile.php?s=pet&iid=' . $_GET['iid'] . '&page=' . $i . '">' . $i . '</a>';
+                }
             }
     }
         if($page == $total_pages){
            
         }
         else{
-            echo '<a href="../Breed/Dog-breed.php?page=' . ($page+1) . '"> &gt;</a>';
+            if ($_GET['sid']!=NULL) {
+                echo '<a href="Seller-Profile.php?s=pet&sid=' . $_GET['sid'] . '&page=' . ($page+1) . '"> &gt;</a>';
+            }
+            elseif($_GET['iid']!=NULL){
+                echo '<a href="Seller-Profile.php?s=pet&iid=' . $_GET['iid'] . '&page=' . ($page+1) . '"> &gt;</a>';
+            }
          }
         echo '</div>';
     }else{

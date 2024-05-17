@@ -96,7 +96,7 @@
         $name=$row['name'];
         $status=$row['status'];
         $inquiryID=$row['inquiryID'];?>
-    <a href="../Seller/Seller_Pets-Profile.php?id=<?php echo $petID ?>" class="form-list">
+    <a href="Seller_Pets-Profile.php?id=<?php echo $petID ?>" class="form-list">
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <?php if($gender=='Female'){?>
       <p><span class="material-symbols-outlined" style="font-size: 40px; vertical-align: -8px; color: #ff99ff; font-weight: 800;">female</span><?php echo $name ?></p>
@@ -156,7 +156,7 @@
       $result11 = $conn->query($sql11);
       $row11 = $result11->fetch_assoc();
         ?>
-    <a href="../Seller/Seller_Pets-Profile.php?id=<?php echo $petID ?>" class="form-list">
+    <a href="Seller_Pets-Profile.php?id=<?php echo $petID ?>" class="form-list">
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <div style="display:flex;flex-direction: column;width: 45%;">
       <?php if($gender=='Female'){?>
@@ -295,7 +295,7 @@
       $result11 = $conn->query($sql11);
       $row11 = $result11->fetch_assoc();
         ?>
-    <a href="../Seller/Seller_Pets-Profile.php?id=<?php echo $petID ?>" class="form-list">
+    <a href="Seller_Pets-Profile.php?id=<?php echo $petID ?>" class="form-list">
       <img src="<?php echo $imageSrc ?>" alt="pet">
       <?php if($gender=='Female'){?>
       <p><span class="material-symbols-outlined" style="font-size: 40px; vertical-align: -8px; color: #ff99ff; font-weight: 800;">female</span><?php echo $name ?></p>

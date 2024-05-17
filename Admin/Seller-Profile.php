@@ -291,20 +291,20 @@ if($row['cover']!=''){
         	
         }
         else{
-        	echo '<a href="Seller-Profile.php?page=' . ($page-1) . '">&lt;</a>';
+        	echo '<a href="Seller-Profile.php?s=pet&iid='.$_GET['iid'].'&admin=yes&page=' . ($page-1) . '">&lt;</a>';
         }
         for ($i = 1; $i <= $total_pages; $i++) {
 		    if ($i == $page) {
-		        echo '<a href="Seller-Profile.php?page=' . $i . '" class="page-active">' . $i . '</a>';
+		        echo '<a href="Seller-Profile.php?s=pet&iid='.$_GET['iid'].'&admin=yes&page=' . $i . '" class="page-active">' . $i . '</a>';
 		    } else {
-		        echo '<a href="Seller-Profile.php?page=' . $i . '">' . $i . '</a>';
+		        echo '<a href="Seller-Profile.php?s=pet&iid='.$_GET['iid'].'&admin=yes&page=' . $i . '">' . $i . '</a>';
 		    }
 	}
 		if($page == $total_pages){
 		   
 		}
 		else{
-		    echo '<a href="Seller-Profile.php?page=' . ($page+1) . '"> &gt;</a>';
+		    echo '<a href="Seller-Profile.php?s=pet&iid='.$_GET['iid'].'&admin=yes&page=' . ($page+1) . '"> &gt;</a>';
 		 }
         echo '</div>';
     }else{
@@ -649,20 +649,20 @@ if($row['cover']!=''){
         	
         }
         else{
-        	echo '<a href="Seller-Profile.php?page=' . ($page-1) . '">&lt;</a>';
+        	echo '<a href="Seller-Profile.php?s=pet&sid='.$_GET['sid'].'&admin=yes&page=' . ($page-1) . '">&lt;</a>';
         }
         for ($i = 1; $i <= $total_pages; $i++) {
 		    if ($i == $page) {
-		        echo '<a href="Seller-Profile.php?page=' . $i . '" class="page-active">' . $i . '</a>';
+		        echo '<a href="Seller-Profile.php?s=pet&sid='.$_GET['sid'].'&admin=yes&page=' . $i . '" class="page-active">' . $i . '</a>';
 		    } else {
-		        echo '<a href="Seller-Profile.php?page=' . $i . '">' . $i . '</a>';
+		        echo '<a href="Seller-Profile.php?s=pet&sid='.$_GET['sid'].'&admin=yes&page=' . $i . '">' . $i . '</a>';
 		    }
 	}
 		if($page == $total_pages){
 		   
 		}
 		else{
-		    echo '<a href="Seller-Profile.php?page=' . ($page+1) . '"> &gt;</a>';
+		    echo '<a href="Seller-Profile.php?s=pet&sid='.$_GET['sid'].'&admin=yes&page=' . ($page+1) . '"> &gt;</a>';
 		 }
         echo '</div>';
     }else{

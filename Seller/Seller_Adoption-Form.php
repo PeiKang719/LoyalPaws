@@ -250,7 +250,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php if($z>1){ 
 				if($status=='Pending'){?>
 		<div class="column">
-			<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+			<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card lock">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -265,7 +265,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 <?php }
 		elseif($z==3 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -286,7 +286,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }	
 		elseif($z==4 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -301,7 +301,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		elseif($z==6 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #cc0000">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -316,7 +316,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		elseif($z==5 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -367,7 +367,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		else{ ?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -381,7 +381,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 	</div>
 			<?php }}else{ ?>
 				<div class="column">
-					<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+					<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -704,7 +704,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php if($z>1){ 
 				if($status=='Pending'){?>
 		<div class="column">
-			<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+			<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card lock">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -719,7 +719,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 <?php }
 		elseif($z==3 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -740,7 +740,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }	
 		elseif($z==4 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -755,7 +755,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		elseif($z==6 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #cc0000">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -770,7 +770,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		elseif($z==5 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -821,7 +821,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		else{ ?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -835,7 +835,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 	</div>
 			<?php }}else{ ?>
 				<div class="column">
-					<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+					<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1159,7 +1159,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 		<?php if($z>1){ 
 				if($status=='Pending'){?>
 		<div class="column">
-			<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+			<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card lock">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1174,7 +1174,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 <?php }
 		elseif($z==3 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1195,7 +1195,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 		<?php }	
 		elseif($z==4 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1210,7 +1210,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 		<?php }
 		elseif($z==6 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #cc0000">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1225,7 +1225,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 		<?php }
 		elseif($z==5 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1282,7 +1282,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 		<?php }
 		else{ ?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1296,7 +1296,7 @@ $sql = "SELECT p.petID, s.$key,p.gender,p.purpose, p.pet_image, p.breedID,b.name
 	</div>
 			<?php }}else{ ?>
 				<div class="column">
-					<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+					<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1614,7 +1614,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php if($z>1){ 
 				if($status=='Pending'){?>
 		<div class="column">
-			<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+			<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card lock">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1629,7 +1629,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 <?php }
 		elseif($z==3 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1650,7 +1650,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }	
 		elseif($z==4 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1665,7 +1665,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		elseif($z==6 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #cc0000">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1680,7 +1680,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		elseif($z==5 && $status!=='Pending'){?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1731,7 +1731,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 		<?php }
 		else{ ?>
 			<div class="column">
-				<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+				<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card" style="border:2px solid #29a329">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1745,7 +1745,7 @@ $sql = "SELECT p.petID, s.$key,p.gender, p.pet_image, p.breedID,b.name,i.inquiry
 	</div>
 			<?php }}else{ ?>
 				<div class="column">
-					<a href="../User/User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
+					<a href="User-Profile.php?id=<?php echo $row2['adopterID'] ?>&sid=<?php echo $row[$key]?>">
             <div class="card">
             <img src="<?php echo $imageSrc2 ?>" alt="Vet" style="width:100%;height: 154px;">
             <div class="petName">
@@ -1959,7 +1959,7 @@ span8.onclick = function() {
 
 function details( i, event) {
   event.preventDefault();
-  window.open("../User/User-Adoption-Receipt.php?paymentID=" + i, "_blank");
+  window.open("User-Adoption-Receipt.php?paymentID=" + i, "_blank");
 }
 
 function reason(id,id2,proc,event){

@@ -13,6 +13,10 @@
     <?php
     include '../Database/Connection.php';
     session_start();
+    if (!isset($_SESSION['vetID'])) {
+      header("Location: ../index.php");
+      exit();
+  }
     $vetID = $_SESSION['vetID'];
     $clinicID = $_SESSION['clinicID'];
 

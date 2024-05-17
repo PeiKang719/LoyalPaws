@@ -21,7 +21,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['adopterID'])){
-include '../User/UserHeader.php';
+include 'UserHeader.php';
 }
 elseif(isset($_SESSION['sellerID'])){
 include 'SellerHeader.php';
@@ -269,20 +269,20 @@ for ($i = 1; $i <= 6; $i++) {
 <div style="width:100%;height: 100px;padding-top: 50px;">
 	<?php 
 	if($row["status"]=='Booked' || $row["status"]=='Appointment' || $row["status"]=='Decision' || $row["status"]=='Payment'|| $row['status']=='appointment'|| $row['status']=='Fail' || $row['status']=='Free'|| $row['status']=='cancel'){?>
-		<a href="../User/User-Adoption-Appointment.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Booked</button></a>
+		<a href="User-Adoption-Appointment.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Booked</button></a>
 	<?php }
 	else{
 	if($row["purpose"]=='Sell' && isset($_SESSION['adopterID'])){ 
 		if($row["status"]=='complete'){?>
-			<a href="../User/User-Adoption-Appointment.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Sold</button></a>
+			<a href="User-Adoption-Appointment.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Sold</button></a>
 		<?php }else{ ?>
-		<a href="../User/User-Adoption-Appointment.php?id=<?php echo $petID; ?>"><button class='adopt-pet-button' id="adoptBtn">I Want Adopt &gt;</button></a>
+		<a href="User-Adoption-Appointment.php?id=<?php echo $petID; ?>"><button class='adopt-pet-button' id="adoptBtn">I Want Adopt &gt;</button></a>
 <?php }}
 	elseif(($row['purpose']=='Rehome' || $row['purpose']=='Lodging')  && isset($_SESSION['adopterID'])){
 		if($row["status"]=='Complete'){?>
-			<a href="../User/User-Adoption-Inquiry-Form.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Adopted</button></a>
+			<a href="User-Adoption-Inquiry-Form.php?id=<?php echo $petID; ?>" style="pointer-events: none"><button class='adopt-pet-button' id="adoptBtn" style="background-color: #999999;" disabled>Adopted</button></a>
 		<?php }else{?>
-		<a href="../User/User-Adoption-Inquiry-Form.php?id=<?php echo $petID; ?>"><button class='adopt-pet-button' id="adoptBtn">I Want Adopt &gt;</button></a>
+		<a href="User-Adoption-Inquiry-Form.php?id=<?php echo $petID; ?>"><button class='adopt-pet-button' id="adoptBtn">I Want Adopt &gt;</button></a>
 	<?php }}}?>
 </div>
 

@@ -209,11 +209,11 @@ function SearchFunction() {
     }
      
  function view_seller(i) {
-    window.location.href = "Seller-Profile.php?iid="+ i+"&admin=yes";
+    window.location.href = "Seller-Profile.php?s=pet&iid="+ i+"&admin=yes";
 
   } 
  function view_shop(i) {
-    window.location.href = "Seller-Profile.php?sid="+ i+"&admin=yes";
+    window.location.href = "Seller-Profile.php?s=pet&sid="+ i+"&admin=yes";
 
   } 
 

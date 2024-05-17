@@ -224,7 +224,7 @@ else{
                     $imageSrc='../media/email_male.png';
                   }
                 }
-            echo '<a href="../Clinic/Clinic-Vet-Profile.php?vetid=' . $row['vetID'] . '" target="_self" style="margin:2%"><div class="card2" style="height:275px">';
+            echo '<a href="Clinic-Vet-Profile.php?vetid=' . $row['vetID'] . '" target="_self" style="margin:2%"><div class="card2" style="height:275px">';
             echo '<img src="' . $imageSrc . '" alt="Pet Image" style="width:100%;height: 154px;">';
             echo '<div class="breedName3">';
             

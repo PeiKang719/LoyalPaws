@@ -518,7 +518,7 @@ function sendRejectEmail(email, name,reason) {
   handleCheckboxChange();
 
    function view_vet(i) {
-    window.location.href = "../Clinic/Clinic-Vet-Profile.php?vetid="+ i+"&admin=yes";
+    window.location.href = "Clinic-Vet-Profile.php?vetid="+ i+"&admin=yes";
 
   } 
 

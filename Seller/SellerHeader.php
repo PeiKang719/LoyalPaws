@@ -15,12 +15,20 @@
      $currentURL = $_SERVER['PHP_SELF'];
     if (strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'Seller_Pets.php') === false) {
     session_start();
+    if (!isset($_SESSION['sellerID'])) {
+      header("Location: ../index.php");
+      exit();
+  }
     $sellerID = $_SESSION['sellerID'];
     $role = $_SESSION['role'];
     $key = $_SESSION['key'];
 }
 
    else{
+    if (!isset($_SESSION['sellerID'])) {
+      header("Location: ../index.php");
+      exit();
+  }
     $sellerID = $_SESSION['sellerID'];
     $role=$_SESSION['role'];
     $key = $_SESSION['key'];

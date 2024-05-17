@@ -14,8 +14,16 @@
     $currentURL = $_SERVER['PHP_SELF'];
     if (strpos($currentURL, 'Seller_Pets-Profile.php') === false && strpos($currentURL, 'SideBar_Breed-Breed-Profile.php') === false) {
     session_start();
+    if (!isset($_SESSION['adopterID'])) {
+      header("Location: ../index.php");
+      exit();
+  }
     $adopterID = $_SESSION['adopterID'];
   }else{
+    if (!isset($_SESSION['adopterID'])) {
+      header("Location: ../index.php");
+      exit();
+  }
      $adopterID = $_SESSION['adopterID'];
   }
   include '../Database/Connection.php';
