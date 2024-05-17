@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://github.com/PeiKang719/LoyalPaws/blob/main/media/lp.png" />
+  <img src="https://github.com/PeiKang719/LoyalPaws/blob/main/media/lp.png" style="width:50%; height:15%;"/>
 </p>
+
 # LOYAL PAWS - Pet Adoption and Clinic Management System
 
 ## Description
