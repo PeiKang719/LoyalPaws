@@ -44,18 +44,25 @@ To set up the project locally, follow these steps:
 ## Usage
 
 ### Admin
-- Manage user roles, pet profiles, and system settings. <br />
+- Manage user roles, breed profiles, organization profiles, and view reports. <br />
 
 ### Adopter
-- Register, browse pets, apply for adoption, and manage profiles. <br />
+- Register, browse pets, apply for adoption, breed matching, make donation, book clinic appointment, and manage profiles. <br />
 
-### Veterinarian
-- Manage clinic appointments and pet medical records. <br />
+### Clinic and Veterinarian
+- Manage clinic appointments, pet medical records, and view reports. Clinic Admins can also specify the discount percentage exclusively for adopters. <br />
 
 ### Payment Processing
-- The payment system uses PayPal sandbox for handling financial transactions securely.
-   - Ensure you have a PayPal sandbox account set up.
-   - Configure the PayPal sandbox credentials in the payment settings of the application.
+
+![Paypal Logo](https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.webassist.com%2Fsupport%2Fpowerstore%2F%3Fslug%3Dpowerstore&psig=AOvVaw1tZp-tyzBWRW4uNI5H4-dH&ust=1716035617204000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIikzP7YlIYDFQAAAAAdAAAAABAu)
+
+- The payment system uses PayPal Sandbox for handling financial transactions securely.
+   - Ensure you have a PayPal Sandbox account set up.
+   - Configure the PayPal Sandbox credentials in the payment settings of the application.
+   - PayPal Sandbox Credentials (for testing purposes):
+      - Email: *sb-wp2cq25985524@personal.example.com*
+      - Password: *123456789*
+      
 
 
 
