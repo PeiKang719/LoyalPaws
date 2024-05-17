@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2024 at 11:22 AM
+-- Generation Time: May 17, 2024 at 11:35 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fyp`
+-- Database: `loyalpaws`
 --
 
 DELIMITER $$
@@ -663,7 +663,8 @@ CREATE TABLE `seller` (
 
 INSERT INTO `seller` (`sellerID`, `username`, `password`, `firstName`, `lastName`, `dob`, `state`, `area`, `address`, `phone`, `email`, `description`, `available`, `start`, `end`, `image`, `cover`) VALUES
 (1, 'seller1', '202cb962ac59075b964b07152d234b70', 'Ali', 'Ahmad', '2004-06-07', 'Johor', 'Batu Pahat', '1B,Jalan Dato Syed Esa,Taman Pantai', '010802344', 'ongpeikang57@hotmail.com', 'Im seller1', 'Monday,Tuesday,Wednesday', '12:00,10:15,10:15', '20:00,21:15,21:15', 0x313638383433333439305f696d6167657320283134292e6a706567, 0x313638383433333531365f646f776e6c6f616420283231292e6a706567),
-(1000, 'ssss', '202cb962ac59075b964b07152d234b70', 'Sell', 'Sell', '2024-04-30', 'Terengganu', 'Dungun', '100,Jalan Esa,', '0108020433', 'ongpeikang57@hotmail.com', 'hihi', 'Sunday', '01:14', '18:14', NULL, NULL);
+(1000, 'ssss', '202cb962ac59075b964b07152d234b70', 'Sell', 'Sell', '2024-04-30', 'Terengganu', 'Dungun', '100,Jalan Esa,', '0108020433', 'ongpeikang57@hotmail.com', 'hihi', 'Sunday', '01:14', '18:14', NULL, NULL),
+(1001, 'aaaa', '202cb962ac59075b964b07152d234b70', 'Alice', 'Alice', '2024-05-05', 'Putrajaya', 'Putrajaya', '100,Jalan Esa,', '0108020433', 'ongpeikang57@hotmail.com', 'test', 'Sunday', '06:33', '20:33', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1001,7 +1002,7 @@ ALTER TABLE `record`
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `sellerID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+  MODIFY `sellerID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 
 --
 -- AUTO_INCREMENT for table `treatment`
