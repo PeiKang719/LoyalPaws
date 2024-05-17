@@ -43,16 +43,20 @@ To set up the project locally, follow these steps:
 
 ## Usage
 
-**Admin**:
+### Admin
 - Manage user roles, pet profiles, and system settings. <br />
-**Adopter**
+
+### Adopter
 - Register, browse pets, apply for adoption, and manage profiles. <br />
-**Veterinarian**
+
+### Veterinarian
 - Manage clinic appointments and pet medical records. <br />
-**Payment Processing**
+
+### Payment Processing
 - The payment system uses PayPal sandbox for handling financial transactions securely.
    - Ensure you have a PayPal sandbox account set up.
    - Configure the PayPal sandbox credentials in the payment settings of the application.
+
 
 
 
