@@ -20,5 +20,52 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/PeiKang719/FYP.git
-   cd loyal-paws-pet-adoption-system
+   git clone https://github.com/PeiKang719/LoyalPaws.git
+
+2. **Install XAMPP:**
+   Download and install XAMPP.
+
+3. **Move the project to the htdocs folder:**
+   Move the cloned project folder to the htdocs directory of your XAMPP installation.
+
+4. **Start Apache and MySQL:**
+   Open the XAMPP Control Panel and start the Apache and MySQL services.
+
+5. **Create a database:**
+   Open your web browser and go to http://localhost/phpmyadmin.
+   Create a new database named 'loyalpaws'.
+
+6. **Import the database schema:**
+   Import the provided 'loyalpaws.sql' file into the newly created database.
+
+7. **Access the application:**
+   Open your web browser and go to http://localhost/LoyalPaws.
+
+## Usage
+
+**Admin**
+-Manage user roles, pet profiles, and system settings.
+**Adopter**
+-Register, browse pets, apply for adoption, and manage profiles.
+**Veterinarian**
+-Manage clinic appointments and pet medical records.
+**Payment Processing**
+-The payment system uses PayPal sandbox for handling financial transactions securely.
+--Ensure you have a PayPal sandbox account set up.
+--Configure the PayPal sandbox credentials in the payment settings of the application.
+
+
+
+   
+
+
+
+
+
+   
+
+
+
+
+
+
