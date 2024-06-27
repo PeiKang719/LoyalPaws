@@ -166,7 +166,7 @@ if(++$i > 10) break;
 </div>
 <br><br>
 <div style="display: flex;justify-content: center;align-items: center;">
-<a href='../../../FYP/User/UserHomePage.php' style="width:40%;margin:0"><button class="matching-letsgo-button" style="margin:0;width:100%">Back to homepage</button></a>
+<a href='../../../LoyalPaws/User/UserHomePage.php' style="width:40%;margin:0"><button class="matching-letsgo-button" style="margin:0;width:100%">Back to homepage</button></a>
 </div>
 <br><br>
 </body>

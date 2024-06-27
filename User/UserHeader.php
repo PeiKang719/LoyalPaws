@@ -46,7 +46,7 @@
     <i class="fas fa-bars"></i>
   </label>
   <label class="logo">
-    <a href="../../../FYP/User/UserHomePage.php">
+    <a href="../../../LoyalPaws/User/UserHomePage.php">
       <img src="../media/lp.png" width="250" height="70" style="margin-top: -30px;margin-bottom: -33px;">
     </a>
   </label>
@@ -54,16 +54,16 @@
     <li class="dropdown">
       <button class="dropbtn">Pet</button>
       <div class="dropdown-content">
-        <a href="../../../FYP/User/User-Order-List.php">Order</a>
-        <a href="../../../FYP/User/User-Adoption-List.php">Adoption/Lodging</a>
+        <a href="../../../LoyalPaws/User/User-Order-List.php">Order</a>
+        <a href="../../../LoyalPaws/User/User-Adoption-List.php">Adoption/Lodging</a>
       </div>
     </li>
-    <li><a href="../../../FYP/User/User-Pet-Appointment-List.php">Clinic</a></li>
-    <li><a href="../../../FYP/User/User-Chat.php">Message</a></li>
+    <li><a href="../../../LoyalPaws/User/User-Pet-Appointment-List.php">Clinic</a></li>
+    <li><a href="../../../LoyalPaws/User/User-Chat.php">Message</a></li>
     <li class="dropdown" style="width:120px;text-align: center;">
       <button class="dropbtn" id="profile-icon" style="padding:9px 30px;"><img src="<?php echo $imageSrc ?>" style="width: 50px;height: 50px;border-radius: 50%;border: 1px solid black;vertical-align: -10px;"> </button>
       <div class="dropdown-content">
-        <a href="../../../FYP/User/User-Profile.php">Profile</a>
+        <a href="../../../LoyalPaws/User/User-Profile.php">Profile</a>
         <a href="../index.php">Log Out</a>
       </div>
     </li>
