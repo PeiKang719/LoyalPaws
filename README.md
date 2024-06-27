@@ -48,7 +48,9 @@ To set up the project locally, follow these steps:
 ## Usage
 
 ### Admin
-- Manage user roles, breed profiles, organization profiles, and view reports. <br />
+- Manage user roles, breed profiles, organization profiles, and view reports.
+  - Username: *admin*
+  - Password: *123*
 
 ### Adopter
 - Register, browse pets, apply for adoption, breed matching, make donation, book clinic appointment, and manage profiles. <br />
